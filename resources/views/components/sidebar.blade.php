@@ -1,0 +1,61 @@
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="index.html">PLN UP2D Jatim</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index.html">PLN</a>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Dashboard</li>
+            <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">Main Menu</a>
+            </li>
+            <li class="menu-header">Tabel Monitoring Beban</li>
+
+            <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
+
+                <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
+            </li>
+            <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('bebanminggu') }}"><i class="fas fa-th-large"></i>Beban Mingguan</a>
+            </li>
+            <li class='{{ Request::is('bebanbulan') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
+            </li>
+            </li>
+            <li class="menu-header">Tabel Beban</li>
+
+            <li class='{{ Request::is('bebantrafo') ? 'active' : '' }}'>
+
+                <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-th-large"></i>Tabel Beban Trafo</a>
+            </li>
+            <li class='{{ Request::is('bebanpenyulang') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-th-large"></i>Tabel Beban Penyulang</a>
+            </li>
+            <li class='{{ Request::is('bebanup3') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('bebanup3') }}"><i class="fas fa-th-large"></i>Tabel Beban UP3</a>
+            </li>
+            </li>
+            <li class='{{ Request::is('bebanktt') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i>Tabel Beban KTT</a>
+            </li>
+            {{-- <li class="menu-header">Stisla</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
+                    <span>Components</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('components-article') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('components-article') }}">Article</a>
+                    </li>
+                </ul>
+            </li> --}}
+        </ul>
+
+        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-arrow-left"></i> Logout
+            </a>
+        </div>
+    </aside>
+</div>
