@@ -45,7 +45,8 @@ class LoginController extends Controller
         return view('Auth.auth-login2');
     }
 
-    public function LoginPost(LoginRequest $request){
+    public function LoginPost(LoginRequest $request)
+    {
 
         $credentials = $request->validated();
 
@@ -53,7 +54,7 @@ class LoginController extends Controller
 
         // dd(Auth::attempt($credentials));
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
 
@@ -63,19 +64,41 @@ class LoginController extends Controller
 
             Auth::login($user);
 
-            if(Auth::user()->hasRole('Administrator')){
+            if (Auth::user()->hasRole('Administrator')) {
                 return redirect()->route('dashboard.admin');
             }
 
-        }
+            if (Auth::user()->hasRole('operator')) {
 
+                return redirect()->route('dashboard.operator');
+            }
+
+            if (Auth::user()->hasRole('ValidatorOpsis')) {
+
+                return redirect()->route('dashboard.validopsis');
+            }
+
+            if (Auth::user()->hasRole('ValidatorFasop')) {
+
+                return redirect()->route('dashboard.validfasop');
+            }
+
+            if (Auth::user()->hasRole('EditorOpsis')) {
+
+                return redirect()->route('dashboard.editorop');
+            }
+
+            if (Auth::user()->hasRole('Visitor')) {
+
+                return redirect()->route('dashboard.visitor');
+            }
+        }
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
 
         return redirect()->route('loginform');
     }
-
-
 }

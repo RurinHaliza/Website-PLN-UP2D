@@ -34,17 +34,31 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanktt', [MenuController::class, 'bebanktt'])->name('bebanktt');
 });
 
-Route::get('/dashboard-general-dashboard', function () {
-    return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']], function () {
+
+    Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.operator');
 });
 
-Route::get('/dashboard-ecommerce-dashboard', function () {
-    return view('pages.dashboard-ecommerce-dashboard', ['type_menu' => 'dashboard']);
+Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
+
+    Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validopsis');
 });
 
+Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
 
+    Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validfasop');
+});
 
+Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOpsis']], function () {
 
+    Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.editorop');
+});
+
+Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], function () {
+
+    Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.visitor');
+
+});
 
 // Layout
 Route::get('/layout-default-layout', function () {
