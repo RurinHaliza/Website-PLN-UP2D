@@ -25,14 +25,14 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(LaratrustSeeder::class);
 
-        // $user = User::create([
-        //     'name' => 'administrator',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => '12345678',
-        //     'role' => 'Administrator',
-        // ]);
+        $user = User::create([
+            'name' => 'administrator',
+            'email' => 'admin@gmail.com',
+            'password' => '12345678',
+            'role' => 'Administrator',
+        ]);
 
-        // $user->attachRole('Administrator');
+        $user->attachRole('Administrator');
 
         $user2 = User::create([
             'name' => 'operator',
@@ -75,8 +75,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'Visitor',
         ]);
         $user6->attachRole('Visitor');
-
-
 
 
     }
