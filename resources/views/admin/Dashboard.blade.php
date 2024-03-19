@@ -26,24 +26,6 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>Beban Tertinggi Jatim Tahun Ini</li>
-                            <ul>
-                                <li>MW: </li>
-                                <li>Tanggal</li>
-                                <li>Pukul</li>
-                            </ul>
-                            <li>Beban Tertinggi Jatim Bulan Ini</li>
-                            <ul>
-                                <li>MW: </li>
-                                <li>Tanggal</li>
-                                <li>Pukul</li>
-                            </ul>
-                            <li>Beban Tertinggi Jatim Tahun Ini</li>
-                            <ul>
-                                <li>MW: </li>
-                                <li>Tanggal</li>
-                                <li>Pukul</li>
-                            </ul>
                             <li>Beban Tertinggi Jatim Hari Ini</li>
                             <ul>
                                 <li>MW: </li>
@@ -54,7 +36,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-8">
                 <div class="card"></div>
                 <img src="{{ asset('img/PetaJatim.png') }}" alt="" style="width: 100%">
