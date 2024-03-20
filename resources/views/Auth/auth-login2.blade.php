@@ -32,7 +32,7 @@
                                 class="font-weight-bold">SI MASTER DATA PLN</span>
                         </h4>
                         <p class="text-muted">Silahkan Login</p>
-                        <form method="POST" action="" class="needs-validation" novalidate="">
+                        <form method="POST" action="{{ route('loginpost') }}" class="needs-validation" novalidate="">
                             @csrf
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -83,6 +83,8 @@
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="mb-5 pb-3">
+
+
                                 <h1 class="display-4 font-weight-bold mb-2">Good Morning</h1>
                             </div>
                         </div>

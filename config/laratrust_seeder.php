@@ -12,20 +12,53 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'superadministrator' => [
-            'users' => 'c,r,u,d',
-            'payments' => 'c,r,u,d',
-            'profile' => 'r,u'
+        'operator' => [
+            'bebanharian' => 'c,r,u,d',
+            'bebanbulanan' => 'c,r,u,d',
+            'bebanmingguan' => 'c,r,u,d',
+            'tabeltrafo' => 'c,r,u,d',
+            'tabelpenyulang' => 'c,r,u,d',
+            'tabelup3' => 'c,r,u,d',
         ],
-        'administrator' => [
-            'users' => 'c,r,u,d',
-            'profile' => 'r,u'
+        'ValidatorOpsis' => [
+            'bebanharian' => 'c,r,u,d',
+            'bebanbulanan' => 'c,r,u,d',
+            'bebanmingguan' => 'c,r,u,d',
+            'tabeltrafo' => 'c,r,u,d',
+            'tabelpenyulang' => 'c,r,u,d',
+            'tabelup3' => 'c,r,u,d',
         ],
-        'user' => [
-            'profile' => 'r,u',
+        'ValidatorFasop' => [
+            'bebanharian' => 'c,r,u,d',
+            'bebanbulanan' => 'c,r,u,d',
+            'bebanmingguan' => 'c,r,u,d',
+            'tabeltrafo' => 'c,r,u,d',
+            'tabelpenyulang' => 'c,r,u,d',
+            'tabelup3' => 'c,r,u,d',
         ],
-        'role_name' => [
-            'module_1_name' => 'c,r,u,d',
+        'EditorOpsis' => [
+            'bebanharian' => 'c,r,u,d',
+            'bebanbulanan' => 'c,r,u,d',
+            'bebanmingguan' => 'c,r,u,d',
+            'tabeltrafo' => 'c,r,u,d',
+            'tabelpenyulang' => 'c,r,u,d',
+            'tabelup3' => 'c,r,u,d',
+        ],
+        'Visitor' => [
+            'bebanharian' => 'r',
+            'bebanbulanan' => 'r',
+            'bebanmingguan' => 'r',
+            'tabeltrafo' => 'r',
+            'tabelpenyulang' => 'r',
+            'tabelup3' => 'r',
+        ],
+        'Administrator' => [
+            'bebanharian' => 'c,r,u,d',
+            'bebanbulanan' => 'c,r,u,d',
+            'bebanmingguan' => 'c,r,u,d',
+            'tabeltrafo' => 'c,r,u,d',
+            'tabelpenyulang' => 'c,r,u,d',
+            'tabelup3' => 'c,r,u,d',
         ]
     ],
 
