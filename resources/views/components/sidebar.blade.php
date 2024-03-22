@@ -28,11 +28,11 @@
 
             <li class='{{ Request::is('bebantrafo') ? 'active' : '' }}'>
 
-                <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-th-large"></i>Tabel Beban
+                <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i>Tabel Beban
                     Trafo</a>
             </li>
             <li class='{{ Request::is('bebanpenyulang') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-th-large"></i>Tabel Beban
+                <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>Tabel Beban
                     Penyulang</a>
             </li>
             <li class='{{ Request::is('bebanup3') ? 'active' : '' }}'>
@@ -42,16 +42,14 @@
             <li class='{{ Request::is('bebanktt') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i>Tabel Beban KTT</a>
             </li>
-            {{-- <li class="menu-header">Stisla</li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
-                    <span>Components</span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ Request::is('components-article') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('components-article') }}">Article</a>
-                    </li>
-                </ul>
-            </li> --}}
+
+            <li class="menu-header">Manajemen User</li>
+
+            <li class='{{ Request::is('user.admin') ? 'active' : '' }}'>
+
+                <a class="nav-link" href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i>User</a>
+            </li>
+            </li>
         </ul>
 
         <div class="hide-sidebar-mini mt-4 mb-4 p-3">
