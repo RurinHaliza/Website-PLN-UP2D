@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class UserController extends Controller
@@ -17,15 +18,18 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('Administrator')){
         //get posts
         $users = User::all();
         $roles = Role::all();
         //render view with posts
         return view('admin.createuser', compact('users','roles'));
+        }
     }
 
     public function actionregister(Request $request)
     {
+        if(Auth::user()->hasRole('Administrator')){
         //validate form
         $this->validate($request, [
             'name' => 'required|string|max:255',
@@ -43,6 +47,7 @@ class UserController extends Controller
         //redirect to index
         Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
         return redirect()->route('createuser.index');
+    }
     }
 
 }
