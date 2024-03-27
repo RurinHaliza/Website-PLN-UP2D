@@ -42,6 +42,10 @@
             <li class='{{ Request::is('bebanktt') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i>Tabel Beban KTT</a>
             </li>
+            <li class="menu-header">Tabel Beban</li>
+            <li class='{{ Request::is('/Admin/createuser') ? 'active' : '' }}'>
+                <a class="nav-link" href="/Admin/createuser"><i class="fas fa-th-large"></i>Create User</a>
+            </li>
             {{-- <li class="menu-header">Stisla</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>

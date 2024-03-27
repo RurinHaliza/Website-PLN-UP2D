@@ -43,7 +43,20 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        @forelse ($databebanpuncak30 as $databebanpuncak)
+                        <tr>
+                            <td>{{ $databebanpuncak->id }}</td>
+                            <td>{{ $databebanpuncak->feeder_pkey }}</td>
+                            <td>{{ $databebanpuncak->gardu_induk }}</td>
+                        </tr>
+                        @csrf
+                        @empty
+                        <div class="alert alert-danger">
+                            Data Post belum Tersedia.
+                        </div>
+                    @endforelse
                     </table>
+                    {{ $databebanpuncak30->links() }}
                 </div>
             </div>
             <div class="card-footer">

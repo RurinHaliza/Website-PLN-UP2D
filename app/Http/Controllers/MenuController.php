@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use Illuminate\View\View;
+use App\Models\data_beban_puncak30;
+use Session;
 class MenuController extends Controller
 {
 
     public function harian()
     {
-        return view('admin.monitoring.hari');
+        $databebanpuncak30 = data_beban_puncak30::paginate(10);;
+        return view('admin.monitoring.hari', compact('databebanpuncak30'));
     }
 
     public function mingguan()
@@ -39,5 +43,9 @@ class MenuController extends Controller
     public function bebanktt()
     {
         return view('admin.beban.ktt');
-    }
+    } 
+    public function create()
+    {
+        return view('admin.createuser');
+    } 
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,10 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanpenyulang', [MenuController::class, 'bebanpenyulang'])->name('bebanpenyulang');
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
     Route::get('bebanktt', [MenuController::class, 'bebanktt'])->name('bebanktt');
+    Route::get('create', [UserController::class, 'create'])->name('create');
+    Route::resource('createuser', \App\Http\Controllers\UserController::class);
+    //REGISTER
+    Route::post('createuser', [UserController::class, 'actionregister'])->name('actionregister');
 });
 
 Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']], function () {
