@@ -38,7 +38,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('UserManagement',[UserController::class,'index'])->name('user.admin');
     Route::get('TambahUser',[UserController::class,'create'])->name('user.create');
     Route::post('TambahUserPost',[UserController::class,'store'])->name('user.store');
-    
+
     Route::get('create', [UserController::class, 'create'])->name('create');
     Route::resource('createuser', \App\Http\Controllers\UserController::class);
     //REGISTER
