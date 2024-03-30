@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'Gardu Induk')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,7 +14,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Beban Penyulang</h1>
+                <h1>Beban GI (Gardu Induk)</h1>
             </div>
         </section>
         <div class="card mt-3">
@@ -27,10 +27,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>ID_JTM</th>
-                                <th>ID_GI</th>
-                                <th>ID_TRAFO_GI</th>
-                                <th>NM_JATIM</th>
+                                <th>ID FGI</th>
+                                <th>Nama GI</th>
+                                <th>Nama Singkatan</th>
+                                <th>KD Pemilik</th>
+                                <th>KD Pengelola</th>
+                                <th>Tingkat Resiko</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

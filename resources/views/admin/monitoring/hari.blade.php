@@ -6,6 +6,7 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
 @endpush
 
 @section('main')
@@ -26,14 +27,13 @@
                 </div>
             </div>
         </div>
-
         <div class="card mt-3">
             <div class="card-header">
                 <h5 class="m-0 font-weight-bold text-primary">Tabel Pengukuran</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <table class="table table-bordered" id="table-1" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -43,47 +43,38 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        @forelse ($databebanpuncak30 as $databebanpuncak)
-                        <tr>
-                            <td>{{ $databebanpuncak->id }}</td>
-                            <td>{{ $databebanpuncak->feeder_pkey }}</td>
-                            <td>{{ $databebanpuncak->gardu_induk }}</td>
-                        </tr>
-                        @csrf
-                        @empty
-                        <div class="alert alert-danger">
-                            Data Post belum Tersedia.
-                        </div>
-                    @endforelse
+                        @foreach ($databebanpuncak30 as $databebanpuncak)
+                            <tr>
+                                <td>{{ $databebanpuncak->id }}</td>
+                                <td>{{ $databebanpuncak->feeder_pkey }}</td>
+                                <td>{{ $databebanpuncak->gardu_induk }}</td>
+                            </tr>
+                        @endforeach
                     </table>
-                    {{ $databebanpuncak30->links() }}
+                    {{-- {{ $databebanpuncak30->links() }} --}}
                 </div>
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
             </div>
         </div>
-
-
-
-
     </div>
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
-    <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
-
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/index-0.js') }}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- JS Libraies -->
+    <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+    <script>
+        $("#panduan").dataTable({
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [2, 3]
+            }]
+        });
+    </script>
     <script>
         var ctx = document.getElementById('barChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -115,10 +106,5 @@
         });
     </script>
 
-    <script>
-        // Call the dataTables jQuery plugin
-        $(document).ready(function() {
-            $('#dataTable').DataTable();
-        });
-    </script>
+
 @endpush
