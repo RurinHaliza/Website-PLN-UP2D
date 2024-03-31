@@ -27,10 +27,13 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>ID_JTM</th>
-                                <th>ID_GI</th>
-                                <th>ID_TRAFO_GI</th>
-                                <th>NM_JATIM</th>
+                                <th>ID JTM</th>
+                                <th>ID GI</th>
+                                <th>ID TRAFO GI</th>
+                                <th>NM JTM</th>
+                                <th>NM GI</th>
+                                <th>NM Singkatan</th>
+                                <th>UP3</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
