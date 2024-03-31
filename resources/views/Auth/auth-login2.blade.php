@@ -85,7 +85,7 @@
                             <div class="mb-5 pb-3">
 
 
-                                <h1 class="display-4 font-weight-bold mb-2">Good Morning</h1>
+                                <h1 class="display-4 font-weight-bold mb-2">Have A Good Day</h1>
                             </div>
                         </div>
                     </div>
