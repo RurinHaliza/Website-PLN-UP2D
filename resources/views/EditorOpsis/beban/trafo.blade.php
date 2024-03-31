@@ -26,9 +26,24 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Jumlah Gardu Induk</th>
-                                <th>Jumlah Trafo</th>
-                                <th>Jumlah Feeder</th>
+                                <th>Nama Gardu Induk</th>
+                                <th>ID Trafo</th>
+                                <th>ID Kelas</th>
+                                <th>KD Pemilik</th>
+                                <th>KD Pengelola</th>
+                                <th>Tingkat Resiko</th>
+                                <th>Kode Peralatan</th>
+                                <th>Merk</th>
+                                <th>No Seri</th>
+                                <th>Peruntukan</th>
+                                <th>Jenis</th>
+                                <th>Status</th>
+                                <th>TGL Pasang</th>
+                                <th>TGL Operasi</th>
+                                <th>Nilai Perolehan</th>
+                                <th>Nilai Buku</th>
+                                <th>Umur Ekonomis</th>
+                                <th>Umur Manfaat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
