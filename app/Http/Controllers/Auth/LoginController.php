@@ -66,31 +66,23 @@ class LoginController extends Controller
 
             if (Auth::user()->hasRole('Administrator')) {
                 return redirect()->route('dashboard.admin');
-            }
-
-            if (Auth::user()->hasRole('operator')) {
+            }elseif (Auth::user()->hasRole('operator')) {
 
                 return redirect()->route('dashboard.operator');
-            }
-
-            if (Auth::user()->hasRole('ValidatorOpsis')) {
+            }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
 
                 return redirect()->route('dashboard.validopsis');
-            }
-
-            if (Auth::user()->hasRole('ValidatorFasop')) {
+            }elseif (Auth::user()->hasRole('ValidatorFasop')) {
 
                 return redirect()->route('dashboard.validfasop');
-            }
-
-            if (Auth::user()->hasRole('EditorOpsis')) {
+            }elseif (Auth::user()->hasRole('EditorOpsis')) {
 
                 return redirect()->route('dashboard.editorop');
-            }
-
-            if (Auth::user()->hasRole('Visitor')) {
+            }elseif (Auth::user()->hasRole('Visitor')) {
 
                 return redirect()->route('dashboard.visitor');
+            }else{
+                return view('Error.error-404');
             }
         }
     }

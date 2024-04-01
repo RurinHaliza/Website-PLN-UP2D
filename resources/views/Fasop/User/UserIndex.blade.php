@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'User Management')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,26 +14,23 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Beban Penyulang</h1>
+                <h1>Management user</h1>
             </div>
         </section>
+
         <div class="card mt-3">
             <div class="card-header">
-                <h5 class="m-0 font-weight-bold text-primary">Tabel Pengukuran</h5>
+                <a href="{{ route('user.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i>Tambah Data</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <table class="table table-bordered" id="TrafoTabel" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>ID JTM</th>
-                                <th>ID GI</th>
-                                <th>ID TRAFO GI</th>
-                                <th>NM JTM</th>
-                                <th>NM GI</th>
-                                <th>NM Singkatan</th>
-                                <th>UP3</th>
+                                <th>Nama Trafo</th>
+                                <th>Tipe</th>
+                                <th>Alamat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,6 +42,8 @@
             </div>
         </div>
     </div>
+
+
 @endsection
 
 @push('scripts')

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\data_beban_puncak30;
+// use App\Models\data_beban_puncak30;
 class data_beban_puncak30 extends Model
 {
     use HasFactory;

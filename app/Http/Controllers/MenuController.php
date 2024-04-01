@@ -12,7 +12,7 @@ class MenuController extends Controller
 
     public function harian()
     {
-        $databebanpuncak30 = data_beban_puncak30::paginate(10);;
+        $databebanpuncak30 = data_beban_puncak30::paginate(10);
         return view('admin.monitoring.hari', compact('databebanpuncak30'));
     }
 
@@ -43,9 +43,14 @@ class MenuController extends Controller
     public function bebanktt()
     {
         return view('admin.beban.ktt');
-    } 
+    }
+
+    public function GI(){
+        return view('admin.beban.GI');
+    }
+
     public function create()
     {
         return view('admin.createuser');
-    } 
+    }
 }

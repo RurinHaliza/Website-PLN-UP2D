@@ -33,12 +33,13 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanpenyulang', [MenuController::class, 'bebanpenyulang'])->name('bebanpenyulang');
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
     Route::get('bebanktt', [MenuController::class, 'bebanktt'])->name('bebanktt');
+    Route::get('BebanGI',[MenuController::class,'GI'])->name('beban.GI');
 
     //Management user
     Route::get('UserManagement',[UserController::class,'index'])->name('user.admin');
     Route::get('TambahUser',[UserController::class,'create'])->name('user.create');
     Route::post('TambahUserPost',[UserController::class,'store'])->name('user.store');
-    
+
     Route::get('create', [UserController::class, 'create'])->name('create');
     Route::resource('createuser', \App\Http\Controllers\UserController::class);
     //REGISTER
