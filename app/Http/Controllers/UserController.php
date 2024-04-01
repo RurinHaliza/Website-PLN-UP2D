@@ -41,9 +41,33 @@ class UserController extends Controller
             $users = User::create([
                 'email' => $request->email,
                 'name' => $request->name,
-                'password' => Hash::make($request->password),
+                'password' => $request->password,
                 'role' => $request->role
             ]);
+
+            if ($request->role == 'operator') {
+
+                $users->attachRole('operator');
+            }elseif ($request->role == 'ValidatorOpsis') {
+
+                $users->attachRole('ValidatorOpsis');
+            }elseif ($request->role == 'ValidatorFasop') {
+
+                $users->attachRole('ValidatorFasop');
+            }
+            elseif ($request->role == 'EditorOpsis') {
+
+                $users->attachRole('EditorOpsis');
+            }
+            elseif ($request->role == 'Visitor') {
+
+                $users->attachRole('Visitor');
+            }
+            elseif ($request->role == 'Administrator') {
+
+                $users->attachRole('Administrator');
+            }
+
 
             //redirect to index
             Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
