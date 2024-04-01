@@ -37,6 +37,7 @@ class UserController extends Controller
                 'email' => 'required|email|unique:users',
                 'password'   => 'required|min:8',
             ]);
+
             //create post
             $users = User::create([
                 'email' => $request->email,
@@ -67,7 +68,6 @@ class UserController extends Controller
 
                 $users->attachRole('Administrator');
             }
-
 
             //redirect to index
             Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
