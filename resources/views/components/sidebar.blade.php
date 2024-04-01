@@ -12,9 +12,10 @@
                 <a class="nav-link" href="{{ route('dashboard.admin') }}">Main Menu</a>
             </li>
             <li class="menu-header">Tabel Monitoring Beban</li>
-
+            <li class='{{ Request::is('bebansemua') ? 'active' : '' }}'>
+                <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>Beban</a>
+            </li>
             <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
-
                 <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
             </li>
             <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>

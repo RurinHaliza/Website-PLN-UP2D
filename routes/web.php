@@ -26,6 +26,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout.post');
 Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
