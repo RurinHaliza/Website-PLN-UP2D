@@ -14,7 +14,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Beban Penyulang</h1>
+                <h1>Beban UP3</h1>
             </div>
         </section>
         <div class="card mt-3">
@@ -27,13 +27,10 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>ID JTM</th>
-                                <th>ID GI</th>
-                                <th>ID TRAFO GI</th>
-                                <th>NM JTM</th>
-                                <th>NM GI</th>
-                                <th>NM Singkatan</th>
-                                <th>UP3</th>
+                                <th>ID_JTM</th>
+                                <th>ID_GI</th>
+                                <th>ID_TRAFO_GI</th>
+                                <th>NM_JATIM</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
