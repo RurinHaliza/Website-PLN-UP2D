@@ -8,6 +8,8 @@ use Illuminate\View\View;
 use App\Models\data_beban_puncak30;
 use App\Models\data_beban_puncak;
 use Session;
+use App\Models\GITable;
+
 class MenuController extends Controller
 {
 
@@ -24,8 +26,8 @@ class MenuController extends Controller
         foreach ($data as $item) {
             $bulan = $item->bulan;
             $nilai = max(
-                $item->{'01_S'}, $item->{'01_M'}, 
-                $item->{'02_S'}, $item->{'02_M'}, 
+                $item->{'01_S'}, $item->{'01_M'},
+                $item->{'02_S'}, $item->{'02_M'},
                 // Lanjutkan sampai 31
             );
 
@@ -92,7 +94,11 @@ class MenuController extends Controller
     }
 
     public function GI(){
-        return view('admin.beban.GI');
+
+        $GI = GITable::all();
+        // dd($GI);
+
+        return view('admin.beban.GI',compact('GI'));
     }
 
     public function create()

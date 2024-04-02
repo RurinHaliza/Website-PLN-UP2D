@@ -6,7 +6,6 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
 @endpush
 
 @section('main')
@@ -33,7 +32,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="table-1" cellspacing="0">
+                    <table class="table table-bordered" id="bebanharian" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -48,6 +47,8 @@
                                 <td>{{ $databebanpuncak->id }}</td>
                                 <td>{{ $databebanpuncak->feeder_pkey }}</td>
                                 <td>{{ $databebanpuncak->gardu_induk }}</td>
+                                <td></td>
+                                <td><a href="" class="btn btn-warning">Detail</a></td>
                             </tr>
                         @endforeach
                     </table>
@@ -62,19 +63,17 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- JS Libraies -->
-    <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
     <script>
-        $("#panduan").dataTable({
+        $("#bebanharian").dataTable({
             "columnDefs": [{
                 "sortable": false,
                 "targets": [2, 3]
             }]
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
     <script>
         var ctx = document.getElementById('barChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -105,6 +104,4 @@
             }
         });
     </script>
-
-
 @endpush

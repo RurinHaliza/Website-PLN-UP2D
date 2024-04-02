@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <table class="table table-bordered" id="trafo" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -58,10 +58,14 @@
 @endsection
 
 @push('scripts')
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/index-0.js') }}"></script>
 
-    <!-- JS Libraies -->
-    <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+<script>
+    $("#trafo").dataTable({
+        "columnDefs": [{
+            "sortable": false,
+            "targets": [2, 3]
+        }]
+    });
+</script>
+
 @endpush
