@@ -17,9 +17,94 @@
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger">Kembali</a>
 
-        <div class="card mt-3">
-
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header"
+                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
+                        <h4 style="color:white">Beban Jatim Tertinggi Tahun ini</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>MW: </li>
+                            <li>Tanggal : </li>
+                            <li>Pukul</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header"
+                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
+                        <h4 style="color:white">Beban Jatim Tertinggi Bulan ini</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>MW: </li>
+                            <li>Tanggal : </li>
+                            <li>Pukul</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header"
+                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
+                        <h4 style="color:white">Beban Jatim Tertinggi Hari ini</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>MW: </li>
+                            <li>Tanggal : </li>
+                            <li>Pukul</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="align-center">Real Time Data Beban Jawa Timur : {{ 'Tanggal dan hari' }}</h3>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"
+                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
+                        <h4 style="color:white">Beban Jatim Tertinggi Tahun ini</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>MW: </li>
+                            <li>Tanggal : </li>
+                            <li>Pukul</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"
+                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
+                        <h4 style="color:white">Beban Jatim Tertinggi Bulan ini</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>MW: </li>
+                            <li>Tanggal : </li>
+                            <li>Pukul</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="card mt-3">
             <div class="card-header">
                 <h6 class="m-0 font-weight-bold text-primary">Grafik Pengukuran Hari ini</h6>
