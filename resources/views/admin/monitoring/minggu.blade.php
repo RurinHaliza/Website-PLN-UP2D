@@ -15,6 +15,7 @@
                 <h1>Beban Mingguan</h1>
             </div>
         </section>
+        <a href="{{ url()->previous() }}" class="btn btn-danger">Kembali</a>
 
         <div class="card mt-3">
             <div class="card-header">

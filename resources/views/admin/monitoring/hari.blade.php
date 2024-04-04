@@ -15,10 +15,11 @@
                 <h1>Beban Harian</h1>
             </div>
         </section>
+        <a href="{{ url()->previous() }}" class="btn btn-danger">Kembali</a>
 
-        <div class="card mt-3"></div>
+        <div class="card mt-3">
 
-
+        </div>
         <div class="card mt-3">
             <div class="card-header">
                 <h6 class="m-0 font-weight-bold text-primary">Grafik Pengukuran Hari ini</h6>
