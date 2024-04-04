@@ -16,6 +16,9 @@
             </div>
         </section>
 
+        <div class="card mt-3"></div>
+
+
         <div class="card mt-3">
             <div class="card-header">
                 <h6 class="m-0 font-weight-bold text-primary">Grafik Pengukuran Hari ini</h6>
