@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\View\View;
 use App\Models\data_beban_puncak30;
 use App\Models\data_beban_puncak;
+use Carbon\Carbon;
 use Session;
 use App\Models\GITable;
 use Illuminate\Support\Facades\Auth;
@@ -65,21 +66,86 @@ class MenuController extends Controller
         }
     }
 
-    public function harian()
+    public function harian(Request $request)
     {
-        $databebanpuncak30 = data_beban_puncak30::paginate(10);
-        return view('admin.monitoring.hari', compact('databebanpuncak30'));
+        $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
+        $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->paginate(10);
+        
+
+        // Analytics
+        // Mendapatkan tanggal hari ini
+        $tanggalHariIni = Carbon::today()->toDateString();
+        
+        // Mengambil data dari model untuk tanggal hari ini
+        $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
+
+        // Mengambil data dari model untuk bulan ini
+        $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
+
+        // Mengambil data dari model untuk tahun ini
+        $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
+
+        return view('admin.monitoring.hari', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
     }
 
-    public function mingguan()
+    public function mingguan(Request $request)
     {
-        return view('admin.monitoring.minggu');
+                // Mengambil tanggal yang dipilih dari request
+        $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
+        // Mengonversi tanggal yang dipilih menjadi objek Carbon
+        $selectedDateCarbon = Carbon::parse($selectedDate);
+
+        // Menghitung tanggal 7 hari yang lalu dari tanggal yang dipilih
+        $startDate = $selectedDateCarbon->copy()->subDays(6)->toDateString();
+        // Mengambil data dalam rentang tanggal
+        $data = data_beban_puncak30::whereBetween('tanggal', [$startDate, $selectedDate])->paginate(10);
+        // Analytics
+        // Mendapatkan tanggal hari ini
+        $tanggalHariIni = Carbon::today()->toDateString();
+        
+        // Mengambil data dari model untuk tanggal hari ini
+        $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
+
+        // Mengambil data dari model untuk bulan ini
+        $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
+
+        // Mengambil data dari model untuk tahun ini
+        $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
+
+        return view('admin.monitoring.minggu', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
     }
 
 
-    public function bulanan()
+    public function bulanan(Request $request)
     {
-        return view('admin.monitoring.bulan');
+        // Mengambil tanggal yang dipilih dari request, atau menggunakan tanggal hari ini jika tidak ada yang dipilih
+        $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
+        // Mengonversi tanggal yang dipilih menjadi objek Carbon
+        $selectedDateCarbon = Carbon::parse($selectedDate);
+
+        // Menentukan bulan dan tahun dari tanggal yang dipilih
+        $selectedMonth = $selectedDateCarbon->month;
+        $selectedYear = $selectedDateCarbon->year;
+
+        // Mengambil data untuk bulan dan tahun yang sesuai
+        $data = data_beban_puncak30::whereYear('tanggal', $selectedYear)
+            ->whereMonth('tanggal', $selectedMonth)
+            ->paginate(10);
+
+        // Analytics
+        // Mendapatkan tanggal hari ini
+        $tanggalHariIni = Carbon::today()->toDateString();
+        
+        // Mengambil data dari model untuk tanggal hari ini
+        $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
+
+        // Mengambil data dari model untuk bulan ini
+        $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
+
+        // Mengambil data dari model untuk tahun ini
+        $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
+
+        return view('admin.monitoring.bulan', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
     }
 
     //beban

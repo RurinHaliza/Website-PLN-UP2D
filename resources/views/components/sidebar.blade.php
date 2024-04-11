@@ -25,7 +25,7 @@
                 <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
             </li> --}}
             </li>
-            <li class="menu-header">Tabel Beban</li>
+        {{-- <li class="menu-header">Tabel Beban</li>
 
             <li class='{{ Request::is('bebantrafo') ? 'active' : '' }}'>
 
@@ -45,9 +45,9 @@
             </li>
             <li class='{{ Request::is('beban.GI') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i>Tabel Beban GI</a>
-            </li>
+            </li> --}}
 
-            <li class="menu-header">Manajemen User</li>
+        <li class="menu-header">Manajemen User</li>
 
             <li class='{{ Request::is('user.admin') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i>User</a>
