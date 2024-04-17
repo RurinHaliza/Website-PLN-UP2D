@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TrafoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
     Route::get('bebantrafo', [MenuController::class, 'bebantrafo'])->name('bebantrafo');
+    Route::get('DetailTrafo',[TrafoController::class,'index'])->name('data.trafo');
+
     Route::get('bebanpenyulang', [MenuController::class, 'bebanpenyulang'])->name('bebanpenyulang');
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
     Route::get('bebanktt', [MenuController::class, 'bebanktt'])->name('bebanktt');

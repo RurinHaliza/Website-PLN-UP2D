@@ -27,6 +27,8 @@
                     </form>
                 </div>
             </div>
+            <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
+
             <div class="section-body">
                 @isset($data)
                     @php

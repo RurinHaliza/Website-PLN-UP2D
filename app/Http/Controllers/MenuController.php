@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use Session;
 use App\Models\GITable;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Penyulang;
+use App\Models\trafo;
 
 class MenuController extends Controller
 {
@@ -151,11 +153,19 @@ class MenuController extends Controller
     //beban
     public function bebantrafo()
     {
-        return view('admin.beban.trafo');
+
+        $trafo = trafo::all();
+
+        return view('admin.beban.trafo',compact('trafo'));
     }
     public function bebanpenyulang()
     {
-        return view('admin.beban.penyulang');
+
+        $penyulang = Penyulang::all();        
+
+        // dd($penyulang);
+
+        return view('admin.beban.penyulang',compact('penyulang'));
     }
     public function bebanup3()
     {
@@ -171,9 +181,10 @@ class MenuController extends Controller
 
         $GI = GITable::all();
         // dd($GI);
-
         return view('admin.beban.GI', compact('GI'));
     }
+
+    // pubic function penyulang
 
     public function create()
     {

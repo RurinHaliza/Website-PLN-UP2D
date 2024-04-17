@@ -37,6 +37,30 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+
+                            @foreach($penyulang as $p)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $p->ID_JTM }}</td>
+                                    <td>{{ $p->ID_GI }}</td>
+                                    <td>{{ $p->ID_TRAFOGI }}</td>
+                                    <td>{{ $p->NM_JTM }}</td>
+                                    <td>{{ $p->NM_GI }}</td>
+                                    <td>{{ $p->NM_SINGKATAN }}</td>
+                                    <td>{{ $p->UP3 }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-primary">Detail</a>
+                                    </td>                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+
+
                     </table>
                 </div>
             </div>

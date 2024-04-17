@@ -13,7 +13,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Beban Trafo</h1>
+                <h1>Data Trafo</h1>
             </div>
         </section>
         <div class="card mt-3">
@@ -31,22 +31,33 @@
                                 <th>ID Kelas</th>
                                 <th>KD Pemilik</th>
                                 <th>KD Pengelola</th>
-                                <th>Tingkat Resiko</th>
-                                <th>Kode Peralatan</th>
-                                <th>Merk</th>
-                                <th>No Seri</th>
-                                <th>Peruntukan</th>
-                                <th>Jenis</th>
-                                <th>Status</th>
-                                <th>TGL Pasang</th>
-                                <th>TGL Operasi</th>
-                                <th>Nilai Perolehan</th>
-                                <th>Nilai Buku</th>
-                                <th>Umur Ekonomis</th>
-                                <th>Umur Manfaat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
+
+                        <tbody>
+                            @php
+
+                                $no = 1;
+
+                            @endphp
+                            @foreach ($trafo as $t)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $t->Nama_GI }}</td>
+                                    <td>{{ $t->ID_TRAFO }}</td>
+                                    <td>{{ $t->ID_KELAS }}</td>
+                                    <td>{{ $t->KD_PEMILIK }}</td>
+                                    <td>{{ $t->KD_PENGELOLA }}</td>
+                                    <td>
+                                        <a href="{{ route('data.trafo') }}" class="btn btn-primary">Detail</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+
+
                     </table>
                 </div>
             </div>

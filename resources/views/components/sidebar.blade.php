@@ -25,7 +25,7 @@
                 <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
             </li> --}}
             </li>
-        {{-- <li class="menu-header">Tabel Beban</li>
+        <li class="menu-header">Tabel Beban</li>
 
             <li class='{{ Request::is('bebantrafo') ? 'active' : '' }}'>
 
@@ -36,16 +36,16 @@
                 <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>Tabel Beban
                     Penyulang</a>
             </li>
-            <li class='{{ Request::is('bebanup3') ? 'active' : '' }}'>
+            {{-- <li class='{{ Request::is('bebanup3') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('bebanup3') }}"><i class="fas fa-th-large"></i>Tabel Beban UP3</a>
-            </li>
+            </li> --}}
             </li>
             <li class='{{ Request::is('bebanktt') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i>Tabel Beban KTT</a>
             </li>
             <li class='{{ Request::is('beban.GI') ? 'active' : '' }}'>
                 <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i>Tabel Beban GI</a>
-            </li> --}}
+            </li>
 
         <li class="menu-header">Manajemen User</li>
 

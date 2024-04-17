@@ -13,7 +13,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Beban GI (Gardu Induk)</h1>
+                <h1>Data GI (Gardu Induk)</h1>
             </div>
         </section>
         <div class="card mt-3">
@@ -46,7 +46,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $g->ID_FGI }}</td>
                                     <td>{{ $g->Nama_GI }}</td>
-                                    <td>{{ $g->NamaSingkatan }}</td>
+                                    <td>{{ $g->NAMA_SINGKATAN }}</td>
                                     <td>{{ $g->KD_Pemilik }}</td>
                                     <td>{{ $g->KD_Pengelola }}</td>
                                     <td>{{ $g->tingkat_resiko }}</td>
