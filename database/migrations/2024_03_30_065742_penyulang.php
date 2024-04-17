@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('ID_JTM')->nullable();
             $table->string('ID_GI')->nullable();
             $table->string('ID_TRAFOGI')->nullable();
+            $table->string('ID_TRAFOGI2')->nullable();
             $table->string('NM_JTM')->nullable();
             $table->string('NM_GI')->nullable();
             $table->string('NM_SINGKATAN')->nullable();
             $table->string('UP3')->nullable();
+            $table->string('ULP')->nullable();
             $table->timestamps();
         });
     }
