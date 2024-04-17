@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
         $user5->attachRole('EditorOpsis');
 
         $user6 = User::create([
-            'name' => 'Visitor1',
+            'name' => 'Visitor',
             'email' => 'visitor@gmail.com',
             'password' => '12345678',
             'role' => 'Visitor',
