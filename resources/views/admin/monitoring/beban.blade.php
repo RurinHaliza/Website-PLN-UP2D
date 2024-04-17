@@ -221,7 +221,7 @@
 
         <div class="card mt-3">
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Grafik Pengukuran Bulan ini</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Grafik Pengukuran Tahun ini</h6>
             </div>
             <div class="card-body">
                 <div style="width: 100%; height:400px; margin: auto;">
