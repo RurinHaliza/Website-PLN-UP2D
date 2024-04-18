@@ -10,12 +10,12 @@
 
             @if(Auth::user()->hasRole('Administrator'))
             <li class="menu-header">Dashboard</li>
-            <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/Dashboard') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('dashboard.admin') }}"><i class="far fa-square"></i> <span>Main Menu</span></a>
             </li>
             <li class="menu-header">Tabel Monitoring Beban</li>
-            <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/bebansemua') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i> <span>Beban</span></a>
             </li>
@@ -30,19 +30,19 @@
             </li> --}}
             </li>
             <li class="menu-header">Tabel Beban</li>
-            <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/bebantrafo') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel Beban Trafo</span></a>
             </li>
-            <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/bebanpenyulang') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i> <span>Tabel Beban Penyulang</span></a>
             </li>
-            <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/bebanktt') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban KTT</span></a>
             </li>
-            <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/BebanGI') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban GI</span></a>
             </li>
@@ -51,7 +51,7 @@
             </li> --}}
 
             <li class="menu-header">Manajemen User</li>
-            <li class="{{ Request::is('user.admin') ? 'active' : '' }}">
+            <li class="{{ Request::is('Admin/UserManagement') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i> <span>User</span></a>
             </li>
