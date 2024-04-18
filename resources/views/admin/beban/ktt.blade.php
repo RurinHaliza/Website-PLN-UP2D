@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <table class="table table-bordered" id="beban_ktt" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -35,10 +35,11 @@
                                 <th>Cb</th>
                                 <th>Meter</th>
                                 <th>Status Meter</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             @php
                             $no = 1;
                         @endphp
