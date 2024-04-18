@@ -3,11 +3,10 @@
 @section('title', 'General Dashboard')
 
 @push('style')
-    <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+   <!-- CSS Libraries -->
+   <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+   {{-- <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}"> --}}
 @endpush
 
 @section('main')
@@ -53,9 +52,9 @@
                                     <td>{{ $p->NM_GI }}</td>
                                     <td>{{ $p->NM_SINGKATAN }}</td>
                                     <td>{{ $p->UP3 }}</td>
-                                    {{-- <td>
+                                    <td>
                                         <a href="" class="btn btn-primary">Detail</a>
-                                    </td>                                     --}}
+                                    </td>                                    
                                 </tr>
                             @endforeach
                         </tbody>

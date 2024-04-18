@@ -3,18 +3,17 @@
 @section('title', 'General Dashboard')
 
 @push('style')
-    <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+   <!-- CSS Libraries -->
+   <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+   {{-- <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}"> --}}
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Beban KTT</h1>
+                <h1>Beban KTT (Konsumen Tegangan Tinggi)</h1>
             </div>
         </section>
         <div class="card mt-3">
@@ -39,6 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @php
                             $no = 1;
                         @endphp
@@ -55,6 +55,9 @@
                                 <td>{{$ktt->cb}}</td>
                                 <td>{{$ktt->meter}}</td>
                                 <td>{{$ktt->status_meter}}</td>
+                                <td>
+                                    <a href="" class="btn btn-primary">Detail</a>
+                                </td>                                    
                             </tr>
                             @endforeach
                         </tbody>

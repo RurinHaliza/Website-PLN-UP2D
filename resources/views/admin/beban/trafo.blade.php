@@ -49,9 +49,9 @@
                                     <td>{{ $t->ID_KELAS }}</td>
                                     <td>{{ $t->KD_PEMILIK }}</td>
                                     <td>{{ $t->KD_PENGELOLA }}</td>
-                                    {{-- <td>
+                                    <td>
                                         <a href="{{ route('data.trafo') }}" class="btn btn-primary">Detail</a>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @endforeach
 
