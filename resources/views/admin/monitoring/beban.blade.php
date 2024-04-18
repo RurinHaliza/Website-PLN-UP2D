@@ -17,28 +17,6 @@
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
         <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary"><i
-                                            class="fas fa-2x fa-search"></i><span>Cari</span></button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header"

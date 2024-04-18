@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Penyulang;
 use App\Models\trafo;
 use App\Models\ktt;
+// use Carbon;
 
 class MenuController extends Controller
 {
@@ -60,6 +61,16 @@ class MenuController extends Controller
             foreach ($nilaiRataRataPerBulan as $bulan => $total) {
                 $nilaiRataRataPerBulan[$bulan] = $total / count($data);
             }
+
+            //Penampilan Tahun Bulan Dan Hari ini
+            $tahunini = Carbon::now()->format('Y');
+            $bulanini = Carbon::now()->format('m');
+            $hariini = Carbon::now()->format('d');
+
+            // dd($hariini);    
+
+            
+
 
             // Kirim data nilai tertinggi dan rata-rata ke tampilan untuk ditampilkan
             return view('admin.monitoring.beban', [
