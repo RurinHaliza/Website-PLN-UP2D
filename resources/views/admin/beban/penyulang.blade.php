@@ -53,9 +53,9 @@
                                     <td>{{ $p->NM_GI }}</td>
                                     <td>{{ $p->NM_SINGKATAN }}</td>
                                     <td>{{ $p->UP3 }}</td>
-                                    <td>
+                                    {{-- <td>
                                         <a href="" class="btn btn-primary">Detail</a>
-                                    </td>                                    
+                                    </td>                                     --}}
                                 </tr>
                             @endforeach
                         </tbody>

@@ -50,7 +50,7 @@
                                     <td>{{ $g->KD_Pemilik }}</td>
                                     <td>{{ $g->KD_Pengelola }}</td>
                                     <td>{{ $g->tingkat_resiko }}</td>
-                                    <td><a href="" class="btn btn-primary">Detail</a></td>
+                                    {{-- <td><a href="" class="btn btn-primary">Detail</a></td> --}}
                                 </tr>
                             @endforeach
 

@@ -9,5 +9,5 @@ class ktt extends Model
 {
     use HasFactory;
 
-    protected $table = 'ktt';
+    protected $table = 'beban_ktt';
 }

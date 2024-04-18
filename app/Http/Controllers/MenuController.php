@@ -13,7 +13,7 @@ use App\Models\GITable;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Penyulang;
 use App\Models\trafo;
-use App\Models\bebanktt;
+use App\Models\ktt;
 
 class MenuController extends Controller
 {
@@ -174,9 +174,9 @@ class MenuController extends Controller
     }
     public function bebanktt()
     {
-        $bebanktt = bebanktt::all();
-        dd($bebanktt);
-        return view('admin.beban.ktt');
+        $bebanktt = ktt::all();
+        //dd($bebanktt);
+        return view('admin.beban.ktt', compact ('bebanktt'));
     }
 
     public function GI()
