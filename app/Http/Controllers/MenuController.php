@@ -72,7 +72,7 @@ class MenuController extends Controller
     public function harian(Request $request)
     {
         $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
-        $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->paginate(10);
+        $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
         
 
         // Analytics

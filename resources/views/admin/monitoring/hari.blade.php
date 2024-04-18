@@ -302,9 +302,9 @@ foreach ($dataBulanIni as $item) {
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-
                                         @if ($data->count() > 0)
-                                            <table class="table-bordered table-md table">
+                                            <table id="bebanhari" class="table-bordered table-md table">
+                                                <thead>
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>00.30</th>
@@ -355,7 +355,10 @@ foreach ($dataBulanIni as $item) {
                                                     <th>23.00</th>
                                                     <th>23.30</th>
                                                     <th>23.59</th>
+                                                    <th>Action</th>
                                                 </tr>
+                                            </thead>
+                                            <tbody>
                                                 @foreach ($data as $item)
                                                     <tr>
                                                         <td>{{ $item->gardu_induk }}</td>
@@ -409,9 +412,10 @@ foreach ($dataBulanIni as $item) {
                                                         <td>{{ $item->{'23_30'} }}</td>
                                                     </tr>
                                                 @endforeach
+                                            </tbody>
                                             </table>
                                         @else
-                                            <table class="table-bordered table-md-6 table">
+                                            <table id="bebanhari" class="table-bordered table-md-6 table">
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>00.30</th>
@@ -626,14 +630,9 @@ foreach ($dataBulanIni as $item) {
         $("#jumlahfeederup3").dataTable({});
     </script>
 
-    <script>
-        $("#bebanharikemarin").dataTable({
-            // "columnDefs": [{
-            //     "sortable": false,
-            //     "targets": [2, 3]
-            // }]
-        });
-    </script>
+<script>
+    $("#bebanhari").dataTable({});
+</script>
 
     <script>
         var ctx = document.getElementById('barChart').getContext('2d');

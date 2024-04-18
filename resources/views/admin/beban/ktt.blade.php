@@ -77,7 +77,7 @@
     $("#beban_ktt").dataTable({
         "columnDefs": [{
             "sortable": false,
-            "targets": [2, 3]
+            "targets": [6, 3]
         }]
     });
 </script>
