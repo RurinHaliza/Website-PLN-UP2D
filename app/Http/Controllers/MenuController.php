@@ -13,7 +13,7 @@ use App\Models\GITable;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Penyulang;
 use App\Models\trafo;
-use App\Models\beban_ktt;
+use App\Models\bebanktt;
 
 class MenuController extends Controller
 {
@@ -172,10 +172,10 @@ class MenuController extends Controller
     {
         return view('admin.beban.up');
     }
-    public function beban_ktt()
+    public function bebanktt()
     {
-        $beban_ktt = beban_ktt::all();
-        dd($beban_ktt);
+        $bebanktt = bebanktt::all();
+        dd($bebanktt);
         return view('admin.beban.ktt');
     }
 

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ktt extends Model
 {
     use HasFactory;
+
+    protected $table = 'ktt';
 }
