@@ -27,10 +27,15 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Jumlah Gardu Induk</th>
-                                <th>Jumlah Trafo</th>
-                                <th>Jumlah Feeder</th>
-                                <th>Action</th>
+                                <th>Pkey</th>
+                                <th>Station</th>
+                                <th>Nama</th>
+                                <th>Daya</th>
+                                <th>Alamat</th>
+                                <th>Tanggal</th>
+                                <th>Cb</th>
+                                <th>Meter</th>
+                                <th>Status Meter</th>
                             </tr>
                         </thead>
                     </table>
