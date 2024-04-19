@@ -33,6 +33,7 @@
                                 <th>NM GI</th>
                                 <th>NM Singkatan</th>
                                 <th>UP3</th>
+                                <th>ULP</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -52,6 +53,7 @@
                                     <td>{{ $p->NM_GI }}</td>
                                     <td>{{ $p->NM_SINGKATAN }}</td>
                                     <td>{{ $p->UP3 }}</td>
+                                    <td>{{ $p->ULP }}</td>
                                     <td>
                                         <a href="" class="btn btn-primary">Detail</a>
                                     </td>                                    
