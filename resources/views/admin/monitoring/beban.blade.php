@@ -16,8 +16,9 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
+        <a href="" class="btn btn-primary mb-4">Detail Beban</a>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header"
                         style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
@@ -25,14 +26,26 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: </li>
+                            <li>MW: {{ $nilaiMW }}</li>
                             <li>Tanggal : </li>
                             <li>Pukul</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="width: 100%; height:170px; margin: auto;">
+                            <canvas id="chartTahun"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header"
                         style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
@@ -47,7 +60,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="width: 100%; height:170px; margin: auto;">
+                            <canvas id="chartBulan"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header"
                         style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
@@ -59,6 +84,15 @@
                             <li>Tanggal : </li>
                             <li>Pukul</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="width: 100%; height:170px; margin: auto;">
+                            <canvas id="chartHari"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,7 +254,7 @@
             </div>
         </div>
 
-        <div class="card mt-3">
+        {{-- <div class="card mt-3">
             <div class="card-header">
                 <h5 class="m-0 font-weight-bold text-primary">Beban Sistem Jatim Tahun</h5>
             </div>
@@ -254,7 +288,7 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
-            </div>
+            </div> --}}
         </div>
 
     </div>
@@ -308,14 +342,108 @@
             }
         });
     </script>
-        <!-- JS Libraies -->
-        <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-        <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-        <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-        <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-        <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
-        <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
-    
-        <!-- Page Specific JS File -->
-        <script src="{{ asset('js/page/index-0.js') }}"></script>
+
+    <script>
+        var ctx = document.getElementById('chartTahun').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["0", "1", "2", "3", "4", "5"],
+                datasets: [{
+                        label: 'Parameter 1', // Name the series
+                        data: ['30', '20', '12', '23', '33', '56'], // Specify the data values array
+                        fill: false,
+                        borderColor: '#ffd000', // Add custom color border (Line)
+                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    },
+                    {
+                        label: 'Parameter 2',
+                        data: ['14', '45', '15', '27', '56', '50'],
+                        fill: false,
+                        borderColor: '#ff0000', // Add custom color border (Line)
+                        backgroundColor: '#ff0000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    }
+                ]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+            }
+        });
+    </script>
+
+    <script>
+        var ctx = document.getElementById('chartBulan').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["0", "1", "2", "3", "4", "5"],
+                datasets: [{
+                        label: 'Parameter 1', // Name the series
+                        data: ['30', '20', '12', '23', '33', '56'], // Specify the data values array
+                        fill: false,
+                        borderColor: '#ffd000', // Add custom color border (Line)
+                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    },
+                    {
+                        label: 'Parameter 2',
+                        data: ['14', '45', '15', '27', '56', '50'],
+                        fill: false,
+                        borderColor: '#ff0000', // Add custom color border (Line)
+                        backgroundColor: '#ff0000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    }
+                ]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+            }
+        });
+    </script>
+
+    <script>
+        var ctx = document.getElementById('chartHari').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["0", "1", "2", "3", "4", "5"],
+                datasets: [{
+                        label: 'Parameter 1', // Name the series
+                        data: ['30', '20', '12', '23', '33', '56'], // Specify the data values array
+                        fill: false,
+                        borderColor: '#ffd000', // Add custom color border (Line)
+                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    },
+                    {
+                        label: 'Parameter 2',
+                        data: ['14', '45', '15', '27', '56', '50'],
+                        fill: false,
+                        borderColor: '#ff0000', // Add custom color border (Line)
+                        backgroundColor: '#ff0000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    }
+                ]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+            }
+        });
+    </script>
+
+    <!-- JS Libraies -->
+    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
+    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
+    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/index-0.js') }}"></script>
 @endpush

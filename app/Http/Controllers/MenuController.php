@@ -68,15 +68,72 @@ class MenuController extends Controller
             $hariini = Carbon::now()->format('d');
 
             // dd($hariini);    
+            $MWTahunini = data_beban_puncak30::whereYear('tanggal',$tahunini)->get();
 
-            
+            // dd($MWTahunini);
 
+            foreach($MWTahunini as $m){
+
+                $nilaiMW = max(
+                    $m->{'00_30'},
+                    $m->{'01_00'},
+                    $m->{'01_30'},
+                    $m->{'02_00'},
+                    $m->{'02_30'},
+                    $m->{'03_00'},
+                    $m->{'03_30'},
+                    $m->{'04_00'},
+                    $m->{'04_30'},
+                    $m->{'05_00'},
+                    $m->{'05_30'},
+                    $m->{'06_00'},
+                    $m->{'06_30'},
+                    $m->{'07_00'},
+                    $m->{'07_30'},
+                    $m->{'08_00'},
+                    $m->{'08_30'},
+                    $m->{'09_00'},
+                    $m->{'09_30'},
+                    $m->{'10_00'},
+                    $m->{'10_30'},
+                    $m->{'11_00'},
+                    $m->{'11_30'},
+                    $m->{'12_00'},
+                    $m->{'12_30'},
+                    $m->{'13_00'},
+                    $m->{'13_30'},
+                    $m->{'14_00'},
+                    $m->{'14_30'},
+                    $m->{'15_00'},
+                    $m->{'15_30'},
+                    $m->{'16_00'},
+                    $m->{'16_30'},
+                    $m->{'17_00'},
+                    $m->{'17_30'},
+                    $m->{'18_00'},
+                    $m->{'18_30'},
+                    $m->{'19_00'},
+                    $m->{'19_30'},
+                    $m->{'20_00'},
+                    $m->{'20_30'},
+                    $m->{'21_00'},
+                    $m->{'21_30'},
+                    $m->{'22_00'},
+                    $m->{'22_30'},
+                    $m->{'23_00'},
+                    $m->{'23_30'},
+                );
+                // dd($nilaiMW);
+            }
 
             // Kirim data nilai tertinggi dan rata-rata ke tampilan untuk ditampilkan
-            return view('admin.monitoring.beban', [
-                'nilaiTertinggiPerBulan' => $nilaiTertinggiPerBulan,
-                'nilaiRataRataPerBulan' => $nilaiRataRataPerBulan,
-            ]);
+            // return view('admin.monitoring.beban', [
+            //     'nilaiTertinggiPerBulan' => $nilaiTertinggiPerBulan,
+            //     'nilaiRataRataPerBulan' => $nilaiRataRataPerBulan,
+            // ]);
+                
+            return view('admin.monitoring.beban',compact('nilaiMW'));
+        
         }
     }
 
@@ -106,9 +163,11 @@ class MenuController extends Controller
     {
                 // Mengambil tanggal yang dipilih dari request
         $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
+
+        // dd($selectedDate);
+
         // Mengonversi tanggal yang dipilih menjadi objek Carbon
         $selectedDateCarbon = Carbon::parse($selectedDate);
-
         // Menghitung tanggal 7 hari yang lalu dari tanggal yang dipilih
         $startDate = $selectedDateCarbon->copy()->subDays(6)->toDateString();
         // Mengambil data dalam rentang tanggal

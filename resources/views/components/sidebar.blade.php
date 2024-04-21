@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">PLN UP2D Jatim</a>
+            <a href="#">PLN UP2D Jatim</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">PLN</a>
+            <a href="#">PLN</a>
         </div>
         <ul class="sidebar-menu">
 
@@ -69,15 +69,6 @@
                 <a class="nav-link"
                     href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i> <span>Beban</span></a>
             </li>
-            {{-- <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
-            </li>
-            <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanminggu') }}"><i class="fas fa-th-large"></i>Beban Mingguan</a>
-            </li>
-            <li class='{{ Request::is('bebanbulan') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
-            </li> --}}
             </li>
             <li class="menu-header">Tabel Beban</li>
             <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">

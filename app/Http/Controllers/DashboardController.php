@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\GITable;
+use App\Models\trafo;
+use App\Models\Penyulang;
 
 class DashboardController extends Controller
 {
@@ -11,8 +14,13 @@ class DashboardController extends Controller
     {
 
         if (Auth::user()->hasRole('Administrator')) {
+    
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
 
-            return view('admin.Dashboard');
+            // dd($countPenyulang);
+            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang'));
 
         }elseif(Auth::user()->hasRole('operator')){
 
