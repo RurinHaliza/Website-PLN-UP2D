@@ -16,7 +16,7 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
-        <a href="" class="btn btn-primary mb-4">Detail Beban</a>
+        <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -26,9 +26,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $nilaiMW }}</li>
-                            <li>Tanggal : </li>
-                            <li>Pukul</li>
+                            <li>MW: {{ $maxValueYear }}</li>
+                            <li>Tanggal :  {{ $maxColumnYear }}</li>
+                            <li>Pukul : {{ $maxDateYear }}</li>
                         </ul>
                     </div>
                 </div>
@@ -53,9 +53,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: </li>
-                            <li>Tanggal : </li>
-                            <li>Pukul</li>
+                            <li>MW: {{$maxValueMonth}}</li>
+                            <li>Tanggal : {{$maxColumnMonth}}</li>
+                            <li>Pukul : {{$maxDateMonth}}</li>
                         </ul>
                     </div>
                 </div>
@@ -80,9 +80,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: </li>
-                            <li>Tanggal : </li>
-                            <li>Pukul</li>
+                            <li>MW: {{$maxValueT}}</li>
+                            <li>Tanggal : {{$selectedDate}} </li>
+                            <li>Pukul : {{$maxColumnT}}</li>
                         </ul>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                 <div style="width: 100%; height:400px; margin: auto;">
                     <canvas id="barChart"></canvas>
                 </div>
-                <div class="row mt-5">
+                {{-- <div class="row mt-5">
                     <div class="col-md-4">
                         <a href="{{ route('bebanharian') }}" class="btn btn-primary">Beban Harian</a>
                     </div>
@@ -249,7 +249,7 @@
                     <div class="col-md-4">
                         <a href="{{ route('bebanbulan') }}" class="btn btn-danger">Beban Bulanan</a>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
