@@ -18,9 +18,10 @@ class DashboardController extends Controller
             $countGI = GITable::count();
             $countTrafo = trafo::count();
             $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
 
             // dd($countPenyulang);
-            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang'));
+            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder'));
 
         }elseif(Auth::user()->hasRole('operator')){
 

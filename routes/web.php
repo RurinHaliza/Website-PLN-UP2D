@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TrafoController;
+use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\ValidatorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,11 +58,13 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
 Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.operator');
+    Route::get('ScadaFail',[OperatorController::class,'ScadaFailIndex'])->name('scadafail');
 });
 
 Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validopsis');
+    Route::get('ApprovalScadaFail',[ValidatorController::class,'index'])->name('approval.opsis');
 });
 
 Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
