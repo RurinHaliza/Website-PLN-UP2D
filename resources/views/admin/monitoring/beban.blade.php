@@ -79,9 +79,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueT }}</li>
+                            <li>MW: {{ $maxValueToday }}</li>
                             <li>Tanggal : {{ $selectedDate }} </li>
-                            <li>Pukul : {{ $maxColumnT }}</li>
+                            <li>Pukul : {{ $maxColumnToday }}</li>
                         </ul>
                     </div>
                 </div>

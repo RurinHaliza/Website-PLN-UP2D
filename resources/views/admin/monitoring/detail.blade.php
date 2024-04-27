@@ -108,15 +108,15 @@
                                             <h4>Beban Jatim Tertinggi Hari ini</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueT > 0)
-                                                <div>Tertinggi : {{ $maxValueT }}</div>
+                                            @if ($maxValueToday > 0)
+                                                <div>Tertinggi : {{ $maxValueToday }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueT > 0)
-                                                <div>Pukul : {{ $maxColumnT }}</div>
+                                            @if ($maxValueToday > 0)
+                                                <div>Pukul : {{ $maxColumnToday }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
@@ -586,15 +586,15 @@
                                             <h4>Beban Jatim Tertinggi Hari ini</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueT > 0)
-                                                <div>Tertinggi : {{ $maxValueT }}</div>
+                                            @if ($maxValueToday > 0)
+                                                <div>Tertinggi : {{ $maxValueToday }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueT > 0)
-                                                <div>Pukul : {{ $maxColumnT }}</div>
+                                            @if ($maxValueToday > 0)
+                                                <div>Pukul : {{ $maxColumnToday }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
@@ -613,8 +613,8 @@
                                             <h4>Beban Siang</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueMingguan > 0)
-                                                <div>Tertinggi : {{ $maxValueMingguan }}</div>
+                                            @if ($maxValueSiangMingguan > 0)
+                                                <div>Tertinggi : {{ $maxValueSiangMingguan }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
@@ -623,14 +623,14 @@
                                             <div>Tanggal : {{ $selectedDate3 }}</div>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueMingguan > 0)
-                                                <div>Pukul : {{ $maxColumnMingguan }}</div>
+                                            @if ($maxValueSiangMingguan > 0)
+                                                <div>Pukul : {{ $maxColumnSiangMingguan }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueMingguan }}</div>
+                                            <div>Rata-Rata : {{ $averageValueSiangMingguan }}</div>
                                         </div>
                                     </a>
                                     <a class="ticket-item">
@@ -638,8 +638,8 @@
                                             <h4>Beban Malam</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueMMingguan > 0)
-                                                <div>Tertinggi : {{ $maxValueMMingguan }}</div>
+                                            @if ($maxValueMalamMingguan > 0)
+                                                <div>Tertinggi : {{ $maxValueMalamMingguan }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
@@ -648,14 +648,14 @@
                                             <div>Tanggal : {{ $selectedDate3 }}</div>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueMMingguan > 0)
-                                                <div>Pukul : {{ $maxColumnMMingguan }}</div>
+                                            @if ($maxValueMalamMingguan > 0)
+                                                <div>Pukul : {{ $maxColumnMalamMingguan }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueMMingguan }}</div>
+                                            <div>Rata-Rata : {{ $averageValueMalamMingguan }}</div>
                                         </div>
                                     </a>
                                     {{-- <a class="ticket-item">
@@ -1063,15 +1063,15 @@
                                             <h4>Beban Jatim Tertinggi Hari ini</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueT > 0)
-                                                <div>Tertinggi : {{ $maxValueT }}</div>
+                                            @if ($maxValueToday > 0)
+                                                <div>Tertinggi : {{ $maxValueToday }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueT > 0)
-                                                <div>Pukul : {{ $maxColumnT }}</div>
+                                            @if ($maxValueToday > 0)
+                                                <div>Pukul : {{ $maxColumnToday }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
@@ -1090,8 +1090,8 @@
                                             <h4>Beban Siang</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueBulanan > 0)
-                                                <div>Tertinggi : {{ $maxValueBulanan }}</div>
+                                            @if ($maxValueSiangBulanan > 0)
+                                                <div>Tertinggi : {{ $maxValueSiangBulanan }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
@@ -1100,14 +1100,14 @@
                                             <div>Tanggal : {{ $selectedDate2 }}</div>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueBulanan > 0)
-                                                <div>Pukul : {{ $maxColumnBulanan }}</div>
+                                            @if ($maxValueSiangBulanan > 0)
+                                                <div>Pukul : {{ $maxColumnSiangBulanan }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueBulanan }}</div>
+                                            <div>Rata-Rata : {{ $averageValueSiangBulanan }}</div>
                                         </div>
                                     </a>
                                     <a class="ticket-item">
@@ -1115,8 +1115,8 @@
                                             <h4>Beban Malam</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueMBulanan > 0)
-                                                <div>Tertinggi : {{ $maxValueMBulanan }}</div>
+                                            @if ($maxValueMalamBulanan > 0)
+                                                <div>Tertinggi : {{ $maxValueMalamBulanan }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
@@ -1125,14 +1125,14 @@
                                             <div>Tanggal : {{ $selectedDate }}</div>
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueMBulanan > 0)
-                                                <div>Pukul : {{ $maxColumnMBulanan }}</div>
+                                            @if ($maxValueMalamBulanan > 0)
+                                                <div>Pukul : {{ $maxColumnMalamBulanan }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueMBulanan }}</div>
+                                            <div>Rata-Rata : {{ $averageValueMalamBulanan }}</div>
                                         </div>
                                     </a>
                                     {{-- <a class="ticket-item">
