@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gardu Induk')
+@section('title', 'Data MVCELL')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -13,12 +13,12 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Data GI (Gardu Induk)</h1>
+                <h1>MVCELL Jatim</h1>
             </div>
         </section>
         <div class="card mt-3">
             <div class="card-header">
-                <h5 class="m-0 font-weight-bold text-primary">Tabel Pengukuran</h5>
+                <h5 class="m-0 font-weight-bold text-primary">Tabel Data</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -26,12 +26,10 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>ID FGI</th>
-                                <th>Nama GI</th>
-                                <th>Nama Singkatan</th>
-                                <th>KD Pemilik</th>
-                                <th>KD Pengelola</th>
-                                <th>Tingkat Resiko</th>
+                                <th>ID Cell</th>
+                                <th>Lokasi Penempatan</th>
+                                <th>Nama JTM</th>
+                                <th>Merk</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,16 +39,16 @@
                                 $no = 1;
                             @endphp
 
-                            @foreach ($GI as $g)
+                            @foreach ($data as $d)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $g->ID_FGI }}</td>
-                                    <td>{{ $g->Nama_GI }}</td>
-                                    <td>{{ $g->NAMA_SINGKATAN }}</td>
-                                    <td>{{ $g->KD_Pemilik }}</td>
-                                    <td>{{ $g->KD_Pengelola }}</td>
-                                    <td>{{ $g->tingkat_resiko }}</td>
-                                    <td><a href="" class="btn btn-primary">Detail</a></td>
+                                    <td>{{ $d->ID_CELL }}</td>
+                                    <td>{{ $d->LOKASI_PENEMPATAN }}</td>
+                                    <td>{{ $d->NAMA_JTM }}</td>
+                                    <td>{{ $d->MERK }}</td>
+                                    <td><a href="{{ route('detail.mvcell',[$d->id]) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('edit.mvcell', [$d->id]) }}" class="btn btn-warning">Edit Data</a>
+                                    </td>
                                 </tr>
                             @endforeach
 

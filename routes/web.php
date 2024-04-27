@@ -43,6 +43,11 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanktt', [MenuController::class, 'bebanktt'])->name('bebanktt');
     Route::get('BebanGI',[MenuController::class,'GI'])->name('beban.GI');
 
+    //MVCELL
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
+    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
+    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+
     //Management user
     Route::get('UserManagement',[UserController::class,'index'])->name('user.admin');
     Route::get('TambahUser',[UserController::class,'create'])->name('user.create');

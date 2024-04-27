@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Penyulang;
 use App\Models\trafo;
 use App\Models\ktt;
+use App\Models\mvcell;
 
 use Illuminate\Support\Facades\DB;
 // use Carbon;
@@ -979,11 +980,54 @@ class MenuController extends Controller
     //beban
     public function bebantrafo()
     {
+        if(Auth::user()->hasRole('Administrator')){
 
-        $trafo = trafo::all();
+            $trafo = trafo::all();
 
-        return view('admin.beban.trafo',compact('trafo'));
+            return view('admin.beban.trafo',compact('trafo'));
+        }
     }
+
+    public function mvcell(){
+
+        if(Auth::user()->hasRole('Administrator')){
+
+            $data = mvcell::all();
+
+            return view('admin.beban.MVCELL.mvcell',compact('data'));
+        }
+
+    }
+
+    public function DetailMVCELL($id){
+
+        if(Auth::user()->hasRole('Administrator')){
+
+            $data = mvcell::findOrFail($id);
+
+            // dd($data);
+
+            return view('admin.beban.MVCELL.detail',compact('data'));
+
+        }
+
+    }
+
+    public function EditMVCELL($id){
+
+        if(Auth::user()->hasRole('Administrator')){
+
+            $data = mvcell::findOrFail($id);
+
+            // dd($data);
+
+            return view('admin.beban.MVCELL.edit',compact('data'));
+
+        }
+
+    }
+
+
     public function bebanpenyulang()
     {
 
@@ -1011,8 +1055,6 @@ class MenuController extends Controller
         // dd($GI);
         return view('admin.beban.GI', compact('GI'));
     }
-
-    // pubic function penyulang
 
     public function create()
     {

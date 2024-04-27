@@ -19,15 +19,6 @@
                     <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>
                         <span>Beban</span></a>
                 </li>
-                {{-- <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
-            </li>
-            <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanminggu') }}"><i class="fas fa-th-large"></i>Beban Mingguan</a>
-            </li>
-            <li class='{{ Request::is('bebanbulan') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
-            </li> --}}
                 </li>
                 <li class="menu-header">Tabel Beban</li>
                 <li class="{{ Request::is('Admin/bebantrafo') ? 'active' : '' }}">
@@ -46,10 +37,10 @@
                     <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel
                             Beban GI</span></a>
                 </li>
-                {{-- <li class='{{ Request::is('bebanup3') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanup3') }}"><i class="fas fa-th-large"></i>Tabel Beban UP3</a>
-            </li> --}}
-
+                <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                            Data MVCELL</span></a>
+                </li>
                 <li class="menu-header">Manajemen User</li>
                 <li class="{{ Request::is('Admin/UserManagement') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i>

@@ -20,16 +20,7 @@
 
 
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div style="width: 100%; height:170px; margin: auto;">
-                            <canvas id="chartTahun"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div style="width: 100%; height:170px; margin: auto;">
@@ -38,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div style="width: 100%; height:170px; margin: auto;">
@@ -97,79 +88,9 @@
             </div>
         </div>
 
-
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header"
-                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
-                        <h4 style="color:white">Beban Jatim Tertinggi Siang hari ini</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>MW: </li>
-                            <li>Tanggal : </li>
-                            <li>Pukul</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header"
-                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
-                        <h4 style="color:white">Realisasi Beban Puncak Jatim Kemarin</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>MW: </li>
-                            <li>Tanggal : </li>
-                            <li>Pukul</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header"
-                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
-                        <h4 style="color:white">Perkiraan Beban Puncak Jatim Hari Ini</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>MW: </li>
-                            <li>Tanggal : </li>
-                            <li>Pukul</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"
-                        style="background: linear-gradient(to bottom, rgb(1, 56, 255), rgb(99, 182, 255) 100%) !important; ">
-                        <h4 style="color:white">Tabel Jumlah Feeder UP3</h4>
-                    </div>
-                    <div class="card-body">
-
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="jumlahfeederup3" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>UP3</th>
-                                        <th>Feeder</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"
                         style="background: linear-gradient(to bottom, rgb(1, 56, 255), rgb(99, 182, 255) 100%) !important; ">
@@ -188,44 +109,6 @@
                                 </thead>
                             </table>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"
-                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
-                        <h4 style="color:white">Beban Jatim Tertinggi Siang hari ini</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>Gardu Induk : </li>
-                            <li>Trafo : </li>
-                            <li>Kapasitas Trafo :</li>
-                            <li>Penyulang :</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"
-                        style="background: linear-gradient(to bottom, rgb(58, 94, 255), rgb(99, 182, 255) 100%) !important; ">
-                        <h4 style="color:white">Realisasi Beban Puncak Jatim Kemarin</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <tr>
-                                <td>Total Jumlah Penyulang VIP</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Total Jumlah Penyulang Express / Spotload</td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
