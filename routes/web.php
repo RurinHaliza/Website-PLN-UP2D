@@ -102,6 +102,22 @@ Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], 
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.visitor');
 
+    //Tabel Trafo 
+    Route::get('trafo', [MenuController::class, 'bebantrafo'])->name('trafo.visitor');
+
+    //MVCELL
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.visitor');
+
+    //Penyulang
+    Route::get('penyulang', [MenuController::class, 'bebanpenyulang'])->name('penyulang.visitor');
+
+    //KTT
+    Route::get('KTT', [MenuController::class, 'bebanktt'])->name('ktt.visitor');
+
+    //GI
+    Route::get('GI',[MenuController::class,'GI'])->name('GI.visitor');
+
+
 });
 
 // Layout

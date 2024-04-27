@@ -1,59 +1,54 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'Data MVCELL')
 
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
-    <link href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}"> --}}
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Data Trafo</h1>
+                <h1>MVCELL Jatim</h1>
             </div>
         </section>
         <div class="card mt-3">
             <div class="card-header">
-                <h5 class="m-0 font-weight-bold text-primary">Tabel Pengukuran</h5>
+                <h5 class="m-0 font-weight-bold text-primary">Tabel Data</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="trafo" cellspacing="0">
+                    <table class="table table-bordered" id="table-1" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nama Gardu Induk</th>
-                                <th>ID Trafo</th>
-                                <th>ID Kelas</th>
-                                <th>KD Pemilik</th>
-                                <th>KD Pengelola</th>
+                                <th>ID Cell</th>
+                                <th>Lokasi Penempatan</th>
+                                <th>Nama JTM</th>
+                                <th>Merk</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @php
-
                                 $no = 1;
-
                             @endphp
-                            @foreach ($trafo as $t)
+
+                            @foreach ($data as $d)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $t->Nama_GI }}</td>
-                                    <td>{{ $t->ID_TRAFO }}</td>
-                                    <td>{{ $t->ID_KELAS }}</td>
-                                    <td>{{ $t->KD_PEMILIK }}</td>
-                                    <td>{{ $t->KD_PENGELOLA }}</td>
-                                   
+                                    <td>{{ $d->ID_CELL }}</td>
+                                    <td>{{ $d->LOKASI_PENEMPATAN }}</td>
+                                    <td>{{ $d->NAMA_JTM }}</td>
+                                    <td>{{ $d->MERK }}</td>
                                 </tr>
                             @endforeach
 
                         </tbody>
-
 
                     </table>
                 </div>
@@ -66,14 +61,16 @@
 @endsection
 
 @push('scripts')
+    {{-- <!-- JS Libraies -->
+    <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script> --}}
 
-<script>
-    $("#trafo").dataTable({
-        "columnDefs": [{
-            "sortable": false,
-            "targets": [2, 3]
-        }]
-    });
-</script>
-
+    <script>
+        $("#table-1").dataTable({
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [2, 3]
+            }]
+        });
+    </script>
 @endpush

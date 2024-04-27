@@ -992,6 +992,12 @@ class MenuController extends Controller
 
             return view('Operator.beban.trafo',compact('trafo'));
 
+        }elseif(Auth::user()->hasRole('Visitor')){
+
+            $trafo = trafo::all();
+
+            return view('Visitor.beban.trafo',compact('trafo'));
+
         }
     }
 
@@ -1007,6 +1013,13 @@ class MenuController extends Controller
             $data = mvcell::all();
 
             return view('Operator.beban.MVCELL.mvcell',compact('data'));
+
+        }elseif(Auth::user()->hasRole('Visitor')){
+
+            $data = mvcell::all();
+
+            return view('Visitor.beban.MVCELL.mvcell',compact('data'));
+
 
         }
 
@@ -1058,6 +1071,13 @@ class MenuController extends Controller
             // dd($penyulang);
 
             return view('Operator.beban.penyulang',compact('penyulang'));
+        }elseif(Auth::user()->hasRole('Visitor')){
+
+            $penyulang = Penyulang::all();        
+
+            // dd($penyulang);
+
+            return view('Visitor.beban.penyulang',compact('penyulang'));
         }
 
         
@@ -1081,6 +1101,12 @@ class MenuController extends Controller
             //dd($bebanktt);
              return view('Operator.beban.ktt', compact ('bebanktt'));
 
+        }elseif(Auth::user()->hasRole('Visitor')){
+
+            $bebanktt = ktt::all();
+            //dd($bebanktt); 
+
+            return view('Visitor.beban.ktt',compact('bebanktt'));
         }
     }
 
@@ -1097,6 +1123,11 @@ class MenuController extends Controller
             // dd($GI);
             return view('Operator.beban.GI', compact('GI'));
 
+        }elseif(Auth::user()->hasRole('Visitor')){
+
+            $GI = GITable::all();
+            // dd($GI);
+            return view('Visitor.beban.GI', compact('GI'));
         }
         
     }

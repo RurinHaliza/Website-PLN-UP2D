@@ -105,15 +105,7 @@
         <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i> <span>Beban</span></a>
         </li>
-        {{-- <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
-            </li>
-            <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanminggu') }}"><i class="fas fa-th-large"></i>Beban Mingguan</a>
-            </li>
-            <li class='{{ Request::is('bebanbulan') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
-            </li> --}}
+        
         </li>
         <li class="menu-header">Tabel Beban</li>
         <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
@@ -151,15 +143,6 @@
             <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>
                 <span>Beban</span></a>
         </li>
-        {{-- <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
-            </li>
-            <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanminggu') }}"><i class="fas fa-th-large"></i>Beban Mingguan</a>
-            </li>
-            <li class='{{ Request::is('bebanbulan') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
-            </li> --}}
         </li>
         <li class="menu-header">Tabel Beban</li>
         <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
@@ -196,39 +179,27 @@
             <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>
                 <span>Beban</span></a>
         </li>
-        {{-- <li class='{{ Request::is('bebanharian') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanharian') }}"><i class="fas fa-th-large"></i>Beban Harian</a>
-            </li>
-            <li class='{{ Request::is('bebanminggu') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanminggu') }}"><i class="fas fa-th-large"></i>Beban Mingguan</a>
-            </li>
-            <li class='{{ Request::is('bebanbulan') ? 'active' : '' }}'>
-                <a class="nav-link" href="{{ route('bebanbulan') }}"><i class="fas fa-th-large"></i>Beban Bulanan</a>
-            </li> --}}
         </li>
-        <li class="menu-header">Tabel Beban</li>
-        <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel
-                    Beban Trafo</span></a>
+        <li class="menu-header">Tabel Asset</li>
+        <li class="{{ Request::is('trafo.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('trafo.visitor') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                <span>Tabel Beban Trafo</span></a>
         </li>
-        <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>
+        <li class="{{ Request::is('penyulang.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('penyulang.visitor') }}"><i class="fas fa-fw fa-hourglass"></i>
                 <span>Tabel Beban Penyulang</span></a>
         </li>
-        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+        <li class="{{ Request::is('ktt.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ktt.visitor') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
                     KTT</span></a>
         </li>
-        <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
-                    GI</span></a>
+        <li class="{{ Request::is('GI.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('GI.visitor') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                    Beban GI</span></a>
         </li>
-
-        <li class="menu-header">Manajemen User</li>
-
-        <li class='{{ Request::is('user.admin') ? 'active' : '' }}'>
-            <a class="nav-link" href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i>User</a>
-        </li>
+        <li class="{{ Request::is('data.mvcell.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.visitor') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                    Data MVCELL</span></a>
         </li>
         </ul>
         @endif
