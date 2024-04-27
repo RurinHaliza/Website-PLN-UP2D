@@ -28,8 +28,8 @@ class MenuController extends Controller
 
             $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
             // Analytics untuk hari ini
-        $maxValueT = 0;
-        $maxColumnT = '';
+        $maxValueToday = 0;
+        $maxColumnToday = '';
         $tanggalHariIni = Carbon::today()->toDateString();
         $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
         foreach ($dataHariIni as $item) {
@@ -86,9 +86,9 @@ class MenuController extends Controller
                 ]
                 as $columnNameT
             ) {
-                if ($item->{$columnNameT} > $maxValueT) {
-                    $maxValueT = $item->{$columnNameT};
-                    $maxColumnT = $columnNameT;
+                if ($item->{$columnNameT} > $maxValueToday) {
+                    $maxValueToday = $item->{$columnNameT};
+                    $maxColumnToday = $columnNameT;
                 }
             }
         }
@@ -227,7 +227,7 @@ class MenuController extends Controller
             }
         }
                 
-            return view('admin.monitoring.beban',compact('selectedDate','maxValueT', 'maxColumnT', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+            return view('admin.monitoring.beban',compact('selectedDate','maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
         
         }
     }
@@ -336,7 +336,7 @@ class MenuController extends Controller
         $data3 = data_beban_puncak30::whereBetween('tanggal', [$startDate, $selectedDate3])->paginate(10);
 
         // Hitung rata-rata dan nilai maksimum
-        $averageValueMingguan = $data3->avg(function ($item) {
+        $averageValueSiangMingguan = $data3->avg(function ($item) {
             return ($item->{"04_00"} +
                 $item->{"04_30"} +
                 $item->{"05_00"} +
@@ -364,8 +364,8 @@ class MenuController extends Controller
                 $item->{"16_00"}) / 25;
         });
 
-        $maxValueMingguan = 0;
-        $maxColumnMingguan = '';
+        $maxValueSiangMingguan = 0;
+        $maxColumnSiangMingguan = '';
         foreach ($data3 as $item) {
             foreach (
                 [
@@ -397,16 +397,16 @@ class MenuController extends Controller
                 ]
                 as $columnNameMingguan
             ) {
-                if ($item->{$columnNameMingguan} > $maxValueMingguan) {
-                    $maxValueMingguan = $item->{$columnNameMingguan};
-                    $maxColumnMingguan = $columnNameMingguan;
+                if ($item->{$columnNameMingguan} > $maxValueSiangMingguan) {
+                    $maxValueSiangMingguan = $item->{$columnNameMingguan};
+                    $maxColumnSiangMingguan = $columnNameMingguan;
                 }
             }
         }
         
         // Lakukan hal yang sama untuk data malam
         // Hitung rata-rata dan nilai maksimum
-        $averageValueMMingguan = $data3->avg(function ($item) {
+        $averageValueMalamMingguan = $data3->avg(function ($item) {
             return ($item->{"04_00"} +
                 $item->{"04_30"} +
                 $item->{"05_00"} +
@@ -434,8 +434,8 @@ class MenuController extends Controller
                 $item->{"16_00"}) / 25;
         });
 
-        $maxValueMMingguan = 0;
-        $maxColumnMMingguan = '';
+        $maxValueMalamMingguan = 0;
+        $maxColumnMalamMingguan = '';
         foreach ($data3 as $item) {
             foreach (
                 [
@@ -467,9 +467,9 @@ class MenuController extends Controller
                 ]
                 as $columnNameMMingguan
             ) {
-                if ($item->{$columnNameMMingguan} > $maxValueMMingguan) {
-                    $maxValueMMingguan = $item->{$columnNameMMingguan};
-                    $maxColumnMMingguan = $columnNameMMingguan;
+                if ($item->{$columnNameMMingguan} > $maxValueMalamMingguan) {
+                    $maxValueMalamMingguan = $item->{$columnNameMMingguan};
+                    $maxColumnMalamMingguan = $columnNameMMingguan;
                 }
             }
         }
@@ -490,7 +490,7 @@ class MenuController extends Controller
             ->paginate(10);
 
         // Hitung rata-rata dan nilai maksimum
-        $averageValueBulanan = $data2->avg(function ($item) {
+        $averageValueSiangBulanan = $data2->avg(function ($item) {
             return ($item->{"04_00"} +
                 $item->{"04_30"} +
                 $item->{"05_00"} +
@@ -518,8 +518,8 @@ class MenuController extends Controller
                 $item->{"16_00"}) / 25;
         });
 
-        $maxValueBulanan = 0;
-        $maxColumnBulanan = '';
+        $maxValueSiangBulanan = 0;
+        $maxColumnSiangBulanan = '';
         foreach ($data2 as $item) {
             foreach (
                 [
@@ -551,16 +551,16 @@ class MenuController extends Controller
                 ]
                 as $columnNameBulanan
             ) {
-                if ($item->{$columnNameBulanan} > $maxValueBulanan) {
-                    $maxValueBulanan = $item->{$columnNameBulanan};
-                    $maxColumnBulanan = $columnNameBulanan;
+                if ($item->{$columnNameBulanan} > $maxValueSiangBulanan) {
+                    $maxValueSiangBulanan = $item->{$columnNameBulanan};
+                    $maxColumnSiangBulanan = $columnNameBulanan;
                 }
             }
         }
         
         // Lakukan hal yang sama untuk data malam
         // Hitung rata-rata dan nilai maksimum
-        $averageValueMBulanan = $data2->avg(function ($item) {
+        $averageValueMalamBulanan = $data2->avg(function ($item) {
             return ($item->{"04_00"} +
                 $item->{"04_30"} +
                 $item->{"05_00"} +
@@ -588,8 +588,8 @@ class MenuController extends Controller
                 $item->{"16_00"}) / 25;
         });
 
-        $maxValueMBulanan = 0;
-        $maxColumnMBulanan = '';
+        $maxValueMalamBulanan = 0;
+        $maxColumnMalamBulanan = '';
         foreach ($data2 as $item) {
             foreach (
                 [
@@ -621,9 +621,9 @@ class MenuController extends Controller
                 ]
                 as $columnNameMBulanan
             ) {
-                if ($item->{$columnNameMBulanan} > $maxValueMBulanan) {
-                    $maxValueMBulanan = $item->{$columnNameMBulanan};
-                    $maxColumnMBulanan = $columnNameMBulanan;
+                if ($item->{$columnNameMBulanan} > $maxValueMalamBulanan) {
+                    $maxValueMalamBulanan = $item->{$columnNameMBulanan};
+                    $maxColumnMalamBulanan = $columnNameMBulanan;
                 }
             }
         }
@@ -773,8 +773,8 @@ class MenuController extends Controller
         }
 
         // Analytics untuk hari ini
-        $maxValueT = 0;
-        $maxColumnT = '';
+        $maxValueToday = 0;
+        $maxColumnToday = '';
         $tanggalHariIni = Carbon::today()->toDateString();
         $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
         foreach ($dataHariIni as $item) {
@@ -831,9 +831,9 @@ class MenuController extends Controller
                 ]
                 as $columnNameT
             ) {
-                if ($item->{$columnNameT} > $maxValueT) {
-                    $maxValueT = $item->{$columnNameT};
-                    $maxColumnT = $columnNameT;
+                if ($item->{$columnNameT} > $maxValueToday) {
+                    $maxValueToday = $item->{$columnNameT};
+                    $maxColumnToday = $columnNameT;
                 }
             }
         }
@@ -972,7 +972,7 @@ class MenuController extends Controller
             }
         }
         }
-        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn','data2', 'selectedDate2', 'averageValueBulanan', 'maxValueBulanan', 'maxColumnBulanan','averageValueMBulanan', 'maxValueMBulanan', 'maxColumnMBulanan','data3', 'selectedDate3', 'averageValueMingguan', 'maxValueMingguan', 'maxColumnMingguan','averageValueMMingguan', 'maxValueMMingguan', 'maxColumnMMingguan','averageValueM', 'maxValueM', 'maxColumnM', 'maxValueT', 'maxColumnT', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn','data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan','averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan','data3', 'selectedDate3', 'averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan','averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan','averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
     }
 
 
