@@ -32,7 +32,6 @@
                                 <th>KD Pemilik</th>
                                 <th>KD Pengelola</th>
                                 <th>Tingkat Resiko</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -49,8 +48,14 @@
                                     <td>{{ $g->NAMA_SINGKATAN }}</td>
                                     <td>{{ $g->KD_Pemilik }}</td>
                                     <td>{{ $g->KD_Pengelola }}</td>
-                                    <td>{{ $g->tingkat_resiko }}</td>
-                                    <td><a href="" class="btn btn-primary">Detail</a></td>
+
+                                    @if ($g->tingkat_resiko == '')
+                                        <td>Belum diisi</td>
+                                    @else
+                                        <td>{{ $g->tingkat_resiko }}</td>
+                                    @endif
+
+                                    
                                 </tr>
                             @endforeach
 

@@ -64,6 +64,22 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.operator');
     Route::get('ScadaFail',[OperatorController::class,'ScadaFailIndex'])->name('scadafail');
+
+    //Tabel Trafo 
+    Route::get('bebantrafo', [MenuController::class, 'bebantrafo'])->name('trafo.operator');
+
+    //MVCELL
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.operator');
+
+    //Penyulang
+    Route::get('penyulang', [MenuController::class, 'bebanpenyulang'])->name('penyulang.operator');
+
+    //KTT
+    Route::get('KTT', [MenuController::class, 'bebanktt'])->name('ktt.operator');
+
+    //GI
+    Route::get('GI',[MenuController::class,'GI'])->name('GI.operator');
+
 });
 
 Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {

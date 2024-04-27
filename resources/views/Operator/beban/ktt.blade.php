@@ -35,7 +35,6 @@
                                 <th>Cb</th>
                                 <th>Meter</th>
                                 <th>Status Meter</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,10 +54,7 @@
                                 <td>{{$ktt->tanggal}}</td>
                                 <td>{{$ktt->cb}}</td>
                                 <td>{{$ktt->meter}}</td>
-                                <td>{{$ktt->status_meter}}</td>
-                                <td>
-                                    <a href="" class="btn btn-primary">Detail</a>
-                                </td>                                    
+                                <td>{{$ktt->status_meter}}</td>                                 
                             </tr>
                             @endforeach
                         </tbody>

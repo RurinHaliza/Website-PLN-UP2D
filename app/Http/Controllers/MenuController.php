@@ -985,6 +985,13 @@ class MenuController extends Controller
             $trafo = trafo::all();
 
             return view('admin.beban.trafo',compact('trafo'));
+
+        }elseif(Auth::user()->hasRole('operator')){
+
+            $trafo = trafo::all();
+
+            return view('Operator.beban.trafo',compact('trafo'));
+
         }
     }
 
@@ -995,6 +1002,12 @@ class MenuController extends Controller
             $data = mvcell::all();
 
             return view('admin.beban.MVCELL.mvcell',compact('data'));
+        }elseif(Auth::user()->hasRole('operator')){
+
+            $data = mvcell::all();
+
+            return view('Operator.beban.MVCELL.mvcell',compact('data'));
+
         }
 
     }
@@ -1031,29 +1044,61 @@ class MenuController extends Controller
     public function bebanpenyulang()
     {
 
-        $penyulang = Penyulang::all();        
+        if(Auth::user()->hasRole('Administrator')){
 
-        // dd($penyulang);
+            $penyulang = Penyulang::all();        
 
-        return view('admin.beban.penyulang',compact('penyulang'));
+            // dd($penyulang);
+    
+            return view('admin.beban.penyulang',compact('penyulang'));
+        }elseif(Auth::user()->hasRole('operator')){
+
+            $penyulang = Penyulang::all();        
+
+            // dd($penyulang);
+
+            return view('Operator.beban.penyulang',compact('penyulang'));
+        }
+
+        
     }
     public function bebanup3()
     {
         return view('admin.beban.up');
     }
     public function bebanktt()
-    {
-        $bebanktt = ktt::all();
-        //dd($bebanktt);
-        return view('admin.beban.ktt', compact ('bebanktt'));
+    {   
+
+        if(Auth::user()->hasRole('Administrator')){
+
+            $bebanktt = ktt::all();
+            //dd($bebanktt);
+            return view('admin.beban.ktt', compact ('bebanktt'));
+
+        }elseif(Auth::user()->hasRole('operator')){
+
+            $bebanktt = ktt::all();
+            //dd($bebanktt);
+             return view('Operator.beban.ktt', compact ('bebanktt'));
+
+        }
     }
 
     public function GI()
     {
+        if(Auth::user()->hasRole('Administrator')){
 
-        $GI = GITable::all();
-        // dd($GI);
-        return view('admin.beban.GI', compact('GI'));
+            $GI = GITable::all();
+            // dd($GI);
+            return view('admin.beban.GI', compact('GI'));
+        }elseif(Auth::user()->hasRole('operator')){
+
+            $GI = GITable::all();
+            // dd($GI);
+            return view('Operator.beban.GI', compact('GI'));
+
+        }
+        
     }
 
     public function create()

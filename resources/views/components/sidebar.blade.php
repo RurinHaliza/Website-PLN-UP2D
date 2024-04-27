@@ -59,6 +59,28 @@
                     Fail</span></a>
         </li>
         </li>
+
+        <li class="menu-header">Tabel Asset</li>
+        <li class="{{ Request::is('trafo.operator') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('trafo.operator') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                <span>Tabel Beban Trafo</span></a>
+        </li>
+        <li class="{{ Request::is('penyulang.operator') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('penyulang.operator') }}"><i class="fas fa-fw fa-hourglass"></i>
+                <span>Tabel Beban Penyulang</span></a>
+        </li>
+        <li class="{{ Request::is('ktt.operator') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ktt.operator') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+                    KTT</span></a>
+        </li>
+        <li class="{{ Request::is('GI.operator') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('GI.operator') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                    Beban GI</span></a>
+        </li>
+        <li class="{{ Request::is('data.mvcell.operator') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.operator') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                    Data MVCELL</span></a>
+        </li>
     @elseif(Auth::user()->hasRole('ValidatorOpsis'))
         <li class="menu-header">Dashboard</li>
         <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
@@ -71,9 +93,9 @@
         </li>
         <li class="menu-header">Scada Fail</li>
         <li class="{{ Request::is('approval.opsis') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Approval</span></a>
+            <a class="nav-link" href="{{ route('approval.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                <span>Approval</span></a>
         </li>
-        
     @elseif(Auth::user()->hasRole('ValidatorFasop'))
         <li class="menu-header">Dashboard</li>
         <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
@@ -99,7 +121,8 @@
                     Beban Trafo</span></a>
         </li>
         <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i> <span>Tabel
+            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>
+                <span>Tabel
                     Beban Penyulang</span></a>
         </li>
         <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
