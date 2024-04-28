@@ -33,6 +33,11 @@ class TrafoController extends Controller
 
         if(Auth::user()->hasRole('Administrator')){
 
+            $data = trafo::findOrFail($id);
+            
+            return view('admin.beban.Trafo.Detail',compact('data'));
+
+
         }elseif(Auth::user()->hasRole('Visitor')){
 
 

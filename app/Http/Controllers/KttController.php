@@ -32,6 +32,9 @@ class KTTController extends Controller
     public function Detail($id){
 
         if(Auth::user()->hasRole('Administrator')){
+            $data = ktt::findOrFail($id);
+            
+            return view('admin.beban.KTT.detail',compact('data'));
 
         }elseif(Auth::user()->hasRole('Visitor')){
 

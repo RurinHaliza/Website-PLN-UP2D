@@ -36,7 +36,9 @@ class PenyulangController extends Controller
 
     public function detail($id){
         if(Auth::user()->hasRole('Administrator')){
-
+            $data = Penyulang::findOrFail($id);
+            
+            return view('admin.beban.Penyulang.detail',compact('data'));
         }elseif(Auth::user()->hasRole('Visitor')){
 
 

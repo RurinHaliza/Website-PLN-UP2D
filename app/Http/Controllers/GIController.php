@@ -30,6 +30,9 @@ class GIController extends Controller
     public function detail($id){
 
         if(Auth::user()->hasRole('Administrator')){
+            $data = GITable::findOrFail($id);
+            
+            return view('admin.beban.gi.detail',compact('data'));
 
         }elseif(Auth::user()->hasRole('Visitor')){
 

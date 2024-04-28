@@ -50,7 +50,7 @@
                                     <td>{{ $t->KD_PEMILIK }}</td>
                                     <td>{{ $t->KD_PENGELOLA }}</td>
                                     <td>
-                                        <a href="{{ route('data.trafo') }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('detail.trafo.admin',[$t->id]) }}" class="btn btn-primary">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

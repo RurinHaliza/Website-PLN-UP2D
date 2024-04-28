@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gardu Induk')
+@section('title', 'Penyulang')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -13,7 +13,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Informasi Gardu Induk </h1>
+                <h1>Detail Informasi Penyulang </h1>
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger">Kembali</a>
@@ -27,67 +27,66 @@
                     <table id="detail" class="table table-hover" style="width:100%">
                         <tbody>
                             <tr>
-                                <td><strong>ID_FGI : </strong></td>
-                                @if ($data->ID_FGI == null)
+                                <td><strong>ID_JTM : </strong></td>
+                                @if ($data->ID_JTM == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->ID_FGI }}</td>
+                                    <td>{{ $data->ID_JTM }}</td>
                                 @endif
     
-                                <td><strong>Nama : </strong></td>
-                                @if ($data->Nama_GI == null)
+                                <td><strong>ID_GI : </strong></td>
+                                @if ($data->ID_GI == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->Nama_GI }}</td>
+                                    <td>{{ $data->ID_GI }}</td>
                                 @endif
                             </tr>
 
                             <tr>
-                                <td><strong>Nama singkatan : </strong></td>
-                                @if ($data->NAMA_SINGKATAN == null)
+                                <td><strong>ID_TRAFOGI : </strong></td>
+                                @if ($data->ID_TRAFOGI == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->NAMA_SINGKATAN }}</td>
+                                    <td>{{ $data->ID_TRAFOGI }}</td>
                                 @endif
     
-                                <td><strong>KD Pemilik : </strong></td>
-                                @if ($data->KD_Pemilik == null)
+                                <td><strong>NM_JTM : </strong></td>
+                                @if ($data->NM_JTM == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->KD_Pemilik }}</td>
+                                    <td>{{ $data->NM_JTM }}</td>
                                 @endif
                             </tr>
 
                             <tr>
-                                <td><strong>KD Pengelola : </strong></td>
-                                @if ($data->KD_Pengelola == null)
+                                <td><strong>Nama GI : </strong></td>
+                                @if ($data->NM_GI == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->KD_Pengelola }}</td>
+                                    <td>{{ $data->NM_GI }}</td>
                                 @endif
     
-                                <td><strong>Tingkat Resiko : </strong></td>
-                                @if ($data->tingkat_resiko == null)
+                                <td><strong>Singkatan : </strong></td>
+                                @if ($data->NM_SINGKATAN == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->tingkat_resiko }}</td>
+                                    <td>{{ $data->NM_SINGKATAN }}</td>
                                 @endif
                             </tr>
 
-
                             <tr>
-                                <td><strong>Koordinat X : </strong></td>
-                                @if ($data->x == null)
+                                <td><strong>UP3 : </strong></td>
+                                @if ($data->UP3 == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->x }}</td>
+                                    <td>{{ $data->UP3 }}</td>
                                 @endif
     
-                                <td><strong>Kordinat Y : </strong></td>
-                                @if ($data->y == null)
+                                <td><strong>ULP : </strong></td>
+                                @if ($data->ULP == null)
                                     <td><u><strong>Belum Diisi</strong></u></td>
                                 @else
-                                    <td>{{ $data->y }}</td>
+                                    <td>{{ $data->ULP }}</td>
                                 @endif
                             </tr>
 
