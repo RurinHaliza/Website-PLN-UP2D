@@ -32,6 +32,7 @@
                                 <th>KD Pemilik</th>
                                 <th>KD Pengelola</th>
                                 <th>Tingkat Resiko</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -54,7 +55,8 @@
                                     @else
                                         <td>{{ $g->tingkat_resiko }}</td>
                                     @endif
-
+                                    
+                                    <td><a href="{{ route('detail.gi.operator',[$g->id]) }}" class="btn btn-primary">Detail</a></td>
                                     
                                 </tr>
                             @endforeach

@@ -8,7 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TrafoController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\ValidatorController;
-
+use App\Http\Controllers\KTTController;
+use App\Http\Controllers\GIController;
+use App\Http\Controllers\PenyulangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +37,13 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
-    Route::get('bebantrafo', [MenuController::class, 'bebantrafo'])->name('bebantrafo');
-    Route::get('DetailTrafo',[TrafoController::class,'index'])->name('data.trafo');
+    
+    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
 
-    Route::get('bebanpenyulang', [MenuController::class, 'bebanpenyulang'])->name('bebanpenyulang');
+    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
-    Route::get('bebanktt', [MenuController::class, 'bebanktt'])->name('bebanktt');
-    Route::get('BebanGI',[MenuController::class,'GI'])->name('beban.GI');
+    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
+    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
@@ -66,19 +68,24 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
     Route::get('ScadaFail',[OperatorController::class,'ScadaFailIndex'])->name('scadafail');
 
     //Tabel Trafo 
-    Route::get('bebantrafo', [MenuController::class, 'bebantrafo'])->name('trafo.operator');
+    Route::get('DataTrafo', [TrafoController::class, 'index'])->name('trafo.operator');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.operator');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.operator');
+    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.operator');
 
     //Penyulang
-    Route::get('penyulang', [MenuController::class, 'bebanpenyulang'])->name('penyulang.operator');
+    Route::get('penyulang', [PenyulangController::class, 'index'])->name('penyulang.operator');
+    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.operator');
 
     //KTT
-    Route::get('KTT', [MenuController::class, 'bebanktt'])->name('ktt.operator');
+    Route::get('KTT', [KTTController::class, 'index'])->name('ktt.operator');
+    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.operator');
 
     //GI
-    Route::get('GI',[MenuController::class,'GI'])->name('GI.operator');
+    Route::get('GI',[GIController::class,'index'])->name('GI.operator');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.operator');
 
 });
 

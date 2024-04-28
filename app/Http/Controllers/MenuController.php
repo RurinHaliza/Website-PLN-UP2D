@@ -15,7 +15,6 @@ use App\Models\Penyulang;
 use App\Models\trafo;
 use App\Models\ktt;
 use App\Models\mvcell;
-
 use Illuminate\Support\Facades\DB;
 // use Carbon;
 
@@ -29,207 +28,208 @@ class MenuController extends Controller
 
             $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
             // Analytics untuk hari ini
-        $maxValueToday = 0;
-        $maxColumnToday = '';
-        $tanggalHariIni = Carbon::today()->toDateString();
-        $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
-        foreach ($dataHariIni as $item) {
-            foreach (
-                [
+            $maxValueToday = 0;
+            $maxColumnToday = '';
+            $tanggalHariIni = Carbon::today()->toDateString();
+            $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
+            foreach ($dataHariIni as $item) {
+                foreach ([
                     '00_30',
                     '01_00',
                     '01_30',
-                                        '02_00',
-                                        '02_30',
-                                        '03_00',
-                                        '03_30',
-                                        '04_00',
-                                        '04_30',
-                                        '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
-                                        '16_00',
-                                        '16_30',
-                                        '17_00',
-                                        '17_30',
-                                        '18_00',
-                                        '18_30',
-                                        '19_00',
-                                        '19_30',
-                                        '20_00',
-                                        '20_30',
-                                        '21_00',
-                                        '21_30',
-                                        '22_00',
-                                        '22_30',
-                                        '23_00',
-                                        '23_30',
+                    '02_00',
+                    '02_30',
+                    '03_00',
+                    '03_30',
+                    '04_00',
+                    '04_30',
+                    '05_00',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
+                    '16_00',
+                    '16_30',
+                    '17_00',
+                    '17_30',
+                    '18_00',
+                    '18_30',
+                    '19_00',
+                    '19_30',
+                    '20_00',
+                    '20_30',
+                    '21_00',
+                    '21_30',
+                    '22_00',
+                    '22_30',
+                    '23_00',
+                    '23_30',
                     '23_59',
                 ]
-                as $columnNameT
-            ) {
-                if ($item->{$columnNameT} > $maxValueToday) {
-                    $maxValueToday = $item->{$columnNameT};
-                    $maxColumnToday = $columnNameT;
+                    as $columnNameT) {
+                    if ($item->{$columnNameT} > $maxValueToday) {
+                        $maxValueToday = $item->{$columnNameT};
+                        $maxColumnToday = $columnNameT;
+                    }
                 }
             }
-        }
 
-        // Analytics untuk bulan ini
-        $maxValueMonth = 0;
-        $maxColumnMonth = '';
-        $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
-        $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
-        foreach ($dataBulanIni as $item) {
-            foreach (
-                [
+            // Analytics untuk bulan ini
+            $maxValueMonth = 0;
+            $maxColumnMonth = '';
+            $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
+            $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
+            foreach ($dataBulanIni as $item) {
+                foreach ([
                     '00_30',
                     '01_00',
                     '01_30',
-                                        '02_00',
-                                        '02_30',
-                                        '03_00',
-                                        '03_30',
-                                        '04_00',
-                                        '04_30',
-                                        '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
-                                        '16_00',
-                                        '16_30',
-                                        '17_00',
-                                        '17_30',
-                                        '18_00',
-                                        '18_30',
-                                        '19_00',
-                                        '19_30',
-                                        '20_00',
-                                        '20_30',
-                                        '21_00',
-                                        '21_30',
-                                        '22_00',
-                                        '22_30',
-                                        '23_00',
-                                        '23_30',
+                    '02_00',
+                    '02_30',
+                    '03_00',
+                    '03_30',
+                    '04_00',
+                    '04_30',
+                    '05_00',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
+                    '16_00',
+                    '16_30',
+                    '17_00',
+                    '17_30',
+                    '18_00',
+                    '18_30',
+                    '19_00',
+                    '19_30',
+                    '20_00',
+                    '20_30',
+                    '21_00',
+                    '21_30',
+                    '22_00',
+                    '22_30',
+                    '23_00',
+                    '23_30',
                     '23_59',
                 ]
-                as $columnNameMonth
-            ) {
-                if ($item->{$columnNameMonth} > $maxValueMonth) {
-                    $maxValueMonth = $item->{$columnNameMonth};
-                    $maxColumnMonth = $columnNameMonth;
-                    $maxDateMonth = $item->tanggal; // Simpan tanggalnya
+                    as $columnNameMonth) {
+                    if ($item->{$columnNameMonth} > $maxValueMonth) {
+                        $maxValueMonth = $item->{$columnNameMonth};
+                        $maxColumnMonth = $columnNameMonth;
+                        $maxDateMonth = $item->tanggal; // Simpan tanggalnya
+                    }
                 }
             }
-        }
 
-        // Analytics untuk tahun ini
-        $maxValueYear = 0;
-        $maxColumnYear = '';
-        $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
-        $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
-        foreach ($dataTahunIni as $item) {
-            foreach (
-                [
+            // Analytics untuk tahun ini
+            $maxValueYear = 0;
+            $maxColumnYear = '';
+            $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
+            $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
+            foreach ($dataTahunIni as $item) {
+                foreach ([
                     '00_30',
                     '01_00',
                     '01_30',
-                                        '02_00',
-                                        '02_30',
-                                        '03_00',
-                                        '03_30',
-                                        '04_00',
-                                        '04_30',
-                                        '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
-                                        '16_00',
-                                        '16_30',
-                                        '17_00',
-                                        '17_30',
-                                        '18_00',
-                                        '18_30',
-                                        '19_00',
-                                        '19_30',
-                                        '20_00',
-                                        '20_30',
-                                        '21_00',
-                                        '21_30',
-                                        '22_00',
-                                        '22_30',
-                                        '23_00',
-                                        '23_30',
+                    '02_00',
+                    '02_30',
+                    '03_00',
+                    '03_30',
+                    '04_00',
+                    '04_30',
+                    '05_00',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
+                    '16_00',
+                    '16_30',
+                    '17_00',
+                    '17_30',
+                    '18_00',
+                    '18_30',
+                    '19_00',
+                    '19_30',
+                    '20_00',
+                    '20_30',
+                    '21_00',
+                    '21_30',
+                    '22_00',
+                    '22_30',
+                    '23_00',
+                    '23_30',
                     '23_59',
                 ]
-                as $columnNameYear
-            ) {
-                if ($item->{$columnNameYear} > $maxValueYear) {
-                    $maxValueYear = $item->{$columnNameYear};
-                    $maxColumnYear = $columnNameYear;
-                    $maxDateYear = $item->tanggal; // Simpan tanggalnya
+                    as $columnNameYear) {
+                    if ($item->{$columnNameYear} > $maxValueYear) {
+                        $maxValueYear = $item->{$columnNameYear};
+                        $maxColumnYear = $columnNameYear;
+                        $maxDateYear = $item->tanggal; // Simpan tanggalnya
+                    }
                 }
             }
-        }
-                
-            return view('admin.monitoring.beban',compact('selectedDate','maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
-        
+
+
+            //Hitugnan dilakukan pertahun rata - rata
+
+            $sumjanuary =  DB::table('data_beban_puncak30')
+                ->whereBetween('tanggal', ['2024-01-01', '2024-01-31'])->get();
+            // ->sum(\DB::raw('00_30 + 01_00 + 01_30 + 02_00 + 02_30 + 03_00 + 03_30 + 04_00 + 04_30 + '));
+            // dd($sumjanuary);
+
+            return view('admin.monitoring.beban', compact('selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
         }
     }
 
@@ -237,12 +237,12 @@ class MenuController extends Controller
     // {
     //     $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
     //     $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
-        
+
 
     //     // Analytics
     //     // Mendapatkan tanggal hari ini
     //     $tanggalHariIni = Carbon::today()->toDateString();
-        
+
     //     // Mengambil data dari model untuk tanggal hari ini
     //     $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
 
@@ -271,7 +271,7 @@ class MenuController extends Controller
     //     // Analytics
     //     // Mendapatkan tanggal hari ini
     //     $tanggalHariIni = Carbon::today()->toDateString();
-        
+
     //     // Mengambil data dari model untuk tanggal hari ini
     //     $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
 
@@ -304,7 +304,7 @@ class MenuController extends Controller
     //     // Analytics
     //     // Mendapatkan tanggal hari ini
     //     $tanggalHariIni = Carbon::today()->toDateString();
-        
+
     //     // Mengambil data dari model untuk tanggal hari ini
     //     $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
 
@@ -313,7 +313,7 @@ class MenuController extends Controller
 
     //     // Mengambil data dari model untuk tahun ini
     //     $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
-        
+
 
     //     return view('admin.monitoring.bulan', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
 
@@ -323,814 +323,700 @@ class MenuController extends Controller
     {
         if (Auth::user()->hasRole('Administrator')) {
 
-        //Mingguan
-        // Mengambil tanggal yang dipilih dari request
-        $selectedDate3 = $request->input('selected_date3', Carbon::today()->toDateString());
+            //Mingguan
+            // Mengambil tanggal yang dipilih dari request
+            $selectedDate3 = $request->input('selected_date3', Carbon::today()->toDateString());
 
-        // dd($selectedDate);
+            // dd($selectedDate);
 
-        // Mengonversi tanggal yang dipilih menjadi objek Carbon
-        $selectedDateCarbon3 = Carbon::parse($selectedDate3);
-        // Menghitung tanggal 7 hari yang lalu dari tanggal yang dipilih
-        $startDate = $selectedDateCarbon3->copy()->subDays(6)->toDateString();
-        // Mengambil data dalam rentang tanggal
-        $data3 = data_beban_puncak30::whereBetween('tanggal', [$startDate, $selectedDate3])->paginate(10);
+            // Mengonversi tanggal yang dipilih menjadi objek Carbon
+            $selectedDateCarbon3 = Carbon::parse($selectedDate3);
+            // Menghitung tanggal 7 hari yang lalu dari tanggal yang dipilih
+            $startDate = $selectedDateCarbon3->copy()->subDays(6)->toDateString();
+            // Mengambil data dalam rentang tanggal
+            $data3 = data_beban_puncak30::whereBetween('tanggal', [$startDate, $selectedDate3])->paginate(10);
 
-        // Hitung rata-rata dan nilai maksimum
-        $averageValueSiangMingguan = $data3->avg(function ($item) {
-            return ($item->{"04_00"} +
-                $item->{"04_30"} +
-                $item->{"05_00"} +
-                                    $item->{"05_30"} +
-                                    $item->{"06_00"} +
-                                    $item->{"06_30"} +
-                                    $item->{"07_00"} +
-                                    $item->{"07_30"} +
-                                    $item->{"08_00"} +
-                                    $item->{"08_30"} +
-                                    $item->{"09_00"} +
-                                    $item->{"09_30"} +
-                                    $item->{"10_00"} +
-                                    $item->{"10_30"} +
-                                    $item->{"11_00"} +
-                                    $item->{"11_30"} +
-                                    $item->{"12_00"} +
-                                    $item->{"12_30"} +
-                                    $item->{"13_00"} +
-                                    $item->{"13_30"} +
-                                    $item->{"14_00"} +
-                                    $item->{"14_30"} +
-                                    $item->{"15_00"} +
-                                    $item->{"15_30"} +
-                $item->{"16_00"}) / 25;
-        });
+            // Hitung rata-rata dan nilai maksimum
+            $averageValueSiangMingguan = $data3->avg(function ($item) {
+                return ($item->{"04_00"} +
+                    $item->{"04_30"} +
+                    $item->{"05_00"} +
+                    $item->{"05_30"} +
+                    $item->{"06_00"} +
+                    $item->{"06_30"} +
+                    $item->{"07_00"} +
+                    $item->{"07_30"} +
+                    $item->{"08_00"} +
+                    $item->{"08_30"} +
+                    $item->{"09_00"} +
+                    $item->{"09_30"} +
+                    $item->{"10_00"} +
+                    $item->{"10_30"} +
+                    $item->{"11_00"} +
+                    $item->{"11_30"} +
+                    $item->{"12_00"} +
+                    $item->{"12_30"} +
+                    $item->{"13_00"} +
+                    $item->{"13_30"} +
+                    $item->{"14_00"} +
+                    $item->{"14_30"} +
+                    $item->{"15_00"} +
+                    $item->{"15_30"} +
+                    $item->{"16_00"}) / 25;
+            });
 
-        $maxValueSiangMingguan = 0;
-        $maxColumnSiangMingguan = '';
-        foreach ($data3 as $item) {
-            foreach (
-                [
+            $maxValueSiangMingguan = 0;
+            $maxColumnSiangMingguan = '';
+            foreach ($data3 as $item) {
+                foreach ([
                     '04_00',
                     '04_30',
                     '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
                     '16_00',
                 ]
-                as $columnNameMingguan
-            ) {
-                if ($item->{$columnNameMingguan} > $maxValueSiangMingguan) {
-                    $maxValueSiangMingguan = $item->{$columnNameMingguan};
-                    $maxColumnSiangMingguan = $columnNameMingguan;
+                    as $columnNameMingguan) {
+                    if ($item->{$columnNameMingguan} > $maxValueSiangMingguan) {
+                        $maxValueSiangMingguan = $item->{$columnNameMingguan};
+                        $maxColumnSiangMingguan = $columnNameMingguan;
+                    }
                 }
             }
-        }
-        
-        // Lakukan hal yang sama untuk data malam
-        // Hitung rata-rata dan nilai maksimum
-        $averageValueMalamMingguan = $data3->avg(function ($item) {
-            return ($item->{"04_00"} +
-                $item->{"04_30"} +
-                $item->{"05_00"} +
-                                    $item->{"05_30"} +
-                                    $item->{"06_00"} +
-                                    $item->{"06_30"} +
-                                    $item->{"07_00"} +
-                                    $item->{"07_30"} +
-                                    $item->{"08_00"} +
-                                    $item->{"08_30"} +
-                                    $item->{"09_00"} +
-                                    $item->{"09_30"} +
-                                    $item->{"10_00"} +
-                                    $item->{"10_30"} +
-                                    $item->{"11_00"} +
-                                    $item->{"11_30"} +
-                                    $item->{"12_00"} +
-                                    $item->{"12_30"} +
-                                    $item->{"13_00"} +
-                                    $item->{"13_30"} +
-                                    $item->{"14_00"} +
-                                    $item->{"14_30"} +
-                                    $item->{"15_00"} +
-                                    $item->{"15_30"} +
-                $item->{"16_00"}) / 25;
-        });
 
-        $maxValueMalamMingguan = 0;
-        $maxColumnMalamMingguan = '';
-        foreach ($data3 as $item) {
-            foreach (
-                [
+            // Lakukan hal yang sama untuk data malam
+            // Hitung rata-rata dan nilai maksimum
+            $averageValueMalamMingguan = $data3->avg(function ($item) {
+                return ($item->{"04_00"} +
+                    $item->{"04_30"} +
+                    $item->{"05_00"} +
+                    $item->{"05_30"} +
+                    $item->{"06_00"} +
+                    $item->{"06_30"} +
+                    $item->{"07_00"} +
+                    $item->{"07_30"} +
+                    $item->{"08_00"} +
+                    $item->{"08_30"} +
+                    $item->{"09_00"} +
+                    $item->{"09_30"} +
+                    $item->{"10_00"} +
+                    $item->{"10_30"} +
+                    $item->{"11_00"} +
+                    $item->{"11_30"} +
+                    $item->{"12_00"} +
+                    $item->{"12_30"} +
+                    $item->{"13_00"} +
+                    $item->{"13_30"} +
+                    $item->{"14_00"} +
+                    $item->{"14_30"} +
+                    $item->{"15_00"} +
+                    $item->{"15_30"} +
+                    $item->{"16_00"}) / 25;
+            });
+
+            $maxValueMalamMingguan = 0;
+            $maxColumnMalamMingguan = '';
+            foreach ($data3 as $item) {
+                foreach ([
                     '04_00',
                     '04_30',
                     '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
                     '16_00',
                 ]
-                as $columnNameMMingguan
-            ) {
-                if ($item->{$columnNameMMingguan} > $maxValueMalamMingguan) {
-                    $maxValueMalamMingguan = $item->{$columnNameMMingguan};
-                    $maxColumnMalamMingguan = $columnNameMMingguan;
+                    as $columnNameMMingguan) {
+                    if ($item->{$columnNameMMingguan} > $maxValueMalamMingguan) {
+                        $maxValueMalamMingguan = $item->{$columnNameMMingguan};
+                        $maxColumnMalamMingguan = $columnNameMMingguan;
+                    }
                 }
             }
-        }
 
-        //Bulanan
-        // Mengambil tanggal yang dipilih dari request, atau menggunakan tanggal hari ini jika tidak ada yang dipilih
-        $selectedDate2 = $request->input('selected_date2', Carbon::today()->toDateString());
-        // Mengonversi tanggal yang dipilih menjadi objek Carbon
-        $selectedDateCarbon = Carbon::parse($selectedDate2);
+            //Bulanan
+            // Mengambil tanggal yang dipilih dari request, atau menggunakan tanggal hari ini jika tidak ada yang dipilih
+            $selectedDate2 = $request->input('selected_date2', Carbon::today()->toDateString());
+            // Mengonversi tanggal yang dipilih menjadi objek Carbon
+            $selectedDateCarbon = Carbon::parse($selectedDate2);
 
-        // Menentukan bulan dan tahun dari tanggal yang dipilih
-        $selectedMonth = $selectedDateCarbon->month;
-        $selectedYear = $selectedDateCarbon->year;
+            // Menentukan bulan dan tahun dari tanggal yang dipilih
+            $selectedMonth = $selectedDateCarbon->month;
+            $selectedYear = $selectedDateCarbon->year;
 
-        // Mengambil data untuk bulan dan tahun yang sesuai
-        $data2 = data_beban_puncak30::whereYear('tanggal', $selectedYear)
-            ->whereMonth('tanggal', $selectedMonth)
-            ->paginate(10);
+            // Mengambil data untuk bulan dan tahun yang sesuai
+            $data2 = data_beban_puncak30::whereYear('tanggal', $selectedYear)
+                ->whereMonth('tanggal', $selectedMonth)
+                ->paginate(10);
 
-        // Hitung rata-rata dan nilai maksimum
-        $averageValueSiangBulanan = $data2->avg(function ($item) {
-            return ($item->{"04_00"} +
-                $item->{"04_30"} +
-                $item->{"05_00"} +
-                                    $item->{"05_30"} +
-                                    $item->{"06_00"} +
-                                    $item->{"06_30"} +
-                                    $item->{"07_00"} +
-                                    $item->{"07_30"} +
-                                    $item->{"08_00"} +
-                                    $item->{"08_30"} +
-                                    $item->{"09_00"} +
-                                    $item->{"09_30"} +
-                                    $item->{"10_00"} +
-                                    $item->{"10_30"} +
-                                    $item->{"11_00"} +
-                                    $item->{"11_30"} +
-                                    $item->{"12_00"} +
-                                    $item->{"12_30"} +
-                                    $item->{"13_00"} +
-                                    $item->{"13_30"} +
-                                    $item->{"14_00"} +
-                                    $item->{"14_30"} +
-                                    $item->{"15_00"} +
-                                    $item->{"15_30"} +
-                $item->{"16_00"}) / 25;
-        });
+            // Hitung rata-rata dan nilai maksimum
+            $averageValueSiangBulanan = $data2->avg(function ($item) {
+                return ($item->{"04_00"} +
+                    $item->{"04_30"} +
+                    $item->{"05_00"} +
+                    $item->{"05_30"} +
+                    $item->{"06_00"} +
+                    $item->{"06_30"} +
+                    $item->{"07_00"} +
+                    $item->{"07_30"} +
+                    $item->{"08_00"} +
+                    $item->{"08_30"} +
+                    $item->{"09_00"} +
+                    $item->{"09_30"} +
+                    $item->{"10_00"} +
+                    $item->{"10_30"} +
+                    $item->{"11_00"} +
+                    $item->{"11_30"} +
+                    $item->{"12_00"} +
+                    $item->{"12_30"} +
+                    $item->{"13_00"} +
+                    $item->{"13_30"} +
+                    $item->{"14_00"} +
+                    $item->{"14_30"} +
+                    $item->{"15_00"} +
+                    $item->{"15_30"} +
+                    $item->{"16_00"}) / 25;
+            });
 
-        $maxValueSiangBulanan = 0;
-        $maxColumnSiangBulanan = '';
-        foreach ($data2 as $item) {
-            foreach (
-                [
+            $maxValueSiangBulanan = 0;
+            $maxColumnSiangBulanan = '';
+            foreach ($data2 as $item) {
+                foreach ([
                     '04_00',
                     '04_30',
                     '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
                     '16_00',
                 ]
-                as $columnNameBulanan
-            ) {
-                if ($item->{$columnNameBulanan} > $maxValueSiangBulanan) {
-                    $maxValueSiangBulanan = $item->{$columnNameBulanan};
-                    $maxColumnSiangBulanan = $columnNameBulanan;
+                    as $columnNameBulanan) {
+                    if ($item->{$columnNameBulanan} > $maxValueSiangBulanan) {
+                        $maxValueSiangBulanan = $item->{$columnNameBulanan};
+                        $maxColumnSiangBulanan = $columnNameBulanan;
+                    }
                 }
             }
-        }
-        
-        // Lakukan hal yang sama untuk data malam
-        // Hitung rata-rata dan nilai maksimum
-        $averageValueMalamBulanan = $data2->avg(function ($item) {
-            return ($item->{"04_00"} +
-                $item->{"04_30"} +
-                $item->{"05_00"} +
-                                    $item->{"05_30"} +
-                                    $item->{"06_00"} +
-                                    $item->{"06_30"} +
-                                    $item->{"07_00"} +
-                                    $item->{"07_30"} +
-                                    $item->{"08_00"} +
-                                    $item->{"08_30"} +
-                                    $item->{"09_00"} +
-                                    $item->{"09_30"} +
-                                    $item->{"10_00"} +
-                                    $item->{"10_30"} +
-                                    $item->{"11_00"} +
-                                    $item->{"11_30"} +
-                                    $item->{"12_00"} +
-                                    $item->{"12_30"} +
-                                    $item->{"13_00"} +
-                                    $item->{"13_30"} +
-                                    $item->{"14_00"} +
-                                    $item->{"14_30"} +
-                                    $item->{"15_00"} +
-                                    $item->{"15_30"} +
-                $item->{"16_00"}) / 25;
-        });
 
-        $maxValueMalamBulanan = 0;
-        $maxColumnMalamBulanan = '';
-        foreach ($data2 as $item) {
-            foreach (
-                [
+            // Lakukan hal yang sama untuk data malam
+            // Hitung rata-rata dan nilai maksimum
+            $averageValueMalamBulanan = $data2->avg(function ($item) {
+                return ($item->{"04_00"} +
+                    $item->{"04_30"} +
+                    $item->{"05_00"} +
+                    $item->{"05_30"} +
+                    $item->{"06_00"} +
+                    $item->{"06_30"} +
+                    $item->{"07_00"} +
+                    $item->{"07_30"} +
+                    $item->{"08_00"} +
+                    $item->{"08_30"} +
+                    $item->{"09_00"} +
+                    $item->{"09_30"} +
+                    $item->{"10_00"} +
+                    $item->{"10_30"} +
+                    $item->{"11_00"} +
+                    $item->{"11_30"} +
+                    $item->{"12_00"} +
+                    $item->{"12_30"} +
+                    $item->{"13_00"} +
+                    $item->{"13_30"} +
+                    $item->{"14_00"} +
+                    $item->{"14_30"} +
+                    $item->{"15_00"} +
+                    $item->{"15_30"} +
+                    $item->{"16_00"}) / 25;
+            });
+
+            $maxValueMalamBulanan = 0;
+            $maxColumnMalamBulanan = '';
+            foreach ($data2 as $item) {
+                foreach ([
                     '04_00',
                     '04_30',
                     '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
                     '16_00',
                 ]
-                as $columnNameMBulanan
-            ) {
-                if ($item->{$columnNameMBulanan} > $maxValueMalamBulanan) {
-                    $maxValueMalamBulanan = $item->{$columnNameMBulanan};
-                    $maxColumnMalamBulanan = $columnNameMBulanan;
+                    as $columnNameMBulanan) {
+                    if ($item->{$columnNameMBulanan} > $maxValueMalamBulanan) {
+                        $maxValueMalamBulanan = $item->{$columnNameMBulanan};
+                        $maxColumnMalamBulanan = $columnNameMBulanan;
+                    }
                 }
             }
-        }
 
 
-        //Harian
-        $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
-        $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
-        
-        // Hitung rata-rata dan nilai maksimum
-        $averageValue = $data->avg(function ($item) {
-            return ($item->{"04_00"} +
-                $item->{"04_30"} +
-                $item->{"05_00"} +
-                                    $item->{"05_30"} +
-                                    $item->{"06_00"} +
-                                    $item->{"06_30"} +
-                                    $item->{"07_00"} +
-                                    $item->{"07_30"} +
-                                    $item->{"08_00"} +
-                                    $item->{"08_30"} +
-                                    $item->{"09_00"} +
-                                    $item->{"09_30"} +
-                                    $item->{"10_00"} +
-                                    $item->{"10_30"} +
-                                    $item->{"11_00"} +
-                                    $item->{"11_30"} +
-                                    $item->{"12_00"} +
-                                    $item->{"12_30"} +
-                                    $item->{"13_00"} +
-                                    $item->{"13_30"} +
-                                    $item->{"14_00"} +
-                                    $item->{"14_30"} +
-                                    $item->{"15_00"} +
-                                    $item->{"15_30"} +
-                $item->{"16_00"}) / 25;
-        });
+            //Harian
+            $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
+            $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
 
-        $maxValue = 0;
-        $maxColumn = '';
-        foreach ($data as $item) {
-            foreach (
-                [
+            // Hitung rata-rata dan nilai maksimum
+            $averageValue = $data->avg(function ($item) {
+                return ($item->{"04_00"} +
+                    $item->{"04_30"} +
+                    $item->{"05_00"} +
+                    $item->{"05_30"} +
+                    $item->{"06_00"} +
+                    $item->{"06_30"} +
+                    $item->{"07_00"} +
+                    $item->{"07_30"} +
+                    $item->{"08_00"} +
+                    $item->{"08_30"} +
+                    $item->{"09_00"} +
+                    $item->{"09_30"} +
+                    $item->{"10_00"} +
+                    $item->{"10_30"} +
+                    $item->{"11_00"} +
+                    $item->{"11_30"} +
+                    $item->{"12_00"} +
+                    $item->{"12_30"} +
+                    $item->{"13_00"} +
+                    $item->{"13_30"} +
+                    $item->{"14_00"} +
+                    $item->{"14_30"} +
+                    $item->{"15_00"} +
+                    $item->{"15_30"} +
+                    $item->{"16_00"}) / 25;
+            });
+
+            $maxValue = 0;
+            $maxColumn = '';
+            foreach ($data as $item) {
+                foreach ([
                     '04_00',
                     '04_30',
                     '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
                     '16_00',
                 ]
-                as $columnName
-            ) {
-                if ($item->{$columnName} > $maxValue) {
-                    $maxValue = $item->{$columnName};
-                    $maxColumn = $columnName;
+                    as $columnName) {
+                    if ($item->{$columnName} > $maxValue) {
+                        $maxValue = $item->{$columnName};
+                        $maxColumn = $columnName;
+                    }
                 }
             }
-        }
-        
-        // Lakukan hal yang sama untuk data malam
-        // Hitung rata-rata dan nilai maksimum
-        $averageValueM = $data->avg(function ($item) {
-            return ($item->{"04_00"} +
-                $item->{"04_30"} +
-                $item->{"05_00"} +
-                                    $item->{"05_30"} +
-                                    $item->{"06_00"} +
-                                    $item->{"06_30"} +
-                                    $item->{"07_00"} +
-                                    $item->{"07_30"} +
-                                    $item->{"08_00"} +
-                                    $item->{"08_30"} +
-                                    $item->{"09_00"} +
-                                    $item->{"09_30"} +
-                                    $item->{"10_00"} +
-                                    $item->{"10_30"} +
-                                    $item->{"11_00"} +
-                                    $item->{"11_30"} +
-                                    $item->{"12_00"} +
-                                    $item->{"12_30"} +
-                                    $item->{"13_00"} +
-                                    $item->{"13_30"} +
-                                    $item->{"14_00"} +
-                                    $item->{"14_30"} +
-                                    $item->{"15_00"} +
-                                    $item->{"15_30"} +
-                $item->{"16_00"}) / 25;
-        });
 
-        $maxValueM = 0;
-        $maxColumnM = '';
-        foreach ($data as $item) {
-            foreach (
-                [
+            // Lakukan hal yang sama untuk data malam
+            // Hitung rata-rata dan nilai maksimum
+            $averageValueM = $data->avg(function ($item) {
+                return ($item->{"04_00"} +
+                    $item->{"04_30"} +
+                    $item->{"05_00"} +
+                    $item->{"05_30"} +
+                    $item->{"06_00"} +
+                    $item->{"06_30"} +
+                    $item->{"07_00"} +
+                    $item->{"07_30"} +
+                    $item->{"08_00"} +
+                    $item->{"08_30"} +
+                    $item->{"09_00"} +
+                    $item->{"09_30"} +
+                    $item->{"10_00"} +
+                    $item->{"10_30"} +
+                    $item->{"11_00"} +
+                    $item->{"11_30"} +
+                    $item->{"12_00"} +
+                    $item->{"12_30"} +
+                    $item->{"13_00"} +
+                    $item->{"13_30"} +
+                    $item->{"14_00"} +
+                    $item->{"14_30"} +
+                    $item->{"15_00"} +
+                    $item->{"15_30"} +
+                    $item->{"16_00"}) / 25;
+            });
+
+            $maxValueM = 0;
+            $maxColumnM = '';
+            foreach ($data as $item) {
+                foreach ([
                     '04_00',
                     '04_30',
                     '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
                     '16_00',
                 ]
-                as $columnNameM
-            ) {
-                if ($item->{$columnNameM} > $maxValueM) {
-                    $maxValueM = $item->{$columnNameM};
-                    $maxColumnM = $columnNameM;
+                    as $columnNameM) {
+                    if ($item->{$columnNameM} > $maxValueM) {
+                        $maxValueM = $item->{$columnNameM};
+                        $maxColumnM = $columnNameM;
+                    }
                 }
             }
-        }
 
-        // Analytics untuk hari ini
-        $maxValueToday = 0;
-        $maxColumnToday = '';
-        $tanggalHariIni = Carbon::today()->toDateString();
-        $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
-        foreach ($dataHariIni as $item) {
-            foreach (
-                [
+            // Analytics untuk hari ini
+            $maxValueToday = 0;
+            $maxColumnToday = '';
+            $tanggalHariIni = Carbon::today()->toDateString();
+            $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
+            foreach ($dataHariIni as $item) {
+                foreach ([
                     '00_30',
                     '01_00',
                     '01_30',
-                                        '02_00',
-                                        '02_30',
-                                        '03_00',
-                                        '03_30',
-                                        '04_00',
-                                        '04_30',
-                                        '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
-                                        '16_00',
-                                        '16_30',
-                                        '17_00',
-                                        '17_30',
-                                        '18_00',
-                                        '18_30',
-                                        '19_00',
-                                        '19_30',
-                                        '20_00',
-                                        '20_30',
-                                        '21_00',
-                                        '21_30',
-                                        '22_00',
-                                        '22_30',
-                                        '23_00',
-                                        '23_30',
+                    '02_00',
+                    '02_30',
+                    '03_00',
+                    '03_30',
+                    '04_00',
+                    '04_30',
+                    '05_00',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
+                    '16_00',
+                    '16_30',
+                    '17_00',
+                    '17_30',
+                    '18_00',
+                    '18_30',
+                    '19_00',
+                    '19_30',
+                    '20_00',
+                    '20_30',
+                    '21_00',
+                    '21_30',
+                    '22_00',
+                    '22_30',
+                    '23_00',
+                    '23_30',
                     '23_59',
                 ]
-                as $columnNameT
-            ) {
-                if ($item->{$columnNameT} > $maxValueToday) {
-                    $maxValueToday = $item->{$columnNameT};
-                    $maxColumnToday = $columnNameT;
+                    as $columnNameT) {
+                    if ($item->{$columnNameT} > $maxValueToday) {
+                        $maxValueToday = $item->{$columnNameT};
+                        $maxColumnToday = $columnNameT;
+                    }
                 }
             }
-        }
 
-        // Analytics untuk bulan ini
-        $maxValueMonth = 0;
-        $maxColumnMonth = '';
-        $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
-        $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
-        foreach ($dataBulanIni as $item) {
-            foreach (
-                [
+            // Analytics untuk bulan ini
+            $maxValueMonth = 0;
+            $maxColumnMonth = '';
+            $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
+            $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
+            foreach ($dataBulanIni as $item) {
+                foreach ([
                     '00_30',
                     '01_00',
                     '01_30',
-                                        '02_00',
-                                        '02_30',
-                                        '03_00',
-                                        '03_30',
-                                        '04_00',
-                                        '04_30',
-                                        '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
-                                        '16_00',
-                                        '16_30',
-                                        '17_00',
-                                        '17_30',
-                                        '18_00',
-                                        '18_30',
-                                        '19_00',
-                                        '19_30',
-                                        '20_00',
-                                        '20_30',
-                                        '21_00',
-                                        '21_30',
-                                        '22_00',
-                                        '22_30',
-                                        '23_00',
-                                        '23_30',
+                    '02_00',
+                    '02_30',
+                    '03_00',
+                    '03_30',
+                    '04_00',
+                    '04_30',
+                    '05_00',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
+                    '16_00',
+                    '16_30',
+                    '17_00',
+                    '17_30',
+                    '18_00',
+                    '18_30',
+                    '19_00',
+                    '19_30',
+                    '20_00',
+                    '20_30',
+                    '21_00',
+                    '21_30',
+                    '22_00',
+                    '22_30',
+                    '23_00',
+                    '23_30',
                     '23_59',
                 ]
-                as $columnNameMonth
-            ) {
-                if ($item->{$columnNameMonth} > $maxValueMonth) {
-                    $maxValueMonth = $item->{$columnNameMonth};
-                    $maxColumnMonth = $columnNameMonth;
-                    $maxDateMonth = $item->tanggal; // Simpan tanggalnya
+                    as $columnNameMonth) {
+                    if ($item->{$columnNameMonth} > $maxValueMonth) {
+                        $maxValueMonth = $item->{$columnNameMonth};
+                        $maxColumnMonth = $columnNameMonth;
+                        $maxDateMonth = $item->tanggal; // Simpan tanggalnya
+                    }
                 }
             }
-        }
 
-        // Analytics untuk tahun ini
-        $maxValueYear = 0;
-        $maxColumnYear = '';
-        $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
-        $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
-        foreach ($dataTahunIni as $item) {
-            foreach (
-                [
+            // Analytics untuk tahun ini
+            $maxValueYear = 0;
+            $maxColumnYear = '';
+            $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
+            $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
+            foreach ($dataTahunIni as $item) {
+                foreach ([
                     '00_30',
                     '01_00',
                     '01_30',
-                                        '02_00',
-                                        '02_30',
-                                        '03_00',
-                                        '03_30',
-                                        '04_00',
-                                        '04_30',
-                                        '05_00',
-                                        '05_30',
-                                        '06_00',
-                                        '06_30',
-                                        '07_00',
-                                        '07_30',
-                                        '08_00',
-                                        '08_30',
-                                        '09_00',
-                                        '09_30',
-                                        '10_00',
-                                        '10_30',
-                                        '11_00',
-                                        '11_30',
-                                        '12_00',
-                                        '12_30',
-                                        '13_00',
-                                        '13_30',
-                                        '14_00',
-                                        '14_30',
-                                        '15_00',
-                                        '15_30',
-                                        '16_00',
-                                        '16_30',
-                                        '17_00',
-                                        '17_30',
-                                        '18_00',
-                                        '18_30',
-                                        '19_00',
-                                        '19_30',
-                                        '20_00',
-                                        '20_30',
-                                        '21_00',
-                                        '21_30',
-                                        '22_00',
-                                        '22_30',
-                                        '23_00',
-                                        '23_30',
+                    '02_00',
+                    '02_30',
+                    '03_00',
+                    '03_30',
+                    '04_00',
+                    '04_30',
+                    '05_00',
+                    '05_30',
+                    '06_00',
+                    '06_30',
+                    '07_00',
+                    '07_30',
+                    '08_00',
+                    '08_30',
+                    '09_00',
+                    '09_30',
+                    '10_00',
+                    '10_30',
+                    '11_00',
+                    '11_30',
+                    '12_00',
+                    '12_30',
+                    '13_00',
+                    '13_30',
+                    '14_00',
+                    '14_30',
+                    '15_00',
+                    '15_30',
+                    '16_00',
+                    '16_30',
+                    '17_00',
+                    '17_30',
+                    '18_00',
+                    '18_30',
+                    '19_00',
+                    '19_30',
+                    '20_00',
+                    '20_30',
+                    '21_00',
+                    '21_30',
+                    '22_00',
+                    '22_30',
+                    '23_00',
+                    '23_30',
                     '23_59',
                 ]
-                as $columnNameYear
-            ) {
-                if ($item->{$columnNameYear} > $maxValueYear) {
-                    $maxValueYear = $item->{$columnNameYear};
-                    $maxColumnYear = $columnNameYear;
-                    $maxDateYear = $item->tanggal; // Simpan tanggalnya
+                    as $columnNameYear) {
+                    if ($item->{$columnNameYear} > $maxValueYear) {
+                        $maxValueYear = $item->{$columnNameYear};
+                        $maxColumnYear = $columnNameYear;
+                        $maxDateYear = $item->tanggal; // Simpan tanggalnya
+                    }
                 }
             }
         }
-        }
-        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn','data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan','averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan','data3', 'selectedDate3', 'averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan','averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan','averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan', 'averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan', 'data3', 'selectedDate3', 'averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan', 'averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
     }
 
 
-    //beban
-    public function bebantrafo()
+    public function mvcell()
     {
-        if(Auth::user()->hasRole('Administrator')){
 
-            $trafo = trafo::all();
+        if (Auth::user()->hasRole('Administrator')) {
 
-            return view('admin.beban.trafo',compact('trafo'));
+            $data = mvcell::all();
 
-        }elseif(Auth::user()->hasRole('operator')){
+            return view('admin.beban.MVCELL.mvcell', compact('data'));
+        } elseif (Auth::user()->hasRole('operator')) {
 
-            $trafo = trafo::all();
+            $data = mvcell::all();
 
-            return view('Operator.beban.trafo',compact('trafo'));
+            return view('Operator.beban.MVCELL.mvcell', compact('data'));
+        } elseif (Auth::user()->hasRole('Visitor')) {
 
-        }elseif(Auth::user()->hasRole('Visitor')){
+            $data = mvcell::all();
 
-            $trafo = trafo::all();
-
-            return view('Visitor.beban.trafo',compact('trafo'));
-
+            return view('Visitor.beban.MVCELL.mvcell', compact('data'));
         }
     }
 
-    public function mvcell(){
+    public function DetailMVCELL($id)
+    {
 
-        if(Auth::user()->hasRole('Administrator')){
-
-            $data = mvcell::all();
-
-            return view('admin.beban.MVCELL.mvcell',compact('data'));
-        }elseif(Auth::user()->hasRole('operator')){
-
-            $data = mvcell::all();
-
-            return view('Operator.beban.MVCELL.mvcell',compact('data'));
-
-        }elseif(Auth::user()->hasRole('Visitor')){
-
-            $data = mvcell::all();
-
-            return view('Visitor.beban.MVCELL.mvcell',compact('data'));
-
-
-        }
-
-    }
-
-    public function DetailMVCELL($id){
-
-        if(Auth::user()->hasRole('Administrator')){
+        if (Auth::user()->hasRole('Administrator')) {
 
             $data = mvcell::findOrFail($id);
 
             // dd($data);
 
-            return view('admin.beban.MVCELL.detail',compact('data'));
+            return view('admin.beban.MVCELL.detail', compact('data'));
+        } elseif (Auth::user()->hasRole('operator')) {
+            $data = mvcell::findOrFail($id);
 
+            // dd($data);
+
+            return view('Operator.beban.MVCELL.detail', compact('data'));
         }
-
     }
 
-    public function EditMVCELL($id){
+    public function EditMVCELL($id)
+    {
 
-        if(Auth::user()->hasRole('Administrator')){
+        if (Auth::user()->hasRole('Administrator')) {
 
             $data = mvcell::findOrFail($id);
 
             // dd($data);
 
-            return view('admin.beban.MVCELL.edit',compact('data'));
-
+            return view('admin.beban.MVCELL.edit', compact('data'));
         }
-
     }
 
-
-    public function bebanpenyulang()
-    {
-
-        if(Auth::user()->hasRole('Administrator')){
-
-            $penyulang = Penyulang::all();        
-
-            // dd($penyulang);
-    
-            return view('admin.beban.penyulang',compact('penyulang'));
-        }elseif(Auth::user()->hasRole('operator')){
-
-            $penyulang = Penyulang::all();        
-
-            // dd($penyulang);
-
-            return view('Operator.beban.penyulang',compact('penyulang'));
-        }elseif(Auth::user()->hasRole('Visitor')){
-
-            $penyulang = Penyulang::all();        
-
-            // dd($penyulang);
-
-            return view('Visitor.beban.penyulang',compact('penyulang'));
-        }
-
-        
-    }
     public function bebanup3()
     {
         return view('admin.beban.up');
     }
-    public function bebanktt()
-    {   
-
-        if(Auth::user()->hasRole('Administrator')){
-
-            $bebanktt = ktt::all();
-            //dd($bebanktt);
-            return view('admin.beban.ktt', compact ('bebanktt'));
-
-        }elseif(Auth::user()->hasRole('operator')){
-
-            $bebanktt = ktt::all();
-            //dd($bebanktt);
-             return view('Operator.beban.ktt', compact ('bebanktt'));
-
-        }elseif(Auth::user()->hasRole('Visitor')){
-
-            $bebanktt = ktt::all();
-            //dd($bebanktt); 
-
-            return view('Visitor.beban.ktt',compact('bebanktt'));
-        }
-    }
-
-    public function GI()
-    {
-        if(Auth::user()->hasRole('Administrator')){
-
-            $GI = GITable::all();
-            // dd($GI);
-            return view('admin.beban.GI', compact('GI'));
-        }elseif(Auth::user()->hasRole('operator')){
-
-            $GI = GITable::all();
-            // dd($GI);
-            return view('Operator.beban.GI', compact('GI'));
-
-        }elseif(Auth::user()->hasRole('Visitor')){
-
-            $GI = GITable::all();
-            // dd($GI);
-            return view('Visitor.beban.GI', compact('GI'));
-        }
-        
-    }
+    
 
     public function create()
     {

@@ -50,8 +50,8 @@
                     <div class="card-body">
                         <ul>
                             <li>MW: {{ $maxValueYear }}</li>
-                            <li>Tanggal : {{ $maxColumnYear }}</li>
-                            <li>Pukul : {{ $maxDateYear }}</li>
+                            <li>Tanggal : {{ $maxDateYear }}</li>
+                            <li>Pukul : {{ $maxColumnYear }}</li>
                         </ul>
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                     <div class="card-body">
                         <ul>
                             <li>MW: {{ $maxValueMonth }}</li>
-                            <li>Tanggal : {{ $maxColumnMonth }}</li>
-                            <li>Pukul : {{ $maxDateMonth }}</li>
+                            <li>Tanggal : {{ $maxDateMonth }}</li>
+                            <li>Pukul : {{ $maxColumnMonth }}</li>
                         </ul>
                     </div>
                 </div>

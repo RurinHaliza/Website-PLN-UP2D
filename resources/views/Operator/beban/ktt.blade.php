@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'Data KTT PLN')
 
 @push('style')
    <!-- CSS Libraries -->
@@ -18,7 +18,7 @@
         </section>
         <div class="card mt-3">
             <div class="card-header">
-                <h5 class="m-0 font-weight-bold text-primary">Tabel Pengukuran</h5>
+                <h5 class="m-0 font-weight-bold text-primary">TabeL Record</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -35,6 +35,7 @@
                                 <th>Cb</th>
                                 <th>Meter</th>
                                 <th>Status Meter</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +55,8 @@
                                 <td>{{$ktt->tanggal}}</td>
                                 <td>{{$ktt->cb}}</td>
                                 <td>{{$ktt->meter}}</td>
-                                <td>{{$ktt->status_meter}}</td>                                 
+                                <td>{{$ktt->status_meter}}</td>  
+                                <td><a href="{{ route('detail.ktt.operator',[$ktt->id]) }}" class="btn btn-primary">Detail</a></td>                               
                             </tr>
                             @endforeach
                         </tbody>

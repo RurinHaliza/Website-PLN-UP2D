@@ -30,6 +30,7 @@
                                 <th>Lokasi Penempatan</th>
                                 <th>Nama JTM</th>
                                 <th>Merk</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -45,6 +46,7 @@
                                     <td>{{ $d->LOKASI_PENEMPATAN }}</td>
                                     <td>{{ $d->NAMA_JTM }}</td>
                                     <td>{{ $d->MERK }}</td>
+                                    <td><a href="{{ route('detail.mvcell.operator',[$d->id]) }}" class="btn btn-primary">Detail</a></td>
                                 </tr>
                             @endforeach
 

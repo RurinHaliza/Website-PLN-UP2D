@@ -4,33 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ktt;
+use App\Models\Penyulang;
 
-class KTTController extends Controller
+class PenyulangController extends Controller
 {
     public function index(){
 
         if (Auth::user()->hasRole('Administrator')) {
 
-            $bebanktt = ktt::all();
-            //dd($bebanktt);
-            return view('admin.beban.ktt', compact('bebanktt'));
+            $penyulang = Penyulang::all();
+
+            // dd($penyulang);
+
+            return view('admin.beban.penyulang', compact('penyulang'));
         } elseif (Auth::user()->hasRole('operator')) {
 
-            $bebanktt = ktt::all();
-            //dd($bebanktt);
-            return view('Operator.beban.ktt', compact('bebanktt'));
+            $penyulang = Penyulang::all();
+
+            // dd($penyulang);
+
+            return view('Operator.beban.penyulang', compact('penyulang'));
         } elseif (Auth::user()->hasRole('Visitor')) {
 
-            $bebanktt = ktt::all();
-            //dd($bebanktt); 
-            return view('Visitor.beban.ktt', compact('bebanktt'));
-        }
+            $penyulang = Penyulang::all();
 
+            // dd($penyulang);
+
+            return view('Visitor.beban.penyulang', compact('penyulang'));
+        }
     }
 
-    public function Detail($id){
-
+    public function detail($id){
         if(Auth::user()->hasRole('Administrator')){
 
         }elseif(Auth::user()->hasRole('Visitor')){
@@ -44,13 +48,11 @@ class KTTController extends Controller
             
         }elseif(Auth::user()->hasRole('operator')){
             
-            $data = ktt::findOrFail($id);
+            $data = Penyulang::findOrFail($id);
             
-            return view('Operator.beban.KTT.detail',compact('data'));
+            return view('Operator.beban.Penyulang.detail',compact('data'));
 
         }
-
-
     }
 
 }
