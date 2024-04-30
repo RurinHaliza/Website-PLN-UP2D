@@ -50,7 +50,7 @@ class UserController extends Controller
 
                 $users->attachRole('operator');
             }elseif ($request->role == 'ValidatorOpsis') {
-
+               
                 $users->attachRole('ValidatorOpsis');
             }elseif ($request->role == 'ValidatorFasop') {
 

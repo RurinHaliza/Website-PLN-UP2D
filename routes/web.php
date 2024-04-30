@@ -100,16 +100,74 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
 
 });
 
-Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
+Route::group(['prefix' => 'Opsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validopsis');
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
+    
+    //Trafo
+    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.validopsis');
+
+    //Penyulang
+    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
+    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.validopsis');
+
+    Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
+    
+    //KTT
+    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
+    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.validopsis');
+
+    //GI
+    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.validopsis');
+
+    //MVCELL
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
+    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
+    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+    
     Route::get('ApprovalScadaFail',[ValidatorController::class,'index'])->name('approval.opsis');
 });
 
 Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validfasop');
-});
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
+    
+    //Trafo
+    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.validfasop');
+
+    //Penyulang
+    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
+    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.validfasop');
+
+    Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
+    
+    //KTT
+    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
+    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.validfasop');
+
+    //GI
+    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.validfasop');
+
+    //MVCELL
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
+    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
+    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+
+   });
 
 Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOpsis']], function () {
 
