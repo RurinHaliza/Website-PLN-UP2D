@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\GITable;
 use App\Models\trafo;
 use App\Models\Penyulang;
+use App\Models\mvcell;
 
 class DashboardController extends Controller
 {
@@ -19,9 +20,10 @@ class DashboardController extends Controller
             $countTrafo = trafo::count();
             $countPenyulang = Penyulang::count();
             $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
 
             // dd($countPenyulang);
-            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder'));
+            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
 
         }elseif(Auth::user()->hasRole('operator')){
 
