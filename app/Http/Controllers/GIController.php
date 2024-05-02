@@ -29,6 +29,14 @@ class GIController extends Controller
             // dd($GI);
             return view('Fasop.beban.GI', compact('GI'));
 
+        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            # code...
+
+            $GI = GITable::all();
+
+            // dd($GI);
+
+            return view('Opsis.beban.GI',compact('GI'));
         }
     }
 
@@ -36,7 +44,7 @@ class GIController extends Controller
 
         if(Auth::user()->hasRole('Administrator')){
             $data = GITable::findOrFail($id);
-            
+
             return view('admin.beban.gi.detail',compact('data'));
 
         }elseif(Auth::user()->hasRole('Visitor')){
@@ -58,6 +66,14 @@ class GIController extends Controller
             
             return view('Operator.beban.gi.detail',compact('data'));
 
+        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            # code...
+
+            $data = GITable::findOrFail($id);
+
+            // dd($data);
+
+            return view('Opsis.beban.gi.detail',compact('data'));
         }
 
 

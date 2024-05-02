@@ -46,8 +46,7 @@
                                     <td>{{ $d->LOKASI_PENEMPATAN }}</td>
                                     <td>{{ $d->NAMA_JTM }}</td>
                                     <td>{{ $d->MERK }}</td>
-                                    <td><a href="{{ route('detail.mvcell',[$d->id]) }}" class="btn btn-primary">Detail</a>
-                                        <a href="{{ route('edit.mvcell', [$d->id]) }}" class="btn btn-warning">Edit Data</a>
+                                    <td><a href="{{ route('detail.mvcell.opsis',[$d->id]) }}" class="btn btn-primary">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

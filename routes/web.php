@@ -115,7 +115,7 @@ Route::group(['prefix' => 'Opsis', 'middleware' => ['auth', 'role:ValidatorOpsis
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang.opsis');
-    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.opsis');
+    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.opsis');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
     

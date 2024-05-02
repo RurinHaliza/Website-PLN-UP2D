@@ -984,6 +984,13 @@ class MenuController extends Controller
             $data = mvcell::all();
 
             return view('Visitor.beban.MVCELL.mvcell', compact('data'));
+        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            # code...
+
+            $data = mvcell::all();
+
+            return view('Opsis.beban.MVCELL.mvcell', compact('data'));
+
         }
     }
 
@@ -1003,6 +1010,13 @@ class MenuController extends Controller
             // dd($data);
 
             return view('Operator.beban.MVCELL.detail', compact('data'));
+        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            # code...
+
+            $data = mvcell::findOrFail($id);
+
+            return view('Opsis.beban.MVCELL.detail',compact('data'));
+
         }
     }
 
