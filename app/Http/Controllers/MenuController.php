@@ -225,9 +225,16 @@ class MenuController extends Controller
             //Hitugnan dilakukan pertahun rata - rata
 
             $sumjanuary =  DB::table('data_beban_puncak30')
-                ->whereBetween('tanggal', ['2024-01-01', '2024-01-31'])->get();
-            // ->sum(\DB::raw('00_30 + 01_00 + 01_30 + 02_00 + 02_30 + 03_00 + 03_30 + 04_00 + 04_30 + '));
-            // dd($sumjanuary);
+                ->whereBetween('tanggal', ['2024-01-01', '2024-01-31'])
+                // ->max('00_30');
+                ->get();
+
+                // ->max(\DB::raw(['00_30','01_00']));
+
+                // dd($sumjanuary);
+
+                // ->sum(\DB::raw('00_30 + 01_00 + 01_30 + 02_00 + 02_30 + 03_00 + 03_30 + 04_00 + 04_30 + '));
+                // dd($sumjanuary);
 
             return view('admin.monitoring.beban', compact('selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
         }
@@ -1016,7 +1023,7 @@ class MenuController extends Controller
     {
         return view('admin.beban.up');
     }
-    
+
 
     public function create()
     {
