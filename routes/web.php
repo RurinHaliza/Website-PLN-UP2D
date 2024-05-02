@@ -103,34 +103,34 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
 Route::group(['prefix' => 'Opsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validopsis');
-    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
-    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban');
-    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
-    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
-    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.opsis');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.opsis');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.opsis');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.opsis');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.opsis');
     
     //Trafo
-    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.validopsis');
+    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.opsis');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.opsis');
 
     //Penyulang
-    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
-    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.validopsis');
+    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang.opsis');
+    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.opsis');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
     
     //KTT
-    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
-    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.validopsis');
+    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt.opsis');
+    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.opsis');
 
     //GI
-    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.validopsis');
+    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI.opsis');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.opsis');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
-    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.opsis');
+    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.opsis');
+    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell.opsis');
     
     Route::get('ApprovalScadaFail',[ValidatorController::class,'index'])->name('approval.opsis');
 });
@@ -138,34 +138,34 @@ Route::group(['prefix' => 'Opsis', 'middleware' => ['auth', 'role:ValidatorOpsis
 Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validfasop');
-    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
-    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban');
-    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
-    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
-    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.fasop');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.fasop');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.fasop');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.fasop');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.fasop');
     
     //Trafo
-    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.validfasop');
+    Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.fasop');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.fasop');
 
     //Penyulang
-    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
-    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.validfasop');
+    Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang.fasop');
+    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.fasop');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
     
     //KTT
-    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
-    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.validfasop');
+    Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt.fasop');
+    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.fasop');
 
     //GI
-    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.validfasop');
+    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI.fasop');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.fasop');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
-    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.fasop');
+    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.fasop');
+    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell.fasop');
 
    });
 

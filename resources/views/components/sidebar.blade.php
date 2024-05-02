@@ -92,17 +92,17 @@
         </li>
         </li>
         <li class="menu-header">Tabel Beban</li>
-        <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel
+        <li class="{{ Request::is('bebantrafo.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebantrafo.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel
                     Beban Trafo</span></a>
         </li>
-        <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>
+        <li class="{{ Request::is('bebanpenyulang.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanpenyulang.opsis') }}"><i class="fas fa-fw fa-hourglass"></i>
                 <span>Tabel
                     Beban Penyulang</span></a>
         </li>
         <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+            <a class="nav-link" href="{{ route('bebanktt.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
                     KTT</span></a>
         </li>
         <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
@@ -139,8 +139,8 @@
                 <span>Tabel
                     Beban Penyulang</span></a>
         </li>
-        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+        <li class="{{ Request::is('bebanktt.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanktt.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
                     KTT</span></a>
         </li>
         <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
