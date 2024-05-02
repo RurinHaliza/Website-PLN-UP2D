@@ -47,6 +47,29 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @php
+
+                                $no = 1;
+
+                            @endphp
+                            @foreach ($trafo as $t)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $t->Nama_GI }}</td>
+                                    <td>{{ $t->ID_TRAFO }}</td>
+                                    <td>{{ $t->ID_KELAS }}</td>
+                                    <td>{{ $t->KD_PEMILIK }}</td>
+                                    <td>{{ $t->KD_PENGELOLA }}</td>
+                                    <td>
+                                        <a href="{{ route('detail.trafo.admin',[$t->id]) }}" class="btn btn-primary">Detail</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+
+
                     </table>
                 </div>
             </div>
@@ -58,10 +81,14 @@
 @endsection
 
 @push('scripts')
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/index-0.js') }}"></script>
 
-    <!-- JS Libraies -->
-    <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+<script>
+    $("#trafo").dataTable({
+        "columnDefs": [{
+            "sortable": false,
+            "targets": [2, 3]
+        }]
+    });
+</script>
+
 @endpush

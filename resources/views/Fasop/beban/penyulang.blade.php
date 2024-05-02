@@ -37,6 +37,30 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+
+                            @foreach($penyulang as $p)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $p->ID_JTM }}</td>
+                                    <td>{{ $p->ID_GI }}</td>
+                                    <td>{{ $p->ID_TRAFOGI }}</td>
+                                    <td>{{ $p->NM_JTM }}</td>
+                                    <td>{{ $p->NM_GI }}</td>
+                                    <td>{{ $p->NM_SINGKATAN }}</td>
+                                    <td>{{ $p->UP3 }}</td>
+                                    <td>{{ $p->ULP }}</td>
+                                    <td>
+                                        <a href="{{ route('detail.penyulang.admin',[$p->id]) }}" class="btn btn-primary">Detail</a>
+                                    </td>                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+
+
                     </table>
                 </div>
             </div>
@@ -48,14 +72,12 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
-    <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
-
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/index-0.js') }}"></script>
+<script>
+    $("#penyulang").dataTable({
+        "columnDefs": [{
+            "sortable": false,
+            "targets": [2, 3]
+        }]
+    });
+</script>
 @endpush

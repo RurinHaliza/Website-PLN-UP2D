@@ -25,8 +25,19 @@ class KTTController extends Controller
             $bebanktt = ktt::all();
             //dd($bebanktt); 
             return view('Visitor.beban.ktt', compact('bebanktt'));
-        }
+        } elseif (Auth::user()->hasRole('ValidatorFasop')) {
 
+            $bebanktt = ktt::all();
+            //dd($bebanktt); 
+            return view('Fasop.beban.ktt', compact('bebanktt'));
+
+    } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+
+        $bebanktt = ktt::all();
+        //dd($bebanktt); 
+        return view('Opsis.beban.ktt', compact('bebanktt'));
+
+    }
     }
 
     public function Detail($id){
@@ -42,14 +53,21 @@ class KTTController extends Controller
         }elseif(Auth::user()->hasRole('EditorOpsis')){
 
         }elseif(Auth::user()->hasRole('ValidatorFasop')){
+            $data = ktt::findOrFail($id);
             
-        }elseif(Auth::user()->hasRole('ValidatorFasop')){
-            
+            return view('Fasop.beban.KTT.detail',compact('data'));
+                
         }elseif(Auth::user()->hasRole('operator')){
             
             $data = ktt::findOrFail($id);
             
             return view('Operator.beban.KTT.detail',compact('data'));
+
+        }elseif(Auth::user()->hasRole('ValidatorOpsis')){
+            
+            $data = ktt::findOrFail($id);
+            
+            return view('Opsis.beban.KTT.detail',compact('data'));
 
         }
 
