@@ -16,6 +16,14 @@
                 <h1>Beban Penyulang</h1>
             </div>
         </section>
+        @if (session('success'))
+            <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <div class="card mt-3">
             <div class="card-header">
                 <h5 class="m-0 font-weight-bold text-primary">Tabel Pengukuran</h5>
@@ -56,6 +64,8 @@
                                     <td>{{ $p->ULP }}</td>
                                     <td>
                                         <a href="{{ route('detail.penyulang.admin',[$p->id]) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('edit.penyulang.admin',[$p->id]) }}" class="btn btn-warning">Edit
+                                            Data</a>
                                     </td>                                    
                                 </tr>
                             @endforeach

@@ -47,7 +47,9 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
     Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.admin');
-    
+    Route::get('EditPenyulang/{id}',[PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
+    Route::post('UPdateDataPenyulang/{id}',[PenyulangController::class, 'update'])->name('update.data.penyulang');
+
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
 
     //KTT 
