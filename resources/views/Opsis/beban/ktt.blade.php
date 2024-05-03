@@ -57,7 +57,7 @@
                                 <td>{{$ktt->meter}}</td>
                                 <td>{{$ktt->status_meter}}</td>
                                 <td>
-                                    <a href="" class="btn btn-primary">Detail</a>
+                                    <a href="{{ route('detail.ktt.opsis',[$ktt->id]) }}" class="btn btn-primary">Detail</a>
                                 </td>                                    
                             </tr>
                             @endforeach

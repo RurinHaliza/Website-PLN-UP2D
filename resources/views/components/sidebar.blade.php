@@ -81,15 +81,59 @@
             <a class="nav-link" href="{{ route('data.mvcell.operator') }}"><i class="fas fa-th-large"></i> <span>Tabel
                     Data MVCELL</span></a>
         </li>
-        @elseif(Auth::user()->hasRole('ValidatorOpsis'))
+
+        
+    @elseif(Auth::user()->hasRole('ValidatorOpsis'))
         <li class="menu-header">Dashboard</li>
         <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
             <a class="nav-link" href="{{ route('dashboard.validopsis') }}">Main Menu</a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i> <span>Beban</span></a>
+        <li class="{{ Request::is('bebansemua.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.opsis') }}"><i class="fas fa-th-large"></i> <span>Beban</span></a>
         </li>
+        </li>
+        <li class="menu-header">Tabel Beban</li>
+        <li class="{{ Request::is('bebantrafo.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebantrafo.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                <span>Tabel
+                    Beban Trafo</span></a>
+        </li>
+        <li class="{{ Request::is('bebanpenyulang.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanpenyulang.opsis') }}"><i class="fas fa-fw fa-hourglass"></i>
+                <span>Tabel
+                    Beban Penyulang</span></a>
+        </li>
+        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanktt.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+                    KTT</span></a>
+        </li>
+        <li class="{{ Request::is('beban.GI.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('beban.GI.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+                    GI</span></a>
+        </li>
+        <li class="{{ Request::is('data.mvcell.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                    Data MVCELL</span></a>
+        </li>
+        <li class="menu-header">Scada Fail</li>
+        <li class="{{ Request::is('approval.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('approval.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                <span>Approval</span></a>
+        </li>
+
+
+    @elseif(Auth::user()->hasRole('ValidatorFasop'))
+        <li class="menu-header">Dashboard</li>
+        <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+            <a class="nav-link" href="{{ route('dashboard.validfasop') }}">Main Menu</a>
+        </li>
+        <li class="menu-header">Tabel Monitoring Beban</li>
+        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>
+                <span>Beban</span></a>
+        </li>
+
         </li>
         <li class="menu-header">Tabel Beban</li>
         <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
@@ -101,8 +145,9 @@
                 <span>Tabel
                     Beban Penyulang</span></a>
         </li>
-        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+        <li class="{{ Request::is('bebanktt.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanktt.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                    Beban
                     KTT</span></a>
         </li>
         <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
@@ -113,40 +158,6 @@
                     <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fas fa-th-large"></i> <span>Tabel
                             Data MVCELL</span></a>
                 </li>
-        <li class="menu-header">Scada Fail</li>
-        <li class="{{ Request::is('approval.opsis') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i>
-                <span>Approval</span></a>
-        </li>
-        @elseif(Auth::user()->hasRole('ValidatorFasop'))
-        <li class="menu-header">Dashboard</li>
-        <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-            <a class="nav-link" href="{{ route('dashboard.validfasop') }}">Main Menu</a>
-        </li>
-        <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i> <span>Beban</span></a>
-        </li>
-        
-        </li>
-        <li class="menu-header">Tabel Beban</li>
-        <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel
-                    Beban Trafo</span></a>
-        </li>
-        <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>
-                <span>Tabel
-                    Beban Penyulang</span></a>
-        </li>
-        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
-                    KTT</span></a>
-        </li>
-        <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
-                    GI</span></a>
-        </li>
 
         <li class="menu-header">Manajemen User</li>
 
@@ -155,6 +166,9 @@
         </li>
         </li>
         </ul>
+
+
+
     @elseif(Auth::user()->hasRole('EditorOpsis'))
         <li class="menu-header">Dashboard</li>
         <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
@@ -220,7 +234,8 @@
                     Beban GI</span></a>
         </li>
         <li class="{{ Request::is('data.mvcell.visitor') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('data.mvcell.visitor') }}"><i class="fas fa-th-large"></i> <span>Tabel
+            <a class="nav-link" href="{{ route('data.mvcell.visitor') }}"><i class="fas fa-th-large"></i>
+                <span>Tabel
                     Data MVCELL</span></a>
         </li>
         </ul>

@@ -81,9 +81,16 @@ class MenuController extends Controller
             //Hitugnan dilakukan pertahun rata - rata
 
             $sumjanuary =  DB::table('data_beban_puncak30')
-                ->whereBetween('tanggal', ['2024-01-01', '2024-01-31'])->get();
-            // ->sum(\DB::raw('00_30 + 01_00 + 01_30 + 02_00 + 02_30 + 03_00 + 03_30 + 04_00 + 04_30 + '));
-            // dd($sumjanuary);
+                ->whereBetween('tanggal', ['2024-01-01', '2024-01-31'])
+                // ->max('00_30');
+                ->get();
+
+                // ->max(\DB::raw(['00_30','01_00']));
+
+                // dd($sumjanuary);
+
+                // ->sum(\DB::raw('00_30 + 01_00 + 01_30 + 02_00 + 02_30 + 03_00 + 03_30 + 04_00 + 04_30 + '));
+                // dd($sumjanuary);
 
             //kenaikan pada 3 hari
 
@@ -517,6 +524,13 @@ class MenuController extends Controller
             $data = mvcell::all();
 
             return view('Visitor.beban.MVCELL.mvcell', compact('data'));
+        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            # code...
+
+            $data = mvcell::all();
+
+            return view('Opsis.beban.MVCELL.mvcell', compact('data'));
+
         }
     }
 
@@ -536,6 +550,13 @@ class MenuController extends Controller
             // dd($data);
 
             return view('Operator.beban.MVCELL.detail', compact('data'));
+        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            # code...
+
+            $data = mvcell::findOrFail($id);
+
+            return view('Opsis.beban.MVCELL.detail',compact('data'));
+
         }
     }
 
@@ -556,7 +577,7 @@ class MenuController extends Controller
     {
         return view('admin.beban.up');
     }
-    
+
 
     public function create()
     {
