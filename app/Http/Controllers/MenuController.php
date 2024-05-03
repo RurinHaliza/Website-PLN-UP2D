@@ -34,55 +34,7 @@ class MenuController extends Controller
             $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
             foreach ($dataHariIni as $item) {
                 foreach ([
-                    '00_30',
-                    '01_00',
-                    '01_30',
-                    '02_00',
-                    '02_30',
-                    '03_00',
-                    '03_30',
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                    '16_30',
-                    '17_00',
-                    '17_30',
-                    '18_00',
-                    '18_30',
-                    '19_00',
-                    '19_30',
-                    '20_00',
-                    '20_30',
-                    '21_00',
-                    '21_30',
-                    '22_00',
-                    '22_30',
-                    '23_00',
-                    '23_30',
-                    '23_59',
-                ]
+                    '00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59',]
                     as $columnNameT) {
                     if ($item->{$columnNameT} > $maxValueToday) {
                         $maxValueToday = $item->{$columnNameT};
@@ -98,55 +50,7 @@ class MenuController extends Controller
             $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
             foreach ($dataBulanIni as $item) {
                 foreach ([
-                    '00_30',
-                    '01_00',
-                    '01_30',
-                    '02_00',
-                    '02_30',
-                    '03_00',
-                    '03_30',
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                    '16_30',
-                    '17_00',
-                    '17_30',
-                    '18_00',
-                    '18_30',
-                    '19_00',
-                    '19_30',
-                    '20_00',
-                    '20_30',
-                    '21_00',
-                    '21_30',
-                    '22_00',
-                    '22_30',
-                    '23_00',
-                    '23_30',
-                    '23_59',
-                ]
+                    '00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59',]
                     as $columnNameMonth) {
                     if ($item->{$columnNameMonth} > $maxValueMonth) {
                         $maxValueMonth = $item->{$columnNameMonth};
@@ -163,55 +67,7 @@ class MenuController extends Controller
             $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
             foreach ($dataTahunIni as $item) {
                 foreach ([
-                    '00_30',
-                    '01_00',
-                    '01_30',
-                    '02_00',
-                    '02_30',
-                    '03_00',
-                    '03_30',
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                    '16_30',
-                    '17_00',
-                    '17_30',
-                    '18_00',
-                    '18_30',
-                    '19_00',
-                    '19_30',
-                    '20_00',
-                    '20_30',
-                    '21_00',
-                    '21_30',
-                    '22_00',
-                    '22_30',
-                    '23_00',
-                    '23_30',
-                    '23_59',
-                ]
+                    '00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59',]
                     as $columnNameYear) {
                     if ($item->{$columnNameYear} > $maxValueYear) {
                         $maxValueYear = $item->{$columnNameYear};
@@ -229,9 +85,123 @@ class MenuController extends Controller
             // ->sum(\DB::raw('00_30 + 01_00 + 01_30 + 02_00 + 02_30 + 03_00 + 03_30 + 04_00 + 04_30 + '));
             // dd($sumjanuary);
 
-            return view('admin.monitoring.beban', compact('selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+            //kenaikan pada 3 hari
+
+
+            //data grafik 5 hari kebelakang
+            $hari1 = Carbon::yesterday()->subDays(3)->toDateString();
+            $hari2 = Carbon::yesterday()->subDays(2)->toDateString();
+            $tanggalKemarin = Carbon::yesterday()->toDateString();
+            $tanggalKemarinLusa = Carbon::yesterday()->subDays(1)->toDateString();
+            
+            $dataharike1 = data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('00_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('01_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('01_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('02_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('02_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('03_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('03_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('04_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('04_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('05_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('05_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('06_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('06_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('07_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('07_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('08_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('08_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('09_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('09_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('10_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('10_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('11_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('11_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('12_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('12_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('13_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('13_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('14_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('14_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('15_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('15_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('16_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('16_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('17_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('17_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('18_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('18_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('19_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('19_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('20_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('20_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('21_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('21_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('22_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('22_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('23_00') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('23_30') + data_beban_puncak30::where('tanggal', $tanggalHariIni)->sum('23_59');
+            $dataharike2 = data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('00_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('01_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('01_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('02_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('02_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('03_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('03_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('04_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('04_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('05_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('05_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('06_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('06_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('07_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('07_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('08_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('08_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('09_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('09_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('10_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('10_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('11_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('11_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('12_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('12_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('13_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('13_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('14_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('14_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('15_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('15_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('16_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('16_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('17_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('17_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('18_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('18_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('19_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('19_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('20_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('20_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('21_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('21_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('22_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('22_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('23_00') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('23_30') + data_beban_puncak30::where('tanggal', $tanggalKemarin)->sum('23_59');
+            $dataharike3 = data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('00_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('01_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('01_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('02_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('02_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('03_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('03_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('04_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('04_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('05_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('05_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('06_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('06_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('07_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('07_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('08_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('08_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('09_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('09_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('10_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('10_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('11_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('11_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('12_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('12_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('13_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('13_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('14_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('14_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('15_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('15_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('16_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('16_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('17_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('17_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('18_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('18_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('19_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('19_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('20_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('20_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('21_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('21_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('22_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('22_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('23_00') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('23_30') + data_beban_puncak30::where('tanggal', $tanggalKemarinLusa)->sum('23_59');
+            $dataharike4 = data_beban_puncak30::where('tanggal', $hari2)->sum('00_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('01_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('01_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('02_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('02_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('03_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('03_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('04_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('04_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('05_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('05_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('06_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('06_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('07_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('07_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('08_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('08_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('09_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('09_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('10_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('10_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('11_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('11_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('12_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('12_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('13_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('13_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('14_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('14_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('15_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('15_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('16_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('16_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('17_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('17_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('18_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('18_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('19_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('19_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('20_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('20_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('21_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('21_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('22_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('22_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('23_00') + data_beban_puncak30::where('tanggal', $hari2)->sum('23_30') + data_beban_puncak30::where('tanggal', $hari2)->sum('23_59');
+            $dataharike5 = data_beban_puncak30::where('tanggal', $hari1)->sum('00_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('01_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('01_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('02_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('02_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('03_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('03_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('04_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('04_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('05_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('05_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('06_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('06_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('07_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('07_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('08_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('08_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('09_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('09_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('10_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('10_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('11_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('11_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('12_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('12_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('13_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('13_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('14_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('14_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('15_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('15_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('16_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('16_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('17_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('17_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('18_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('18_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('19_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('19_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('20_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('20_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('21_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('21_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('22_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('22_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('23_00') + data_beban_puncak30::where('tanggal', $hari1)->sum('23_30') + data_beban_puncak30::where('tanggal', $hari1)->sum('23_59');
+            
+            
+            
+            // Data grafik 5 bulan yang lalu
+            $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
+            // Tanggal mulai bulan ini
+            $tanggalMulaiBulanIni = Carbon::today()->startOfMonth();
+            $tanggalAkhirBulanIni = Carbon::today()->endOfMonth();
+
+            // Tanggal mulai bulan kemarin
+            $tanggalMulaiBulanKemarin = Carbon::today()->subMonth()->startOfMonth();
+            $tanggalAkhirBulanKemarin = Carbon::today()->subMonth()->endOfMonth();
+
+            // Tanggal mulai bulan kemarin lusa
+            $tanggalMulaiBulanKemarinLusa = Carbon::today()->subMonths(2)->startOfMonth();
+            $tanggalAkhirBulanKemarinLusa = Carbon::today()->subMonths(2)->endOfMonth();
+
+            // Tanggal mulai bulan ke4
+            $tanggalMulaiBulanKe4 = Carbon::today()->subMonths(3)->startOfMonth();
+            $tanggalAkhirBulanKe4 = Carbon::today()->subMonths(3)->endOfMonth();
+
+            // Tanggal mulai bulan ke4
+            $tanggalMulaiBulanKe5 = Carbon::today()->subMonths(4)->startOfMonth();
+            $tanggalAkhirBulanKe5 = Carbon::today()->subMonths(4)->endOfMonth();
+
+            // Data untuk bulan ini
+            $totalBulanIni = data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('00_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('01_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('01_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('02_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('02_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('03_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('03_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('04_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('04_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('05_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('05_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('06_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('06_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('07_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('07_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('08_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('08_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('09_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('09_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('10_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('10_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('11_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('11_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('12_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('12_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('13_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('13_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('14_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('14_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('15_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('15_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('16_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('16_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('17_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('17_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('18_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('18_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('19_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('19_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('20_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('20_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('21_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('21_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('22_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('22_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('23_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('23_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanIni, $tanggalAkhirBulanIni])->sum('23_59');
+            $totalBulanKemarin  = data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('00_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('01_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('01_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('02_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('02_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('03_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('03_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('04_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('04_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('05_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('05_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('06_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('06_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('07_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('07_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('08_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('08_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('09_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('09_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('10_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('10_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('11_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('11_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('12_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('12_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('13_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('13_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('14_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('14_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('15_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('15_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('16_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('16_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('17_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('17_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('18_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('18_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('19_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('19_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('20_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('20_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('21_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('21_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('22_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('22_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('23_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('23_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarin, $tanggalAkhirBulanKemarin])->sum('23_59');
+            $totalBulanKemarinLusa  = data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('00_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('01_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('01_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('02_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('02_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('03_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('03_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('04_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('04_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('05_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('05_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('06_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('06_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('07_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('07_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('08_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('08_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('09_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('09_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('10_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('10_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('11_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('11_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('12_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('12_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('13_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('13_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('14_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('14_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('15_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('15_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('16_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('16_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('17_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('17_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('18_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('18_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('19_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('19_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('20_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('20_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('21_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('21_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('22_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('22_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('23_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('23_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKemarinLusa, $tanggalAkhirBulanKemarinLusa])->sum('23_59');
+            $totalBulanempat = data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('00_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('01_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('01_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('02_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('02_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('03_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('03_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('04_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('04_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('05_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('05_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('06_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('06_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('07_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('07_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('08_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('08_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('09_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('09_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('10_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('10_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('11_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('11_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('12_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('12_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('13_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('13_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('14_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('14_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('15_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('15_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('16_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('16_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('17_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('17_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('18_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('18_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('19_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('19_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('20_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('20_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('21_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('21_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('22_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('22_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('23_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('23_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe4, $tanggalAkhirBulanKe4])->sum('23_59');
+            $totalBulanlima = data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('00_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('01_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('01_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('02_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('02_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('03_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('03_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('04_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('04_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('05_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('05_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('06_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('06_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('07_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('07_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('08_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('08_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('09_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('09_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('10_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('10_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('11_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('11_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('12_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('12_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('13_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('13_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('14_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('14_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('15_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('15_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('16_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('16_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('17_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('17_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('18_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('18_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('19_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('19_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('20_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('20_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('21_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('21_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('22_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('22_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('23_00') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('23_30') + data_beban_puncak30::whereBetween('tanggal', [$tanggalMulaiBulanKe5, $tanggalAkhirBulanKe5])->sum('23_59');
+
+            // foreach ($dataharike1 as $item) {
+            //     $item->total = $item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"}+$item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}+$item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"};
+            // }
+            // foreach ($dataharike2 as $item) {
+            //     $item->total = $item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"}+$item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}+$item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"};
+            // }
+            // foreach ($dataharike3 as $item) {
+            //     $item->total = $item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"}+$item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}+$item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"};
+            // }
+            // foreach ($dataharike4 as $item) {
+            //     $item->total = $item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"}+$item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}+$item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"};
+            // }
+            // foreach ($dataharike5 as $item) {
+            //     $item->total = $item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"}+$item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}+$item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"};
+                
+            // }
+
+            $data3hari = data_beban_puncak30::whereIn('tanggal', [$tanggalHariIni, $tanggalKemarin, $tanggalKemarinLusa])->get();
+            // Menambahkan total untuk setiap mw
+            foreach ($data3hari as $item) {
+                $item->total = $item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"}+$item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}+$item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"};
+            }
+
+            // Ambil data dengan total dan kenaikan
+            $data = $this->getData();
+
+            //grafik tahunan
+           
+            
+            
+            return view('admin.monitoring.beban', compact('totalBulanlima','totalBulanempat','totalBulanKemarinLusa','totalBulanKemarin','totalBulanIni','data','dataharike5','dataharike4','dataharike3','dataharike2','dataharike1','data3hari','selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
         }
     }
+
+    public function getData()
+    {
+        // Ambil tanggal hari ini, kemarin, dan kemarin lusa
+        $today = now()->toDateString();
+        $yesterday = now()->subDays(1)->toDateString();
+        $dayBeforeYesterday = now()->subDays(2)->toDateString();
+
+        // Ambil data dari model berdasarkan tanggal
+        $data = data_beban_puncak30::whereIn('tanggal', [$today, $yesterday, $dayBeforeYesterday])
+            ->select('gardu_induk', 'incoming', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59')
+            ->get();
+
+        // Transformasi data
+        $data->transform(function ($item) {
+            // Hitung total untuk hari ini
+            $total_today = $item->{'00_30'} + $item->{'01_00'} + $item->{'01_30'} + $item->{'02_00'} + $item->{'02_30'} + $item->{'03_00'} + $item->{'03_30'} + $item->{'04_00'} + $item->{'04_30'} + $item->{'05_00'} + $item->{'05_30'} + $item->{'06_00'} + $item->{'06_30'} + $item->{'07_00'} + $item->{'07_30'} + $item->{'08_00'} + $item->{'08_30'} + $item->{'09_00'} + $item->{'09_30'} + $item->{'10_00'} + $item->{'10_30'} + $item->{'11_00'} + $item->{'11_30'} + $item->{'12_00'} + $item->{'12_30'} + $item->{'13_00'} + $item->{'13_30'} + $item->{'14_00'} + $item->{'14_30'} + $item->{'15_00'} + $item->{'15_30'} + $item->{'16_00'} + $item->{'16_30'} + $item->{'17_00'} + $item->{'17_30'} + $item->{'18_00'} + $item->{'18_30'} + $item->{'19_00'} + $item->{'19_30'} + $item->{'20_00'} + $item->{'20_30'} + $item->{'21_00'} + $item->{'21_30'} + $item->{'22_00'} + $item->{'22_30'} + $item->{'23_00'} + $item->{'23_30'} + $item->{'23_59'};
+            // Hitung total untuk kemarin
+            $total_yesterday = data_beban_puncak30::where('tanggal', now()->subDays(1)->toDateString())->sum('00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59');
+            // Hitung total untuk kemarin lusa
+            $total_day_before_yesterday = data_beban_puncak30::where('tanggal', now()->subDays(2)->toDateString())->sum('00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59');
+
+            // Hitung kenaikan
+            $increase = $total_today - $total_yesterday;
+            $comparison = $total_yesterday - $total_day_before_yesterday;
+
+            $item->total_today = $total_today;
+            $item->total_yesterday = $total_yesterday;
+            $item->total_day_before_yesterday = $total_day_before_yesterday;
+            $item->increase = $increase;
+            $item->comparison = $comparison;
+
+            return $item;
+        });
+
+        return $data;
+    }
+
 
     // public function harian(Request $request)
     // {
@@ -338,63 +308,14 @@ class MenuController extends Controller
 
             // Hitung rata-rata dan nilai maksimum
             $averageValueSiangMingguan = $data3->avg(function ($item) {
-                return ($item->{"04_00"} +
-                    $item->{"04_30"} +
-                    $item->{"05_00"} +
-                    $item->{"05_30"} +
-                    $item->{"06_00"} +
-                    $item->{"06_30"} +
-                    $item->{"07_00"} +
-                    $item->{"07_30"} +
-                    $item->{"08_00"} +
-                    $item->{"08_30"} +
-                    $item->{"09_00"} +
-                    $item->{"09_30"} +
-                    $item->{"10_00"} +
-                    $item->{"10_30"} +
-                    $item->{"11_00"} +
-                    $item->{"11_30"} +
-                    $item->{"12_00"} +
-                    $item->{"12_30"} +
-                    $item->{"13_00"} +
-                    $item->{"13_30"} +
-                    $item->{"14_00"} +
-                    $item->{"14_30"} +
-                    $item->{"15_00"} +
-                    $item->{"15_30"} +
-                    $item->{"16_00"}) / 25;
+                return ($item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}) / 25;
             });
 
             $maxValueSiangMingguan = 0;
             $maxColumnSiangMingguan = '';
             foreach ($data3 as $item) {
                 foreach ([
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                ]
+                    '04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00',]
                     as $columnNameMingguan) {
                     if ($item->{$columnNameMingguan} > $maxValueSiangMingguan) {
                         $maxValueSiangMingguan = $item->{$columnNameMingguan};
@@ -406,62 +327,14 @@ class MenuController extends Controller
             // Lakukan hal yang sama untuk data malam
             // Hitung rata-rata dan nilai maksimum
             $averageValueMalamMingguan = $data3->avg(function ($item) {
-                return ($item->{"04_00"} +
-                    $item->{"04_30"} +
-                    $item->{"05_00"} +
-                    $item->{"05_30"} +
-                    $item->{"06_00"} +
-                    $item->{"06_30"} +
-                    $item->{"07_00"} +
-                    $item->{"07_30"} +
-                    $item->{"08_00"} +
-                    $item->{"08_30"} +
-                    $item->{"09_00"} +
-                    $item->{"09_30"} +
-                    $item->{"10_00"} +
-                    $item->{"10_30"} +
-                    $item->{"11_00"} +
-                    $item->{"11_30"} +
-                    $item->{"12_00"} +
-                    $item->{"12_30"} +
-                    $item->{"13_00"} +
-                    $item->{"13_30"} +
-                    $item->{"14_00"} +
-                    $item->{"14_30"} +
-                    $item->{"15_00"} +
-                    $item->{"15_30"} +
-                    $item->{"16_00"}) / 25;
+                return ($item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"} +$item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"} +$item->{"04_00"}) / 25;
             });
 
             $maxValueMalamMingguan = 0;
             $maxColumnMalamMingguan = '';
             foreach ($data3 as $item) {
                 foreach ([
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
+                    '16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59','00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00'
                 ]
                     as $columnNameMMingguan) {
                     if ($item->{$columnNameMMingguan} > $maxValueMalamMingguan) {
@@ -474,6 +347,9 @@ class MenuController extends Controller
             //Bulanan
             // Mengambil tanggal yang dipilih dari request, atau menggunakan tanggal hari ini jika tidak ada yang dipilih
             $selectedDate2 = $request->input('selected_date2', Carbon::today()->toDateString());
+            $Start = request()->StartBulan;
+            $data2 = data_beban_puncak30::whereMonth('tanggal', '=', $Start)
+            ->get();
             // Mengonversi tanggal yang dipilih menjadi objek Carbon
             $selectedDateCarbon = Carbon::parse($selectedDate2);
 
@@ -482,68 +358,20 @@ class MenuController extends Controller
             $selectedYear = $selectedDateCarbon->year;
 
             // Mengambil data untuk bulan dan tahun yang sesuai
-            $data2 = data_beban_puncak30::whereYear('tanggal', $selectedYear)
-                ->whereMonth('tanggal', $selectedMonth)
-                ->paginate(10);
+            // $data2 = data_beban_puncak30::whereYear('tanggal', $selectedYear)
+            //     ->whereMonth('tanggal', $selectedMonth)
+            //     ->paginate(10);
 
             // Hitung rata-rata dan nilai maksimum
             $averageValueSiangBulanan = $data2->avg(function ($item) {
-                return ($item->{"04_00"} +
-                    $item->{"04_30"} +
-                    $item->{"05_00"} +
-                    $item->{"05_30"} +
-                    $item->{"06_00"} +
-                    $item->{"06_30"} +
-                    $item->{"07_00"} +
-                    $item->{"07_30"} +
-                    $item->{"08_00"} +
-                    $item->{"08_30"} +
-                    $item->{"09_00"} +
-                    $item->{"09_30"} +
-                    $item->{"10_00"} +
-                    $item->{"10_30"} +
-                    $item->{"11_00"} +
-                    $item->{"11_30"} +
-                    $item->{"12_00"} +
-                    $item->{"12_30"} +
-                    $item->{"13_00"} +
-                    $item->{"13_30"} +
-                    $item->{"14_00"} +
-                    $item->{"14_30"} +
-                    $item->{"15_00"} +
-                    $item->{"15_30"} +
-                    $item->{"16_00"}) / 25;
+                return ($item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}) / 25;
             });
 
             $maxValueSiangBulanan = 0;
             $maxColumnSiangBulanan = '';
             foreach ($data2 as $item) {
                 foreach ([
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
+                    '04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00',
                 ]
                     as $columnNameBulanan) {
                     if ($item->{$columnNameBulanan} > $maxValueSiangBulanan) {
@@ -556,62 +384,14 @@ class MenuController extends Controller
             // Lakukan hal yang sama untuk data malam
             // Hitung rata-rata dan nilai maksimum
             $averageValueMalamBulanan = $data2->avg(function ($item) {
-                return ($item->{"04_00"} +
-                    $item->{"04_30"} +
-                    $item->{"05_00"} +
-                    $item->{"05_30"} +
-                    $item->{"06_00"} +
-                    $item->{"06_30"} +
-                    $item->{"07_00"} +
-                    $item->{"07_30"} +
-                    $item->{"08_00"} +
-                    $item->{"08_30"} +
-                    $item->{"09_00"} +
-                    $item->{"09_30"} +
-                    $item->{"10_00"} +
-                    $item->{"10_30"} +
-                    $item->{"11_00"} +
-                    $item->{"11_30"} +
-                    $item->{"12_00"} +
-                    $item->{"12_30"} +
-                    $item->{"13_00"} +
-                    $item->{"13_30"} +
-                    $item->{"14_00"} +
-                    $item->{"14_30"} +
-                    $item->{"15_00"} +
-                    $item->{"15_30"} +
-                    $item->{"16_00"}) / 25;
+                return ($item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"} +$item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"} +$item->{"04_00"}) / 25;
             });
 
             $maxValueMalamBulanan = 0;
             $maxColumnMalamBulanan = '';
             foreach ($data2 as $item) {
                 foreach ([
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
+                    '16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59','00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00',
                 ]
                     as $columnNameMBulanan) {
                     if ($item->{$columnNameMBulanan} > $maxValueMalamBulanan) {
@@ -628,62 +408,14 @@ class MenuController extends Controller
 
             // Hitung rata-rata dan nilai maksimum
             $averageValue = $data->avg(function ($item) {
-                return ($item->{"04_00"} +
-                    $item->{"04_30"} +
-                    $item->{"05_00"} +
-                    $item->{"05_30"} +
-                    $item->{"06_00"} +
-                    $item->{"06_30"} +
-                    $item->{"07_00"} +
-                    $item->{"07_30"} +
-                    $item->{"08_00"} +
-                    $item->{"08_30"} +
-                    $item->{"09_00"} +
-                    $item->{"09_30"} +
-                    $item->{"10_00"} +
-                    $item->{"10_30"} +
-                    $item->{"11_00"} +
-                    $item->{"11_30"} +
-                    $item->{"12_00"} +
-                    $item->{"12_30"} +
-                    $item->{"13_00"} +
-                    $item->{"13_30"} +
-                    $item->{"14_00"} +
-                    $item->{"14_30"} +
-                    $item->{"15_00"} +
-                    $item->{"15_30"} +
-                    $item->{"16_00"}) / 25;
+                return ($item->{"04_00"} +$item->{"04_30"} +$item->{"05_00"} +$item->{"05_30"} +$item->{"06_00"} +$item->{"06_30"} +$item->{"07_00"} +$item->{"07_30"} +$item->{"08_00"} +$item->{"08_30"} +$item->{"09_00"} +$item->{"09_30"} +$item->{"10_00"} +$item->{"10_30"} +$item->{"11_00"} +$item->{"11_30"} +$item->{"12_00"} +$item->{"12_30"} +$item->{"13_00"} +$item->{"13_30"} +$item->{"14_00"} +$item->{"14_30"} +$item->{"15_00"} +$item->{"15_30"} +$item->{"16_00"}) / 25;
             });
 
             $maxValue = 0;
             $maxColumn = '';
             foreach ($data as $item) {
                 foreach ([
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
+                    '04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00',
                 ]
                     as $columnName) {
                     if ($item->{$columnName} > $maxValue) {
@@ -696,62 +428,14 @@ class MenuController extends Controller
             // Lakukan hal yang sama untuk data malam
             // Hitung rata-rata dan nilai maksimum
             $averageValueM = $data->avg(function ($item) {
-                return ($item->{"04_00"} +
-                    $item->{"04_30"} +
-                    $item->{"05_00"} +
-                    $item->{"05_30"} +
-                    $item->{"06_00"} +
-                    $item->{"06_30"} +
-                    $item->{"07_00"} +
-                    $item->{"07_30"} +
-                    $item->{"08_00"} +
-                    $item->{"08_30"} +
-                    $item->{"09_00"} +
-                    $item->{"09_30"} +
-                    $item->{"10_00"} +
-                    $item->{"10_30"} +
-                    $item->{"11_00"} +
-                    $item->{"11_30"} +
-                    $item->{"12_00"} +
-                    $item->{"12_30"} +
-                    $item->{"13_00"} +
-                    $item->{"13_30"} +
-                    $item->{"14_00"} +
-                    $item->{"14_30"} +
-                    $item->{"15_00"} +
-                    $item->{"15_30"} +
-                    $item->{"16_00"}) / 25;
+                return ($item->{"16_00"} +$item->{"16_30"} +$item->{"17_00"} + $item->{"17_30"} +$item->{"18_00"} +$item->{"18_30"} +$item->{"19_00"} +$item->{"19_30"} +$item->{"20_00"} +$item->{"20_30"} +$item->{"21_00"} +$item->{"21_30"} +$item->{"22_00"} +$item->{"22_30"} +$item->{"23_00"} +$item->{"23_30"} +$item->{"23_59"} +$item->{"00_30"} +$item->{"01_00"} +$item->{"01_30"} +$item->{"02_00"} +$item->{"02_30"} +$item->{"03_00"} +$item->{"03_30"} +$item->{"04_00"}) / 25;
             });
 
             $maxValueM = 0;
             $maxColumnM = '';
             foreach ($data as $item) {
                 foreach ([
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
+                    '16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59','00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00',
                 ]
                     as $columnNameM) {
                     if ($item->{$columnNameM} > $maxValueM) {
@@ -768,54 +452,7 @@ class MenuController extends Controller
             $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
             foreach ($dataHariIni as $item) {
                 foreach ([
-                    '00_30',
-                    '01_00',
-                    '01_30',
-                    '02_00',
-                    '02_30',
-                    '03_00',
-                    '03_30',
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                    '16_30',
-                    '17_00',
-                    '17_30',
-                    '18_00',
-                    '18_30',
-                    '19_00',
-                    '19_30',
-                    '20_00',
-                    '20_30',
-                    '21_00',
-                    '21_30',
-                    '22_00',
-                    '22_30',
-                    '23_00',
-                    '23_30',
-                    '23_59',
+                    '00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59'
                 ]
                     as $columnNameT) {
                     if ($item->{$columnNameT} > $maxValueToday) {
@@ -831,55 +468,7 @@ class MenuController extends Controller
             $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
             $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
             foreach ($dataBulanIni as $item) {
-                foreach ([
-                    '00_30',
-                    '01_00',
-                    '01_30',
-                    '02_00',
-                    '02_30',
-                    '03_00',
-                    '03_30',
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                    '16_30',
-                    '17_00',
-                    '17_30',
-                    '18_00',
-                    '18_30',
-                    '19_00',
-                    '19_30',
-                    '20_00',
-                    '20_30',
-                    '21_00',
-                    '21_30',
-                    '22_00',
-                    '22_30',
-                    '23_00',
-                    '23_30',
-                    '23_59',
+                foreach (['00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59'
                 ]
                     as $columnNameMonth) {
                     if ($item->{$columnNameMonth} > $maxValueMonth) {
@@ -896,56 +485,7 @@ class MenuController extends Controller
             $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
             $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
             foreach ($dataTahunIni as $item) {
-                foreach ([
-                    '00_30',
-                    '01_00',
-                    '01_30',
-                    '02_00',
-                    '02_30',
-                    '03_00',
-                    '03_30',
-                    '04_00',
-                    '04_30',
-                    '05_00',
-                    '05_30',
-                    '06_00',
-                    '06_30',
-                    '07_00',
-                    '07_30',
-                    '08_00',
-                    '08_30',
-                    '09_00',
-                    '09_30',
-                    '10_00',
-                    '10_30',
-                    '11_00',
-                    '11_30',
-                    '12_00',
-                    '12_30',
-                    '13_00',
-                    '13_30',
-                    '14_00',
-                    '14_30',
-                    '15_00',
-                    '15_30',
-                    '16_00',
-                    '16_30',
-                    '17_00',
-                    '17_30',
-                    '18_00',
-                    '18_30',
-                    '19_00',
-                    '19_30',
-                    '20_00',
-                    '20_30',
-                    '21_00',
-                    '21_30',
-                    '22_00',
-                    '22_30',
-                    '23_00',
-                    '23_30',
-                    '23_59',
-                ]
+                foreach (['00_30','01_00','01_30','02_00','02_30','03_00','03_30','04_00','04_30','05_00','05_30','06_00','06_30','07_00','07_30','08_00','08_30','09_00','09_30','10_00','10_30','11_00','11_30','12_00','12_30','13_00','13_30','14_00','14_30','15_00','15_30','16_00','16_30','17_00','17_30','18_00','18_30','19_00','19_30','20_00','20_30','21_00','21_30','22_00','22_30','23_00','23_30','23_59',]
                     as $columnNameYear) {
                     if ($item->{$columnNameYear} > $maxValueYear) {
                         $maxValueYear = $item->{$columnNameYear};

@@ -1,4 +1,4 @@
-<div class="main-sidebar sidebar-style-2">
+<div id="sidebar" class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="#">PLN UP2D Jatim</a>
@@ -117,8 +117,8 @@
         <li class="{{ Request::is('approval.opsis') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('approval.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i>
                 <span>Approval</span></a>
-        </li>
-    @elseif(Auth::user()->hasRole('ValidatorFasop'))
+        </li>
+        @elseif(Auth::user()->hasRole('ValidatorFasop'))
         <li class="menu-header">Dashboard</li>
         <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
             <a class="nav-link" href="{{ route('dashboard.validfasop') }}">Main Menu</a>
@@ -147,16 +147,12 @@
             <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
                     GI</span></a>
         </li>
-        <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fas fa-th-large"></i> <span>Tabel
-                            Data MVCELL</span></a>
-                </li>
 
-        <!-- <li class="menu-header">Manajemen User</li>
+        <li class="menu-header">Manajemen User</li>
 
         <li class='{{ Request::is('user.admin') ? 'active' : '' }}'>
             <a class="nav-link" href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i>User</a>
-        </li> -->
+        </li>
         </li>
         </ul>
     @elseif(Auth::user()->hasRole('EditorOpsis'))

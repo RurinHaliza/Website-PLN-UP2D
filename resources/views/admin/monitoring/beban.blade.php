@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="width: 100%; height:170px; margin: auto;">
-                            <canvas id="chartHari"></canvas>
+                            <canvas id="ChartHarian"></canvas>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
         </div>
 
         <div class="row">
-            
+
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"
@@ -98,16 +98,190 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="bebanharikemarin" cellspacing="0">
-                                <thead>
+                            @if ($data->count() > 0)
+                                <table class="table table-bordered" id="bebanharikemarin" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Gardu Induk</th>
+                                            <th>Incoming</th>
+                                            <th>Total Hari Ini</th>
+                                            <th>Total Kemarin</th>
+                                            <th>Total Kemarin Lusa</th>
+                                            <th>Kenaikan</th>
+                                            <th>Perbandingan</th>
+                                            <th>00.30</th>
+                                        <th>01.00</th>
+                                        <th>01.30</th>
+                                        <th>02.00</th>
+                                        <th>02.30</th>
+                                        <th>03.00</th>
+                                        <th>03.30</th>
+                                        <th>04.00</th>
+                                        <th>04.30</th>
+                                        <th>05.00</th>
+                                        <th>05.30</th>
+                                        <th>06.00</th>
+                                        <th>06.30</th>
+                                        <th>07.00</th>
+                                        <th>07.30</th>
+                                        <th>08.00</th>
+                                        <th>08.30</th>
+                                        <th>09.00</th>
+                                        <th>09.30</th>
+                                        <th>10.00</th>
+                                        <th>10.30</th>
+                                        <th>11.00</th>
+                                        <th>11.30</th>
+                                        <th>12.00</th>
+                                        <th>12.30</th>
+                                        <th>13.00</th>
+                                        <th>13.30</th>
+                                        <th>14.00</th>
+                                        <th>14.30</th>
+                                        <th>15.00</th>
+                                        <th>15.30</th>
+                                        <th>16.00</th>
+                                        <th>16.30</th>
+                                        <th>17.00</th>
+                                        <th>17.30</th>
+                                        <th>18.00</th>
+                                        <th>18.30</th>
+                                        <th>19.00</th>
+                                        <th>19.30</th>
+                                        <th>20.00</th>
+                                        <th>20.30</th>
+                                        <th>21.00</th>
+                                        <th>21.30</th>
+                                        <th>22.00</th>
+                                        <th>22.30</th>
+                                        <th>23.00</th>
+                                        <th>23.30</th>
+                                        <th>23.59</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <td>{{ $item->gardu_induk }}</td>
+                                                <td>{{ $item->incoming }}</td>
+                                                <td>{{ $item->total_today }}</td>
+                                                <td>{{ $item->total_yesterday }}</td>
+                                                <td>{{ $item->total_day_before_yesterday }}</td>
+                                                <td>{{ $item->increase }}</td>
+                                                <td>{{ $item->comparison }}</td>
+                                                <td>{{ $item->{'00_30'} }}</td>
+                                                <td>{{ $item->{'01_00'} }}</td>
+                                                <td>{{ $item->{'01_30'} }}</td>
+                                                <td>{{ $item->{'02_00'} }}</td>
+                                                <td>{{ $item->{'02_30'} }}</td>
+                                                <td>{{ $item->{'03_00'} }}</td>
+                                                <td>{{ $item->{'03_30'} }}</td>
+                                                <td>{{ $item->{'04_00'} }}</td>
+                                                <td>{{ $item->{'04_30'} }}</td>
+                                                <td>{{ $item->{'05_00'} }}</td>
+                                                <td>{{ $item->{'05_30'} }}</td>
+                                                <td>{{ $item->{'06_00'} }}</td>
+                                                <td>{{ $item->{'06_30'} }}</td>
+                                                <td>{{ $item->{'07_00'} }}</td>
+                                                <td>{{ $item->{'07_30'} }}</td>
+                                                <td>{{ $item->{'08_00'} }}</td>
+                                                <td>{{ $item->{'08_30'} }}</td>
+                                                <td>{{ $item->{'09_00'} }}</td>
+                                                <td>{{ $item->{'09_30'} }}</td>
+                                                <td>{{ $item->{'10_00'} }}</td>
+                                                <td>{{ $item->{'10_30'} }}</td>
+                                                <td>{{ $item->{'11_00'} }}</td>
+                                                <td>{{ $item->{'11_30'} }}</td>
+                                                <td>{{ $item->{'12_00'} }}</td>
+                                                <td>{{ $item->{'12_30'} }}</td>
+                                                <td>{{ $item->{'13_00'} }}</td>
+                                                <td>{{ $item->{'13_30'} }}</td>
+                                                <td>{{ $item->{'14_00'} }}</td>
+                                                <td>{{ $item->{'14_30'} }}</td>
+                                                <td>{{ $item->{'15_00'} }}</td>
+                                                <td>{{ $item->{'15_30'} }}</td>
+                                                <td>{{ $item->{'16_00'} }}</td>
+                                                <td>{{ $item->{'16_30'} }}</td>
+                                                <td>{{ $item->{'17_00'} }}</td>
+                                                <td>{{ $item->{'17_30'} }}</td>
+                                                <td>{{ $item->{'18_00'} }}</td>
+                                                <td>{{ $item->{'18_30'} }}</td>
+                                                <td>{{ $item->{'19_00'} }}</td>
+                                                <td>{{ $item->{'19_30'} }}</td>
+                                                <td>{{ $item->{'20_00'} }}</td>
+                                                <td>{{ $item->{'20_30'} }}</td>
+                                                <td>{{ $item->{'21_00'} }}</td>
+                                                <td>{{ $item->{'21_30'} }}</td>
+                                                <td>{{ $item->{'22_00'} }}</td>
+                                                <td>{{ $item->{'22_30'} }}</td>
+                                                <td>{{ $item->{'23_00'} }}</td>
+                                                <td>{{ $item->{'23_30'} }}</td>
+                                                <td>{{ $item->{'23_59'} }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <table id="bebanhari" class="table-bordered table-md-6 table">
                                     <tr>
-                                        <th>Id</th>
-                                        <th>GI</th>
-                                        <th>Trafo</th>
-                                        <th>%</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Incoming</th>
+                                        <th>Total Hari Ini</th>
+                                        <th>Total Kemarin</th>
+                                        <th>Total Kemarin Lusa</th>
+                                        <th>Kenaikan</th>
+                                        <th>Perbandingan</th>
+                                        <th>00.30</th>
+                                        <th>01.00</th>
+                                        <th>01.30</th>
+                                        <th>02.00</th>
+                                        <th>02.30</th>
+                                        <th>03.00</th>
+                                        <th>03.30</th>
+                                        <th>04.00</th>
+                                        <th>04.30</th>
+                                        <th>05.00</th>
+                                        <th>05.30</th>
+                                        <th>06.00</th>
+                                        <th>06.30</th>
+                                        <th>07.00</th>
+                                        <th>07.30</th>
+                                        <th>08.00</th>
+                                        <th>08.30</th>
+                                        <th>09.00</th>
+                                        <th>09.30</th>
+                                        <th>10.00</th>
+                                        <th>10.30</th>
+                                        <th>11.00</th>
+                                        <th>11.30</th>
+                                        <th>12.00</th>
+                                        <th>12.30</th>
+                                        <th>13.00</th>
+                                        <th>13.30</th>
+                                        <th>14.00</th>
+                                        <th>14.30</th>
+                                        <th>15.00</th>
+                                        <th>15.30</th>
+                                        <th>16.00</th>
+                                        <th>16.30</th>
+                                        <th>17.00</th>
+                                        <th>17.30</th>
+                                        <th>18.00</th>
+                                        <th>18.30</th>
+                                        <th>19.00</th>
+                                        <th>19.30</th>
+                                        <th>20.00</th>
+                                        <th>20.30</th>
+                                        <th>21.00</th>
+                                        <th>21.30</th>
+                                        <th>22.00</th>
+                                        <th>22.30</th>
+                                        <th>23.00</th>
+                                        <th>23.30</th>
+                                        <th>23.59</th>
                                     </tr>
-                                </thead>
-                            </table>
+                                </table>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -136,7 +310,9 @@
 
             </div>
         </div>
+        <div>
 
+        </div>
         {{-- <div class="card mt-3">
             <div class="card-header">
                 <h5 class="m-0 font-weight-bold text-primary">Beban Sistem Jatim Tahun</h5>
@@ -203,7 +379,7 @@
                 labels: ["0", "1", "2", "3", "4", "5"],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: ['30', '20', '12', '23', '33', '56'], // Specify the data values array
+                        data: [ '45', '15', '27', '56', '50'], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
                         backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
@@ -228,13 +404,15 @@
 
     <script>
         var ctx = document.getElementById('chartTahun').getContext('2d');
+         // Mendapatkan data dari controller yang dipassing dari PHP
+         
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ["0", "1", "2", "3", "4", "5"],
                 datasets: [{
                     label: 'Parameter 1', // Name the series
-                    data: ['10', '13', '5', '23', '50', '56'], // Specify the data values array
+                    data: , // Specify the data values array
                     fill: false,
                     borderColor: '#ffd000', // Add custom color border (Line)
                     backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
@@ -262,10 +440,11 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["0", "1", "2", "3", "4", "5"],
+                labels: ["5 Bulan yang lalu", "4 Bulan yang lalu", "3 Bulan yang lalu", "Bulan kemarin", "Bulan ini"],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: ['30', '20', '12', '23', '33', '56'], // Specify the data values array
+                        data: [{{ $totalBulanlima }},{{ $totalBulanempat }},{{ $totalBulanKemarinLusa }},{{ $totalBulanKemarin }}, {{ $totalBulanIni }},
+                        ], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
                         backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
@@ -280,7 +459,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Beban Jatim Tertinggi Bulan ini',
+                        text: 'Total Mw',
                         padding: {
                             top: 5,
                         }
@@ -289,16 +468,17 @@
             }
         });
     </script>
-
     <script>
-        var ctx = document.getElementById('chartHari').getContext('2d');
+        var ctx = document.getElementById('ChartHarian').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["0", "1", "2", "3", "4", "5"],
+                labels: ["5 Hari yang lalu", "4 Hari yang lalu", "3 Hari yang lalu", "Kemarin", "Hari ini", ],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: ['30', '20', '12', '23', '33', '56'], // Specify the data values array
+                        data: [{{ $dataharike5 }}, {{ $dataharike4 }}, {{ $dataharike3 }},
+                            {{ $dataharike2 }}, {{ $dataharike1 }}
+                        ], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
                         backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
@@ -313,7 +493,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Beban Jatim Tertinggi Hari ini',
+                        text: 'Total Mw',
                         padding: {
                             top: 5,
                         }
@@ -322,6 +502,8 @@
             }
         });
     </script>
+    
+
 
     <!-- JS Libraies -->
     <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>

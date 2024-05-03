@@ -27,18 +27,18 @@ class TrafoController extends Controller
 
             return view('Visitor.beban.trafo', compact('trafo'));
         } 
-    elseif (Auth::user()->hasRole('ValidatorFasop')) {
+        elseif (Auth::user()->hasRole('ValidatorFasop')) {
 
-        $trafo = trafo::all();
+            $trafo = trafo::all();
 
-        return view('Fasop.beban.trafo', compact('trafo'));
-    }
-    elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+            return view('Fasop.beban.trafo', compact('trafo'));
+        }
+        elseif (Auth::user()->hasRole('ValidatorOpsis')) {
 
-        $trafo = trafo::all();
+            $trafo = trafo::all();
 
-        return view('Opsis.beban.trafo', compact('trafo'));
-    }
+            return view('Opsis.beban.trafo', compact('trafo'));
+        }
 
     }
 

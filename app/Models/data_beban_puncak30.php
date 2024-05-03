@@ -80,4 +80,15 @@ class data_beban_puncak30 extends Model
         '31_S',
         '31_M',
     ];
+    // Definisikan metode untuk mengambil data dari hari sebelumnya
+    public function yesterday()
+    {
+        return $this->where('tanggal', now()->subDay()->toDateString());
+    }
+
+    // Definisikan metode untuk mengambil data dari dua hari sebelumnya
+    public function dayBeforeYesterday()
+    {
+        return $this->where('tanggal', now()->subDays(2)->toDateString());
+    }
 }

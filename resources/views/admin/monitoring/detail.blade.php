@@ -280,7 +280,6 @@
                                                     <th>23.00</th>
                                                     <th>23.30</th>
                                                     <th>23.59</th>
-                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -335,8 +334,7 @@
                                                         <td>{{ $item->{'22_30'} }}</td>
                                                         <td>{{ $item->{'23_00'} }}</td>
                                                         <td>{{ $item->{'23_30'} }}</td>
-                                                        <td>{{ $item->{'23_30'} }}</td>
-                                                        <td></td>
+                                                        <td>{{ $item->{'23_59'} }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -395,17 +393,6 @@
                                                 <th>23.30</th>
                                                 <th>23.59</th>
                                             </tr>
-                                            <tr>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
                                         </table>
                                     @endif
                                 </div>
@@ -413,107 +400,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Daftar Trafo > 80%</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Trafo</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <th>BDBO</th>
-                                            <th>3</th>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Daftar Trafo < 30%</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Trafo</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <th>BDBO</th>
-                                            <th>3</th>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Statistics</h4>
-                                <div class="card-header-action">
-                                    <a href="#" class="btn active">Week</a>
-                                    <a href="#" class="btn">Month</a>
-                                    <a href="#" class="btn">Year</a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="myChart2" height="180"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="tabMingguan">
                 <!-- Konten untuk tab Mingguan -->
@@ -690,8 +577,11 @@
                                     <div class="card-body">
                                         <form action="{{ route('detailbeban') }}" method="GET">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="date"  name="selected_date3" class="form-control">
+                                                <div class="col-md-3">
+                                                    <input type="date" name="start_date" class="form-control">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="date" name="end_date" class="form-control">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button class="btn btn-primary" type="submit"><i
@@ -758,7 +648,6 @@
                                                     <th>23.00</th>
                                                     <th>23.30</th>
                                                     <th>23.59</th>
-                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -813,7 +702,7 @@
                                                         <td>{{ $item->{'22_30'} }}</td>
                                                         <td>{{ $item->{'23_00'} }}</td>
                                                         <td>{{ $item->{'23_30'} }}</td>
-                                                        <td>{{ $item->{'23_30'} }}</td>
+                                                        <td>{{ $item->{'23_59'} }}</td>
                                                         <td></td>
                                                     </tr>
                                                 @endforeach
@@ -891,107 +780,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Daftar Trafo > 80%</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Trafo</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <th>BDBO</th>
-                                            <th>3</th>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Daftar Trafo < 30%</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Trafo</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <th>BDBO</th>
-                                            <th>3</th>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Statistics</h4>
-                                <div class="card-header-action">
-                                    <a href="#" class="btn active">Week</a>
-                                    <a href="#" class="btn">Month</a>
-                                    <a href="#" class="btn">Year</a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="myChart2" height="180"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="tabBulanan">
                 <!-- Konten untuk tab Bulanan -->
@@ -1167,8 +956,10 @@
                                     <div class="card-body">
                                         <form action="{{ route('detailbeban') }}" method="GET">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="date" name="selected_date2" class="form-control">
+                                                <div class="col-sm-6">
+                                                    <span>Pilih Bulan: </span><input type="text" class="form-control"
+                                                        name="StartBulan" id="datepicker" placeholder="Januari" />
+                                                    
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button class="btn btn-primary" type="submit"><i
@@ -1235,7 +1026,7 @@
                                                     <th>23.00</th>
                                                     <th>23.30</th>
                                                     <th>23.59</th>
-                                                    <th>Action</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1290,7 +1081,7 @@
                                                         <td>{{ $item->{'22_30'} }}</td>
                                                         <td>{{ $item->{'23_00'} }}</td>
                                                         <td>{{ $item->{'23_30'} }}</td>
-                                                        <td>{{ $item->{'23_30'} }}</td>
+                                                        <td>{{ $item->{'23_59'} }}</td>
                                                         <td></td>
                                                     </tr>
                                                 @endforeach
@@ -1368,107 +1159,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Daftar Trafo > 80%</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Trafo</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <th>BDBO</th>
-                                            <th>3</th>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Daftar Trafo < 30%</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Trafo</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <th>BDBO</th>
-                                            <th>3</th>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Statistics</h4>
-                                <div class="card-header-action">
-                                    <a href="#" class="btn active">Week</a>
-                                    <a href="#" class="btn">Month</a>
-                                    <a href="#" class="btn">Year</a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="myChart2" height="180"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -1507,6 +1198,7 @@
     <script>
         // Menginisialisasi tab yang aktif saat halaman dimuat
         document.addEventListener("DOMContentLoaded", function() {
+
             // Mengambil semua elemen tab
             var tabs = document.querySelectorAll('.nav-link');
             // Menetapkan event listener untuk setiap tab
@@ -1536,6 +1228,13 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Menambahkan kelas 'show active' ke tab Harian
             document.querySelector('#tabHarian').classList.add('show', 'active');
+        });
+    </script>
+    <script>
+        $("#datepicker").datepicker({
+            format: "mm-yyyy",
+            viewMode: "months",
+            minViewMode: "months"
         });
     </script>
 @endpush
