@@ -301,17 +301,16 @@ class MenuController extends Controller
         if (Auth::user()->hasRole('Administrator')) {
 
             //Mingguan
-            // Mengambil tanggal yang dipilih dari request
-            $selectedDate3 = $request->input('selected_date3', Carbon::today()->toDateString());
+        // Mengambil tanggal yang dipilih dari request
+        $startDate = $request->input('start_date', Carbon::today()->toDateString());
+        $endDate = $request->input('end_date', Carbon::today()->toDateString());
 
-            // dd($selectedDate);
+        // Mengonversi tanggal yang dipilih menjadi objek Carbon
+        $startDateCarbon = Carbon::parse($startDate);
+        $endDateCarbon = Carbon::parse($endDate);
 
-            // Mengonversi tanggal yang dipilih menjadi objek Carbon
-            $selectedDateCarbon3 = Carbon::parse($selectedDate3);
-            // Menghitung tanggal 7 hari yang lalu dari tanggal yang dipilih
-            $startDate = $selectedDateCarbon3->copy()->subDays(6)->toDateString();
-            // Mengambil data dalam rentang tanggal
-            $data3 = data_beban_puncak30::whereBetween('tanggal', [$startDate, $selectedDate3])->paginate(10);
+        // Mengambil data dalam rentang tanggal
+        $data3 = data_beban_puncak30::whereBetween('tanggal', [$startDateCarbon, $endDateCarbon])->paginate(10);
 
             // Hitung rata-rata dan nilai maksimum
             $averageValueSiangMingguan = $data3->avg(function ($item) {
@@ -502,7 +501,7 @@ class MenuController extends Controller
                 }
             }
         }
-        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan', 'averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan', 'data3', 'selectedDate3', 'averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan', 'averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan', 'averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan', 'data3','startDate','endDate','averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan', 'averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
     }
 
 

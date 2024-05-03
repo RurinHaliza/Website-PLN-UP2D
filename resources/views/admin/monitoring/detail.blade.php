@@ -400,6 +400,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="width: 100%; height:170px; margin: auto;">
+                                    <canvas id="chartharian"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="tab-pane fade" id="tabMingguan">
@@ -507,7 +518,7 @@
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            <div>Tanggal : {{ $selectedDate3 }}</div>
+                                            <div>Tanggal : </div>
                                         </div>
                                         <div class="ticket-info">
                                             @if ($maxValueSiangMingguan > 0)
@@ -532,7 +543,7 @@
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            <div>Tanggal : {{ $selectedDate3 }}</div>
+                                            <div>Tanggal : </div>
                                         </div>
                                         <div class="ticket-info">
                                             @if ($maxValueMalamMingguan > 0)
@@ -703,7 +714,6 @@
                                                         <td>{{ $item->{'23_00'} }}</td>
                                                         <td>{{ $item->{'23_30'} }}</td>
                                                         <td>{{ $item->{'23_59'} }}</td>
-                                                        <td></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -761,17 +771,6 @@
                                                 <th>23.00</th>
                                                 <th>23.30</th>
                                                 <th>23.59</th>
-                                            </tr>
-                                            <tr>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
                                             </tr>
                                         </table>
                                     @endif
@@ -1235,6 +1234,39 @@
             format: "mm-yyyy",
             viewMode: "months",
             minViewMode: "months"
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('chartharian').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["5 Hari yang lalu", "4 Hari yang lalu", "3 Hari yang lalu", "Kemarin", "Hari ini", ],
+                datasets: [{
+                        label: 'Parameter 1', // Name the series
+                        data: ['40','57'
+                        ], // Specify the data values array
+                        fill: false,
+                        borderColor: '#ffd000', // Add custom color border (Line)
+                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
+                        borderWidth: 3 // Specify bar border width
+                    },
+
+                ]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Mw',
+                        padding: {
+                            top: 5,
+                        }
+                    }
+                }
+            }
         });
     </script>
 @endpush
