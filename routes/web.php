@@ -54,7 +54,10 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
 
     //KTT 
     Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
-    
+    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.ktt.admin');
+    Route::get('EditKTT/{id}',[KTTController::class, 'Edit'])->name('edit.ktt.admin');
+    Route::post('UpdateData/{id}',[KTTController::class, 'updateData'])->name('update.ktt.admin');
+
     //GI
     Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
 

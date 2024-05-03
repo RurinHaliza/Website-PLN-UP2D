@@ -74,4 +74,44 @@ class KTTController extends Controller
 
     }
 
+    public function Edit($id){
+
+        if(Auth::user()->hasRole('Administrator')){
+
+            $data = ktt::findOrFail($id);
+
+            // dd($data); 
+
+            return view('admin.beban.KTT.edit',compact('data'));
+        }
+
+    }
+
+    public function updateData(Request $request, $id){
+
+        if(Auth::user()->hasRole('Administrator')){
+
+            $update = ktt::where('id', $id)->update([
+
+                'pkey' => $request->pkey,
+                'station' => $request->station,
+                'nama' => $request->nama,
+                'daya' => $request->daya,
+                'alamat' => $request->alamat,
+                'tanggal' => $request->tanggal,
+                'cb' => $request->cb,
+                'meter' => $request->meter,
+                'status_meter' => $request->status_meter,
+            ]);
+
+            if ($update) {
+                return redirect()->route('bebanktt')->with('success', 'Data Berhasil di update');
+            }
+
+
+        }
+        
+    }
+
+
 }
