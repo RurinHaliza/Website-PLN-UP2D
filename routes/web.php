@@ -38,11 +38,22 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
     
+    //Trafo
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.admin');
+    Route::get('EditTrafo/{id}',[TrafoController::class, 'edit'])->name('edit.trafo.admin');
+    Route::post('UpdateDataTrafo/{id}',[TrafoController::class, 'update'])->name('update.data.trafo');
 
+    //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
+    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.admin');
+    
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
+
+    //KTT 
     Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
+    
+    //GI
     Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
 
     //MVCELL
