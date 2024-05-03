@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ktt;
+use App\Exports\KTTExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KTTController extends Controller
 {
@@ -111,6 +113,11 @@ class KTTController extends Controller
 
         }
         
+    }
+
+    public function Export(){
+
+        return Excel::download(new KTTExport, 'data_ktt.xlsx');
     }
 
 

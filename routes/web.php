@@ -47,6 +47,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
     Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.admin');
+    // Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
     Route::get('EditPenyulang/{id}',[PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
     Route::post('UPdateDataPenyulang/{id}',[PenyulangController::class, 'update'])->name('update.data.penyulang');
 
@@ -57,9 +58,11 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.ktt.admin');
     Route::get('EditKTT/{id}',[KTTController::class, 'Edit'])->name('edit.ktt.admin');
     Route::post('UpdateData/{id}',[KTTController::class, 'updateData'])->name('update.ktt.admin');
+    Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.excel.adminktt');
 
     //GI
     Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.admin');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
