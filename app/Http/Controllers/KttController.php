@@ -10,7 +10,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class KTTController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         if (Auth::user()->hasRole('Administrator')) {
 
@@ -32,66 +33,39 @@ class KTTController extends Controller
             $bebanktt = ktt::all();
             //dd($bebanktt); 
             return view('Fasop.beban.ktt', compact('bebanktt'));
+        } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
 
-    } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
-
-        $bebanktt = ktt::all();
-        //dd($bebanktt); 
-        return view('Opsis.beban.ktt', compact('bebanktt'));
-
-    }
-    }
-
-    public function Detail($id){
-
-        if(Auth::user()->hasRole('Administrator')){
-            $data = ktt::findOrFail($id);
-            
-            return view('admin.beban.KTT.detail',compact('data'));
-
-        }elseif(Auth::user()->hasRole('Visitor')){
-
-
-        }elseif(Auth::user()->hasRole('EditorOpsis')){
-
-        }elseif(Auth::user()->hasRole('ValidatorFasop')){
-            $data = ktt::findOrFail($id);
-            
-            return view('Fasop.beban.KTT.detail',compact('data'));
-                
-        }elseif(Auth::user()->hasRole('operator')){
-            
-            $data = ktt::findOrFail($id);
-            
-            return view('Operator.beban.KTT.detail',compact('data'));
-
-        }elseif(Auth::user()->hasRole('ValidatorOpsis')){
-            
-            $data = ktt::findOrFail($id);
-            
-            return view('Opsis.beban.KTT.detail',compact('data'));
-
+            $bebanktt = ktt::all();
+            //dd($bebanktt); 
+            return view('Opsis.beban.ktt', compact('bebanktt'));
         }
-
-
     }
 
-    public function Edit($id){
+    public function Detail($id)
+    {
 
-        if(Auth::user()->hasRole('Administrator')){
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])) {
+            $data = ktt::findOrFail($id);
+
+            return view('TabelBeban.KTT.detail', compact('data'));
+        }
+    }
+
+    public function Edit($id)
+    {
+
+        if (Auth::user()->hasRole('Administrator', 'EditorOpsis', 'ValidatorOpsis')) {
 
             $data = ktt::findOrFail($id);
 
-            // dd($data); 
-
-            return view('admin.beban.KTT.edit',compact('data'));
+            return view('TabelBeban.KTT.edit', compact('data'));
         }
-
     }
 
-    public function updateData(Request $request, $id){
+    public function updateData(Request $request, $id)
+    {
 
-        if(Auth::user()->hasRole('Administrator')){
+        if (Auth::user()->hasRole('Administrator', 'EditorOpsis', 'ValidatorOpsis')) {
 
             $update = ktt::where('id', $id)->update([
 
@@ -109,16 +83,12 @@ class KTTController extends Controller
             if ($update) {
                 return redirect()->route('bebanktt')->with('success', 'Data Berhasil di update');
             }
-
-
         }
-        
     }
 
-    public function Export(){
+    public function Export()
+    {
 
         return Excel::download(new KTTExport, 'data_ktt.xlsx');
     }
-
-
 }

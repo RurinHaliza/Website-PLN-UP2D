@@ -63,7 +63,7 @@
                                     <td>{{ $p->UP3 }}</td>
                                     <td>{{ $p->ULP }}</td>
                                     <td>
-                                        <a href="{{ route('detail.penyulang.admin',[$p->id]) }}" class="btn btn-primary">Detail</a>
+                                        <a href="" class="btn btn-primary">Detail</a>
                                         <a href="{{ route('edit.penyulang.admin',[$p->id]) }}" class="btn btn-warning">Edit
                                             Data</a>
                                     </td>                                    

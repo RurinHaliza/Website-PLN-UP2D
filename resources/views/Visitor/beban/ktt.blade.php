@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'Konsumen Tegangan Tinggi')
 
 @push('style')
    <!-- CSS Libraries -->
@@ -35,6 +35,7 @@
                                 <th>Cb</th>
                                 <th>Meter</th>
                                 <th>Status Meter</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +55,8 @@
                                 <td>{{$ktt->tanggal}}</td>
                                 <td>{{$ktt->cb}}</td>
                                 <td>{{$ktt->meter}}</td>
-                                <td>{{$ktt->status_meter}}</td>                                 
+                                <td>{{$ktt->status_meter}}</td>
+                                <td><a href="{{ route('detail.penyulang.visitor',[$ktt->id]) }}" class="btn btn-primary">Detail</a></td>                                 
                             </tr>
                             @endforeach
                         </tbody>

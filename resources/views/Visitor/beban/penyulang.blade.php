@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'Penyulang Jatim')
 
 @push('style')
    <!-- CSS Libraries -->
@@ -34,6 +34,7 @@
                                 <th>NM Singkatan</th>
                                 <th>UP3</th>
                                 <th>ULP</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -52,12 +53,11 @@
                                     <td>{{ $p->NM_GI }}</td>
                                     <td>{{ $p->NM_SINGKATAN }}</td>
                                     <td>{{ $p->UP3 }}</td>
-                                    <td>{{ $p->ULP }}</td>                              
+                                    <td>{{ $p->ULP }}</td>   
+                                    <td><a href="{{ route('detail.penyulang.visitor',[$p->id]) }}" class="btn btn-primary">Detail</a></td>                           
                                 </tr>
                             @endforeach
                         </tbody>
-
-
                     </table>
                 </div>
             </div>

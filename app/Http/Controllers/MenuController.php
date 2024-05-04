@@ -536,27 +536,15 @@ class MenuController extends Controller
     public function DetailMVCELL($id)
     {
 
-        if (Auth::user()->hasRole('Administrator')) {
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])) {
 
             $data = mvcell::findOrFail($id);
 
             // dd($data);
 
-            return view('admin.beban.MVCELL.detail', compact('data'));
-        } elseif (Auth::user()->hasRole('operator')) {
-            $data = mvcell::findOrFail($id);
+            return view('TabelBeban.MVCELL.detail', compact('data'));
 
-            // dd($data);
-
-            return view('Operator.beban.MVCELL.detail', compact('data'));
-        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
-            # code...
-
-            $data = mvcell::findOrFail($id);
-
-            return view('Opsis.beban.MVCELL.detail',compact('data'));
-
-        }
+        } 
     }
 
     public function EditMVCELL($id)

@@ -42,27 +42,12 @@ class TrafoController extends Controller
     public function detail($id)
     {
 
-        if (Auth::user()->hasRole('Administrator')) {
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])) {
 
             $data = trafo::findOrFail($id);
 
-            return view('admin.beban.Trafo.Detail', compact('data'));
-        } elseif (Auth::user()->hasRole('Visitor')) {
-        } elseif (Auth::user()->hasRole('EditorOpsis')) {
-        } elseif (Auth::user()->hasRole('ValidatorFasop')) {
-            $data = trafo::findOrFail($id);
-
-            return view('Fasop.beban.Trafo.Detail', compact('data'));
-        } elseif (Auth::user()->hasRole('operator')) {
-
-            $data = trafo::findOrFail($id);
-
-            return view('Operator.beban.Trafo.Detail', compact('data'));
-        } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
-            $data = trafo::findOrFail($id);
-
-            return view('Opsis.beban.Trafo.Detail', compact('data'));
-        }
+            return view('TabelBeban.Trafo.Detail', compact('data'));
+        } 
     }
 
     public function edit($id)

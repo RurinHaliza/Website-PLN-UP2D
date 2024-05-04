@@ -31,6 +31,7 @@
                                 <th>ID Kelas</th>
                                 <th>KD Pemilik</th>
                                 <th>KD Pengelola</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -48,7 +49,7 @@
                                     <td>{{ $t->ID_KELAS }}</td>
                                     <td>{{ $t->KD_PEMILIK }}</td>
                                     <td>{{ $t->KD_PENGELOLA }}</td>
-                                   
+                                    <td><a href="{{ route('trafo.detail.visitor',[$t->id]) }}" class="btn btn-primary">Detail</a></td>
                                 </tr>
                             @endforeach
 

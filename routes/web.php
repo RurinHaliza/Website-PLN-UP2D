@@ -46,8 +46,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
-    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.admin');
-    // Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
+    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
     Route::get('EditPenyulang/{id}',[PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
     Route::post('UPdateDataPenyulang/{id}',[PenyulangController::class, 'update'])->name('update.data.penyulang');
 
@@ -189,20 +188,24 @@ Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.visitor');
 
     //Tabel Trafo 
-    Route::get('trafo', [MenuController::class, 'bebantrafo'])->name('trafo.visitor');
+    Route::get('trafo', [TrafoController::class, 'index'])->name('trafo.visitor');
+    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('trafo.detail.visitor');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.visitor');
+    Route::get('Detailmvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.visitor');
 
     //Penyulang
-    Route::get('penyulang', [MenuController::class, 'bebanpenyulang'])->name('penyulang.visitor');
+    Route::get('penyulang', [PenyulangController::class, 'index'])->name('penyulang.visitor');
+    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.visitor');
 
     //KTT
-    Route::get('KTT', [MenuController::class, 'bebanktt'])->name('ktt.visitor');
+    Route::get('KTT', [KTTController::class, 'index'])->name('ktt.visitor');
+    Route::get('KTTDetail/{id}',[KTTController::class, 'Detail'])->name('detail.ktt.visitor');
 
     //GI
-    Route::get('GI',[MenuController::class,'GI'])->name('GI.visitor');
-
+    Route::get('GI',[GIController::class,'index'])->name('GI.visitor');
+    Route::get('DetailGI/{id}',[GIController::class, 'detail'])->name('detail.gi.visitor');
 
 });
 

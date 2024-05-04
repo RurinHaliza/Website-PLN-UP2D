@@ -42,41 +42,11 @@ class GIController extends Controller
 
     public function detail($id){
 
-        if(Auth::user()->hasRole('Administrator')){
+        if(Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])){
             $data = GITable::findOrFail($id);
 
-            return view('admin.beban.gi.detail',compact('data'));
-
-        }elseif(Auth::user()->hasRole('Visitor')){
-
-
-        }elseif(Auth::user()->hasRole('EditorOpsis')){
-            $data = GITable::findOrFail($id);
-            
-            return view('EditorOpsis.beban.gi.detail',compact('data'));
-
-        }elseif(Auth::user()->hasRole('ValidatorFasop')){
-            $data = GITable::findOrFail($id);
-            
-            return view('Fasop.beban.gi.detail',compact('data'));
-            
-        }elseif(Auth::user()->hasRole('operator')){
-            
-            $data = GITable::findOrFail($id);
-            
-            return view('Operator.beban.gi.detail',compact('data'));
-
-        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
-            # code...
-
-            $data = GITable::findOrFail($id);
-
-            // dd($data);
-
-            return view('Opsis.beban.gi.detail',compact('data'));
+            return view('TabelBeban.gi.detail',compact('data'));
         }
-
-
     }
 
 }
