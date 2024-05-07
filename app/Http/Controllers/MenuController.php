@@ -24,7 +24,7 @@ class MenuController extends Controller
     public function semua(Request $request)
     {
 
-        if (Auth::user()->hasRole('Administrator')) {
+        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor'])) {
 
             $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
             // Analytics untuk hari ini
@@ -168,7 +168,7 @@ class MenuController extends Controller
            
             
             
-            return view('admin.monitoring.beban', compact('totalBulanlima','totalBulanempat','totalBulanKemarinLusa','totalBulanKemarin','totalBulanIni','data','dataharike5','dataharike4','dataharike3','dataharike2','dataharike1','data3hari','selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+            return view('monitoring.beban', compact('totalBulanlima','totalBulanempat','totalBulanKemarinLusa','totalBulanKemarin','totalBulanIni','data','dataharike5','dataharike4','dataharike3','dataharike2','dataharike1','data3hari','selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
         }
     }
 
@@ -229,7 +229,7 @@ class MenuController extends Controller
     //     // Mengambil data dari model untuk tahun ini
     //     $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
 
-    //     return view('admin.monitoring.hari', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
+    //     return view('monitoring.hari', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
     // }
 
     // public function mingguan(Request $request)
@@ -258,7 +258,7 @@ class MenuController extends Controller
     //     // Mengambil data dari model untuk tahun ini
     //     $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
 
-    //     return view('admin.monitoring.minggu', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
+    //     return view('monitoring.minggu', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
     // }
 
 
@@ -292,13 +292,13 @@ class MenuController extends Controller
     //     $dataTahunIni = data_beban_puncak30::whereMonth('tanggal', now()->year)->get();
 
 
-    //     return view('admin.monitoring.bulan', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
+    //     return view('monitoring.bulan', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
 
     // }
 
     public function detail(Request $request)
     {
-        if (Auth::user()->hasRole('Administrator')) {
+        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor'])) {
 
             //Mingguan
         // Mengambil tanggal yang dipilih dari request
@@ -501,7 +501,7 @@ class MenuController extends Controller
                 }
             }
         }
-        return view('admin.monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan', 'averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan', 'data3','startDate','endDate','averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan', 'averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+        return view('monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan', 'averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan', 'data3','startDate','endDate','averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan', 'averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
     }
 
 
