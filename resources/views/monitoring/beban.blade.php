@@ -16,7 +16,18 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
-        <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
+        @if (Auth::user()->hasRole('Administrator')) {
+            <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
+        } @elseif (Auth::user()->hasRole('operator')) 
+            <a href="{{ route('detailbeban.operator') }}" class="btn btn-primary mb-4">Detail Beban</a>
+            @elseif (Auth::user()->hasRole('ValidatorOpsis')) 
+            <a href="{{ route('detailbeban.opsis') }}" class="btn btn-primary mb-4">Detail Beban</a>
+            @elseif (Auth::user()->hasRole('ValidatorFasop')) 
+            <a href="{{ route('detailbeban.validfasop') }}" class="btn btn-primary mb-4">Detail Beban</a>
+            @elseif (Auth::user()->hasRole('EditorOpsis')) 
+            <a href="{{ route('detailbeban.editorop') }}" class="btn btn-primary mb-4">Detail Beban</a>
+        @endif
+        
 
 
         <div class="row">

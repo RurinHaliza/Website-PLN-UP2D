@@ -53,6 +53,11 @@
             <a class="nav-link" href="{{ route('dashboard.operator') }}"><i class="far fa-square"></i> <span>Main
                     Menu</span></a>
         </li>
+        <li class="menu-header">Tabel Monitoring Beban</li>
+        <li class="{{ Request::is('bebansemua.operator') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.operator') }}"><i class="fas fa-th-large"></i>
+                <span>Beban</span></a>
+        </li>
         <li class="menu-header">Scada Fail</li>
         <li class="{{ Request::is('scadafail') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('scadafail') }}"><i class="fas fa-th-large"></i> <span>Input Scada
@@ -129,8 +134,8 @@
             <a class="nav-link" href="{{ route('dashboard.validfasop') }}">Main Menu</a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>
+        <li class="{{ Request::is('bebansemua.validfasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.validfasop') }}"><i class="fas fa-th-large"></i>
                 <span>Beban</span></a>
         </li>
 
@@ -175,8 +180,8 @@
             <a class="nav-link" href="{{ route('dashboard.editorop') }}">Main Menu</a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fas fa-th-large"></i>
+        <li class="{{ Request::is('bebansemua.editorop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.editorop') }}"><i class="fas fa-th-large"></i>
                 <span>Beban</span></a>
         </li>
         </li>

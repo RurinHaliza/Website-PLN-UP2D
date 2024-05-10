@@ -85,6 +85,12 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.operator');
     Route::get('ScadaFail',[OperatorController::class,'ScadaFailIndex'])->name('scadafail');
 
+    //
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.operator');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.operator');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.operator');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.operator');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.operator');
     //Tabel Trafo 
     Route::get('DataTrafo', [TrafoController::class, 'index'])->name('trafo.operator');
     Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.operator');
@@ -147,11 +153,11 @@ Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:Valid
 Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validfasop');
-    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.fasop');
-    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.fasop');
-    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.fasop');
-    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.fasop');
-    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.fasop');
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.validfasop');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.validfasop');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.validfasop');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.validfasop');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.validfasop');
     
     //Trafo
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.fasop');
@@ -181,6 +187,11 @@ Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:Valid
 Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOpsis']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.editorop');
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.editorop');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.editorop');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.editorop');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.editorop');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.editorop');
 });
 
 Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], function () {
