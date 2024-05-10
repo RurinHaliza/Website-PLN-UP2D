@@ -110,53 +110,53 @@
                                             <th>Kenaikan</th>
                                             <th>Perbandingan</th>
                                             <th>00.30</th>
-                                        <th>01.00</th>
-                                        <th>01.30</th>
-                                        <th>02.00</th>
-                                        <th>02.30</th>
-                                        <th>03.00</th>
-                                        <th>03.30</th>
-                                        <th>04.00</th>
-                                        <th>04.30</th>
-                                        <th>05.00</th>
-                                        <th>05.30</th>
-                                        <th>06.00</th>
-                                        <th>06.30</th>
-                                        <th>07.00</th>
-                                        <th>07.30</th>
-                                        <th>08.00</th>
-                                        <th>08.30</th>
-                                        <th>09.00</th>
-                                        <th>09.30</th>
-                                        <th>10.00</th>
-                                        <th>10.30</th>
-                                        <th>11.00</th>
-                                        <th>11.30</th>
-                                        <th>12.00</th>
-                                        <th>12.30</th>
-                                        <th>13.00</th>
-                                        <th>13.30</th>
-                                        <th>14.00</th>
-                                        <th>14.30</th>
-                                        <th>15.00</th>
-                                        <th>15.30</th>
-                                        <th>16.00</th>
-                                        <th>16.30</th>
-                                        <th>17.00</th>
-                                        <th>17.30</th>
-                                        <th>18.00</th>
-                                        <th>18.30</th>
-                                        <th>19.00</th>
-                                        <th>19.30</th>
-                                        <th>20.00</th>
-                                        <th>20.30</th>
-                                        <th>21.00</th>
-                                        <th>21.30</th>
-                                        <th>22.00</th>
-                                        <th>22.30</th>
-                                        <th>23.00</th>
-                                        <th>23.30</th>
-                                        <th>23.59</th>
+                                            <th>01.00</th>
+                                            <th>01.30</th>
+                                            <th>02.00</th>
+                                            <th>02.30</th>
+                                            <th>03.00</th>
+                                            <th>03.30</th>
+                                            <th>04.00</th>
+                                            <th>04.30</th>
+                                            <th>05.00</th>
+                                            <th>05.30</th>
+                                            <th>06.00</th>
+                                            <th>06.30</th>
+                                            <th>07.00</th>
+                                            <th>07.30</th>
+                                            <th>08.00</th>
+                                            <th>08.30</th>
+                                            <th>09.00</th>
+                                            <th>09.30</th>
+                                            <th>10.00</th>
+                                            <th>10.30</th>
+                                            <th>11.00</th>
+                                            <th>11.30</th>
+                                            <th>12.00</th>
+                                            <th>12.30</th>
+                                            <th>13.00</th>
+                                            <th>13.30</th>
+                                            <th>14.00</th>
+                                            <th>14.30</th>
+                                            <th>15.00</th>
+                                            <th>15.30</th>
+                                            <th>16.00</th>
+                                            <th>16.30</th>
+                                            <th>17.00</th>
+                                            <th>17.30</th>
+                                            <th>18.00</th>
+                                            <th>18.30</th>
+                                            <th>19.00</th>
+                                            <th>19.30</th>
+                                            <th>20.00</th>
+                                            <th>20.30</th>
+                                            <th>21.00</th>
+                                            <th>21.30</th>
+                                            <th>22.00</th>
+                                            <th>22.30</th>
+                                            <th>23.00</th>
+                                            <th>23.30</th>
+                                            <th>23.59</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -379,7 +379,7 @@
                 labels: ["0", "1", "2", "3", "4", "5"],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: [ '45', '15', '27', '56', '50'], // Specify the data values array
+                        data: ['45', '15', '27', '56', '50'], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
                         backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
@@ -404,8 +404,8 @@
 
     <script>
         var ctx = document.getElementById('chartTahun').getContext('2d');
-         // Mendapatkan data dari controller yang dipassing dari PHP
-         
+        // Mendapatkan data dari controller yang dipassing dari PHP
+
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -440,10 +440,12 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["5 Bulan yang lalu", "4 Bulan yang lalu", "3 Bulan yang lalu", "Bulan kemarin", "Bulan ini"],
+                labels: ["5 Bulan yang lalu", "4 Bulan yang lalu", "3 Bulan yang lalu", "Bulan kemarin",
+                    "Bulan ini"],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: [{{ $totalBulanlima }},{{ $totalBulanempat }},{{ $totalBulanKemarinLusa }},{{ $totalBulanKemarin }}, {{ $totalBulanIni }},
+                        data: [{{ $totalBulanlima }}, {{ $totalBulanempat }}, {{ $totalBulanKemarinLusa }},
+                            {{ $totalBulanKemarin }}, {{ $totalBulanIni }},
                         ], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
@@ -502,7 +504,7 @@
             }
         });
     </script>
-    
+
 
 
     <!-- JS Libraies -->

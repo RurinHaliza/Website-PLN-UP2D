@@ -142,7 +142,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah mVA
-                                
+
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">0 mVA</div>
                             </div>
@@ -175,15 +175,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div id="map" class="map mb-3"></div>
-                <div id="popup" class="ol-popup">
-                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                    <div id="popup-content"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div id="map" class="map mb-3"></div>
+                        <div id="popup" class="ol-popup">
+                            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                            <div id="popup-content"></div>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 
@@ -217,6 +228,7 @@
             zoom: 14,
 
         });
+
 
         var surabaya = new ol.source.TileWMS({
             url: 'http://peta.cktr.web.id/geoserver/webgis/wms',
@@ -276,6 +288,7 @@
         var OSM = new ol.layer.Tile({
             source: new ol.source.OSM(),
             projection: 'EPSG:32749',
+
             type: 'base',
             title: 'Open Street Map',
             visible: false,
@@ -293,18 +306,146 @@
             ]
         });
 
+        //-------------------------PETA LAYER FOR Kec Role----------------------------------
+        var overlays = new ol.layer.Group({
+            'title': 'Overlays',
+            layers: [
+                new ol.layer.Tile({
+                    title: 'BATAS_ADMINISTRASI',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        url: 'https://sipetarung.dprkpp.web.id/geoserver/wms',
+                        params: {
+                            'LAYERS': 'satupeta:BATAS_ADMINISTRASI'
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+
+                new ol.layer.Tile({
+                    // title: 'persil_belum',
+                    title: 'filter_belum',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
+                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
+                        params: {
+                            // 'LAYERS': 'kesra:persil_belum',
+                            'LAYERS': 'persil:filter_belum',
+                            @if (Auth::user()->role == 2)
+                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
+                            @elseif (Auth::user()->role == 3)
+                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
+                            @endif
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+                new ol.layer.Tile({
+                    title: 'persil_sudah',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
+                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
+                        params: {
+                            // 'LAYERS': 'kesra:persil_sudah',
+                            'LAYERS': 'persil:persil_sudah',
+                            @if (Auth::user()->role == 2)
+                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
+                            @elseif (Auth::user()->role == 3)
+                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
+                            @endif
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+                new ol.layer.Tile({
+                    title: 'persil_ganda',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
+                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
+                        params: {
+                            'LAYERS': 'kesra:persil_ganda',
+                            // 'LAYERS': 'persil:persil_ganda',
+                            @if (Auth::user()->role == 2)
+                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
+                            @elseif (Auth::user()->role == 3)
+                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
+                            @endif
+
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+                new ol.layer.Tile({
+                    title: 'BATAS_RW',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
+                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
+                        params: {
+                            'LAYERS': 'persil:batas_rw_sby'
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+                new ol.layer.Tile({
+                    title: 'BATAS_KEL',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
+                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
+                        params: {
+                            // 'LAYERS': 'kesra:BATASKEL'
+                            'LAYERS': 'persil:BATASKEL'
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+                new ol.layer.Tile({
+                    title: 'BATAS_KEC',
+                    visible: false,
+                    source: new ol.source.TileWMS({
+                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
+                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
+                        params: {
+                            // 'LAYERS': 'kesra:BATASKEC'
+                            'LAYERS': 'persil:BATASKEC'
+                        },
+                        ratio: 1,
+                        serverType: 'geoserver'
+                    })
+                }),
+
+
+
+            ]
+        });
+
+        mousePositionControl = new ol.control.MousePosition({
+            coordinateFormat: ol.coordinate.createStringXY(5),
+            projection: 'EPSG:4326',
+            // comment the following two lines to have the mouse position
+            // be placed within the map.
+            className: 'custom-mouse-position',
+            target: document.getElementById('mouse-position'),
+            undefinedHTML: '[koordinat X,Y]'
+        });
+
         var map = new ol.Map({
             target: 'map',
-            view: new ol.View({
-                center: ol.proj.fromLonLat([
-                    112.2384017,-7.5360639
-                ]),
-                zoom: 15
-            }),
             controls: [mousePositionControl],
         });
 
         map.addLayer(base_maps);
+        map.addLayer(overlays);
 
         var overview = new ol.control.OverviewMap({
             view: view_ov,
@@ -346,8 +487,5 @@
             collapseTipLabel: 'Collapse layers',
         });
         map.addControl(layerSwitcher);
-
     </script>
-
-
 @endpush
