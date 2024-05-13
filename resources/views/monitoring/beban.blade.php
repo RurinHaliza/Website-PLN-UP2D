@@ -16,9 +16,9 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
-        @if (Auth::user()->hasRole('Administrator')) {
+        @if (Auth::user()->hasRole('Administrator')) 
             <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
-        } @elseif (Auth::user()->hasRole('operator')) 
+         @elseif (Auth::user()->hasRole('operator')) 
             <a href="{{ route('detailbeban.operator') }}" class="btn btn-primary mb-4">Detail Beban</a>
             @elseif (Auth::user()->hasRole('ValidatorOpsis')) 
             <a href="{{ route('detailbeban.opsis') }}" class="btn btn-primary mb-4">Detail Beban</a>

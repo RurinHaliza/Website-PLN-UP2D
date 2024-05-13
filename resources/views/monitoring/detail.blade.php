@@ -6,6 +6,9 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
 @endpush
 
 @section('main')
@@ -956,9 +959,9 @@
                                         <form action="{{ route('detailbeban') }}" method="GET">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <span>Pilih Bulan: </span><input type="text" class="form-control"
-                                                        name="StartBulan" id="datepicker" placeholder="Januari" />
-                                                    
+                                                    <span>Pilih Bulan: </span> 
+                                                    <input name="StartBulan" id="startDate" class="date-picker" />
+
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button class="btn btn-primary" type="submit"><i
@@ -1025,7 +1028,6 @@
                                                     <th>23.00</th>
                                                     <th>23.30</th>
                                                     <th>23.59</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1081,7 +1083,6 @@
                                                         <td>{{ $item->{'23_00'} }}</td>
                                                         <td>{{ $item->{'23_30'} }}</td>
                                                         <td>{{ $item->{'23_59'} }}</td>
-                                                        <td></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -1139,17 +1140,6 @@
                                                 <th>23.00</th>
                                                 <th>23.30</th>
                                                 <th>23.59</th>
-                                            </tr>
-                                            <tr>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
                                             </tr>
                                         </table>
                                     @endif
@@ -1230,11 +1220,42 @@
         });
     </script>
     <script>
-        $("#datepicker").datepicker({
-            format: "mm-yyyy",
-            viewMode: "months",
-            minViewMode: "months"
-        });
+            $('.date-picker').datepicker({
+                dateFormat: "mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                onClose: function(dateText, inst) {
+
+
+                    function isDonePressed() {
+                        return ($('#ui-datepicker-div').html().indexOf(
+                            'ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover'
+                            ) > -1);
+                    }
+
+                    if (isDonePressed()) {
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                        $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
+
+                        $('.date-picker')
+                        .focusout() //Added to remove focus from datepicker input box on selecting date
+                    }
+                },
+                beforeShow: function(input, inst) {
+
+                    inst.dpDiv.addClass('month_year_datepicker')
+
+                    if ((datestr = $(this).val()).length > 0) {
+                        year = datestr.substring(datestr.length - 4, datestr.length);
+                        month = datestr.substring(0, 2);
+                        $(this).datepicker('option', 'defaultDate', new Date(year, month - 1, 1));
+                        $(this).datepicker('setDate', new Date(year, month - 1, 1));
+                        $(".ui-datepicker-calendar").hide();
+                    }
+                }
+            });
     </script>
     <script>
         var ctx = document.getElementById('chartharian').getContext('2d');
@@ -1244,8 +1265,7 @@
                 labels: ["5 Hari yang lalu", "4 Hari yang lalu", "3 Hari yang lalu", "Kemarin", "Hari ini", ],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: ['40','57'
-                        ], // Specify the data values array
+                        data: ['40', '57'], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
                         backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
