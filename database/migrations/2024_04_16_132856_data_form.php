@@ -25,11 +25,6 @@ return new class extends Migration
             $table->integer('inom')->nullable();
             $table->integer('iset')->nullable();
             $table->string('up3')->nullable();
-            $table->integer('tertinggi_siang')->nullable();
-            $table->date('tanggal')->nullable();
-            $table->string('tertinggi_malam')->nullable();
-            $table->integer('rata_siang')->nullable();
-            $table->integer('rata_malam')->nullable();
             $table->timestamps();
         });
     }

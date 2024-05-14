@@ -16,18 +16,20 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
-        @if (Auth::user()->hasRole('Administrator')) {
+        @if (Auth::user()->hasRole('Administrator'))
+            {
             <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
-        } @elseif (Auth::user()->hasRole('operator')) 
+            }
+        @elseif (Auth::user()->hasRole('operator'))
             <a href="{{ route('detailbeban.operator') }}" class="btn btn-primary mb-4">Detail Beban</a>
-            @elseif (Auth::user()->hasRole('ValidatorOpsis')) 
+        @elseif (Auth::user()->hasRole('ValidatorOpsis'))
             <a href="{{ route('detailbeban.opsis') }}" class="btn btn-primary mb-4">Detail Beban</a>
-            @elseif (Auth::user()->hasRole('ValidatorFasop')) 
+        @elseif (Auth::user()->hasRole('ValidatorFasop'))
             <a href="{{ route('detailbeban.validfasop') }}" class="btn btn-primary mb-4">Detail Beban</a>
-            @elseif (Auth::user()->hasRole('EditorOpsis')) 
+        @elseif (Auth::user()->hasRole('EditorOpsis'))
             <a href="{{ route('detailbeban.editorop') }}" class="btn btn-primary mb-4">Detail Beban</a>
         @endif
-        
+
 
 
         <div class="row">
@@ -109,190 +111,28 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            @if ($data->count() > 0)
-                                <table class="table table-bordered" id="bebanharikemarin" cellspacing="0">
-                                    <thead>
+                            <table id="bebanhari" class="table-bordered table-md-6 table">
+                                <thead>
+                                    <th>Gardu Induk</th>
+                                    <th>Incoming</th>
+                                    <th>Total Hari Ini</th>
+                                    <th>Total Kemarin</th>
+                                    <th>Total Kemarin Lusa</th>
+                                </thead>
+
+                                <tbody>
+                                    @foreach ($data2 as $data => $d)
                                         <tr>
-                                            <th>Gardu Induk</th>
-                                            <th>Incoming</th>
-                                            <th>Total Hari Ini</th>
-                                            <th>Total Kemarin</th>
-                                            <th>Total Kemarin Lusa</th>
-                                            <th>Kenaikan</th>
-                                            <th>Perbandingan</th>
-                                            <th>00.30</th>
-                                            <th>01.00</th>
-                                            <th>01.30</th>
-                                            <th>02.00</th>
-                                            <th>02.30</th>
-                                            <th>03.00</th>
-                                            <th>03.30</th>
-                                            <th>04.00</th>
-                                            <th>04.30</th>
-                                            <th>05.00</th>
-                                            <th>05.30</th>
-                                            <th>06.00</th>
-                                            <th>06.30</th>
-                                            <th>07.00</th>
-                                            <th>07.30</th>
-                                            <th>08.00</th>
-                                            <th>08.30</th>
-                                            <th>09.00</th>
-                                            <th>09.30</th>
-                                            <th>10.00</th>
-                                            <th>10.30</th>
-                                            <th>11.00</th>
-                                            <th>11.30</th>
-                                            <th>12.00</th>
-                                            <th>12.30</th>
-                                            <th>13.00</th>
-                                            <th>13.30</th>
-                                            <th>14.00</th>
-                                            <th>14.30</th>
-                                            <th>15.00</th>
-                                            <th>15.30</th>
-                                            <th>16.00</th>
-                                            <th>16.30</th>
-                                            <th>17.00</th>
-                                            <th>17.30</th>
-                                            <th>18.00</th>
-                                            <th>18.30</th>
-                                            <th>19.00</th>
-                                            <th>19.30</th>
-                                            <th>20.00</th>
-                                            <th>20.30</th>
-                                            <th>21.00</th>
-                                            <th>21.30</th>
-                                            <th>22.00</th>
-                                            <th>22.30</th>
-                                            <th>23.00</th>
-                                            <th>23.30</th>
-                                            <th>23.59</th>
+                                            <td>{{ $d['gardu_induk'] }}</td>
+                                            <td>{{ $d['incoming'] }}</td>
+                                            <td>{{ $d['TotalHari'] }}</td>
+                                            <td>{{ $d['TotalKemarin'] }}</td>
+                                            <td>{{ $d['TotalLusaKemarin'] }}</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($data as $item)
-                                            <tr>
-                                                <td>{{ $item->gardu_induk }}</td>
-                                                <td>{{ $item->incoming }}</td>
-                                                <td>{{ $item->total_today }}</td>
-                                                <td>{{ $item->total_yesterday }}</td>
-                                                <td>{{ $item->total_day_before_yesterday }}</td>
-                                                <td>{{ $item->increase }}</td>
-                                                <td>{{ $item->comparison }}</td>
-                                                <td>{{ $item->{'00_30'} }}</td>
-                                                <td>{{ $item->{'01_00'} }}</td>
-                                                <td>{{ $item->{'01_30'} }}</td>
-                                                <td>{{ $item->{'02_00'} }}</td>
-                                                <td>{{ $item->{'02_30'} }}</td>
-                                                <td>{{ $item->{'03_00'} }}</td>
-                                                <td>{{ $item->{'03_30'} }}</td>
-                                                <td>{{ $item->{'04_00'} }}</td>
-                                                <td>{{ $item->{'04_30'} }}</td>
-                                                <td>{{ $item->{'05_00'} }}</td>
-                                                <td>{{ $item->{'05_30'} }}</td>
-                                                <td>{{ $item->{'06_00'} }}</td>
-                                                <td>{{ $item->{'06_30'} }}</td>
-                                                <td>{{ $item->{'07_00'} }}</td>
-                                                <td>{{ $item->{'07_30'} }}</td>
-                                                <td>{{ $item->{'08_00'} }}</td>
-                                                <td>{{ $item->{'08_30'} }}</td>
-                                                <td>{{ $item->{'09_00'} }}</td>
-                                                <td>{{ $item->{'09_30'} }}</td>
-                                                <td>{{ $item->{'10_00'} }}</td>
-                                                <td>{{ $item->{'10_30'} }}</td>
-                                                <td>{{ $item->{'11_00'} }}</td>
-                                                <td>{{ $item->{'11_30'} }}</td>
-                                                <td>{{ $item->{'12_00'} }}</td>
-                                                <td>{{ $item->{'12_30'} }}</td>
-                                                <td>{{ $item->{'13_00'} }}</td>
-                                                <td>{{ $item->{'13_30'} }}</td>
-                                                <td>{{ $item->{'14_00'} }}</td>
-                                                <td>{{ $item->{'14_30'} }}</td>
-                                                <td>{{ $item->{'15_00'} }}</td>
-                                                <td>{{ $item->{'15_30'} }}</td>
-                                                <td>{{ $item->{'16_00'} }}</td>
-                                                <td>{{ $item->{'16_30'} }}</td>
-                                                <td>{{ $item->{'17_00'} }}</td>
-                                                <td>{{ $item->{'17_30'} }}</td>
-                                                <td>{{ $item->{'18_00'} }}</td>
-                                                <td>{{ $item->{'18_30'} }}</td>
-                                                <td>{{ $item->{'19_00'} }}</td>
-                                                <td>{{ $item->{'19_30'} }}</td>
-                                                <td>{{ $item->{'20_00'} }}</td>
-                                                <td>{{ $item->{'20_30'} }}</td>
-                                                <td>{{ $item->{'21_00'} }}</td>
-                                                <td>{{ $item->{'21_30'} }}</td>
-                                                <td>{{ $item->{'22_00'} }}</td>
-                                                <td>{{ $item->{'22_30'} }}</td>
-                                                <td>{{ $item->{'23_00'} }}</td>
-                                                <td>{{ $item->{'23_30'} }}</td>
-                                                <td>{{ $item->{'23_59'} }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            @else
-                                <table id="bebanhari" class="table-bordered table-md-6 table">
-                                    <tr>
-                                        <th>Gardu Induk</th>
-                                        <th>Incoming</th>
-                                        <th>Total Hari Ini</th>
-                                        <th>Total Kemarin</th>
-                                        <th>Total Kemarin Lusa</th>
-                                        <th>Kenaikan</th>
-                                        <th>Perbandingan</th>
-                                        <th>00.30</th>
-                                        <th>01.00</th>
-                                        <th>01.30</th>
-                                        <th>02.00</th>
-                                        <th>02.30</th>
-                                        <th>03.00</th>
-                                        <th>03.30</th>
-                                        <th>04.00</th>
-                                        <th>04.30</th>
-                                        <th>05.00</th>
-                                        <th>05.30</th>
-                                        <th>06.00</th>
-                                        <th>06.30</th>
-                                        <th>07.00</th>
-                                        <th>07.30</th>
-                                        <th>08.00</th>
-                                        <th>08.30</th>
-                                        <th>09.00</th>
-                                        <th>09.30</th>
-                                        <th>10.00</th>
-                                        <th>10.30</th>
-                                        <th>11.00</th>
-                                        <th>11.30</th>
-                                        <th>12.00</th>
-                                        <th>12.30</th>
-                                        <th>13.00</th>
-                                        <th>13.30</th>
-                                        <th>14.00</th>
-                                        <th>14.30</th>
-                                        <th>15.00</th>
-                                        <th>15.30</th>
-                                        <th>16.00</th>
-                                        <th>16.30</th>
-                                        <th>17.00</th>
-                                        <th>17.30</th>
-                                        <th>18.00</th>
-                                        <th>18.30</th>
-                                        <th>19.00</th>
-                                        <th>19.30</th>
-                                        <th>20.00</th>
-                                        <th>20.30</th>
-                                        <th>21.00</th>
-                                        <th>21.30</th>
-                                        <th>22.00</th>
-                                        <th>22.30</th>
-                                        <th>23.00</th>
-                                        <th>23.30</th>
-                                        <th>23.59</th>
-                                    </tr>
-                                </table>
-                            @endif
+                                    @endforeach
+                                </tbody>
+
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -452,7 +292,8 @@
             type: 'line',
             data: {
                 labels: ["5 Bulan yang lalu", "4 Bulan yang lalu", "3 Bulan yang lalu", "Bulan kemarin",
-                    "Bulan ini"],
+                    "Bulan ini"
+                ],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
                         data: [{{ $totalBulanlima }}, {{ $totalBulanempat }}, {{ $totalBulanKemarinLusa }},

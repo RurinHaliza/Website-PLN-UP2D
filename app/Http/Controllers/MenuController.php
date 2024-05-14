@@ -168,13 +168,13 @@ class MenuController extends Controller
                     // dd($totalHari);
                 }
 
-                $data2[] = [
+                $data2[]= [
 
                     'gardu_induk' => $d->gardu_induk,
                     'incoming' => $d->incoming,
                     'TotalHari' => $totalHari,
-                    'TotalKemarin', 
-                    'TotalLusaKemarin',
+                    'TotalKemarin' => 0, 
+                    'TotalLusaKemarin' => 0,
                 ];
                 // dd($totalHari);
 
@@ -195,7 +195,7 @@ class MenuController extends Controller
            
             
             
-            return view('monitoring.beban', compact('totalBulanlima','totalBulanempat','totalBulanKemarinLusa','totalBulanKemarin','totalBulanIni','data','dataharike5','dataharike4','dataharike3','dataharike2','dataharike1','data3hari','selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
+            return view('monitoring.beban', compact('data2','totalBulanlima','totalBulanempat','totalBulanKemarinLusa','totalBulanKemarin','totalBulanIni','data','dataharike5','dataharike4','dataharike3','dataharike2','dataharike1','data3hari','selectedDate', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
         }
     }
 
