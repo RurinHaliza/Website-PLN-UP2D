@@ -40,7 +40,13 @@ class DashboardController extends Controller
 
         }elseif(Auth::user()->hasRole('ValidatorFasop')){
 
-            return view('Fasop.Dashboard');
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Fasop.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
 
         }elseif(Auth::user()->hasRole('EditorOpsis')){
 
