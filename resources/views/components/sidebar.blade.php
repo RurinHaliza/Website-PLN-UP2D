@@ -21,6 +21,10 @@
                 </li>
                 </li>
                 <li class="menu-header">Tabel Beban</li>
+                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                        <span>Tabel Data Form Bulanan</span></a>
+                </li>
                 <li class="{{ Request::is('Admin/bebantrafo') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i>
                         <span>Tabel Beban Trafo</span></a>

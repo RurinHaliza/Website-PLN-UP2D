@@ -11,6 +11,7 @@ use App\Http\Controllers\ValidatorController;
 use App\Http\Controllers\KTTController;
 use App\Http\Controllers\GIController;
 use App\Http\Controllers\PenyulangController;
+use App\Http\Controllers\DataForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,10 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::resource('createuser', \App\Http\Controllers\UserController::class);
     //REGISTER
     Route::post('createuser', [UserController::class, 'actionregister'])->name('actionregister');
+
+    Route::get('DataForm',[DataForm::class, 'index'])->name('dataform.index');
+    Route::get('TambahData',[DataForm::class, 'TambahData'])->name('tambahdataform.admin');
+
 });
 
 
