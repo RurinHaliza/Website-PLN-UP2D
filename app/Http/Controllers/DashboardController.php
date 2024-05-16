@@ -26,8 +26,13 @@ class DashboardController extends Controller
             return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
 
         }elseif(Auth::user()->hasRole('operator')){
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
 
-            return view('Operator.Dashboard');
+            return view('Operator.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
 
         }elseif(Auth::user()->hasRole('ValidatorOpsis')){
 

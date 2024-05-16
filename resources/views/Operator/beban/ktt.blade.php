@@ -65,6 +65,8 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
+                <a href="{{ route('download.ktt2.operator') }}" class="btn btn-warning"><i class="fas fa-fw fa-arrow-down"></i>Download Data</a>
+
             </div>
         </div>
     </div>
