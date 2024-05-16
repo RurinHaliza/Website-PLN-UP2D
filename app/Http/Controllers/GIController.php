@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\GITable;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\GIExport;
 
 class GIController extends Controller
 {
@@ -47,6 +49,13 @@ class GIController extends Controller
 
             return view('TabelBeban.gi.detail',compact('data'));
         }
+    }
+
+    public function Export()
+    {
+
+        return Excel::download(new GIExport, 'data_GI.xlsx');
+    
     }
 
 }

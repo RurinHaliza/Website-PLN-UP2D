@@ -43,12 +43,14 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.admin');
     Route::get('EditTrafo/{id}',[TrafoController::class, 'edit'])->name('edit.trafo.admin');
     Route::post('UpdateDataTrafo/{id}',[TrafoController::class, 'update'])->name('update.data.trafo');
+    Route::get('ExportTrafo', [TrafoController::class, 'Export'])->name('download.excel.admintrafo');
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
     Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
     Route::get('EditPenyulang/{id}',[PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
     Route::post('UPdateDataPenyulang/{id}',[PenyulangController::class, 'update'])->name('update.data.penyulang');
+    Route::get('ExportPenyulang', [PenyulangController::class, 'Export'])->name('download.excel.adminpenyulang');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
 
@@ -62,11 +64,14 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     //GI
     Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
     Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.admin');
+    Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.excel.adminGI');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
     Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
     Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+    Route::get('DownloadMVCELL',[MenuController::class,'downloadMVCELL'])->name('download.menu.mvcelladmin');
+
 
     //Management user
     Route::get('UserManagement',[UserController::class,'index'])->name('user.admin');

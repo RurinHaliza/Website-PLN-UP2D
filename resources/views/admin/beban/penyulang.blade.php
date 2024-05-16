@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
+                <a href="{{ route('download.excel.adminpenyulang') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
             </div>
         </div>
     </div>

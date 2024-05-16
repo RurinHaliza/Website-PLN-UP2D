@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Penyulang;
+use App\Exports\PenyulangExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenyulangController extends Controller
 {
@@ -103,4 +105,12 @@ class PenyulangController extends Controller
             }
         }
     }
+
+    public function Export()
+    {
+
+        return Excel::download(new PenyulangExport, 'data_penyulang.xlsx');
+    
+    }
+
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\trafo;
+use App\Exports\TrafoExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TrafoController extends Controller
 {
@@ -103,4 +105,13 @@ class TrafoController extends Controller
             // dd($update);
         }
     }
+
+    public function Export()
+    {
+
+        return Excel::download(new TrafoExport, 'data_trafo.xlsx');
+    
+    }
+
+
 }
