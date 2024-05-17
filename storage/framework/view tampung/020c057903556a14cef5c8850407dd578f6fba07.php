@@ -1,32 +1,40 @@
-@extends('layouts.app')
 
-@section('title', 'Beban Bulanan')
 
-@push('style')
+<?php $__env->startSection('title', 'Beban Bulanan'); ?>
+
+<?php $__env->startPush('style'); ?>
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
-@endpush
+    <link rel="stylesheet" href="<?php echo e(asset('library/jqvmap/dist/jqvmap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('library/summernote/dist/summernote-bs4.min.css')); ?>">
+<?php $__env->stopPush(); ?>
 
-@section('main')
+<?php $__env->startSection('main'); ?>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>Highlight Kondisi Sistem</h1>
             </div>
         </section>
-        <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
-        @if (Auth::user()->hasRole('Administrator')) 
-            <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
-         @elseif (Auth::user()->hasRole('operator')) 
-            <a href="{{ route('detailbeban.operator') }}" class="btn btn-primary mb-4">Detail Beban</a>
-        @elseif (Auth::user()->hasRole('ValidatorOpsis'))
-            <a href="{{ route('detailbeban.opsis') }}" class="btn btn-primary mb-4">Detail Beban</a>
-        @elseif (Auth::user()->hasRole('ValidatorFasop'))
-            <a href="{{ route('detailbeban.validfasop') }}" class="btn btn-primary mb-4">Detail Beban</a>
-        @elseif (Auth::user()->hasRole('EditorOpsis'))
-            <a href="{{ route('detailbeban.editorop') }}" class="btn btn-primary mb-4">Detail Beban</a>
-        @endif
+        <a href="<?php echo e(url()->previous()); ?>" class="btn btn-danger mb-4">Kembali</a>
+<<<<<<< HEAD
+        <?php if(Auth::user()->hasRole('Administrator')): ?>
+            {
+            <a href="<?php echo e(route('detailbeban')); ?>" class="btn btn-primary mb-4">Detail Beban</a>
+            }
+        <?php elseif(Auth::user()->hasRole('operator')): ?>
+=======
+        <?php if(Auth::user()->hasRole('Administrator')): ?> 
+            <a href="<?php echo e(route('detailbeban')); ?>" class="btn btn-primary mb-4">Detail Beban</a>
+         <?php elseif(Auth::user()->hasRole('operator')): ?> 
+>>>>>>> e14a79700a7fe61a80a2c9c23307eb8ebb336b45
+            <a href="<?php echo e(route('detailbeban.operator')); ?>" class="btn btn-primary mb-4">Detail Beban</a>
+        <?php elseif(Auth::user()->hasRole('ValidatorOpsis')): ?>
+            <a href="<?php echo e(route('detailbeban.opsis')); ?>" class="btn btn-primary mb-4">Detail Beban</a>
+        <?php elseif(Auth::user()->hasRole('ValidatorFasop')): ?>
+            <a href="<?php echo e(route('detailbeban.validfasop')); ?>" class="btn btn-primary mb-4">Detail Beban</a>
+        <?php elseif(Auth::user()->hasRole('EditorOpsis')): ?>
+            <a href="<?php echo e(route('detailbeban.editorop')); ?>" class="btn btn-primary mb-4">Detail Beban</a>
+        <?php endif; ?>
 
 
 
@@ -60,9 +68,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueYear }}</li>
-                            <li>Tanggal : {{ $maxDateYear }}</li>
-                            <li>Pukul : {{ $maxColumnYear }}</li>
+                            <li>MW: <?php echo e($maxValueYear); ?></li>
+                            <li>Tanggal : <?php echo e($maxDateYear); ?></li>
+                            <li>Pukul : <?php echo e($maxColumnYear); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -75,9 +83,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueMonth }}</li>
-                            <li>Tanggal : {{ $maxDateMonth }}</li>
-                            <li>Pukul : {{ $maxColumnMonth }}</li>
+                            <li>MW: <?php echo e($maxValueMonth); ?></li>
+                            <li>Tanggal : <?php echo e($maxDateMonth); ?></li>
+                            <li>Pukul : <?php echo e($maxColumnMonth); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -90,9 +98,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueToday }}</li>
-                            <li>Tanggal : {{ $selectedDate }} </li>
-                            <li>Pukul : {{ $maxColumnToday }}</li>
+                            <li>MW: <?php echo e($maxValueToday); ?></li>
+                            <li>Tanggal : <?php echo e($selectedDate); ?> </li>
+                            <li>Pukul : <?php echo e($maxColumnToday); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -119,15 +127,15 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($data2 as $data => $d)
+                                    <?php $__currentLoopData = $data2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data => $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td>{{ $d['gardu_induk'] }}</td>
-                                            <td>{{ $d['incoming'] }}</td>
-                                            <td>{{ $d['TotalHari'] }}</td>
-                                            <td>{{ $d['TotalKemarin'] }}</td>
-                                            <td>{{ $d['TotalLusaKemarin'] }}</td>
+                                            <td><?php echo e($d['gardu_induk']); ?></td>
+                                            <td><?php echo e($d['incoming']); ?></td>
+                                            <td><?php echo e($d['TotalHari']); ?></td>
+                                            <td><?php echo e($d['TotalKemarin']); ?></td>
+                                            <td><?php echo e($d['TotalLusaKemarin']); ?></td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
 
                             </table>
@@ -145,65 +153,21 @@
                 <div style="width: 100%; height:400px; margin: auto;">
                     <canvas id="barChart"></canvas>
                 </div>
-                {{-- <div class="row mt-5">
-                    <div class="col-md-4">
-                        <a href="{{ route('bebanharian') }}" class="btn btn-primary">Beban Harian</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="{{ route('bebanminggu') }}" class="btn btn-warning">Beban Mingguan</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="{{ route('bebanbulan') }}" class="btn btn-danger">Beban Bulanan</a>
-                    </div>
-                </div> --}}
+                
 
             </div>
         </div>
         <div>
 
         </div>
-        {{-- <div class="card mt-3">
-            <div class="card-header">
-                <h5 class="m-0 font-weight-bold text-primary">Beban Sistem Jatim Tahun</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Bulan</th> <!-- Kolom kosong di bagian kiri atas -->
-                                @foreach ($nilaiTertinggiPerBulan as $bulan => $nilai)
-                                    <th>{{ $bulan }}</th> <!-- Kolom bulan -->
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Beban Tertinggi (MW)</td> <!-- Label di sebelah kiri -->
-                                @foreach ($nilaiTertinggiPerBulan as $nilai)
-                                    <td>{{ $nilai }}</td> <!-- Nilai beban tertinggi -->
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>Beban Rata-rata (MW)</td> <!-- Label di sebelah kiri untuk nilai rata-rata -->
-                                @foreach ($nilaiRataRataPerBulan as $nilaiRataRata)
-                                    <td>{{ $nilaiRataRata }}</td> <!-- Nilai beban rata-rata -->
-                                @endforeach
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
-            </div> --}}
+        
     </div>
 
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
+<?php $__env->startPush('scripts'); ?>
+    <script src="<?php echo e(asset('library/chart.js/dist/Chart.min.js')); ?>"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -294,8 +258,8 @@
                 ],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: [{{ $totalBulanlima }}, {{ $totalBulanempat }}, {{ $totalBulanKemarinLusa }},
-                            {{ $totalBulanKemarin }}, {{ $totalBulanIni }},
+                        data: [<?php echo e($totalBulanlima); ?>, <?php echo e($totalBulanempat); ?>, <?php echo e($totalBulanKemarinLusa); ?>,
+                            <?php echo e($totalBulanKemarin); ?>, <?php echo e($totalBulanIni); ?>,
                         ], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
@@ -328,8 +292,9 @@
                 labels: ["5 Hari yang lalu", "4 Hari yang lalu", "3 Hari yang lalu", "Kemarin", "Hari ini", ],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: [{{ $dataharike5 }}, {{ $dataharike4 }}, {{ $dataharike3 }},
-                            {{ $dataharike2 }}, {{ $dataharike1 }}
+                        data: [<?php echo e($dataharike5); ?>, <?php echo e($dataharike4); ?>, <?php echo e($dataharike3); ?>,
+                            <?php echo e($dataharike2); ?>, <?php echo e($dataharike1); ?>
+
                         ], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
@@ -358,13 +323,15 @@
 
 
     <!-- JS Libraies -->
-    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
-    <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="<?php echo e(asset('library/simpleweather/jquery.simpleWeather.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/chart.js/dist/Chart.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/jqvmap/dist/jquery.vmap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/jqvmap/dist/maps/jquery.vmap.world.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/summernote/dist/summernote-bs4.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('library/chocolat/dist/js/jquery.chocolat.min.js')); ?>"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/index-0.js') }}"></script>
-@endpush
+    <script src="<?php echo e(asset('js/page/index-0.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\MasterDataPLN2\resources\views/monitoring/beban.blade.php ENDPATH**/ ?>
