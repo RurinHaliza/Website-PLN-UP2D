@@ -276,6 +276,8 @@
             })
         })
 
+        console.log(google_sat);
+
         var OSM2 = new ol.layer.Tile({
             source: new ol.source.OSM(),
             projection: 'EPSG:32749',
@@ -322,110 +324,6 @@
                         serverType: 'geoserver'
                     })
                 }),
-
-                new ol.layer.Tile({
-                    // title: 'persil_belum',
-                    title: 'filter_belum',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:persil_belum',
-                            'LAYERS': 'persil:filter_belum',
-                            @if (Auth::user()->role == 2)
-                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
-                            @elseif (Auth::user()->role == 3)
-                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
-                            @endif
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'persil_sudah',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:persil_sudah',
-                            'LAYERS': 'persil:persil_sudah',
-                            @if (Auth::user()->role == 2)
-                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
-                            @elseif (Auth::user()->role == 3)
-                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
-                            @endif
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'persil_ganda',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            'LAYERS': 'kesra:persil_ganda',
-                            // 'LAYERS': 'persil:persil_ganda',
-                            @if (Auth::user()->role == 2)
-                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
-                            @elseif (Auth::user()->role == 3)
-                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
-                            @endif
-
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'BATAS_RW',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            'LAYERS': 'persil:batas_rw_sby'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'BATAS_KEL',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:BATASKEL'
-                            'LAYERS': 'persil:BATASKEL'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'BATAS_KEC',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:BATASKEC'
-                            'LAYERS': 'persil:BATASKEC'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-
-
-
             ]
         });
 
