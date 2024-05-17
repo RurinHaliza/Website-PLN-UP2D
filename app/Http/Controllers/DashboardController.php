@@ -54,7 +54,13 @@ class DashboardController extends Controller
 
         }elseif(Auth::user()->hasRole('Visitor')){
 
-            return view('Visitor.Dashboard');
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Visitor.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
 
         }
 
