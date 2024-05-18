@@ -1010,40 +1010,46 @@
         });
     </script>
     <script>
-        // Menginisialisasi tab yang aktif saat halaman dimuat
         document.addEventListener("DOMContentLoaded", function() {
-
             // Mengambil semua elemen tab
             var tabs = document.querySelectorAll('.nav-link');
+    
+            // Fungsi untuk mengaktifkan tab berdasarkan ID
+            function activateTab(targetId) {
+                // Menghapus kelas 'active' dari semua tab
+                tabs.forEach(function(tab) {
+                    tab.classList.remove('active');
+                });
+                // Menghapus kelas 'show active' dari semua tab konten
+                var tabContents = document.querySelectorAll('.tab-pane');
+                tabContents.forEach(function(content) {
+                    content.classList.remove('show', 'active');
+                });
+                // Menambahkan kelas 'active' ke tab yang sesuai
+                document.querySelector(`.nav-link[href="${targetId}"]`).classList.add('active');
+                // Menambahkan kelas 'show active' ke konten tab yang sesuai
+                document.querySelector(targetId).classList.add('show', 'active');
+            }
+    
             // Menetapkan event listener untuk setiap tab
             tabs.forEach(function(tab) {
                 tab.addEventListener('click', function(event) {
-                    // Menghapus kelas 'active' dari semua tab
-                    tabs.forEach(function(tab) {
-                        tab.classList.remove('active');
-                    });
-                    // Menghapus kelas 'show active' dari semua tab konten
-                    var tabContents = document.querySelectorAll('.tab-pane');
-                    tabContents.forEach(function(content) {
-                        content.classList.remove('show', 'active');
-                    });
-                    // Menambahkan kelas 'active' ke tab yang diklik
-                    tab.classList.add('active');
-                    // Menambahkan kelas 'show active' ke konten tab yang sesuai
                     var targetId = tab.getAttribute('href');
-                    document.querySelector(targetId).classList.add('show', 'active');
+                    // Mengaktifkan tab yang diklik
+                    activateTab(targetId);
+                    // Menyimpan ID tab yang aktif di localStorage
+                    localStorage.setItem('activeTab', targetId);
                     // Mencegah tindakan default dari tautan
                     event.preventDefault();
                 });
             });
-        });
-
-        // Mengatur tab Harian sebagai tab default
-        document.addEventListener("DOMContentLoaded", function() {
-            // Menambahkan kelas 'show active' ke tab Harian
-            document.querySelector('#tabHarian').classList.add('show', 'active');
+    
+            // Mengatur tab terakhir yang aktif atau default ke tab Harian
+            var activeTab = localStorage.getItem('activeTab') || '#tabHarian';
+            activateTab(activeTab);
         });
     </script>
+    
     <script>
             $('.date-picker').datepicker({
                 dateFormat: "mm/yy",
@@ -1071,7 +1077,6 @@
                 beforeShow: function(input, inst) {
 
                     inst.dpDiv.addClass('month_year_datepicker')
-
                     if ((datestr = $(this).val()).length > 0) {
                         year = datestr.substring(datestr.length - 4, datestr.length);
                         month = datestr.substring(0, 2);
