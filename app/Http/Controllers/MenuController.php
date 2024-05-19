@@ -17,6 +17,8 @@ use App\Models\ktt;
 use App\Models\mvcell;
 use Illuminate\Support\Facades\DB;
 // use Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\mvcellExport;
 
 class MenuController extends Controller
 {
@@ -586,6 +588,13 @@ class MenuController extends Controller
             return view('admin.beban.MVCELL.edit', compact('data'));
         }
     }
+
+    public function downloadMVCELL(){
+
+        return Excel::download(new mvcellExport, 'data_mvcell.xlsx');
+
+    }
+
 
     public function bebanup3()
     {

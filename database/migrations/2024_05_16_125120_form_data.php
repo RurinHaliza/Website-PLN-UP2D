@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('FormData', function (Blueprint $table) {
+            $table->id();
+            $table->string('gardu_induk')->nullable();
+            $table->string('wilayah')->nullable();
+            $table->string('up3')->nullable();
+            $table->integer('no_trafo')->nullable();
+            $table->integer('primer')->nullable();
+            $table->integer('sekunder')->nullable();
+            $table->integer('daya')->nullable();
+            $table->integer('Inom')->nullable();
+            $table->integer('ISiang')->nullable();
+            $table->integer('Imalam')->nullable();
+            $table->double('persensiang')->nullable();
+            $table->double('persenmalam')->nullable();
+            $table->integer('bebantertinggi')->nullable();
+            $table->double('persentertinggi')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('FormData');
+    }
+};

@@ -11,6 +11,7 @@ use App\Http\Controllers\ValidatorController;
 use App\Http\Controllers\KTTController;
 use App\Http\Controllers\GIController;
 use App\Http\Controllers\PenyulangController;
+use App\Http\Controllers\DataForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,12 +44,14 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.admin');
     Route::get('EditTrafo/{id}',[TrafoController::class, 'edit'])->name('edit.trafo.admin');
     Route::post('UpdateDataTrafo/{id}',[TrafoController::class, 'update'])->name('update.data.trafo');
+    Route::get('ExportTrafo', [TrafoController::class, 'Export'])->name('download.excel.admintrafo');
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
     Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
     Route::get('EditPenyulang/{id}',[PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
     Route::post('UPdateDataPenyulang/{id}',[PenyulangController::class, 'update'])->name('update.data.penyulang');
+    Route::get('ExportPenyulang', [PenyulangController::class, 'Export'])->name('download.excel.adminpenyulang');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
 
@@ -62,11 +65,14 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     //GI
     Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
     Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.admin');
+    Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.excel.adminGI');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
     Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
     Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+    Route::get('DownloadMVCELL',[MenuController::class,'downloadMVCELL'])->name('download.menu.mvcelladmin');
+
 
     //Management user
     Route::get('UserManagement',[UserController::class,'index'])->name('user.admin');
@@ -77,6 +83,10 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::resource('createuser', \App\Http\Controllers\UserController::class);
     //REGISTER
     Route::post('createuser', [UserController::class, 'actionregister'])->name('actionregister');
+
+    Route::get('DataForm',[DataForm::class, 'index'])->name('dataform.index');
+    Route::get('TambahData',[DataForm::class, 'TambahData'])->name('tambahdataform.admin');
+
 });
 
 
@@ -94,22 +104,27 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
     //Tabel Trafo 
     Route::get('DataTrafo', [TrafoController::class, 'index'])->name('trafo.operator');
     Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.operator');
+    Route::get('ExportTrafo', [TrafoController::class, 'Export'])->name('download.excel.operatortrafo');
 
     //MVCELL
     Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.operator');
     Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.operator');
+    Route::get('DownloadMVCELL',[MenuController::class,'downloadMVCELL'])->name('download.mvcell.operator');
 
     //Penyulang
     Route::get('penyulang', [PenyulangController::class, 'index'])->name('penyulang.operator');
     Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.operator');
+    Route::get('ExportPenyulang', [PenyulangController::class, 'Export'])->name('download.penyulang.operator');
 
     //KTT
     Route::get('KTT', [KTTController::class, 'index'])->name('ktt.operator');
     Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.operator');
+    Route::get('DownloadKTT',[KTTController::class, 'Export'])->name('download.ktt2.operator');
 
     //GI
     Route::get('GI',[GIController::class,'index'])->name('GI.operator');
     Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.operator');
+    Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.gi.operator');
 
 });
 

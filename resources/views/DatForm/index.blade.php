@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data MVCELL')
+@section('title', 'Data Form')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -13,12 +13,12 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>MVCELL Jatim</h1>
+                <h1>Data Form</h1>
             </div>
         </section>
         <div class="card mt-3">
             <div class="card-header">
-                <h5 class="m-0 font-weight-bold text-primary">Tabel Data</h5>
+                <h5 class="m-0 font-weight-bold text-primary">Tabel Record Data</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -26,31 +26,15 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>ID Cell</th>
-                                <th>Lokasi Penempatan</th>
-                                <th>Nama JTM</th>
-                                <th>Merk</th>
+                                <th>Gardu Induk</th>
+                                <th>Wilayah</th>
+                                <th>UP3</th>
+                                <th>No Trafo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
-
-                            @foreach ($data as $d)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $d->ID_CELL }}</td>
-                                    <td>{{ $d->LOKASI_PENEMPATAN }}</td>
-                                    <td>{{ $d->NAMA_JTM }}</td>
-                                    <td>{{ $d->MERK }}</td>
-                                    <td><a href="{{ route('detail.mvcell',[$d->id]) }}" class="btn btn-primary">Detail</a>
-                                        <a href="{{ route('edit.mvcell', [$d->id]) }}" class="btn btn-warning">Edit Data</a>
-                                    </td>
-                                </tr>
-                            @endforeach
 
                         </tbody>
 
@@ -58,7 +42,8 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{ route('download.menu.mvcelladmin') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
+                <a href="{{ route('download.excel.adminGI') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
+                <a href="{{ route('tambahdataform.admin') }}" class="btn btn-warning"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
             </div>
         </div>
     </div>

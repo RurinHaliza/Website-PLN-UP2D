@@ -183,26 +183,7 @@
                                             <div>Rata-Rata : {{ $averageValueM }}</div>
                                         </div>
                                     </a>
-                                    {{-- <a class="ticket-item">
-                                    <div class="ticket-title">
-                                        <button class="btn btn-primary">Beban Trafo</button>
-                                    </div>
-                                </a>
-                                <a class="ticket-item">
-                                    <div class="ticket-info">
-                                        <button class="btn btn-primary">Beban Penyulang</button>
-                                    </div>
-                                </a>
-                                <a class="ticket-item">
-                                    <div class="ticket-info">
-                                        <button class="btn btn-primary">Beban UP3</button>
-                                    </div>
-                                </a>
-                                <a class="ticket-item">
-                                    <div class="ticket-info">
-                                        <button class="btn btn-primary">Beban KTT</button>
-                                    </div>
-                                </a> --}}
+
                                 </div>
                             </div>
                         </div>
@@ -417,8 +398,6 @@
 
             </div>
             <div class="tab-pane fade" id="tabMingguan">
-                <!-- Konten untuk tab Mingguan -->
-                {{-- <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a> --}}
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card card-hero">
@@ -505,85 +484,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card card-hero">
-                            <div class="card-body p-0">
-                                <div class="tickets-list">
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Siang</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueSiangMingguan > 0)
-                                                <div>Tertinggi : {{ $maxValueSiangMingguan }}</div>
-                                            @else
-                                                <div>Tertinggi :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Tanggal : </div>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueSiangMingguan > 0)
-                                                <div>Pukul : {{ $maxColumnSiangMingguan }}</div>
-                                            @else
-                                                <div>Pukul :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueSiangMingguan }}</div>
-                                        </div>
-                                    </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Malam</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueMalamMingguan > 0)
-                                                <div>Tertinggi : {{ $maxValueMalamMingguan }}</div>
-                                            @else
-                                                <div>Tertinggi :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Tanggal : </div>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueMalamMingguan > 0)
-                                                <div>Pukul : {{ $maxColumnMalamMingguan }}</div>
-                                            @else
-                                                <div>Pukul :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueMalamMingguan }}</div>
-                                        </div>
-                                    </a>
-                                    {{-- <a class="ticket-item">
-                                                    <div class="ticket-title">
-                                                        <button class="btn btn-primary">Beban Trafo</button>
-                                                    </div>
-                                                </a>
-                                                <a class="ticket-item">
-                                                    <div class="ticket-info">
-                                                        <button class="btn btn-primary">Beban Penyulang</button>
-                                                    </div>
-                                                </a>
-                                                <a class="ticket-item">
-                                                    <div class="ticket-info">
-                                                        <button class="btn btn-primary">Beban UP3</button>
-                                                    </div>
-                                                </a>
-                                                <a class="ticket-item">
-                                                    <div class="ticket-info">
-                                                        <button class="btn btn-primary">Beban KTT</button>
-                                                    </div>
-                                                </a> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
+
+                    <div class="col-12 col-md-9 col-lg-9">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-header">
@@ -591,10 +493,10 @@
                                     <div class="card-body">
                                         <form action="{{ route('detailbeban') }}" method="GET">
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <input type="date" name="start_date" class="form-control">
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <input type="date" name="end_date" class="form-control">
                                                 </div>
                                                 <div class="col-md-4">
@@ -872,85 +774,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card card-hero">
-                            <div class="card-body p-0">
-                                <div class="tickets-list">
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Siang</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueSiangBulanan > 0)
-                                                <div>Tertinggi : {{ $maxValueSiangBulanan }}</div>
-                                            @else
-                                                <div>Tertinggi :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Tanggal : {{ $selectedDate2 }}</div>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueSiangBulanan > 0)
-                                                <div>Pukul : {{ $maxColumnSiangBulanan }}</div>
-                                            @else
-                                                <div>Pukul :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueSiangBulanan }}</div>
-                                        </div>
-                                    </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Malam</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueMalamBulanan > 0)
-                                                <div>Tertinggi : {{ $maxValueMalamBulanan }}</div>
-                                            @else
-                                                <div>Tertinggi :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Tanggal : {{ $selectedDate }}</div>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueMalamBulanan > 0)
-                                                <div>Pukul : {{ $maxColumnMalamBulanan }}</div>
-                                            @else
-                                                <div>Pukul :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            <div>Rata-Rata : {{ $averageValueMalamBulanan }}</div>
-                                        </div>
-                                    </a>
-                                    {{-- <a class="ticket-item">
-                                    <div class="ticket-title">
-                                        <button class="btn btn-primary">Beban Trafo</button>
-                                    </div>
-                                </a>
-                                <a class="ticket-item">
-                                    <div class="ticket-info">
-                                        <button class="btn btn-primary">Beban Penyulang</button>
-                                    </div>
-                                </a>
-                                <a class="ticket-item">
-                                    <div class="ticket-info">
-                                        <button class="btn btn-primary">Beban UP3</button>
-                                    </div>
-                                </a>
-                                <a class="ticket-item">
-                                    <div class="ticket-info">
-                                        <button class="btn btn-primary">Beban KTT</button>
-                                    </div>
-                                </a> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
+
+                    <div class="col-12 col-md-9 col-lg-9">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-header">

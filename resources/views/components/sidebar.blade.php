@@ -21,6 +21,10 @@
                 </li>
                 </li>
                 <li class="menu-header">Tabel Beban</li>
+                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fas fa-fw fa-boxes-alt"></i>
+                        <span>Tabel Data Form Bulanan</span></a>
+                </li>
                 <li class="{{ Request::is('Admin/bebantrafo') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i>
                         <span>Tabel Beban Trafo</span></a>
@@ -141,35 +145,28 @@
 
         </li>
         <li class="menu-header">Tabel Beban</li>
-        <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel
+        <li class="{{ Request::is('bebantrafo.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebantrafo.fasop') }}"><i class="fas fa-fw fa-boxes-alt"></i> <span>Tabel
                     Beban Trafo</span></a>
         </li>
-        <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fas fa-fw fa-hourglass"></i>
+        <li class="{{ Request::is('bebanpenyulang.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanpenyulang.fasop') }}"><i class="fas fa-fw fa-hourglass"></i>
                 <span>Tabel
                     Beban Penyulang</span></a>
         </li>
-        <li class="{{ Request::is('bebanktt.opsis') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt.opsis') }}"><i class="fas fa-th-large"></i> <span>Tabel
+        <li class="{{ Request::is('bebanktt.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanktt.fasop') }}"><i class="fas fa-th-large"></i> <span>Tabel
                     Beban
                     KTT</span></a>
         </li>
-        <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
+        <li class="{{ Request::is('beban.GI.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('beban.GI.fasop') }}"><i class="fas fa-th-large"></i> <span>Tabel Beban
                     GI</span></a>
         </li>
         <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fas fa-th-large"></i> <span>Tabel
                             Data MVCELL</span></a>
                 </li>
-
-        <li class="menu-header">Manajemen User</li>
-
-        <li class='{{ Request::is('user.admin') ? 'active' : '' }}'>
-            <a class="nav-link" href="{{ route('user.admin') }}"><i class="fas fa-user-alt"></i>User</a>
-        </li>
-        </li>
         </ul>
 
 
