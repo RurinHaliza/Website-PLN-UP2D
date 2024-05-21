@@ -38,62 +38,61 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan');
-    
+
     //Trafo
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.admin');
-    Route::get('EditTrafo/{id}',[TrafoController::class, 'edit'])->name('edit.trafo.admin');
-    Route::post('UpdateDataTrafo/{id}',[TrafoController::class, 'update'])->name('update.data.trafo');
+    Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('detail.trafo.admin');
+    Route::get('EditTrafo/{id}', [TrafoController::class, 'edit'])->name('edit.trafo.admin');
+    Route::post('UpdateDataTrafo/{id}', [TrafoController::class, 'update'])->name('update.data.trafo');
     Route::get('ExportTrafo', [TrafoController::class, 'Export'])->name('download.excel.admintrafo');
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang');
-    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
-    Route::get('EditPenyulang/{id}',[PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
-    Route::post('UPdateDataPenyulang/{id}',[PenyulangController::class, 'update'])->name('update.data.penyulang');
+    Route::get('DetailPenyulang/{id}', [PenyulangController::class, 'detail'])->name('penyulang.detail.admin');
+    Route::get('EditPenyulang/{id}', [PenyulangController::class, 'editPenyulang'])->name('edit.penyulang.admin');
+    Route::post('UPdateDataPenyulang/{id}', [PenyulangController::class, 'update'])->name('update.data.penyulang');
     Route::get('ExportPenyulang', [PenyulangController::class, 'Export'])->name('download.excel.adminpenyulang');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
 
     //KTT 
     Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt');
-    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.ktt.admin');
-    Route::get('EditKTT/{id}',[KTTController::class, 'Edit'])->name('edit.ktt.admin');
-    Route::post('UpdateData/{id}',[KTTController::class, 'updateData'])->name('update.ktt.admin');
+    Route::get('DetailPenyulang/{id}', [PenyulangController::class, 'detail'])->name('detail.ktt.admin');
+    Route::get('EditKTT/{id}', [KTTController::class, 'Edit'])->name('edit.ktt.admin');
+    Route::post('UpdateData/{id}', [KTTController::class, 'updateData'])->name('update.ktt.admin');
     Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.excel.adminktt');
 
     //GI
-    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.admin');
+    Route::get('BebanGI', [GIController::class, 'index'])->name('beban.GI');
+    Route::get('DetailGI/{id}', [GIController::class, 'detail'])->name('detail.gi.admin');
     Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.excel.adminGI');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
-    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
-    Route::get('DownloadMVCELL',[MenuController::class,'downloadMVCELL'])->name('download.menu.mvcelladmin');
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell');
+    Route::get('mvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell');
+    Route::get('EditMVCELL/{id}', [MenuController::class, 'EditMVCELL'])->name('edit.mvcell');
+    Route::get('DownloadMVCELL', [MenuController::class, 'downloadMVCELL'])->name('download.menu.mvcelladmin');
 
 
     //Management user
-    Route::get('UserManagement',[UserController::class,'index'])->name('user.admin');
-    Route::get('TambahUser',[UserController::class,'create'])->name('user.create');
-    Route::post('TambahUserPost',[UserController::class,'store'])->name('user.store');
+    Route::get('UserManagement', [UserController::class, 'index'])->name('user.admin');
+    Route::get('TambahUser', [UserController::class, 'create'])->name('user.create');
+    Route::post('TambahUserPost', [UserController::class, 'store'])->name('user.store');
 
     Route::get('create', [UserController::class, 'create'])->name('create');
     Route::resource('createuser', \App\Http\Controllers\UserController::class);
     //REGISTER
     Route::post('createuser', [UserController::class, 'actionregister'])->name('actionregister');
 
-    Route::get('DataForm',[DataForm::class, 'index'])->name('dataform.index');
-    Route::get('TambahData',[DataForm::class, 'TambahData'])->name('tambahdataform.admin');
-
+    Route::get('DataForm', [DataForm::class, 'index'])->name('dataform.index');
+    Route::get('TambahData', [DataForm::class, 'TambahData'])->name('tambahdataform.admin');
 });
 
 
 Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.operator');
-    Route::get('ScadaFail',[OperatorController::class,'ScadaFailIndex'])->name('scadafail');
+    Route::get('ScadaFail', [OperatorController::class, 'ScadaFailIndex'])->name('scadafail');
 
     //
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.operator');
@@ -103,29 +102,28 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.operator');
     //Tabel Trafo 
     Route::get('DataTrafo', [TrafoController::class, 'index'])->name('trafo.operator');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.operator');
+    Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('detail.trafo.operator');
     Route::get('ExportTrafo', [TrafoController::class, 'Export'])->name('download.excel.operatortrafo');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.operator');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.operator');
-    Route::get('DownloadMVCELL',[MenuController::class,'downloadMVCELL'])->name('download.mvcell.operator');
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell.operator');
+    Route::get('mvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.operator');
+    Route::get('DownloadMVCELL', [MenuController::class, 'downloadMVCELL'])->name('download.mvcell.operator');
 
     //Penyulang
     Route::get('penyulang', [PenyulangController::class, 'index'])->name('penyulang.operator');
-    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.operator');
+    Route::get('Detail/{id}', [PenyulangController::class, 'detail'])->name('detail.penyulang.operator');
     Route::get('ExportPenyulang', [PenyulangController::class, 'Export'])->name('download.penyulang.operator');
 
     //KTT
     Route::get('KTT', [KTTController::class, 'index'])->name('ktt.operator');
-    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.operator');
-    Route::get('DownloadKTT',[KTTController::class, 'Export'])->name('download.ktt2.operator');
+    Route::get('DetailKTT/{id}', [KTTController::class, 'Detail'])->name('detail.ktt.operator');
+    Route::get('DownloadKTT', [KTTController::class, 'Export'])->name('download.ktt2.operator');
 
     //GI
-    Route::get('GI',[GIController::class,'index'])->name('GI.operator');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.operator');
+    Route::get('GI', [GIController::class, 'index'])->name('GI.operator');
+    Route::get('DetailGI/{id}', [GIController::class, 'detail'])->name('detail.gi.operator');
     Route::get('ExportExcel', [KTTController::class, 'Export'])->name('download.gi.operator');
-
 });
 
 Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
@@ -136,33 +134,33 @@ Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:Valid
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.opsis');
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.opsis');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.opsis');
-    
+
     //Trafo
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.opsis');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.opsis');
+    Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('detail.trafo.opsis');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.validopsis');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.validopsis');
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell.validopsis');
+    Route::get('mvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.validopsis');
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang.opsis');
-    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.opsis');
+    Route::get('DetailPenyulang/{id}', [PenyulangController::class, 'detail'])->name('detail.penyulang.opsis');
 
     //KTT
     Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt.opsis');
-    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.opsis');
+    Route::get('DetailKTT/{id}', [KTTController::class, 'Detail'])->name('detail.ktt.opsis');
 
     //GI
-    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI.opsis');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.opsis');
+    Route::get('BebanGI', [GIController::class, 'index'])->name('beban.GI.opsis');
+    Route::get('DetailGI/{id}', [GIController::class, 'detail'])->name('detail.gi.opsis');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.opsis');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.opsis');
-    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell.opsis');
-    
-    Route::get('ApprovalScadaFail',[ValidatorController::class,'index'])->name('approval.opsis');
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell.opsis');
+    Route::get('mvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.opsis');
+    Route::get('EditMVCELL/{id}', [MenuController::class, 'EditMVCELL'])->name('edit.mvcell.opsis');
+
+    Route::get('ApprovalScadaFail', [ValidatorController::class, 'index'])->name('approval.opsis');
 });
 
 Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
@@ -173,31 +171,30 @@ Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:Valid
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.validfasop');
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.validfasop');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.validfasop');
-    
+
     //Trafo
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.fasop');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('detail.trafo.fasop');
+    Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('detail.trafo.fasop');
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang.fasop');
-    Route::get('Detail/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.fasop');
+    Route::get('Detail/{id}', [PenyulangController::class, 'detail'])->name('detail.penyulang.fasop');
 
     Route::get('bebanup3', [MenuController::class, 'bebanup3'])->name('bebanup3');
-    
+
     //KTT
     Route::get('bebanktt', [KTTController::class, 'index'])->name('bebanktt.fasop');
-    Route::get('DetailKTT/{id}',[KTTController::class, 'Detail' ])->name('detail.ktt.fasop');
+    Route::get('DetailKTT/{id}', [KTTController::class, 'Detail'])->name('detail.ktt.fasop');
 
     //GI
-    Route::get('BebanGI',[GIController::class,'index'])->name('beban.GI.fasop');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail' ])->name('detail.gi.fasop');
+    Route::get('BebanGI', [GIController::class, 'index'])->name('beban.GI.fasop');
+    Route::get('DetailGI/{id}', [GIController::class, 'detail'])->name('detail.gi.fasop');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.fasop');
-    Route::get('mvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.fasop');
-    Route::get('EditMVCELL/{id}',[MenuController::class, 'EditMVCELL'])->name('edit.mvcell.fasop');
-
-   });
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell.fasop');
+    Route::get('mvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.fasop');
+    Route::get('EditMVCELL/{id}', [MenuController::class, 'EditMVCELL'])->name('edit.mvcell.fasop');
+});
 
 Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOpsis']], function () {
 
@@ -215,25 +212,50 @@ Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], 
 
     //Tabel Trafo 
     Route::get('trafo', [TrafoController::class, 'index'])->name('trafo.visitor');
-    Route::get('DetailTrafo/{id}',[TrafoController::class, 'detail'])->name('trafo.detail.visitor');
+    Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('trafo.detail.visitor');
 
     //MVCELL
-    Route::get('mvcell',[MenuController::class, 'mvcell'])->name('data.mvcell.visitor');
-    Route::get('Detailmvcell/{id}',[MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.visitor');
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell.visitor');
+    Route::get('Detailmvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.visitor');
 
     //Penyulang
     Route::get('penyulang', [PenyulangController::class, 'index'])->name('penyulang.visitor');
-    Route::get('DetailPenyulang/{id}',[PenyulangController::class, 'detail'])->name('detail.penyulang.visitor');
+    Route::get('DetailPenyulang/{id}', [PenyulangController::class, 'detail'])->name('detail.penyulang.visitor');
 
     //KTT
     Route::get('KTT', [KTTController::class, 'index'])->name('ktt.visitor');
-    Route::get('KTTDetail/{id}',[KTTController::class, 'Detail'])->name('detail.ktt.visitor');
+    Route::get('KTTDetail/{id}', [KTTController::class, 'Detail'])->name('detail.ktt.visitor');
 
     //GI
-    Route::get('GI',[GIController::class,'index'])->name('GI.visitor');
-    Route::get('DetailGI/{id}',[GIController::class, 'detail'])->name('detail.gi.visitor');
-
+    Route::get('GI', [GIController::class, 'index'])->name('GI.visitor');
+    Route::get('DetailGI/{id}', [GIController::class, 'detail'])->name('detail.gi.visitor');
 });
+
+Route::group(['prefix' => 'Manager', 'middleware' => ['auth', 'role:Manager']], function () {
+
+    Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.manager');
+
+    //Tabel Trafo 
+    Route::get('trafo', [TrafoController::class, 'index'])->name('trafo.manager');
+    Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('trafo.detail.visitor');
+
+    //MVCELL
+    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('mvcell.manager');
+    Route::get('Detailmvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.visitor');
+
+    //Penyulang
+    Route::get('penyulang', [PenyulangController::class, 'index'])->name('manager.penyulang');
+    Route::get('DetailPenyulang/{id}', [PenyulangController::class, 'detail'])->name('detail.penyulang.visitor');
+
+    //KTT
+    Route::get('KTT', [KTTController::class, 'index'])->name('manager.ktt');
+    Route::get('KTTDetail/{id}', [KTTController::class, 'Detail'])->name('detail.ktt.visitor');
+
+    //GI
+    Route::get('GI', [GIController::class, 'index'])->name('manager.gi');
+    Route::get('DetailGI/{id}', [GIController::class, 'detail'])->name('detail.gi.visitor');
+});
+
 
 // Layout
 Route::get('/layout-default-layout', function () {

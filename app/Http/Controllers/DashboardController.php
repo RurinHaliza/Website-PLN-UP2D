@@ -62,7 +62,18 @@ class DashboardController extends Controller
 
             return view('Visitor.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
 
+        }elseif(Auth::user()->hasRole('Manager')){
+
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Manager.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
+
         }
+
 
     }
 }

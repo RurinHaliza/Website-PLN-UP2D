@@ -544,6 +544,12 @@ class MenuController extends Controller
             $data = mvcell::all();
 
             return view('Opsis.beban.MVCELL.mvcell', compact('data'));
+        }elseif (Auth::user()->hasRole('Manager')) {
+            # code...
+
+            $data = mvcell::all();
+
+            return view('Manager.beban.MVCELL.mvcell', compact('data'));
         }
     }
 

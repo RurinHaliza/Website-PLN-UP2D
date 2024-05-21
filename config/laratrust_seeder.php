@@ -59,7 +59,15 @@ return [
             'tabeltrafo' => 'c,r,u,d',
             'tabelpenyulang' => 'c,r,u,d',
             'tabelup3' => 'c,r,u,d',
-        ]
+        ],
+        'Manager' => [
+            'bebanharian' => 'c,r,u,d',
+            'bebanbulanan' => 'c,r,u,d',
+            'bebanmingguan' => 'c,r,u,d',
+            'tabeltrafo' => 'c,r,u,d',
+            'tabelpenyulang' => 'c,r,u,d',
+            'tabelup3' => 'c,r,u,d',
+        ],
     ],
 
     'permissions_map' => [
