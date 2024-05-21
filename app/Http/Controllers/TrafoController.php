@@ -38,7 +38,13 @@ class TrafoController extends Controller
             $trafo = trafo::all();
 
             return view('Opsis.beban.trafo', compact('trafo'));
+        }elseif (Auth::user()->hasRole('Manager')) {
+
+            $trafo = trafo::all();
+
+            return view('Manager.beban.trafo', compact('trafo'));
         }
+
     }
 
     public function detail($id)
