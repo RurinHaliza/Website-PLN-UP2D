@@ -1,0 +1,9 @@
+<footer class="main-footer">
+    <div class="footer-left">
+        Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="https://nauval.in/">Wartel A </a>
+    </div>
+    <div class="footer-right">
+        1.0.0
+    </div>
+</footer>
+<?php /**PATH C:\xampp\htdocs\MasterDataPLN2\resources\views/components/footer.blade.php ENDPATH**/ ?>
