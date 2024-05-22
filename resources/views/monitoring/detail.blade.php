@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
 @endpush
 
 @section('main')
@@ -23,7 +24,7 @@
     <div class="section-body">
         <div class="card">
             <div class="card-body">
-                <div class="section-title mt-0">Simple</div>
+                <div class="section-title mt-0">Monitoring</div>
                 <ul class="nav nav-pills" id="tabList">
                     <li class="nav-item">
                         <a class="nav-link active" href="#tabHarian">Harian</a>
@@ -33,6 +34,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tabBulanan">Bulanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabTahunan">Tahunan</a>
                     </li>
                 </ul>
             </div>
@@ -324,60 +328,7 @@
                                             </tbody>
                                         </table>
                                     @else
-                                        <table id="bebanhari" class="table-bordered table-md-6 table">
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Incoming</th>
-                                                <th>00.30</th>
-                                                <th>01.00</th>
-                                                <th>01.30</th>
-                                                <th>02.00</th>
-                                                <th>02.30</th>
-                                                <th>03.00</th>
-                                                <th>03.30</th>
-                                                <th>04.00</th>
-                                                <th>04.30</th>
-                                                <th>05.00</th>
-                                                <th>05.30</th>
-                                                <th>06.00</th>
-                                                <th>06.30</th>
-                                                <th>07.00</th>
-                                                <th>07.30</th>
-                                                <th>08.00</th>
-                                                <th>08.30</th>
-                                                <th>09.00</th>
-                                                <th>09.30</th>
-                                                <th>10.00</th>
-                                                <th>10.30</th>
-                                                <th>11.00</th>
-                                                <th>11.30</th>
-                                                <th>12.00</th>
-                                                <th>12.30</th>
-                                                <th>13.00</th>
-                                                <th>13.30</th>
-                                                <th>14.00</th>
-                                                <th>14.30</th>
-                                                <th>15.00</th>
-                                                <th>15.30</th>
-                                                <th>16.00</th>
-                                                <th>16.30</th>
-                                                <th>17.00</th>
-                                                <th>17.30</th>
-                                                <th>18.00</th>
-                                                <th>18.30</th>
-                                                <th>19.00</th>
-                                                <th>19.30</th>
-                                                <th>20.00</th>
-                                                <th>20.30</th>
-                                                <th>21.00</th>
-                                                <th>21.30</th>
-                                                <th>22.00</th>
-                                                <th>22.30</th>
-                                                <th>23.00</th>
-                                                <th>23.30</th>
-                                                <th>23.59</th>
-                                            </tr>
-                                        </table>
+                                    <p>No results found for the selected date range.</p>
                                     @endif
                                 </div>
                             </div>
@@ -510,173 +461,38 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    @if ($data3->count() > 0)
+                                    @if ($processedResults->isEmpty())
+                                        <p>No results found for the selected date range.</p>
+                                    @else
                                         <table id="bebantrafo" class="table-bordered table-md table">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
+                                                    <th>ID</th>
+                                                    <th>Feeder PKey</th>
+                                                    <th>Gardu Induk</th>
                                                     <th>Incoming</th>
-                                                    <th>00.30</th>
-                                                    <th>01.00</th>
-                                                    <th>01.30</th>
-                                                    <th>02.00</th>
-                                                    <th>02.30</th>
-                                                    <th>03.00</th>
-                                                    <th>03.30</th>
-                                                    <th>04.00</th>
-                                                    <th>04.30</th>
-                                                    <th>05.00</th>
-                                                    <th>05.30</th>
-                                                    <th>06.00</th>
-                                                    <th>06.30</th>
-                                                    <th>07.00</th>
-                                                    <th>07.30</th>
-                                                    <th>08.00</th>
-                                                    <th>08.30</th>
-                                                    <th>09.00</th>
-                                                    <th>09.30</th>
-                                                    <th>10.00</th>
-                                                    <th>10.30</th>
-                                                    <th>11.00</th>
-                                                    <th>11.30</th>
-                                                    <th>12.00</th>
-                                                    <th>12.30</th>
-                                                    <th>13.00</th>
-                                                    <th>13.30</th>
-                                                    <th>14.00</th>
-                                                    <th>14.30</th>
-                                                    <th>15.00</th>
-                                                    <th>15.30</th>
-                                                    <th>16.00</th>
-                                                    <th>16.30</th>
-                                                    <th>17.00</th>
-                                                    <th>17.30</th>
-                                                    <th>18.00</th>
-                                                    <th>18.30</th>
-                                                    <th>19.00</th>
-                                                    <th>19.30</th>
-                                                    <th>20.00</th>
-                                                    <th>20.30</th>
-                                                    <th>21.00</th>
-                                                    <th>21.30</th>
-                                                    <th>22.00</th>
-                                                    <th>22.30</th>
-                                                    <th>23.00</th>
-                                                    <th>23.30</th>
-                                                    <th>23.59</th>
+                                                    <th>Name</th>
+                                                    <th>Bulan</th>
+                                                    @for ($day = $startDay; $day <= $endDay; $day++)
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}</th>
+                                                    @endfor
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($data3 as $item)
+                                                @foreach ($processedResults as $result)
                                                     <tr>
-                                                        <td>{{ $item->gardu_induk }}</td>
-                                                        <td>{{ $item->incoming }}</td>
-                                                        <td>{{ $item->{'00_30'} }}</td>
-                                                        <td>{{ $item->{'01_00'} }}</td>
-                                                        <td>{{ $item->{'01_30'} }}</td>
-                                                        <td>{{ $item->{'02_00'} }}</td>
-                                                        <td>{{ $item->{'02_30'} }}</td>
-                                                        <td>{{ $item->{'03_00'} }}</td>
-                                                        <td>{{ $item->{'03_30'} }}</td>
-                                                        <td>{{ $item->{'04_00'} }}</td>
-                                                        <td>{{ $item->{'04_30'} }}</td>
-                                                        <td>{{ $item->{'05_00'} }}</td>
-                                                        <td>{{ $item->{'05_30'} }}</td>
-                                                        <td>{{ $item->{'06_00'} }}</td>
-                                                        <td>{{ $item->{'06_30'} }}</td>
-                                                        <td>{{ $item->{'07_00'} }}</td>
-                                                        <td>{{ $item->{'07_30'} }}</td>
-                                                        <td>{{ $item->{'08_00'} }}</td>
-                                                        <td>{{ $item->{'08_30'} }}</td>
-                                                        <td>{{ $item->{'09_00'} }}</td>
-                                                        <td>{{ $item->{'09_30'} }}</td>
-                                                        <td>{{ $item->{'10_00'} }}</td>
-                                                        <td>{{ $item->{'10_30'} }}</td>
-                                                        <td>{{ $item->{'11_00'} }}</td>
-                                                        <td>{{ $item->{'11_30'} }}</td>
-                                                        <td>{{ $item->{'12_00'} }}</td>
-                                                        <td>{{ $item->{'12_30'} }}</td>
-                                                        <td>{{ $item->{'13_00'} }}</td>
-                                                        <td>{{ $item->{'13_30'} }}</td>
-                                                        <td>{{ $item->{'14_00'} }}</td>
-                                                        <td>{{ $item->{'14_30'} }}</td>
-                                                        <td>{{ $item->{'15_00'} }}</td>
-                                                        <td>{{ $item->{'15_30'} }}</td>
-                                                        <td>{{ $item->{'16_00'} }}</td>
-                                                        <td>{{ $item->{'16_30'} }}</td>
-                                                        <td>{{ $item->{'17_00'} }}</td>
-                                                        <td>{{ $item->{'17_30'} }}</td>
-                                                        <td>{{ $item->{'18_00'} }}</td>
-                                                        <td>{{ $item->{'18_30'} }}</td>
-                                                        <td>{{ $item->{'19_00'} }}</td>
-                                                        <td>{{ $item->{'19_30'} }}</td>
-                                                        <td>{{ $item->{'20_00'} }}</td>
-                                                        <td>{{ $item->{'20_30'} }}</td>
-                                                        <td>{{ $item->{'21_00'} }}</td>
-                                                        <td>{{ $item->{'21_30'} }}</td>
-                                                        <td>{{ $item->{'22_00'} }}</td>
-                                                        <td>{{ $item->{'22_30'} }}</td>
-                                                        <td>{{ $item->{'23_00'} }}</td>
-                                                        <td>{{ $item->{'23_30'} }}</td>
-                                                        <td>{{ $item->{'23_59'} }}</td>
+                                                        <td>{{ $result->id }}</td>
+                                                        <td>{{ $result->feeder_pkey }}</td>
+                                                        <td>{{ $result->gardu_induk }}</td>
+                                                        <td>{{ $result->incoming }}</td>
+                                                        <td>{{ $result->name }}</td>
+                                                        <td>{{ $result->bulan }}</td>
+                                                        @for ($day = $startDay; $day <= $endDay; $day++)
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT)} }}</td>
+                                                        @endfor
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                        </table>
-                                    @else
-                                        <table id="bebanhari" class="table-bordered table-md-6 table">
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Incoming</th>
-                                                <th>00.30</th>
-                                                <th>01.00</th>
-                                                <th>01.30</th>
-                                                <th>02.00</th>
-                                                <th>02.30</th>
-                                                <th>03.00</th>
-                                                <th>03.30</th>
-                                                <th>04.00</th>
-                                                <th>04.30</th>
-                                                <th>05.00</th>
-                                                <th>05.30</th>
-                                                <th>06.00</th>
-                                                <th>06.30</th>
-                                                <th>07.00</th>
-                                                <th>07.30</th>
-                                                <th>08.00</th>
-                                                <th>08.30</th>
-                                                <th>09.00</th>
-                                                <th>09.30</th>
-                                                <th>10.00</th>
-                                                <th>10.30</th>
-                                                <th>11.00</th>
-                                                <th>11.30</th>
-                                                <th>12.00</th>
-                                                <th>12.30</th>
-                                                <th>13.00</th>
-                                                <th>13.30</th>
-                                                <th>14.00</th>
-                                                <th>14.30</th>
-                                                <th>15.00</th>
-                                                <th>15.30</th>
-                                                <th>16.00</th>
-                                                <th>16.30</th>
-                                                <th>17.00</th>
-                                                <th>17.30</th>
-                                                <th>18.00</th>
-                                                <th>18.30</th>
-                                                <th>19.00</th>
-                                                <th>19.30</th>
-                                                <th>20.00</th>
-                                                <th>20.30</th>
-                                                <th>21.00</th>
-                                                <th>21.30</th>
-                                                <th>22.00</th>
-                                                <th>22.30</th>
-                                                <th>23.00</th>
-                                                <th>23.30</th>
-                                                <th>23.59</th>
-                                            </tr>
                                         </table>
                                     @endif
                                 </div>
@@ -784,9 +600,8 @@
                                         <form action="{{ route('detailbeban') }}" method="GET">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <span>Pilih Bulan: </span> 
+                                                    <span>Pilih Bulan: </span>
                                                     <input name="StartBulan" id="startDate" class="date-picker" />
-
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button class="btn btn-primary" type="submit"><i
@@ -799,173 +614,38 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    @if ($data2->count() > 0)
+                                    @if ($processedresultsMonth->isEmpty())
+                                    <p>No results found for the selected date range.</p>
+                                    @else
                                         <table id="bebantrafo" class="table-bordered table-md table">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
+                                                    <th>ID</th>
+                                                    <th>Feeder PKey</th>
+                                                    <th>Gardu Induk</th>
                                                     <th>Incoming</th>
-                                                    <th>00.30</th>
-                                                    <th>01.00</th>
-                                                    <th>01.30</th>
-                                                    <th>02.00</th>
-                                                    <th>02.30</th>
-                                                    <th>03.00</th>
-                                                    <th>03.30</th>
-                                                    <th>04.00</th>
-                                                    <th>04.30</th>
-                                                    <th>05.00</th>
-                                                    <th>05.30</th>
-                                                    <th>06.00</th>
-                                                    <th>06.30</th>
-                                                    <th>07.00</th>
-                                                    <th>07.30</th>
-                                                    <th>08.00</th>
-                                                    <th>08.30</th>
-                                                    <th>09.00</th>
-                                                    <th>09.30</th>
-                                                    <th>10.00</th>
-                                                    <th>10.30</th>
-                                                    <th>11.00</th>
-                                                    <th>11.30</th>
-                                                    <th>12.00</th>
-                                                    <th>12.30</th>
-                                                    <th>13.00</th>
-                                                    <th>13.30</th>
-                                                    <th>14.00</th>
-                                                    <th>14.30</th>
-                                                    <th>15.00</th>
-                                                    <th>15.30</th>
-                                                    <th>16.00</th>
-                                                    <th>16.30</th>
-                                                    <th>17.00</th>
-                                                    <th>17.30</th>
-                                                    <th>18.00</th>
-                                                    <th>18.30</th>
-                                                    <th>19.00</th>
-                                                    <th>19.30</th>
-                                                    <th>20.00</th>
-                                                    <th>20.30</th>
-                                                    <th>21.00</th>
-                                                    <th>21.30</th>
-                                                    <th>22.00</th>
-                                                    <th>22.30</th>
-                                                    <th>23.00</th>
-                                                    <th>23.30</th>
-                                                    <th>23.59</th>
+                                                    <th>Name</th>
+                                                    <th>Bulan</th>
+                                                    @for ($day = 1; $day <= 31; $day++)
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}</th>
+                                                    @endfor
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($data2 as $item)
+                                                @foreach ($processedresultsMonth as $result)
                                                     <tr>
-                                                        <td>{{ $item->gardu_induk }}</td>
-                                                        <td>{{ $item->incoming }}</td>
-                                                        <td>{{ $item->{'00_30'} }}</td>
-                                                        <td>{{ $item->{'01_00'} }}</td>
-                                                        <td>{{ $item->{'01_30'} }}</td>
-                                                        <td>{{ $item->{'02_00'} }}</td>
-                                                        <td>{{ $item->{'02_30'} }}</td>
-                                                        <td>{{ $item->{'03_00'} }}</td>
-                                                        <td>{{ $item->{'03_30'} }}</td>
-                                                        <td>{{ $item->{'04_00'} }}</td>
-                                                        <td>{{ $item->{'04_30'} }}</td>
-                                                        <td>{{ $item->{'05_00'} }}</td>
-                                                        <td>{{ $item->{'05_30'} }}</td>
-                                                        <td>{{ $item->{'06_00'} }}</td>
-                                                        <td>{{ $item->{'06_30'} }}</td>
-                                                        <td>{{ $item->{'07_00'} }}</td>
-                                                        <td>{{ $item->{'07_30'} }}</td>
-                                                        <td>{{ $item->{'08_00'} }}</td>
-                                                        <td>{{ $item->{'08_30'} }}</td>
-                                                        <td>{{ $item->{'09_00'} }}</td>
-                                                        <td>{{ $item->{'09_30'} }}</td>
-                                                        <td>{{ $item->{'10_00'} }}</td>
-                                                        <td>{{ $item->{'10_30'} }}</td>
-                                                        <td>{{ $item->{'11_00'} }}</td>
-                                                        <td>{{ $item->{'11_30'} }}</td>
-                                                        <td>{{ $item->{'12_00'} }}</td>
-                                                        <td>{{ $item->{'12_30'} }}</td>
-                                                        <td>{{ $item->{'13_00'} }}</td>
-                                                        <td>{{ $item->{'13_30'} }}</td>
-                                                        <td>{{ $item->{'14_00'} }}</td>
-                                                        <td>{{ $item->{'14_30'} }}</td>
-                                                        <td>{{ $item->{'15_00'} }}</td>
-                                                        <td>{{ $item->{'15_30'} }}</td>
-                                                        <td>{{ $item->{'16_00'} }}</td>
-                                                        <td>{{ $item->{'16_30'} }}</td>
-                                                        <td>{{ $item->{'17_00'} }}</td>
-                                                        <td>{{ $item->{'17_30'} }}</td>
-                                                        <td>{{ $item->{'18_00'} }}</td>
-                                                        <td>{{ $item->{'18_30'} }}</td>
-                                                        <td>{{ $item->{'19_00'} }}</td>
-                                                        <td>{{ $item->{'19_30'} }}</td>
-                                                        <td>{{ $item->{'20_00'} }}</td>
-                                                        <td>{{ $item->{'20_30'} }}</td>
-                                                        <td>{{ $item->{'21_00'} }}</td>
-                                                        <td>{{ $item->{'21_30'} }}</td>
-                                                        <td>{{ $item->{'22_00'} }}</td>
-                                                        <td>{{ $item->{'22_30'} }}</td>
-                                                        <td>{{ $item->{'23_00'} }}</td>
-                                                        <td>{{ $item->{'23_30'} }}</td>
-                                                        <td>{{ $item->{'23_59'} }}</td>
+                                                        <td>{{ $result->id }}</td>
+                                                        <td>{{ $result->feeder_pkey }}</td>
+                                                        <td>{{ $result->gardu_induk }}</td>
+                                                        <td>{{ $result->incoming }}</td>
+                                                        <td>{{ $result->name }}</td>
+                                                        <td>{{ $result->bulan }}</td>
+                                                        @for ($day = 1; $day <= 31; $day++)
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT)} }}</td>
+                                                        @endfor
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                        </table>
-                                    @else
-                                        <table id="bebanhari" class="table-bordered table-md-6 table">
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Incoming</th>
-                                                <th>00.30</th>
-                                                <th>01.00</th>
-                                                <th>01.30</th>
-                                                <th>02.00</th>
-                                                <th>02.30</th>
-                                                <th>03.00</th>
-                                                <th>03.30</th>
-                                                <th>04.00</th>
-                                                <th>04.30</th>
-                                                <th>05.00</th>
-                                                <th>05.30</th>
-                                                <th>06.00</th>
-                                                <th>06.30</th>
-                                                <th>07.00</th>
-                                                <th>07.30</th>
-                                                <th>08.00</th>
-                                                <th>08.30</th>
-                                                <th>09.00</th>
-                                                <th>09.30</th>
-                                                <th>10.00</th>
-                                                <th>10.30</th>
-                                                <th>11.00</th>
-                                                <th>11.30</th>
-                                                <th>12.00</th>
-                                                <th>12.30</th>
-                                                <th>13.00</th>
-                                                <th>13.30</th>
-                                                <th>14.00</th>
-                                                <th>14.30</th>
-                                                <th>15.00</th>
-                                                <th>15.30</th>
-                                                <th>16.00</th>
-                                                <th>16.30</th>
-                                                <th>17.00</th>
-                                                <th>17.30</th>
-                                                <th>18.00</th>
-                                                <th>18.30</th>
-                                                <th>19.00</th>
-                                                <th>19.30</th>
-                                                <th>20.00</th>
-                                                <th>20.30</th>
-                                                <th>21.00</th>
-                                                <th>21.30</th>
-                                                <th>22.00</th>
-                                                <th>22.30</th>
-                                                <th>23.00</th>
-                                                <th>23.30</th>
-                                                <th>23.59</th>
-                                            </tr>
                                         </table>
                                     @endif
                                 </div>
@@ -974,6 +654,158 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="tab-pane fade" id="tabTahunan">
+                <!-- Konten untuk tab Bulanan -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card card-hero">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="far fa-question-circle"></i>
+                                </div>
+                                <h5>Analytical</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="tickets-list">
+                                    <a class="ticket-item">
+                                        <div class="ticket-title">
+                                            <h4>Beban Jatim Tertinggi Tahun ini</h4>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if (!empty($maxValueYear))
+                                                <div>MW : {{ $maxValueYear }}</div>
+                                            @else
+                                                <div>MW :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if (!empty($maxValueYear))
+                                                <div>Tanggal : {{ $maxDateYear }}</div>
+                                            @else
+                                                <div>Tanggal : </div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if (!empty($maxValueYear))
+                                                <div>Pukul : {{ $maxColumnYear }}</div>
+                                            @else
+                                                <div>Pukul : </div>
+                                            @endif
+                                        </div>
+                                    </a>
+                                    <a class="ticket-item">
+                                        <div class="ticket-title">
+                                            <h4>Beban Jatim Tertinggi Bulan ini</h4>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if (!empty($maxValueMonth))
+                                                <div>MW : {{ $maxValueMonth }}</div>
+                                            @else
+                                                <div>MW :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if (!empty($maxValueMonth))
+                                                <div>Tanggal : {{ $maxDateMonth }}</div>
+                                            @else
+                                                <div>Tanggal : </div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if (!empty($maxValueMonth))
+                                                <div>Pukul : {{ $maxColumnMonth }}</div>
+                                            @else
+                                                <div>Pukul : </div>
+                                            @endif
+                                        </div>
+                                    </a>
+                                    <a class="ticket-item">
+                                        <div class="ticket-title">
+                                            <h4>Beban Jatim Tertinggi Hari ini</h4>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValueToday > 0)
+                                                <div>Tertinggi : {{ $maxValueToday }}</div>
+                                            @else
+                                                <div>Tertinggi :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValueToday > 0)
+                                                <div>Pukul : {{ $maxColumnToday }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-9 col-lg-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header">
+                                    <h4>Simple Table</h4>
+                                    <div class="card-body">
+                                        {{-- <form action="{{ route('detailbeban') }}" method="GET">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <span>Pilih Bulan: </span>
+                                                    <input name="StartBulan" id="startDate" class="date-picker" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button class="btn btn-primary" type="submit"><i
+                                                            class="fas fa-2x fa-search"></i><span>Cari</span></button>
+                                                </div>
+                                            </div>
+                                        </form> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                {{-- <div class="table-responsive">
+                                    @if ($processedresultsMonth->isEmpty())
+                                        <p>Tidak ada data untuk bulan {{ $StartBulan1 }}</p>
+                                    @else
+                                        <table id="bebantrafo" class="table-bordered table-md table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Feeder PKey</th>
+                                                    <th>Gardu Induk</th>
+                                                    <th>Incoming</th>
+                                                    <th>Name</th>
+                                                    <th>Bulan</th>
+                                                    @for ($day = 1; $day <= 31; $day++)
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}</th>
+                                                    @endfor
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($processedresultsMonth as $result)
+                                                    <tr>
+                                                        <td>{{ $result->id }}</td>
+                                                        <td>{{ $result->feeder_pkey }}</td>
+                                                        <td>{{ $result->gardu_induk }}</td>
+                                                        <td>{{ $result->incoming }}</td>
+                                                        <td>{{ $result->name }}</td>
+                                                        <td>{{ $result->bulan }}</td>
+                                                        @for ($day = 1; $day <= 31; $day++)
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT)} }}</td>
+                                                        @endfor
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1009,11 +841,12 @@
             }]
         });
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Mengambil semua elemen tab
             var tabs = document.querySelectorAll('.nav-link');
-    
+
             // Fungsi untuk mengaktifkan tab berdasarkan ID
             function activateTab(targetId) {
                 // Menghapus kelas 'active' dari semua tab
@@ -1030,7 +863,7 @@
                 // Menambahkan kelas 'show active' ke konten tab yang sesuai
                 document.querySelector(targetId).classList.add('show', 'active');
             }
-    
+
             // Menetapkan event listener untuk setiap tab
             tabs.forEach(function(tab) {
                 tab.addEventListener('click', function(event) {
@@ -1043,50 +876,61 @@
                     event.preventDefault();
                 });
             });
-    
+
             // Mengatur tab terakhir yang aktif atau default ke tab Harian
             var activeTab = localStorage.getItem('activeTab') || '#tabHarian';
             activateTab(activeTab);
         });
     </script>
-    
     <script>
+        $(document).ready(function() {
             $('.date-picker').datepicker({
-                dateFormat: "mm/yy",
+                dateFormat: "mm",
                 changeMonth: true,
-                changeYear: true,
+                changeYear: false,
                 showButtonPanel: true,
+                closeText: 'Done',
                 onClose: function(dateText, inst) {
-
-
                     function isDonePressed() {
-                        return ($('#ui-datepicker-div').html().indexOf(
-                            'ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover'
-                            ) > -1);
+                        return $('#ui-datepicker-div .ui-datepicker-close').hasClass('ui-state-hover');
                     }
-
                     if (isDonePressed()) {
                         var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                        $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
-
-                        $('.date-picker')
-                        .focusout() //Added to remove focus from datepicker input box on selecting date
+                        var monthNames = ["January", "February", "March", "April", "May", "June",
+                                          "July", "August", "September", "October", "November", "December"];
+                        var monthName = monthNames[month];
+                        $(this).val(monthName).trigger('change');
                     }
                 },
                 beforeShow: function(input, inst) {
-
-                    inst.dpDiv.addClass('month_year_datepicker')
-                    if ((datestr = $(this).val()).length > 0) {
-                        year = datestr.substring(datestr.length - 4, datestr.length);
-                        month = datestr.substring(0, 2);
-                        $(this).datepicker('option', 'defaultDate', new Date(year, month - 1, 1));
-                        $(this).datepicker('setDate', new Date(year, month - 1, 1));
+                    setTimeout(function() {
                         $(".ui-datepicker-calendar").hide();
+                    }, 0);
+    
+                    if ((datestr = $(input).val()).length > 0) {
+                        var monthNames = ["January", "February", "March", "April", "May", "June",
+                                          "July", "August", "September", "October", "November", "December"];
+                        var monthName = datestr;
+                        var month = monthNames.indexOf(monthName);
+                        if (month !== -1) {
+                            $(input).datepicker('option', 'defaultDate', new Date(0, month, 1));
+                            $(input).datepicker('setDate', new Date(0, month, 1));
+                        }
                     }
+                },
+                onChangeMonthYear: function(year, month, inst) {
+                    setTimeout(function() {
+                        $(".ui-datepicker-calendar").hide();
+                    }, 0);
                 }
             });
+        });
     </script>
+    
+    
+
+
+
     <script>
         var ctx = document.getElementById('chartharian').getContext('2d');
         var myChart = new Chart(ctx, {

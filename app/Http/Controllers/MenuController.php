@@ -324,125 +324,110 @@ class MenuController extends Controller
     //     return view('monitoring.bulan', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni'));
 
     // }
-
     public function detail(Request $request)
     {
         if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor'])) {
 
-            //Mingguan
-            // Mengambil tanggal yang dipilih dari request
+            // Validasi input tanggal (opsional)
+            $request->validate([
+                'start_date' => 'date',
+                'end_date' => 'date|after_or_equal:start_date',
+            ]);
+
+            // Mengambil input tanggal (jika ada)
             $startDate = $request->input('start_date', Carbon::today()->toDateString());
             $endDate = $request->input('end_date', Carbon::today()->toDateString());
 
-            // Mengonversi tanggal yang dipilih menjadi objek Carbon
-            $startDateCarbon = Carbon::parse($startDate);
-            $endDateCarbon = Carbon::parse($endDate);
+            // Mengkonversi tanggal ke format yang sesuai dengan kolom
+            $startDay = (int)date('d', strtotime($startDate));
+            $endDay = (int)date('d', strtotime($endDate));
+            $startMonth = date('F', strtotime($startDate));
+            $endMonth = date('F', strtotime($endDate));
 
-            // Mengambil data dalam rentang tanggal
-            $data3 = data_beban_puncak30::whereBetween('tanggal', [$startDateCarbon, $endDateCarbon])->paginate(10);
-
-            // Hitung rata-rata dan nilai maksimum
-            $averageValueSiangMingguan = $data3->avg(function ($item) {
-                return ($item->{"04_00"} + $item->{"04_30"} + $item->{"05_00"} + $item->{"05_30"} + $item->{"06_00"} + $item->{"06_30"} + $item->{"07_00"} + $item->{"07_30"} + $item->{"08_00"} + $item->{"08_30"} + $item->{"09_00"} + $item->{"09_30"} + $item->{"10_00"} + $item->{"10_30"} + $item->{"11_00"} + $item->{"11_30"} + $item->{"12_00"} + $item->{"12_30"} + $item->{"13_00"} + $item->{"13_30"} + $item->{"14_00"} + $item->{"14_30"} + $item->{"15_00"} + $item->{"15_30"} + $item->{"16_00"}) / 25;
-            });
-
-            $maxValueSiangMingguan = 0;
-            $maxColumnSiangMingguan = '';
-            foreach ($data3 as $item) {
-                foreach ([
-                    '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00',
-                ]
-                    as $columnNameMingguan) {
-                    if ($item->{$columnNameMingguan} > $maxValueSiangMingguan) {
-                        $maxValueSiangMingguan = $item->{$columnNameMingguan};
-                        $maxColumnSiangMingguan = $columnNameMingguan;
-                    }
-                }
+            // Membuat array kolom yang perlu diambil
+            $columns = ['id', 'feeder_pkey', 'gardu_induk', 'incoming', 'name', 'bulan'];
+            $dayColumns = [];
+            for ($day = $startDay; $day <= $endDay; $day++) {
+                $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
+                $columns[] = $dayString . '_S';
+                $columns[] = $dayString . '_M';
+                $dayColumns[] = $dayString;
             }
 
-            // Lakukan hal yang sama untuk data malam
-            // Hitung rata-rata dan nilai maksimum
-            $averageValueMalamMingguan = $data3->avg(function ($item) {
-                return ($item->{"16_00"} + $item->{"16_30"} + $item->{"17_00"} + $item->{"17_30"} + $item->{"18_00"} + $item->{"18_30"} + $item->{"19_00"} + $item->{"19_30"} + $item->{"20_00"} + $item->{"20_30"} + $item->{"21_00"} + $item->{"21_30"} + $item->{"22_00"} + $item->{"22_30"} + $item->{"23_00"} + $item->{"23_30"} + $item->{"23_59"} + $item->{"00_30"} + $item->{"01_00"} + $item->{"01_30"} + $item->{"02_00"} + $item->{"02_30"} + $item->{"03_00"} + $item->{"03_30"} + $item->{"04_00"}) / 25;
-            });
-
-            $maxValueMalamMingguan = 0;
-            $maxColumnMalamMingguan = '';
-            foreach ($data3 as $item) {
-                foreach ([
-                    '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00'
-                ]
-                    as $columnNameMMingguan) {
-                    if ($item->{$columnNameMMingguan} > $maxValueMalamMingguan) {
-                        $maxValueMalamMingguan = $item->{$columnNameMMingguan};
-                        $maxColumnMalamMingguan = $columnNameMMingguan;
-                    }
-                }
-            }
-
-            //Bulanan
-            // Mengambil tanggal yang dipilih dari request, atau menggunakan tanggal hari ini jika tidak ada yang dipilih
-            $selectedDate2 = $request->input('selected_date2', Carbon::today()->toDateString());
-            $Start = request()->StartBulan;
-            $data2 = data_beban_puncak30::whereMonth('tanggal', '=', $Start)
+            // Query untuk mendapatkan data berdasarkan rentang tanggal dan bulan
+            $results = DB::table('data_beban_puncak')
+                ->select($columns)
+                ->whereIn('bulan', [$startMonth, $endMonth])
                 ->get();
-            // Mengonversi tanggal yang dipilih menjadi objek Carbon
-            $selectedDateCarbon = Carbon::parse($selectedDate2);
 
-            // Menentukan bulan dan tahun dari tanggal yang dipilih
-            $selectedMonth = $selectedDateCarbon->month;
-            $selectedYear = $selectedDateCarbon->year;
-
-            // Mengambil data untuk bulan dan tahun yang sesuai
-            // $data2 = data_beban_puncak30::whereYear('tanggal', $selectedYear)
-            //     ->whereMonth('tanggal', $selectedMonth)
-            //     ->paginate(10);
-
-            // Hitung rata-rata dan nilai maksimum
-            $averageValueSiangBulanan = $data2->avg(function ($item) {
-                return ($item->{"04_00"} + $item->{"04_30"} + $item->{"05_00"} + $item->{"05_30"} + $item->{"06_00"} + $item->{"06_30"} + $item->{"07_00"} + $item->{"07_30"} + $item->{"08_00"} + $item->{"08_30"} + $item->{"09_00"} + $item->{"09_30"} + $item->{"10_00"} + $item->{"10_30"} + $item->{"11_00"} + $item->{"11_30"} + $item->{"12_00"} + $item->{"12_30"} + $item->{"13_00"} + $item->{"13_30"} + $item->{"14_00"} + $item->{"14_30"} + $item->{"15_00"} + $item->{"15_30"} + $item->{"16_00"}) / 25;
+            // Mengolah hasil untuk menampilkan nilai yang lebih besar antara _S dan _M
+            $processedResults = $results->map(function ($item) use ($dayColumns) {
+                $result = [
+                    'id' => $item->id,
+                    'feeder_pkey' => $item->feeder_pkey,
+                    'gardu_induk' => $item->gardu_induk,
+                    'incoming' => $item->incoming,
+                    'name' => $item->name,
+                    'bulan' => $item->bulan,
+                ];
+                foreach ($dayColumns as $day) {
+                    $sColumn = $day . '_S';
+                    $mColumn = $day . '_M';
+                    $result[$day] = max($item->$sColumn, $item->$mColumn);
+                }
+                return (object)$result;
             });
 
-            $maxValueSiangBulanan = 0;
-            $maxColumnSiangBulanan = '';
-            foreach ($data2 as $item) {
-                foreach ([
-                    '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00',
-                ]
-                    as $columnNameBulanan) {
-                    if ($item->{$columnNameBulanan} > $maxValueSiangBulanan) {
-                        $maxValueSiangBulanan = $item->{$columnNameBulanan};
-                        $maxColumnSiangBulanan = $columnNameBulanan;
-                    }
-                }
+            // Bulanan
+            // Mengambil input bulan (jika ada)
+            $StartBulan1 = $request->input('StartBulan', Carbon::today()->toDateString());
+
+            $startMonths = date('F', strtotime($StartBulan1));
+
+            // Membuat array kolom yang perlu diambil
+            $columnsmonth = ['id', 'feeder_pkey', 'gardu_induk', 'incoming', 'name', 'bulan'];
+            for ($day = 1; $day <= 31; $day++) {
+                $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
+                $columnsmonth[] = $dayString . '_S';
+                $columnsmonth[] = $dayString . '_M';
             }
 
-            // Lakukan hal yang sama untuk data malam
-            // Hitung rata-rata dan nilai maksimum
-            $averageValueMalamBulanan = $data2->avg(function ($item) {
-                return ($item->{"16_00"} + $item->{"16_30"} + $item->{"17_00"} + $item->{"17_30"} + $item->{"18_00"} + $item->{"18_30"} + $item->{"19_00"} + $item->{"19_30"} + $item->{"20_00"} + $item->{"20_30"} + $item->{"21_00"} + $item->{"21_30"} + $item->{"22_00"} + $item->{"22_30"} + $item->{"23_00"} + $item->{"23_30"} + $item->{"23_59"} + $item->{"00_30"} + $item->{"01_00"} + $item->{"01_30"} + $item->{"02_00"} + $item->{"02_30"} + $item->{"03_00"} + $item->{"03_30"} + $item->{"04_00"}) / 25;
+            // Query untuk mendapatkan data berdasarkan bulan yang dipilih
+            $resultsMonth = DB::table('data_beban_puncak')
+                ->select($columnsmonth)
+                ->where('bulan', $startMonths)
+                ->get();
+
+            // Debugging: Lihat hasil query
+            //dd($startDate,$startMonth,$StartBulan1,$startMonths);
+            // Mengolah hasil untuk menampilkan nilai yang lebih besar antara _S dan _M
+            $processedresultsMonth = $resultsMonth->map(function ($item) {
+                $result = [
+                    'id' => $item->id,
+                    'feeder_pkey' => $item->feeder_pkey,
+                    'gardu_induk' => $item->gardu_induk,
+                    'incoming' => $item->incoming,
+                    'name' => $item->name,
+                    'bulan' => $item->bulan,
+                ];
+                for ($day = 1; $day <= 31; $day++) {
+                    $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
+                    $sColumn = $dayString . '_S';
+                    $mColumn = $dayString . '_M';
+                    $result[$dayString] = max($item->$sColumn, $item->$mColumn);
+                }
+                return (object)$result;
             });
 
-            $maxValueMalamBulanan = 0;
-            $maxColumnMalamBulanan = '';
-            foreach ($data2 as $item) {
-                foreach ([
-                    '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00',
-                ]
-                    as $columnNameMBulanan) {
-                    if ($item->{$columnNameMBulanan} > $maxValueMalamBulanan) {
-                        $maxValueMalamBulanan = $item->{$columnNameMBulanan};
-                        $maxColumnMalamBulanan = $columnNameMBulanan;
-                    }
-                }
-            }
+            // Debugging: Lihat hasil pemrosesan
+            // dd($processedresultsMonth);
 
 
-            //Harian
+            // Mengambil data dari tabel data_beban_puncak30 berdasarkan tanggal terpilih
             $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
             $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
 
-            // Hitung rata-rata dan nilai maksimum
+            // Hitung rata-rata dan nilai maksimum untuk data harian
             $averageValue = $data->avg(function ($item) {
                 return ($item->{"04_00"} + $item->{"04_30"} + $item->{"05_00"} + $item->{"05_30"} + $item->{"06_00"} + $item->{"06_30"} + $item->{"07_00"} + $item->{"07_30"} + $item->{"08_00"} + $item->{"08_30"} + $item->{"09_00"} + $item->{"09_30"} + $item->{"10_00"} + $item->{"10_30"} + $item->{"11_00"} + $item->{"11_30"} + $item->{"12_00"} + $item->{"12_30"} + $item->{"13_00"} + $item->{"13_30"} + $item->{"14_00"} + $item->{"14_30"} + $item->{"15_00"} + $item->{"15_30"} + $item->{"16_00"}) / 25;
             });
@@ -452,8 +437,7 @@ class MenuController extends Controller
             foreach ($data as $item) {
                 foreach ([
                     '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00',
-                ]
-                    as $columnName) {
+                ] as $columnName) {
                     if ($item->{$columnName} > $maxValue) {
                         $maxValue = $item->{$columnName};
                         $maxColumn = $columnName;
@@ -472,8 +456,7 @@ class MenuController extends Controller
             foreach ($data as $item) {
                 foreach ([
                     '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00',
-                ]
-                    as $columnNameM) {
+                ] as $columnNameM) {
                     if ($item->{$columnNameM} > $maxValueM) {
                         $maxValueM = $item->{$columnNameM};
                         $maxColumnM = $columnNameM;
@@ -488,12 +471,11 @@ class MenuController extends Controller
             $dataHariIni = data_beban_puncak30::whereDate('tanggal', $tanggalHariIni)->get();
             foreach ($dataHariIni as $item) {
                 foreach ([
-                    '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'
-                ]
-                    as $columnNameT) {
-                    if ($item->{$columnNameT} > $maxValueToday) {
-                        $maxValueToday = $item->{$columnNameT};
-                        $maxColumnToday = $columnNameT;
+                    '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59',
+                ] as $columnNameToday) {
+                    if ($item->{$columnNameToday} > $maxValueToday) {
+                        $maxValueToday = $item->{$columnNameToday};
+                        $maxColumnToday = $columnNameToday;
                     }
                 }
             }
@@ -501,13 +483,13 @@ class MenuController extends Controller
             // Analytics untuk bulan ini
             $maxValueMonth = 0;
             $maxColumnMonth = '';
-            $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
+            $maxDateMonth = '';
+            $bulanIni = date('F');
             $dataBulanIni = data_beban_puncak30::whereMonth('tanggal', now()->month)->get();
             foreach ($dataBulanIni as $item) {
                 foreach ([
-                    '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'
-                ]
-                    as $columnNameMonth) {
+                    '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59',
+                ] as $columnNameMonth) {
                     if ($item->{$columnNameMonth} > $maxValueMonth) {
                         $maxValueMonth = $item->{$columnNameMonth};
                         $maxColumnMonth = $columnNameMonth;
@@ -519,11 +501,12 @@ class MenuController extends Controller
             // Analytics untuk tahun ini
             $maxValueYear = 0;
             $maxColumnYear = '';
-            $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
+            $maxDateYear = '';
             $dataTahunIni = data_beban_puncak30::whereYear('tanggal', now()->year)->get();
             foreach ($dataTahunIni as $item) {
-                foreach (['00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59',]
-                    as $columnNameYear) {
+                foreach ([
+                    '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59',
+                ] as $columnNameYear) {
                     if ($item->{$columnNameYear} > $maxValueYear) {
                         $maxValueYear = $item->{$columnNameYear};
                         $maxColumnYear = $columnNameYear;
@@ -531,8 +514,9 @@ class MenuController extends Controller
                     }
                 }
             }
+
+            return view('monitoring.detail', compact('data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni','averageValue', 'maxValue', 'maxColumn', 'selectedDate','averageValueM', 'maxValueM', 'maxColumnM','maxValueToday', 'maxColumnToday','maxValueMonth', 'maxColumnMonth', 'maxDateMonth','maxValueYear', 'maxColumnYear', 'maxDateYear','processedResults', 'startDay', 'endDay','processedresultsMonth','StartBulan1'));
         }
-        return view('monitoring.detail', compact('data', 'selectedDate', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'data2', 'selectedDate2', 'averageValueSiangBulanan', 'maxValueSiangBulanan', 'maxColumnSiangBulanan', 'averageValueMalamBulanan', 'maxValueMalamBulanan', 'maxColumnMalamBulanan', 'data3','startDate','endDate','averageValueSiangMingguan', 'maxValueSiangMingguan', 'maxColumnSiangMingguan', 'averageValueMalamMingguan', 'maxValueMalamMingguan', 'maxColumnMalamMingguan', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear'));
     }
 
 
