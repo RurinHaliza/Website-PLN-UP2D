@@ -22,8 +22,30 @@ class DashboardController extends Controller
             $feeder = Penyulang::count();
             $countMvcell = mvcell::count();
 
+            $getLokasiGI = GITable::orderBy('Nama_GI','ASC')->get();
+
+            foreach($getLokasiGI as $lok){
+
+                $initialMarkers[] = [
+                    'position' => [
+                        'lat' => (float) $lok->x,
+                        'lng' => (float) $lok->y,
+                    ],
+                    'note' => [
+                        'id' => 'ID_FGI',
+                        'nama' => $lok->Nama_GI,
+                        'KD_Pemilik' => $lok->KD_Pemilik,
+                        
+                    ],
+                    'draggable' => false,
+                ];
+
+            }
+
+            // dd($initialMarkers);
+
             // dd($countPenyulang);
-            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell'));
+            return view('admin.Dashboard',compact('countGI','countTrafo','countPenyulang','feeder','countMvcell','initialMarkers'));
 
         }elseif(Auth::user()->hasRole('operator')){
             $countGI = GITable::count();
