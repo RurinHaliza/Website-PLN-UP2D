@@ -60,83 +60,30 @@
                                 <div class="tickets-list">
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Tahun ini</h4>
+                                            <h4>Beban Jatim Tertinggi {{ $selectedDate }}</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>MW : {{ $maxValueYear }}</div>
+                                            @if (!empty($maxValueDay))
+                                                <div>MW : {{ $maxValueDay }}</div>
                                             @else
                                                 <div>MW :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Tanggal : {{ $maxDateYear }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Pukul : {{ $maxColumnYear }}</div>
+                                            @if (!empty($maxColumnDay))
+                                                <div>Pukul : {{ $maxColumnDay }}</div>
                                             @else
                                                 <div>Pukul : </div>
                                             @endif
                                         </div>
-                                    </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Bulan ini</h4>
-                                        </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>MW : {{ $maxValueMonth }}</div>
+                                            @if (!empty($averageValueDay))
+                                                <div>Rata-Rata : {{ $averageValueDay }}</div>
                                             @else
-                                                <div>MW :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Tanggal : {{ $maxDateMonth }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Pukul : {{ $maxColumnMonth }}</div>
-                                            @else
-                                                <div>Pukul : </div>
+                                                <div>Rata-Rata : </div>
                                             @endif
                                         </div>
                                     </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Hari ini</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Tertinggi : {{ $maxValueToday }}</div>
-                                            @else
-                                                <div>Tertinggi :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Pukul : {{ $maxColumnToday }}</div>
-                                            @else
-                                                <div>Pukul :</div>
-                                            @endif
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-hero">
-                            <div class="card-body p-0">
-                                <div class="tickets-list">
                                     <a class="ticket-item">
                                         <div class="ticket-title">
                                             <h4>Beban Siang</h4>
@@ -187,12 +134,11 @@
                                             <div>Rata-Rata : {{ $averageValueM }}</div>
                                         </div>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-6">
+                    <div class="col-12 col-md-9 col-lg-9">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-header">
@@ -328,14 +274,14 @@
                                             </tbody>
                                         </table>
                                     @else
-                                    <p>No results found for the selected date range.</p>
+                                        <p>No results found for the selected date range.</p>
                                     @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -345,7 +291,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
             <div class="tab-pane fade" id="tabMingguan">
@@ -362,73 +308,72 @@
                                 <div class="tickets-list">
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Tahun ini</h4>
+                                            <h4>Beban Jatim Tertinggi {{ $startDate }} dan {{ $endDate }}</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>MW : {{ $maxValueYear }}</div>
+                                            @if (!empty($maxValueWeek))
+                                                <div>MW : {{ $maxValueWeek }}</div>
                                             @else
                                                 <div>MW :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Tanggal : {{ $maxDateYear }}</div>
+                                            @if (!empty($maxColumnWeek))
+                                                <div>Tanggal : {{ $maxColumnWeek }}</div>
                                             @else
                                                 <div>Tanggal : </div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Pukul : {{ $maxColumnYear }}</div>
+                                            @if (!empty($averageValueWeek))
+                                                <div>Rata-Rata : {{ $averageValueWeek }}</div>
                                             @else
-                                                <div>Pukul : </div>
+                                                <div>Rata-Rata : </div>
                                             @endif
                                         </div>
                                     </a>
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Bulan ini</h4>
+                                            <h4>Beban Siang</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>MW : {{ $maxValueMonth }}</div>
-                                            @else
-                                                <div>MW :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Tanggal : {{ $maxDateMonth }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Pukul : {{ $maxColumnMonth }}</div>
-                                            @else
-                                                <div>Pukul : </div>
-                                            @endif
-                                        </div>
-                                    </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Hari ini</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Tertinggi : {{ $maxValueToday }}</div>
+                                            @if ($maxValueSWeek > 0)
+                                                <div>Tertinggi : {{ $maxValueSWeek }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Pukul : {{ $maxColumnToday }}</div>
+                                            @if ($maxColumnSWeek > 0)
+                                                <div>Pukul : {{ $maxColumnSWeek }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Rata-Rata : {{ $averageValueSWeek }}</div>
+                                        </div>
+                                    </a>
+                                    <a class="ticket-item">
+                                        <div class="ticket-title">
+                                            <h4>Beban Malam</h4>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValueMWeek > 0)
+                                                <div>Tertinggi : {{ $maxValueMWeek }}</div>
+                                            @else
+                                                <div>Tertinggi :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxColumnMWeek > 0)
+                                                <div>Pukul : {{ $maxColumnMWeek }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Rata-Rata : {{ $averageValueMWeek }}</div>
                                         </div>
                                     </a>
                                 </div>
@@ -474,7 +419,8 @@
                                                     <th>Name</th>
                                                     <th>Bulan</th>
                                                     @for ($day = $startDay; $day <= $endDay; $day++)
-                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}</th>
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}_S</th>
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}_M</th>
                                                     @endfor
                                                 </tr>
                                             </thead>
@@ -488,7 +434,10 @@
                                                         <td>{{ $result->name }}</td>
                                                         <td>{{ $result->bulan }}</td>
                                                         @for ($day = $startDay; $day <= $endDay; $day++)
-                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT)} }}</td>
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT) . '_S'} }}
+                                                            </td>
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT) . '_M'} }}
+                                                            </td>
                                                         @endfor
                                                     </tr>
                                                 @endforeach
@@ -500,7 +449,17 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="width: 100%; height:170px; margin: auto;">
+                                    <canvas id="chartmingguan"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="tabBulanan">
                 <!-- Konten untuk tab Bulanan -->
@@ -517,73 +476,72 @@
                                 <div class="tickets-list">
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Tahun ini</h4>
+                                            <h4>Beban Jatim Tertinggi {{ $StartBulan1 }}</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>MW : {{ $maxValueYear }}</div>
+                                            @if (!empty($StartBulan1))
+                                                <div>MW : {{ $maxValueMonthly }}</div>
                                             @else
                                                 <div>MW :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Tanggal : {{ $maxDateYear }}</div>
+                                            @if (!empty($StartBulan1))
+                                                <div>Tanggal : {{ $maxColumnMonthly }}</div>
                                             @else
                                                 <div>Tanggal : </div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Pukul : {{ $maxColumnYear }}</div>
+                                            @if (!empty($StartBulan1))
+                                                <div>Rata-Rata : {{ $averageValueMonth }}</div>
                                             @else
-                                                <div>Pukul : </div>
+                                                <div>Rata-Rata : </div>
                                             @endif
                                         </div>
                                     </a>
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Bulan ini</h4>
+                                            <h4>Beban Siang</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>MW : {{ $maxValueMonth }}</div>
-                                            @else
-                                                <div>MW :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Tanggal : {{ $maxDateMonth }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Pukul : {{ $maxColumnMonth }}</div>
-                                            @else
-                                                <div>Pukul : </div>
-                                            @endif
-                                        </div>
-                                    </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Hari ini</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Tertinggi : {{ $maxValueToday }}</div>
+                                            @if ($StartBulan1 > 0)
+                                                <div>Tertinggi : {{ $maxValueSMonth }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Pukul : {{ $maxColumnToday }}</div>
+                                            @if ($StartBulan1 > 0)
+                                                <div>Pukul : {{ $maxColumnSMonth }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Rata-Rata : {{ $averageValueSMonth }}</div>
+                                        </div>
+                                    </a>
+                                    <a class="ticket-item">
+                                        <div class="ticket-title">
+                                            <h4>Beban Malam</h4>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($StartBulan1 > 0)
+                                                <div>Tertinggi : {{ $maxValueMMonth }}</div>
+                                            @else
+                                                <div>Tertinggi :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxColumnMMonth > 0)
+                                                <div>Pukul : {{ $maxColumnMMonth }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Rata-Rata : {{ $averageValueMMonth }}</div>
                                         </div>
                                     </a>
                                 </div>
@@ -615,7 +573,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     @if ($processedresultsMonth->isEmpty())
-                                    <p>No results found for the selected date range.</p>
+                                        <p>No results found for the selected date range.</p>
                                     @else
                                         <table id="bebantrafo" class="table-bordered table-md table">
                                             <thead>
@@ -670,73 +628,78 @@
                                 <div class="tickets-list">
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Tahun ini</h4>
+                                            <h4>Beban Jatim Tertinggi {{ $startDate }} dan {{ $endDate }}</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>MW : {{ $maxValueYear }}</div>
+                                            @if (!empty($maxValue))
+                                                <div>MW : {{ $maxValue }}</div>
                                             @else
                                                 <div>MW :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Tanggal : {{ $maxDateYear }}</div>
+                                            @if (!empty($maxColumn))
+                                                <div>Tanggal : {{ $maxColumn }}</div>
                                             @else
                                                 <div>Tanggal : </div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueYear))
-                                                <div>Pukul : {{ $maxColumnYear }}</div>
+                                            @if (!empty($averageValue))
+                                                <div>Rata-Rata : {{ $averageValue }}</div>
                                             @else
-                                                <div>Pukul : </div>
+                                                <div>Rata-Rata : </div>
                                             @endif
                                         </div>
                                     </a>
                                     <a class="ticket-item">
                                         <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Bulan ini</h4>
+                                            <h4>Beban Siang</h4>
                                         </div>
                                         <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>MW : {{ $maxValueMonth }}</div>
-                                            @else
-                                                <div>MW :</div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Tanggal : {{ $maxDateMonth }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if (!empty($maxValueMonth))
-                                                <div>Pukul : {{ $maxColumnMonth }}</div>
-                                            @else
-                                                <div>Pukul : </div>
-                                            @endif
-                                        </div>
-                                    </a>
-                                    <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Beban Jatim Tertinggi Hari ini</h4>
-                                        </div>
-                                        <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Tertinggi : {{ $maxValueToday }}</div>
+                                            @if ($maxValue > 0)
+                                                <div>Tertinggi : {{ $maxValue }}</div>
                                             @else
                                                 <div>Tertinggi :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxValueToday > 0)
-                                                <div>Pukul : {{ $maxColumnToday }}</div>
+                                            <div>Tanggal : {{ $selectedDate }}</div>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValue > 0)
+                                                <div>Pukul : {{ $maxColumn }}</div>
                                             @else
                                                 <div>Pukul :</div>
                                             @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Rata-Rata : {{ $averageValue }}</div>
+                                        </div>
+                                    </a>
+                                    <a class="ticket-item">
+                                        <div class="ticket-title">
+                                            <h4>Beban Malam</h4>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValueM > 0)
+                                                <div>Tertinggi : {{ $maxValueM }}</div>
+                                            @else
+                                                <div>Tertinggi :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Tanggal : {{ $selectedDate }}</div>
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValueM > 0)
+                                                <div>Pukul : {{ $maxColumnM }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            <div>Rata-Rata : {{ $averageValueM }}</div>
                                         </div>
                                     </a>
                                 </div>
@@ -897,7 +860,8 @@
                     if (isDonePressed()) {
                         var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                         var monthNames = ["January", "February", "March", "April", "May", "June",
-                                          "July", "August", "September", "October", "November", "December"];
+                            "July", "August", "September", "October", "November", "December"
+                        ];
                         var monthName = monthNames[month];
                         $(this).val(monthName).trigger('change');
                     }
@@ -906,10 +870,11 @@
                     setTimeout(function() {
                         $(".ui-datepicker-calendar").hide();
                     }, 0);
-    
+
                     if ((datestr = $(input).val()).length > 0) {
                         var monthNames = ["January", "February", "March", "April", "May", "June",
-                                          "July", "August", "September", "October", "November", "December"];
+                            "July", "August", "September", "October", "November", "December"
+                        ];
                         var monthName = datestr;
                         var month = monthNames.indexOf(monthName);
                         if (month !== -1) {
@@ -926,20 +891,20 @@
             });
         });
     </script>
-    
-    
+
+
 
 
 
     <script>
-        var ctx = document.getElementById('chartharian').getContext('2d');
+        var ctx = document.getElementById('chartmingguan').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["5 Hari yang lalu", "4 Hari yang lalu", "3 Hari yang lalu", "Kemarin", "Hari ini", ],
+                labels: ["", ],
                 datasets: [{
                         label: 'Parameter 1', // Name the series
-                        data: ['40', '57'], // Specify the data values array
+                        data: [''], // Specify the data values array
                         fill: false,
                         borderColor: '#ffd000', // Add custom color border (Line)
                         backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
