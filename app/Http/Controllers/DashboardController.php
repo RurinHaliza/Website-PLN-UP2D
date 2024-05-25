@@ -32,9 +32,10 @@ class DashboardController extends Controller
                         'lng' => (float) $lok->y,
                     ],
                     'note' => [
-                        'id' => 'ID_FGI',
+                        'idx' => $lok->id,
+                        'id' => $lok->ID_FGI,
                         'nama' => $lok->Nama_GI,
-                        'KD_Pemilik' => $lok->KD_Pemilik,
+                        'pengelola' => $lok->KD_Pengelola,
                         
                     ],
                     'draggable' => false,

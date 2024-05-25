@@ -166,9 +166,16 @@
                 const data = initialMarkers[index];
                 const marker = generateMarker(data, index);
                 marker.addTo(map).bindPopup(
-                    ` <b>${data.note.nama}</b>`);
+                    "<b>Name: </b>" + data.note.id + 
+                    "<br><b>Nama: </b>"+ data.note.nama + 
+                    "<br><b>Pengelola: </b>"+ data.note.pengelola +
+                    "<br><b>Beban Tertinggi: </b>"+ 
+                    "<br><b>Tertanggal: </b>"+ 
+                    '<br><br><button class="btn btn-primary" id="getres">More details</button>'
+                );
                 map.panTo(data.position);
                 markers.push(marker)
+
             }
         }
 
