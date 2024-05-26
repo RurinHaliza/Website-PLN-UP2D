@@ -9,6 +9,7 @@ use App\Models\GITable;
 use App\Models\trafo;
 use App\Models\Penyulang;
 use App\Models\mvcell;
+use App\Models\formdata;
 
 class DashboardController extends Controller
 {
@@ -27,7 +28,87 @@ class DashboardController extends Controller
 
             foreach ($getLokasiGI as $lok) {
 
-                // $getbeban = data_beban_puncak30::where('gardu_induk', 'LIKE', $lok->Nama_GI)->where('tanggal', '2024-01-25')->first();
+                $jumlahpenyulang = Penyulang::where('ID_GI',$lok->ID_FGI)->count();
+                $jumlahTrafo = trafo::where('Nama_GI',$lok->Nama_GI)->count();
+                // dd($jumlahTrafo);
+
+                $initialMarkers[] = [
+                    'position' => [
+                        'lat' => (float) $lok->x,
+                        'lng' => (float) $lok->y,
+                    ],
+                    'note' => [
+                        'idx' => $lok->id,
+                        'id' => $lok->ID_FGI,
+                        'nama' => $lok->Nama_GI,
+                        'nama_singkatan' => $lok->NAMA_SINGKATAN,
+                        'pengelola' => $lok->KD_Pengelola,
+                        'jumlah_penyulang' => $jumlahpenyulang,
+                        'jumlah_trafo' => $jumlahTrafo,
+                    ],
+                    'draggable' => false,
+                ];
+            }
+
+            $CountTrafoSiang80 = formdata::where('persentertinggi','>',80)->count();
+            $TrafoSiang80 = formdata::where('persentertinggi','>',80)->select('id','gardu_induk','wilayah','persensiang','persenmalam','persentertinggi')->get();
+    
+            $CountTrafo30 = formdata::where('persentertinggi','<',30)->count();
+            $Trafo30 = formdata::where('persentertinggi','<',30)->select('id','gardu_induk','wilayah','persensiang','persenmalam','persentertinggi')->get();
+
+
+
+            // dd($CountTrafoSiang80);
+
+            // dd($initialMarkers);
+
+            // dd($countPenyulang);
+            return view('admin.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers','CountTrafoSiang80','TrafoSiang80','CountTrafo30','Trafo30'));
+        } elseif (Auth::user()->hasRole('operator')) {
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Operator.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
+        } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+
+            return view('Opsis.Dashboard');
+        } elseif (Auth::user()->hasRole('ValidatorFasop')) {
+
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Fasop.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
+        } elseif (Auth::user()->hasRole('EditorOpsis')) {
+
+            return view('EditorOpsis.Dashboard');
+        } elseif (Auth::user()->hasRole('Visitor')) {
+
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Visitor.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
+        } elseif (Auth::user()->hasRole('Manager')) {
+
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+            return view('Manager.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
+        }
+    }
+
+                    // $getbeban = data_beban_puncak30::where('gardu_induk', 'LIKE', $lok->Nama_GI)->where('tanggal', '2024-01-25')->first();
 
                 // // dd($getbeban);
                 // $J00_30 = $getbeban->{'00_30'};
@@ -131,68 +212,4 @@ class DashboardController extends Controller
                 // ]);
 
                 // dd($max);
-
-                $initialMarkers[] = [
-                    'position' => [
-                        'lat' => (float) $lok->x,
-                        'lng' => (float) $lok->y,
-                    ],
-                    'note' => [
-                        'idx' => $lok->id,
-                        'id' => $lok->ID_FGI,
-                        'nama' => $lok->Nama_GI,
-                        'pengelola' => $lok->KD_Pengelola,
-                        // 'tertinggi_hari_ini' => $max,
-                    ],
-                    'draggable' => false,
-                ];
-            }
-
-            // dd($initialMarkers);
-
-            // dd($countPenyulang);
-            return view('admin.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers'));
-        } elseif (Auth::user()->hasRole('operator')) {
-            $countGI = GITable::count();
-            $countTrafo = trafo::count();
-            $countPenyulang = Penyulang::count();
-            $feeder = Penyulang::count();
-            $countMvcell = mvcell::count();
-
-            return view('Operator.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
-        } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
-
-            return view('Opsis.Dashboard');
-        } elseif (Auth::user()->hasRole('ValidatorFasop')) {
-
-            $countGI = GITable::count();
-            $countTrafo = trafo::count();
-            $countPenyulang = Penyulang::count();
-            $feeder = Penyulang::count();
-            $countMvcell = mvcell::count();
-
-            return view('Fasop.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
-        } elseif (Auth::user()->hasRole('EditorOpsis')) {
-
-            return view('EditorOpsis.Dashboard');
-        } elseif (Auth::user()->hasRole('Visitor')) {
-
-            $countGI = GITable::count();
-            $countTrafo = trafo::count();
-            $countPenyulang = Penyulang::count();
-            $feeder = Penyulang::count();
-            $countMvcell = mvcell::count();
-
-            return view('Visitor.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
-        } elseif (Auth::user()->hasRole('Manager')) {
-
-            $countGI = GITable::count();
-            $countTrafo = trafo::count();
-            $countPenyulang = Penyulang::count();
-            $feeder = Penyulang::count();
-            $countMvcell = mvcell::count();
-
-            return view('Manager.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
-        }
-    }
 }
