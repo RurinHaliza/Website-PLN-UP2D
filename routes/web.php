@@ -33,6 +33,10 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout.post');
 Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
+
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gi.maps');
+
+
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban');
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian');
@@ -92,6 +96,8 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
 Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.operator');
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gioperator.maps');
+
     Route::get('ScadaFail', [OperatorController::class, 'ScadaFailIndex'])->name('scadafail');
 
     //

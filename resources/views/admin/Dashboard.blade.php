@@ -279,13 +279,16 @@
 
                 const data = initialMarkers[index];
                 const marker = generateMarker(data, index);
+
+                var url = '{{ route("detail.gi.maps", ":id") }}'.replace(':id', data.note.id);
+
                 marker.addTo(map).bindPopup(
                     "<b>ID GI: </b>" + data.note.id +
                     "<br><b>Nama: </b>" + data.note.nama +
                     "<br><b>Pengelola: </b>" + data.note.pengelola +
                     "<br><b>Jumlah Penyulang: </b>" + data.note.jumlah_penyulang + 
                     "<br><b>Jumlah Trafo: </b>" + data.note.jumlah_trafo +
-                    '<br><br><button class="btn btn-primary" id="getres">More details</button>'
+                    '<br><br><a href="' + url + '" class="btn btn-primary">Detail Data</a>' 
                 );
                 map.panTo(data.position);
                 markers.push(marker)
