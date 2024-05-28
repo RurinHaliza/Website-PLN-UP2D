@@ -10,7 +10,7 @@
 
         #map {
             width: '100%';
-            height: 400px;
+            height: 700px;
         }
     </style>
     <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
@@ -263,7 +263,7 @@
                 zoom: 10
             });
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
                 attribution: '© OpenStreetMap'
             }).addTo(map);
 

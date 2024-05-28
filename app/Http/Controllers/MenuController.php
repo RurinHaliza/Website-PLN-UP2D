@@ -26,7 +26,7 @@ class MenuController extends Controller
     public function semua(Request $request)
     {
 
-        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor'])) {
+        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor','Manager'])) {
 
             $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
             // Analytics untuk hari ini
