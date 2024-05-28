@@ -88,9 +88,13 @@ class LoginController extends Controller
                 return redirect()->route('dashboard.manager');
                 
             } else {
-                return view('Error.error-404');
+                return redirect()->route('loginform');
             }
         }
+        // Jika login gagal, kembalikan ke halaman login dengan pesan kesalahan
+        return redirect()->route('loginform')
+            ->withErrors(['email' => 'Email atau password salah.']);
+    }
 
         // $user = $this->getUserByEmail($data['email']);
 
@@ -111,7 +115,7 @@ class LoginController extends Controller
         //         ]
         //     ], 400);
         // }
-    }
+    
 
 
 
