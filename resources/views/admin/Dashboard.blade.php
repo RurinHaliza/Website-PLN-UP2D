@@ -24,7 +24,10 @@
             </div>
         </section>
 
-        <div class="row">
+        <h2>Data Monitor GI Jawa Timur</h2>
+        <div id='map'></div>
+
+        <div class="row mt-3">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
@@ -107,7 +110,6 @@
 
 
         <div class="row">
-
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -125,17 +127,129 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-8">
+
+            </div>
         </div>
 
-        <h2>Data Monitor GI Jawa Timur</h2>
-        <div id='map'></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Monitor Trafo > 80 % : {{ $CountTrafoSiang80 }} Trafo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="beban_ktt" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Wilayah</th>
+                                        <th>Persentase siang</th>
+                                        <th>Persentase malam</th>
+                                        <th>Persentase Tertinggi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
 
+                                    @foreach ($TrafoSiang80 as $trafo)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->wilayah }}</td>
+                                            <td>{{ $trafo->persensiang }} %</td>
+                                            <td>{{ $trafo->persenmalam }} %</td>
+                                            <td>{{ $trafo->persentertinggi }} %</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Monitor Trafo < 30 % : {{ $CountTrafo30 }} Trafo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="trafo30" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Wilayah</th>
+                                        <th>Persentase siang</th>
+                                        <th>Persentase malam</th>
+                                        <th>Persentase Tertinggi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($Trafo30 as $trafo)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->wilayah }}</td>
+                                            <td>{{ $trafo->persensiang }} %</td>
+                                            <td>{{ $trafo->persenmalam }} %</td>
+                                            <td>{{ $trafo->persentertinggi }} %</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @push('scripts')
     <script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
     <script src='https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js'></script>
+
+    <script>
+        $("#beban_ktt").dataTable({
+            "pageLength": 5,
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [6, 3],
+            }],
+        });
+    </script>
+
+    <script>
+        $("#trafo30").dataTable({
+            "pageLength": 5,
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [6, 3],
+            }],
+        });
+    </script>
+
 
     <script>
         let map, markers = [];
@@ -165,13 +279,16 @@
 
                 const data = initialMarkers[index];
                 const marker = generateMarker(data, index);
+
+                var url = '{{ route("detail.gi.maps", ":id") }}'.replace(':id', data.note.id);
+
                 marker.addTo(map).bindPopup(
-                    "<b>ID GI: </b>" + data.note.id + 
-                    "<br><b>Nama: </b>"+ data.note.nama + 
-                    "<br><b>Pengelola: </b>"+ data.note.pengelola +
-                    "<br><b>Beban Tertinggi: </b>"+ data.note.tertinggi_hari_ini +
-                    "<br><b>Tertanggal: </b>"+ 
-                    '<br><br><button class="btn btn-primary" id="getres">More details</button>'
+                    "<b>ID GI: </b>" + data.note.id +
+                    "<br><b>Nama: </b>" + data.note.nama +
+                    "<br><b>Pengelola: </b>" + data.note.pengelola +
+                    "<br><b>Jumlah Penyulang: </b>" + data.note.jumlah_penyulang + 
+                    "<br><b>Jumlah Trafo: </b>" + data.note.jumlah_trafo +
+                    '<br><br><a href="' + url + '" class="btn btn-primary">Detail Data</a>' 
                 );
                 map.panTo(data.position);
                 markers.push(marker)

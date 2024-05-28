@@ -817,11 +817,19 @@
     </script>
 
     <script>
-        $("#bebantrafo").dataTable({
-            "columnDefs": [{
-                "sortable": false,
-                "targets": [2, 3],
-            }]
+        // $("#bebantrafo").dataTable({
+        //     "columnDefs": [{
+        //         "sortable": false,
+        //         "targets": [2, 3],
+        //     }],
+        // });
+        $(document).ready(function() {
+            $('#bebantrafo').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
         });
     </script>
         <script>
