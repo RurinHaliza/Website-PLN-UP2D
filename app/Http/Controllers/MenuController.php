@@ -391,49 +391,55 @@ class MenuController extends Controller
             // dd($averageValueDay);
             //Mingguan
             // Validasi input tanggal (opsional)
-            $request->validate([
-                'start_date' => 'date',
-                'end_date' => 'date|after_or_equal:start_date',
-            ]);
+        $request->validate([
+            'start_date' => 'date',
+            'end_date' => 'date|after_or_equal:start_date',
+        ]);
 
-            // Mengambil input tanggal (jika ada)
-            $startDate = $request->input('start_date', Carbon::today()->toDateString());
-            $endDate = $request->input('end_date', Carbon::today()->toDateString());
+        // Mengambil input tanggal (jika ada)
+        $startDate = $request->input('start_date', Carbon::today()->toDateString());
+        $endDate = $request->input('end_date', Carbon::today()->toDateString());
 
-            // Mengkonversi tanggal ke format yang sesuai dengan kolom
-            $startDay = (int)date('d', strtotime($startDate));
-            $endDay = (int)date('d', strtotime($endDate));
-            $startMonth = date('F', strtotime($startDate));
-            $endMonth = date('F', strtotime($endDate));
+        // Mengkonversi tanggal ke format yang sesuai dengan kolom
+        $startDay = (int)date('d', strtotime($startDate));
+        $endDay = (int)date('d', strtotime($endDate));
+        $startMonth = date('F', strtotime($startDate));
+        $endMonth = date('F', strtotime($endDate));
 
-            // Membuat array kolom yang perlu diambil
-            $columns = ['id', 'feeder_pkey', 'gardu_induk', 'incoming', 'name', 'bulan'];
-            for ($day = $startDay; $day <= $endDay; $day++) {
-                $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
-                $columns[] = $dayString . '_S';
-                $columns[] = $dayString . '_M';
-            }
+        // Membuat array kolom yang perlu diambil
+        $columns = ['id', 'feeder_pkey', 'gardu_induk', 'incoming', 'name', 'bulan'];
+        for ($day = $startDay; $day <= $endDay; $day++) {
+            $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
+            $columns[] = $dayString . '_S';
+            $columns[] = $dayString . '_M';
+        }
 
-            // Query untuk mendapatkan data berdasarkan rentang tanggal dan bulan
-            $processedResults = DB::table('data_beban_puncak')
-                ->select($columns)
-                ->whereIn('bulan', [$startMonth, $endMonth])
-                ->get();
-            
+        // Query untuk mendapatkan data berdasarkan rentang tanggal dan bulan
+        $processedResults = DB::table('data_beban_puncak')
+            ->select($columns)
+            ->whereIn('bulan', [$startMonth, $endMonth])
+            ->get();
+
         // Menghitung nilai tertinggi dan rata-rata
         $maxValueWeek = null;
         $maxColumnWeek = null;
-        $totalValue = 0;
-        $valueCount = 0;
-
+        $averageValueWeek = 0;
         $maxValueSWeek = null;
         $maxColumnSWeek = null;
+        $averageValueSWeek = 0;
         $maxValueMWeek = null;
         $maxColumnMWeek = null;
-        $totalValueS = 0;
-        $totalValueM = 0;
-        $valueCountS = 0;
-        $valueCountM = 0;
+        $averageValueMWeek = 0;
+        $totalValue = 0;
+        $valueCount = 0;
+        $valueCountWeek = 0;
+        $valueCountSWeek = 0;
+        $valueCountMWeek = 0;
+        $totalValueWeek = 0;
+        $totalValueSWeek = 0;
+        $totalValueMWeek = 0;
+        $maxValues = [];
+        $maxColumns = [];
 
         foreach ($processedResults as $result) {
             for ($day = $startDay; $day <= $endDay; $day++) {
@@ -446,7 +452,7 @@ class MenuController extends Controller
                     $mValue = $result->$mColumn;
 
                     if (is_numeric($sValue) && is_numeric($mValue)) {
-                        // Mencari nilai tertinggi
+                        // Mencari nilai tertinggi mingguan
                         if (is_null($maxValueWeek) || $sValue > $maxValueWeek) {
                             $maxValueWeek = $sValue;
                             $maxColumnWeek = $sColumn;
@@ -469,31 +475,51 @@ class MenuController extends Controller
                         }
 
                         // Menambahkan nilai untuk perhitungan rata-rata
-                        $totalValue += $sValue + $mValue;
-                        $valueCount += 2; // Karena ada dua kolom (_S dan _M) per hari
+                        $totalValueWeek += $sValue + $mValue;
+                        $totalValueSWeek += $sValue;
+                        $totalValueMWeek += $mValue;
+                        $valueCountWeek += 2; // Karena ada dua kolom (_S dan _M) per hari
+                        $valueCountSWeek++;
+                        $valueCountMWeek++;
 
-                        // Menambahkan nilai untuk perhitungan rata-rata _S dan _M
-                        $totalValueS += $sValue;
-                        $totalValueM += $mValue;
-                        $valueCountS++;
-                        $valueCountM++;
+                        // Menyimpan nilai tertinggi per hari
+                        if (!isset($maxValues[$dayString]) || $sValue > $maxValues[$dayString]) {
+                            $maxValues[$dayString] = $sValue;
+                            $maxColumns[$dayString] = $sColumn;
+                        }
+                        if ($mValue > $maxValues[$dayString]) {
+                            $maxValues[$dayString] = $mValue;
+                            $maxColumns[$dayString] = $mColumn;
+                        }
                     }
                 }
             }
         }
 
         // Menghitung rata-rata
-        $averageValueWeek = $valueCount > 0 ? $totalValue / $valueCount : 0;
-        $averageValueSWeek = $valueCountS > 0 ? $totalValueS / $valueCountS : 0;
-        $averageValueMWeek = $valueCountM > 0 ? $totalValueM / $valueCountM : 0;
+        $averageValueWeek = $valueCountWeek > 0 ? $totalValueWeek / $valueCountWeek : 0;
+        $averageValueSWeek = $valueCountSWeek > 0 ? $totalValueSWeek / $valueCountSWeek : 0;
+        $averageValueMWeek = $valueCountMWeek > 0 ? $totalValueMWeek / $valueCountMWeek : 0;
 
-        
+
             // Bulanan
-            // Mengambil input bulan (jika ada)
-            $StartBulan1 = $request->input('StartBulan', Carbon::today()->toDateString());
-            $startMonths = date('F', strtotime($StartBulan1));
+            $validMonths = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+        
+            // Mengambil nilai 'StartBulan' dari input request atau menggunakan bulan dari tanggal hari ini jika tidak ada
+            $StartBulan1 = $request->input('StartBulan', Carbon::today()->format('F'));
+        
+            // Memeriksa apakah input bulan valid
+            if (!in_array($StartBulan1, $validMonths)) {
+                $startMonths = '';
+            } else {
+                $startMonths = $StartBulan1;
+            }
 
-            // Membuat array kolom yang perlu diambil
+
+        // Membuat array kolom yang perlu diambil
             $columnsmonth = ['id', 'feeder_pkey', 'gardu_induk', 'incoming', 'name', 'bulan'];
             for ($day = 1; $day <= 31; $day++) {
                 $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
@@ -501,95 +527,94 @@ class MenuController extends Controller
                 $columnsmonth[] = $dayString . '_M';
             }
 
-            // Variabel untuk menyimpan nilai tertinggi bulanan
-            $maxValueSMonth = null;
-            $maxColumnSMonth = null;
-            $maxValueMMonth = null;
-            $maxColumnMMonth = null;
-            $maxValueMonthly = null;
-            $maxColumnMonthly = null;
-
-            // Variabel untuk menghitung total nilai dan jumlah nilai dari data bulanan
-            $totalValueS = 0;
-            $totalValueM = 0;
-            $totalValue = 0;
-            $valueCountS = 0;
-            $valueCountM = 0;
-            $valueCount = 0;
 
             // Query untuk mendapatkan data berdasarkan bulan yang dipilih
-            $resultsMonth = DB::table('data_beban_puncak')
+            $processedResultsMonth = DB::table('data_beban_puncak')
                 ->select($columnsmonth)
                 ->where('bulan', $startMonths)
                 ->get();
 
-            $processedresultsMonth = $resultsMonth->map(function ($item) use (
-                &$maxValueSMonth,
-                &$maxColumnSMonth,
-                &$maxValueMMonth,
-                &$maxColumnMMonth,
-                &$maxValueMonthly,
-                &$maxColumnMonthly,
-                &$totalValueS,
-                &$totalValueM,
-                &$totalValue,
-                &$valueCountS,
-                &$valueCountM,
-                &$valueCount
-            ) {
-                $result = [
-                    'id' => $item->id,
-                    'feeder_pkey' => $item->feeder_pkey,
-                    'gardu_induk' => $item->gardu_induk,
-                    'incoming' => $item->incoming,
-                    'name' => $item->name,
-                    'bulan' => $item->bulan,
-                ];
-                for ($day = 1; $day <= 31; $day++) {
-                    $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
-                    $sColumn = $dayString . '_S';
-                    $mColumn = $dayString . '_M';
+        // Menghitung nilai tertinggi dan rata-rata
+        $maxValueMonthly = null;
+        $maxColumnMonthly = null;
+        $averageValueMonthly = 0;
+        $maxValueSMonth = null;
+        $maxColumnSMonth = null;
+        $averageValueSMonth = 0;
+        $maxValueMMonth = null;
+        $maxColumnMMonth = null;
+        $averageValueMMonth = 0;
+        $totalValueMonth = 0;
+        $valueCountMonth = 0;
+        $valueCountMonth = 0;
+        $valueCountSMonth = 0;
+        $valueCountMMonth = 0;
+        $totalValueMonth = 0;
+        $totalValueSMonth = 0;
+        $totalValueMMonth = 0;
+        $maxValuesMonth = [];
+        $maxColumnsMonth = [];
 
-                    if (property_exists($item, $sColumn) && property_exists($item, $mColumn)) {
-                        $sValue = $item->$sColumn;
-                        $mValue = $item->$mColumn;
+        foreach ($processedResultsMonth as $result) {
+            for ($day = 1; $day <= 31; $day++) {
+                $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
+                $sColumnMonth = $dayString . '_S';
+                $Month = $dayString . '_M';
 
-                        if (is_numeric($sValue) && is_numeric($mValue)) {
-                            $result[$dayString] = max($sValue, $mValue);
+                if (property_exists($result, $sColumnMonth) && property_exists($result, $Month)) {
+                    $sValueMonth = $result->$sColumnMonth;
+                    $mValueMonth = $result->$Month;
 
-                            // Mencari nilai tertinggi untuk _S
-                            if (is_null($maxValueSMonth) || $sValue > $maxValueSMonth) {
-                                $maxValueSMonth = $sValue;
-                                $maxColumnSMonth = $sColumn;
-                            }
+                    if (is_numeric($sValueMonth) && is_numeric($mValueMonth)) {
+                        // Mencari nilai tertinggi mingguan
+                        if (is_null($maxValueMonthly) || $sValueMonth > $maxValueMonthly) {
+                            $maxValueMonthly = $sValueMonth;
+                            $maxColumnMonthly = $sColumnMonth;
+                        }
+                        if ($mValueMonth > $maxValueMonthly) {
+                            $maxValueMonthly = $mValueMonth;
+                            $maxColumnMonthly = $Month;
+                        }
 
-                            // Mencari nilai tertinggi untuk _M
-                            if (is_null($maxValueMMonth) || $mValue > $maxValueMMonth) {
-                                $maxValueMMonth = $mValue;
-                                $maxColumnMMonth = $mColumn;
-                            }
+                        // Mencari nilai tertinggi untuk _S
+                        if (is_null($maxValueSMonth) || $sValueMonth > $maxValueSMonth) {
+                            $maxValueSMonth = $sValueMonth;
+                            $maxColumnSMonth = $sColumnMonth;
+                        }
 
-                            // Mencari nilai tertinggi untuk bulan
-                            $maxValueMonthly = max($maxValueSMonth, $maxValueMMonth);
-                            $maxColumnMonthly = $maxValueMonthly == $maxValueSMonth ? $maxColumnSMonth : $maxColumnMMonth;
+                        // Mencari nilai tertinggi untuk _M
+                        if (is_null($maxValueMMonth) || $mValueMonth > $maxValueMMonth) {
+                            $maxValueMMonth = $mValueMonth;
+                            $maxColumnMMonth = $Month;
+                        }
 
-                            // Menambahkan nilai untuk perhitungan rata-rata
-                            $totalValueS += $sValue;
-                            $totalValueM += $mValue;
-                            $totalValue += $sValue + $mValue;
-                            $valueCountS++;
-                            $valueCountM++;
-                            $valueCount += 2; // Karena ada dua kolom (_S dan _M) per hari
+                        // Menambahkan nilai untuk perhitungan rata-rata
+                        $totalValueMonth += $sValueMonth + $mValueMonth;
+                        $totalValueSMonth += $sValueMonth;
+                        $totalValueMMonth += $mValueMonth;
+                        $valueCountMonth += 2; // Karena ada dua kolom (_S dan _M) per hari
+                        $valueCountSMonth++;
+                        $valueCountMMonth++;
+
+                        // Menyimpan nilai tertinggi per hari
+                        if (!isset($maxValuesMonth[$dayString]) || $sValueMonth > $maxValuesMonth[$dayString]) {
+                            $maxValuesMonth[$dayString] = $sValueMonth;
+                            $maxColumnsMonth[$dayString] = $sColumnMonth;
+                        }
+                        if ($mValueMonth > $maxValuesMonth[$dayString]) {
+                            $maxValuesMonth[$dayString] = $mValueMonth;
+                            $maxColumnsMonth[$dayString] = $Month;
                         }
                     }
                 }
-                return (object)$result;
-            });
+            }
+        }
 
-            // Menghitung rata-rata
-            $averageValueSMonth = $valueCountS > 0 ? $totalValueS / $valueCountS : 0;
-            $averageValueMMonth = $valueCountM > 0 ? $totalValueM / $valueCountM : 0;
-            $averageValueMonth = $valueCount > 0 ? $totalValue / $valueCount : 0;
+        // Menghitung rata-rata
+        $averageValueMonthly = $valueCountMonth > 0 ? $totalValueMonth / $valueCountMonth : 0;
+        $averageValueSMonth = $valueCountSMonth > 0 ? $totalValueSMonth / $valueCountSMonth : 0;
+        $averageValueMMonth = $valueCountMMonth > 0 ? $totalValueMMonth / $valueCountMMonth : 0;
+    
 
             // Analytics untuk hari ini
             $maxValueToday = 0;
@@ -642,7 +667,7 @@ class MenuController extends Controller
                 }
             }
 
-            return view('monitoring.detail', compact('averageValueSMonth','maxValueSMonth','maxColumnSMonth','averageValueMMonth','maxValueMMonth','maxColumnMMonth','maxColumnMonthly','maxValueMonthly','averageValueMonth','averageValueSWeek','maxValueSWeek','maxColumnSWeek','averageValueMWeek','maxValueMWeek','maxColumnMWeek','maxColumnWeek','maxValueWeek','averageValueWeek','StartBulan1','endDate','startDate','maxValue', 'maxColumn', 'averageValue','data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni','averageValue', 'maxValue', 'maxColumn', 'selectedDate','averageValueDay', 'maxValueDay', 'maxColumnDay','averageValueM', 'maxValueM', 'maxColumnM','maxValueToday', 'maxColumnToday','maxValueMonth', 'maxColumnMonth', 'maxDateMonth','maxValueYear', 'maxColumnYear', 'maxDateYear','processedResults', 'startDay', 'endDay','processedresultsMonth','StartBulan1'));
+            return view('monitoring.detail', compact('maxColumnsMonth','maxValuesMonth','maxValues','maxColumns','averageValueSMonth','maxValueSMonth','maxColumnSMonth','averageValueMMonth','maxValueMMonth','maxColumnMMonth','maxColumnMonthly','averageValueMonthly','maxValueMonthly','averageValueSWeek','maxValueSWeek','maxColumnSWeek','averageValueMWeek','maxValueMWeek','maxColumnMWeek','maxColumnWeek','maxValueWeek','averageValueWeek','StartBulan1','endDate','startDate','maxValue', 'maxColumn', 'averageValue','data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni','averageValue', 'maxValue', 'maxColumn', 'selectedDate','averageValueDay', 'maxValueDay', 'maxColumnDay','averageValueM', 'maxValueM', 'maxColumnM','maxValueToday', 'maxColumnToday','maxValueMonth', 'maxColumnMonth', 'maxDateMonth','maxValueYear', 'maxColumnYear', 'maxDateYear','processedResults', 'startDay', 'endDay','processedResultsMonth','StartBulan1'));
         }
     }
 

@@ -86,6 +86,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
 
     Route::get('DataForm', [DataForm::class, 'index'])->name('dataform.index');
     Route::get('TambahData', [DataForm::class, 'TambahData'])->name('tambahdataform.admin');
+    Route::post('/dataform/store', [DataForm::class, 'store'])->name('dataform.store');
 });
 
 

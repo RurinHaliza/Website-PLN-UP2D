@@ -344,7 +344,7 @@
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxColumnSWeek > 0)
+                                            @if ($maxColumnSWeek)
                                                 <div>Pukul : {{ $maxColumnSWeek }}</div>
                                             @else
                                                 <div>Pukul :</div>
@@ -366,7 +366,7 @@
                                             @endif
                                         </div>
                                         <div class="ticket-info">
-                                            @if ($maxColumnMWeek > 0)
+                                            @if ($maxColumnMWeek)
                                                 <div>Pukul : {{ $maxColumnMWeek }}</div>
                                             @else
                                                 <div>Pukul :</div>
@@ -384,24 +384,24 @@
                     <div class="col-12 col-md-9 col-lg-9">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-header">
-                                    <h4>Simple Table</h4>
-                                    <div class="card-body">
-                                        <form action="{{ route('detailbeban') }}" method="GET">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <input type="date" name="start_date" class="form-control">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="date" name="end_date" class="form-control">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-primary" type="submit"><i
-                                                            class="fas fa-2x fa-search"></i><span>Cari</span></button>
-                                                </div>
+                                <h4>Simple Table</h4>
+                                <div class="card-body">
+                                    <form action="{{ route('detailbeban') }}" method="GET">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="date" name="start_date" class="form-control"
+                                                    value="{{ $startDate }}">
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="col-md-4">
+                                                <input type="date" name="end_date" class="form-control"
+                                                    value="{{ $endDate }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-primary" type="submit"><i
+                                                        class="fas fa-2x fa-search"></i><span>Cari</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -447,19 +447,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="card">
+                            <div class="card-header">
+                                <h4>Grafik Beban Harian</h4>
+                            </div>
                             <div class="card-body">
-                                <div style="width: 100%; height:170px; margin: auto;">
-                                    <canvas id="chartmingguan"></canvas>
-                                </div>
+                                <canvas id="bebanChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="width: 100%; height:170px; margin: auto;">
+                                    <canvas id="bebanChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
             <div class="tab-pane fade" id="tabBulanan">
                 <!-- Konten untuk tab Bulanan -->
@@ -494,7 +502,7 @@
                                         </div>
                                         <div class="ticket-info">
                                             @if (!empty($StartBulan1))
-                                                <div>Rata-Rata : {{ $averageValueMonth }}</div>
+                                                <div>Rata-Rata : {{ $averageValueMonthly }}</div>
                                             @else
                                                 <div>Rata-Rata : </div>
                                             @endif
@@ -572,10 +580,10 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    @if ($processedresultsMonth->isEmpty())
+                                    @if ($processedResultsMonth->isEmpty())
                                         <p>No results found for the selected date range.</p>
                                     @else
-                                        <table id="bebantrafo" class="table-bordered table-md table">
+                                        <table id="bebanbulanan" class="table-bordered table-md table">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -585,12 +593,13 @@
                                                     <th>Name</th>
                                                     <th>Bulan</th>
                                                     @for ($day = 1; $day <= 31; $day++)
-                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}</th>
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}_S</th>
+                                                        <th>{{ str_pad($day, 2, '0', STR_PAD_LEFT) }}_M</th>
                                                     @endfor
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($processedresultsMonth as $result)
+                                                @foreach ($processedResultsMonth as $result)
                                                     <tr>
                                                         <td>{{ $result->id }}</td>
                                                         <td>{{ $result->feeder_pkey }}</td>
@@ -599,7 +608,10 @@
                                                         <td>{{ $result->name }}</td>
                                                         <td>{{ $result->bulan }}</td>
                                                         @for ($day = 1; $day <= 31; $day++)
-                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT)} }}</td>
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT) . '_S'} }}
+                                                            </td>
+                                                            <td>{{ $result->{str_pad($day, 2, '0', STR_PAD_LEFT) . '_M'} }}
+                                                            </td>
                                                         @endfor
                                                     </tr>
                                                 @endforeach
@@ -609,12 +621,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Grafik Beban Harian</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="bebanChart2"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
             <div class="tab-pane fade" id="tabTahunan">
-                <!-- Konten untuk tab Bulanan -->
+                <!-- Konten untuk tab Tahunan -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card card-hero">
@@ -730,7 +750,7 @@
                             </div>
                             <div class="card-body">
                                 {{-- <div class="table-responsive">
-                                    @if ($processedresultsMonth->isEmpty())
+                                    @if ($processedResultsMonth->isEmpty())
                                         <p>Tidak ada data untuk bulan {{ $StartBulan1 }}</p>
                                     @else
                                         <table id="bebantrafo" class="table-bordered table-md table">
@@ -748,7 +768,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($processedresultsMonth as $result)
+                                                @foreach ($processedResultsMonth as $result)
                                                     <tr>
                                                         <td>{{ $result->id }}</td>
                                                         <td>{{ $result->feeder_pkey }}</td>
@@ -804,6 +824,14 @@
             }]
         });
     </script>
+        <script>
+            $("#bebanbulanan").dataTable({
+                "columnDefs": [{
+                    "sortable": false,
+                    "targets": [2, 3],
+                }]
+            });
+        </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -897,35 +925,75 @@
 
 
     <script>
-        var ctx = document.getElementById('chartmingguan').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["", ],
-                datasets: [{
-                        label: 'Parameter 1', // Name the series
-                        data: [''], // Specify the data values array
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('bebanChart').getContext('2d');
+            var bebanChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode(array_values($maxColumns)) !!}, // Labels are the days
+                    datasets: [{
+                        label: 'Nilai Tertinggi',
+                        data: {!! json_encode(array_values($maxValues)) !!}, // Data points are the max values per day
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         fill: false,
-                        borderColor: '#ffd000', // Add custom color border (Line)
-                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
-                        borderWidth: 3 // Specify bar border width
-                    },
-
-                ]
-            },
-            options: {
-                responsive: true, // Instruct chart js to respond nicely.
-                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Total Mw',
-                        padding: {
-                            top: 5,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tanggal'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Nilai Tertinggi'
+                            },
+                            beginAtZero: true
                         }
                     }
                 }
-            }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('bebanChart2').getContext('2d');
+            var bebanChart2 = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode(array_values($maxColumnsMonth)) !!}, // Labels are the days
+                    datasets: [{
+                        label: 'Nilai Tertinggi',
+                        data: {!! json_encode(array_values($maxValuesMonth)) !!}, // Data points are the max values per day
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tanggal'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Nilai Tertinggi'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         });
     </script>
 @endpush
