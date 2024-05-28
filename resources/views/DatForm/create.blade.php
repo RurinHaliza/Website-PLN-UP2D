@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="idcell">Gardu Induk</label>
-                                    <select name="" id="" class="form-control form-select">
+                                    <select name="gardu_induk" id="gardu_induk" class="form-control form-select">
                                         @foreach ($gi as $g => $ga)
                                             <option value="{{ $ga->Nama_GI }}">{{ $ga->Nama_GI }}</option>
                                         @endforeach
@@ -40,7 +40,7 @@
 
                                 <div class="col-md-6">
                                     <label for="idcell">Wilayah</label>
-                                    <select name="" id="" class="form-control form-select">
+                                    <select name="wilayah" id="wilayah" class="form-control form-select">
                                         <option value="TGH">Tengah</option>
                                         <option value="BRT">Barat</option>
                                         <option value="TMR">Timur</option>
@@ -51,7 +51,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="idcell">UP3</label>
-                                    <select name="" id="" class="form-control form-select">
+                                    <select name="up3" id="up3" class="form-control form-select">
                                         @foreach (config('wilayah.UP3') as $key => $item)
                                             <option value="{{ $key }}">{{ $item }}</option>
                                         @endforeach
@@ -60,55 +60,65 @@
 
                                 <div class="col-md-6">
                                     <label for="idcell">No Trafo</label>
-                                    <input type="text" class="form-control" name="NM_JTM" id="idkelas">
+                                    <input type="text" class="form-control" name="no_trafo" id="no_trafo">
                                 </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="idcell">Primer</label>
-                                    <input type="text" class="form-control" name="ID_TRAFOGI" id="idcell">
+                                    <input type="text" class="form-control" name="primer" id="primer">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="idcell">Sekunder</label>
-                                    <input type="text" class="form-control" name="NM_JTM" id="idkelas">
+                                    <input type="text" class="form-control" name="sekunder" id="sekunder">
                                 </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="idcell">Daya</label>
-                                    <input type="text" class="form-control" name="ID_TRAFOGI" id="idcell">
+                                    <input type="text" class="form-control" name="daya" id="daya">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="idcell">Inom</label>
-                                    <input type="text" class="form-control" name="NM_JTM" id="idkelas">
+                                    <input type="text" class="form-control" name="Inom" id="Inom">
                                 </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="idcell">I Siang</label>
-                                    <input type="text" class="form-control" name="ID_TRAFOGI" id="idcell">
+                                    <input type="text" class="form-control" name="ISiang" id="ISiang">
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="idcell">I Malam Hari ini</label>
-                                    <input type="text" class="form-control" name="NM_JTM" id="idkelas">
+                                    <input type="text" class="form-control" name="Imalam" id="Imalam">
                                 </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="idcell">Persen Siang</label>
-                                    <input type="text" class="form-control" name="ID_TRAFOGI" id="idcell">
+                                    <input type="text" class="form-control" name="persensiang" id="persensiang">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="idcell">Persen Malam Hari ini</label>
-                                    <input type="text" class="form-control" name="NM_JTM" id="idkelas">
+                                    <input type="text" class="form-control" name="persenmalam" id="persenmalam">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label for="idcell">Beban Tertinggi</label>
+                                    <input type="text" class="form-control" name="bebantertinggi" id="bebantertinggi">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="idcell">Persen Tertinggi</label>
+                                    <input type="text" class="form-control" name="persentertinggi" id="persentertinggi">
                                 </div>
                             </div>
 

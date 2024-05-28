@@ -9,20 +9,22 @@ class DataFormModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'dataform';
+    protected $table = 'formdata';
     protected $fillable = [
-        'nama_gi',
+        'gardu_induk',
         'wilayah',
         'up3',
         'no_trafo',
         'primer',
         'sekunder',
         'daya',
-        'inom',
-        'i_siang',
-        'i_malam',
-        'persen_siang',
-        'persen_malam',
+        'Inom',
+        'ISiang',
+        'Imalam',
+        'persensiang',
+        'persenmalam',
+        'bebantertinggi',
+        'persentertinggi',
     ];
 
     public $timestamps = true;

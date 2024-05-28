@@ -36,27 +36,49 @@ class DataForm extends Controller
     }
     public function store(Request $request)
     {
+        
         // Validasi data yang diterima dari formulir
         $validatedData = $request->validate([
-            'nama_gi' => 'required|string',
-            'wilayah' => 'required|string',
-            'up3' => 'required|string',
-            'no_trafo' => 'required|string',
-            'primer' => 'required|string',
-            'sekunder' => 'required|string',
-            'daya' => 'required|string',
-            'inom' => 'required|string',
-            'i_siang' => 'required|string',
-            'i_malam' => 'required|string',
-            'persen_siang' => 'required|string',
-            'persen_malam' => 'required|string',
+            'gardu_induk' => 'nullable|string',
+            'wilayah' => 'nullable|string',
+            'up3' => 'nullable|string',
+            'no_trafo' => 'nullable|integer',
+            'primer' => 'nullable|integer',
+            'sekunder' => 'nullable|integer',
+            'daya' => 'nullable|integer',
+            'Inom' => 'nullable|string',
+            'ISiang' => 'nullable|integer',
+            'Imalam' => 'nullable|integer',
+            'persensiang' => 'nullable|numeric',
+            'persenmalam' => 'nullable|numeric',
+            'bebantertinggi' => 'nullable|integer',
+            'persentertinggi' => 'nullable|numeric',
+            // Tambahkan aturan validasi sesuai dengan kebutuhan Anda
         ]);
 
-        // Menyimpan data ke dalam database
-        DataFormModel::create(array_merge($validatedData, ['created_at' => Carbon::now()]));
+        
+
+
+        DataFormModel::create([
+            'gardu_induk' => $validatedData['gardu_induk'],
+            'no_trafo' => $validatedData['no_trafo'],
+            'wilayah' => $validatedData['wilayah'],
+            'up3' => $validatedData['up3'],
+            'primer' => $validatedData['primer'],
+            'sekunder' => $validatedData['sekunder'],
+            'daya' => $validatedData['daya'],
+            'Inom' => $validatedData['Inom'],
+            'ISiang' => $validatedData['ISiang'],
+            'Imalam' => $validatedData['Imalam'],
+            'persensiang' => $validatedData['persensiang'],
+            'persenmalam' => $validatedData['persenmalam'],
+            'bebantertinggi' => $validatedData['bebantertinggi'],
+            'persentertinggi' => $validatedData['persentertinggi'],
+            'created_at' => Carbon::now(),
+        ]);
 
         // Jika data berhasil disimpan, arahkan kembali ke halaman yang sesuai
-        return redirect()->route('DataForm')
+        return redirect()->route('dataform.index')
             ->with('success', 'Data berhasil disimpan.');
     }
 
