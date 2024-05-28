@@ -176,6 +176,8 @@ Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:Valid
 Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:ValidatorFasop']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validfasop');
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gimaps.fasop');
+
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.validfasop');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.validfasop');
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.validfasop');
@@ -209,6 +211,8 @@ Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:Valid
 Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOpsis']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.editorop');
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gimaps.editoropsis');
+
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.editorop');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.editorop');
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.editorop');

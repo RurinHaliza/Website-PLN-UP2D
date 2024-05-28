@@ -186,7 +186,47 @@ class DashboardController extends Controller
             return view('Fasop.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
         } elseif (Auth::user()->hasRole('EditorOpsis')) {
 
-            return view('EditorOpsis.Dashboard');
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+
+            $getLokasiGI = GITable::orderBy('Nama_GI', 'ASC')->get();
+
+            foreach ($getLokasiGI as $lok) {
+
+                $jumlahpenyulang = Penyulang::where('ID_GI', $lok->ID_FGI)->count();
+                $jumlahTrafo = trafo::where('Nama_GI', $lok->Nama_GI)->count();
+                // dd($jumlahTrafo);
+
+                $initialMarkers[] = [
+                    'position' => [
+                        'lat' => (float) $lok->x,
+                        'lng' => (float) $lok->y,
+                    ],
+                    'note' => [
+                        'idx' => $lok->id,
+                        'id' => $lok->ID_FGI,
+                        'nama' => $lok->Nama_GI,
+                        'nama_singkatan' => $lok->NAMA_SINGKATAN,
+                        'pengelola' => $lok->KD_Pengelola,
+                        'jumlah_penyulang' => $jumlahpenyulang,
+                        'jumlah_trafo' => $jumlahTrafo,
+                    ],
+                    'draggable' => false,
+                ];
+            }
+
+            $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+
+            $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+
+
+            return view('EditorOpsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
         } elseif (Auth::user()->hasRole('Visitor')) {
 
             $countGI = GITable::count();
