@@ -136,6 +136,9 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
 Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:ValidatorOpsis']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validopsis');
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gimaps.opsis');
+
+
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.opsis');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.opsis');
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.opsis');
@@ -216,6 +219,7 @@ Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOp
 Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.visitor');
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gimaps.visitor');
 
     //Tabel Trafo 
     Route::get('trafo', [TrafoController::class, 'index'])->name('trafo.visitor');
@@ -241,6 +245,7 @@ Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], 
 Route::group(['prefix' => 'Manager', 'middleware' => ['auth', 'role:Manager']], function () {
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.manager');
+    Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gimaps.manager');
 
     //Tabel Trafo 
     Route::get('trafo', [TrafoController::class, 'index'])->name('trafo.manager');
