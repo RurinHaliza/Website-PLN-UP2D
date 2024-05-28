@@ -54,7 +54,7 @@
                                 <div class="card-icon">
                                     <i class="far fa-question-circle"></i>
                                 </div>
-                                <h5>Analytical</h5>
+                                <h5>Detail Beban</h5>
                             </div>
                             <div class="card-body p-0">
                                 <div class="tickets-list">
@@ -302,7 +302,7 @@
                                 <div class="card-icon">
                                     <i class="far fa-question-circle"></i>
                                 </div>
-                                <h5>Analytical</h5>
+                                <h5>Detail Beban</h5>
                             </div>
                             <div class="card-body p-0">
                                 <div class="tickets-list">
@@ -449,7 +449,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4>Grafik Beban Harian</h4>
+                                <h4>Grafik Beban Mingguan</h4>
                             </div>
                             <div class="card-body">
                                 <canvas id="bebanChart"></canvas>
@@ -478,7 +478,7 @@
                                 <div class="card-icon">
                                     <i class="far fa-question-circle"></i>
                                 </div>
-                                <h5>Analytical</h5>
+                                <h5>Detail Beban</h5>
                             </div>
                             <div class="card-body p-0">
                                 <div class="tickets-list">
@@ -623,7 +623,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4>Grafik Beban Harian</h4>
+                                <h4>Grafik Beban Bulanan</h4>
                             </div>
                             <div class="card-body">
                                 <canvas id="bebanChart2"></canvas>
@@ -642,7 +642,7 @@
                                 <div class="card-icon">
                                     <i class="far fa-question-circle"></i>
                                 </div>
-                                <h5>Analytical</h5>
+                                <h5>Detail Beban</h5>
                             </div>
                             <div class="card-body p-0">
                                 <div class="tickets-list">
@@ -932,76 +932,132 @@
 
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById('bebanChart').getContext('2d');
-            var bebanChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: {!! json_encode(array_values($maxColumns)) !!}, // Labels are the days
-                    datasets: [{
-                        label: 'Nilai Tertinggi',
-                        data: {!! json_encode(array_values($maxValues)) !!}, // Data points are the max values per day
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: false,
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tanggal'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Nilai Tertinggi'
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx = document.getElementById('bebanChart').getContext('2d');
+        var bebanChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode(array_values($maxColumns)) !!}, // Labels are the days
+                datasets: [{
+                    label: 'Nilai Tertinggi',
+                    data: {!! json_encode(array_values($maxValues)) !!}, // Data points are the max values per day
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tanggal', // Description for X axis
+                            color: '#911',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2
                             },
-                            beginAtZero: true
+                            padding: {top: 20, left: 0, right: 0, bottom: 0}
                         }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nilai Tertinggi', // Description for Y axis
+                            color: '#191',
+                            font: {
+                                family: 'Times',
+                                size: 20,
+                                style: 'italic',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 0, left: 0, right: 0, bottom: 20}
+                        },
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
                     }
                 }
-            });
+            }
         });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById('bebanChart2').getContext('2d');
-            var bebanChart2 = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: {!! json_encode(array_values($maxColumnsMonth)) !!}, // Labels are the days
-                    datasets: [{
-                        label: 'Nilai Tertinggi',
-                        data: {!! json_encode(array_values($maxValuesMonth)) !!}, // Data points are the max values per day
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: false,
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tanggal'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Nilai Tertinggi'
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx = document.getElementById('bebanChart2').getContext('2d');
+        var bebanChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode(array_values($maxColumnsMonth)) !!}, // Labels are the days
+                datasets: [{
+                    label: 'Nilai Tertinggi',
+                    data: {!! json_encode(array_values($maxValuesMonth)) !!}, // Data points are the max values per day
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tanggal', // Description for X axis
+                            color: '#911',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2
                             },
-                            beginAtZero: true
+                            padding: {top: 20, left: 0, right: 0, bottom: 0}
                         }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nilai Tertinggi', // Description for Y axis
+                            color: '#191',
+                            font: {
+                                family: 'Times',
+                                size: 20,
+                                style: 'italic',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 0, left: 0, right: 0, bottom: 20}
+                        },
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
                     }
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
+
 @endpush
