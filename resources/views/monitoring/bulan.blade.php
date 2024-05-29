@@ -37,7 +37,32 @@
                         //Siang
                         // Hitung rata-rata dari nilai kolom 01_00 dan 01_30
                         $averageValue = $data->avg(function ($item) {
-                            return ($item->{"04_00"} + $item->{"04_30"} + $item->{"05_00"} + $item->{"05_30"} + $item->{"06_00"} + $item->{"06_30"} + $item->{"07_00"} + $item->{"07_30"} + $item->{"08_00"} + $item->{"08_30"} + $item->{"09_00"} + $item->{"09_30"} + $item->{"10_00"} + $item->{"10_30"} + $item->{"11_00"} + $item->{"11_30"} + $item->{"12_00"} + $item->{"12_30"} + $item->{"13_00"} + $item->{"13_30"} + $item->{"14_00"} + $item->{"14_30"} + $item->{"15_00"} + $item->{"15_30"} + $item->{"16_00"}) / 25;
+                            return ($item->{"04_00"} +
+                                $item->{"04_30"} +
+                                $item->{"05_00"} +
+                                $item->{"05_30"} +
+                                $item->{"06_00"} +
+                                $item->{"06_30"} +
+                                $item->{"07_00"} +
+                                $item->{"07_30"} +
+                                $item->{"08_00"} +
+                                $item->{"08_30"} +
+                                $item->{"09_00"} +
+                                $item->{"09_30"} +
+                                $item->{"10_00"} +
+                                $item->{"10_30"} +
+                                $item->{"11_00"} +
+                                $item->{"11_30"} +
+                                $item->{"12_00"} +
+                                $item->{"12_30"} +
+                                $item->{"13_00"} +
+                                $item->{"13_30"} +
+                                $item->{"14_00"} +
+                                $item->{"14_30"} +
+                                $item->{"15_00"} +
+                                $item->{"15_30"} +
+                                $item->{"16_00"}) /
+                                25;
                         });
                         // Menginisialisasi nilai maksimum dan nama kolom
                         $maxValue = 0;
@@ -45,7 +70,36 @@
 
                         // Melakukan iterasi melalui data
                         foreach ($data as $item) {
-                            foreach (['04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00'] as $columnName) {
+                            foreach (
+                                [
+                                    '04_00',
+                                    '04_30',
+                                    '05_00',
+                                    '05_30',
+                                    '06_00',
+                                    '06_30',
+                                    '07_00',
+                                    '07_30',
+                                    '08_00',
+                                    '08_30',
+                                    '09_00',
+                                    '09_30',
+                                    '10_00',
+                                    '10_30',
+                                    '11_00',
+                                    '11_30',
+                                    '12_00',
+                                    '12_30',
+                                    '13_00',
+                                    '13_30',
+                                    '14_00',
+                                    '14_30',
+                                    '15_00',
+                                    '15_30',
+                                    '16_00',
+                                ]
+                                as $columnName
+                            ) {
                                 // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
                                 if ($item->{$columnName} > $maxValue) {
                                     // Jika ya, simpan nilai dan nama kolomnya
@@ -57,7 +111,30 @@
                         //Malam
                         // Hitung rata-rata dari nilai kolom 01_00 dan 01_30
                         $averageValueM = $data->avg(function ($item) {
-                            return ($item->{"16_30"} + $item->{"17_00"} + $item->{"17_30"} + $item->{"18_00"} + $item->{"18_30"} + $item->{"19_00"} + $item->{"19_30"} + $item->{"20_00"} + $item->{"20_30"} + $item->{"21_00"} + $item->{"21_30"} + $item->{"22_00"} + $item->{"22_30"} + $item->{"23_00"} + $item->{"23_30"} + $item->{"23_59"} + $item->{"00_30"} + $item->{"01_00"} + $item->{"01_30"} + $item->{"02_00"} + $item->{"02_30"} + $item->{"03_00"} + $item->{"03_30"}) / 23;
+                            return ($item->{"16_30"} +
+                                $item->{"17_00"} +
+                                $item->{"17_30"} +
+                                $item->{"18_00"} +
+                                $item->{"18_30"} +
+                                $item->{"19_00"} +
+                                $item->{"19_30"} +
+                                $item->{"20_00"} +
+                                $item->{"20_30"} +
+                                $item->{"21_00"} +
+                                $item->{"21_30"} +
+                                $item->{"22_00"} +
+                                $item->{"22_30"} +
+                                $item->{"23_00"} +
+                                $item->{"23_30"} +
+                                $item->{"23_59"} +
+                                $item->{"00_30"} +
+                                $item->{"01_00"} +
+                                $item->{"01_30"} +
+                                $item->{"02_00"} +
+                                $item->{"02_30"} +
+                                $item->{"03_00"} +
+                                $item->{"03_30"}) /
+                                23;
                         });
                         // Menginisialisasi nilai maksimum dan nama kolom
                         $maxValueM = 0;
@@ -65,7 +142,34 @@
 
                         // Melakukan iterasi melalui data
                         foreach ($data as $item) {
-                            foreach (['16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30'] as $columnNameM) {
+                            foreach (
+                                [
+                                    '16_30',
+                                    '17_00',
+                                    '17_30',
+                                    '18_00',
+                                    '18_30',
+                                    '19_00',
+                                    '19_30',
+                                    '20_00',
+                                    '20_30',
+                                    '21_00',
+                                    '21_30',
+                                    '22_00',
+                                    '22_30',
+                                    '23_00',
+                                    '23_30',
+                                    '23_59',
+                                    '00_30',
+                                    '01_00',
+                                    '01_30',
+                                    '02_00',
+                                    '02_30',
+                                    '03_00',
+                                    '03_30',
+                                ]
+                                as $columnNameM
+                            ) {
                                 // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
                                 if ($item->{$columnNameM} > $maxValueM) {
                                     // Jika ya, simpan nilai dan nama kolomnya
@@ -75,45 +179,148 @@
                             }
                         }
                         // Analytics
-                        
+
                         // Tahun
                         $maxValueYear = 0;
-$maxColumnYear = '';
-$maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
+                        $maxColumnYear = '';
+                        $maxDateYear = ''; // Tambahkan variabel untuk menyimpan tanggal
 
-// Melakukan iterasi melalui data bulan ini
-foreach ($dataBulanIni as $item) {
-    foreach (['00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'] as $columnNameYear) {
-        // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
-        if ($item->{$columnNameYear} > $maxValueYear) {
-            // Jika ya, simpan nilai, nama kolom, dan tanggalnya
-            $maxValueYear = $item->{$columnNameYear};
-            $maxColumnYear = $columnNameYear;
-            $maxDateYear = $item->tanggal; // Simpan tanggalnya
-        }
-    }
-}
-
+                        // Melakukan iterasi melalui data bulan ini
+                        foreach ($dataBulanIni as $item) {
+                            foreach (
+                                [
+                                    '00_30',
+                                    '01_00',
+                                    '01_30',
+                                    '02_00',
+                                    '02_30',
+                                    '03_00',
+                                    '03_30',
+                                    '04_00',
+                                    '04_30',
+                                    '05_00',
+                                    '05_30',
+                                    '06_00',
+                                    '06_30',
+                                    '07_00',
+                                    '07_30',
+                                    '08_00',
+                                    '08_30',
+                                    '09_00',
+                                    '09_30',
+                                    '10_00',
+                                    '10_30',
+                                    '11_00',
+                                    '11_30',
+                                    '12_00',
+                                    '12_30',
+                                    '13_00',
+                                    '13_30',
+                                    '14_00',
+                                    '14_30',
+                                    '15_00',
+                                    '15_30',
+                                    '16_00',
+                                    '16_30',
+                                    '17_00',
+                                    '17_30',
+                                    '18_00',
+                                    '18_30',
+                                    '19_00',
+                                    '19_30',
+                                    '20_00',
+                                    '20_30',
+                                    '21_00',
+                                    '21_30',
+                                    '22_00',
+                                    '22_30',
+                                    '23_00',
+                                    '23_30',
+                                    '23_59',
+                                ]
+                                as $columnNameYear
+                            ) {
+                                // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
+                                if ($item->{$columnNameYear} > $maxValueYear) {
+                                    // Jika ya, simpan nilai, nama kolom, dan tanggalnya
+                                    $maxValueYear = $item->{$columnNameYear};
+                                    $maxColumnYear = $columnNameYear;
+                                    $maxDateYear = $item->tanggal; // Simpan tanggalnya
+                                }
+                            }
+                        }
 
                         // Bulan
                         $maxValueMonth = 0;
-$maxColumnMonth = '';
-$maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
+                        $maxColumnMonth = '';
+                        $maxDateMonth = ''; // Tambahkan variabel untuk menyimpan tanggal
 
-// Melakukan iterasi melalui data bulan ini
-foreach ($dataBulanIni as $item) {
-    foreach (['00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'] as $columnNameMonth) {
-        // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
-        if ($item->{$columnNameMonth} > $maxValueMonth) {
-            // Jika ya, simpan nilai, nama kolom, dan tanggalnya
-            $maxValueMonth = $item->{$columnNameMonth};
-            $maxColumnMonth = $columnNameMonth;
-            $maxDateMonth = $item->tanggal; // Simpan tanggalnya
-        }
-    }
-}
+                        // Melakukan iterasi melalui data bulan ini
+                        foreach ($dataBulanIni as $item) {
+                            foreach (
+                                [
+                                    '00_30',
+                                    '01_00',
+                                    '01_30',
+                                    '02_00',
+                                    '02_30',
+                                    '03_00',
+                                    '03_30',
+                                    '04_00',
+                                    '04_30',
+                                    '05_00',
+                                    '05_30',
+                                    '06_00',
+                                    '06_30',
+                                    '07_00',
+                                    '07_30',
+                                    '08_00',
+                                    '08_30',
+                                    '09_00',
+                                    '09_30',
+                                    '10_00',
+                                    '10_30',
+                                    '11_00',
+                                    '11_30',
+                                    '12_00',
+                                    '12_30',
+                                    '13_00',
+                                    '13_30',
+                                    '14_00',
+                                    '14_30',
+                                    '15_00',
+                                    '15_30',
+                                    '16_00',
+                                    '16_30',
+                                    '17_00',
+                                    '17_30',
+                                    '18_00',
+                                    '18_30',
+                                    '19_00',
+                                    '19_30',
+                                    '20_00',
+                                    '20_30',
+                                    '21_00',
+                                    '21_30',
+                                    '22_00',
+                                    '22_30',
+                                    '23_00',
+                                    '23_30',
+                                    '23_59',
+                                ]
+                                as $columnNameMonth
+                            ) {
+                                // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
+                                if ($item->{$columnNameMonth} > $maxValueMonth) {
+                                    // Jika ya, simpan nilai, nama kolom, dan tanggalnya
+                                    $maxValueMonth = $item->{$columnNameMonth};
+                                    $maxColumnMonth = $columnNameMonth;
+                                    $maxDateMonth = $item->tanggal; // Simpan tanggalnya
+                                }
+                            }
+                        }
 
-// Sekarang, $maxDateMonth berisi tanggal di mana nilai tertinggi ditemukan
+                        // Sekarang, $maxDateMonth berisi tanggal di mana nilai tertinggi ditemukan
 
                         //Hari
                         $maxValueT = 0;
@@ -121,7 +328,59 @@ foreach ($dataBulanIni as $item) {
 
                         // Melakukan iterasi melalui data
                         foreach ($dataHariIni as $item) {
-                            foreach (['00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'] as $columnNameT) {
+                            foreach (
+                                [
+                                    '00_30',
+                                    '01_00',
+                                    '01_30',
+                                    '02_00',
+                                    '02_30',
+                                    '03_00',
+                                    '03_30',
+                                    '04_00',
+                                    '04_30',
+                                    '05_00',
+                                    '05_30',
+                                    '06_00',
+                                    '06_30',
+                                    '07_00',
+                                    '07_30',
+                                    '08_00',
+                                    '08_30',
+                                    '09_00',
+                                    '09_30',
+                                    '10_00',
+                                    '10_30',
+                                    '11_00',
+                                    '11_30',
+                                    '12_00',
+                                    '12_30',
+                                    '13_00',
+                                    '13_30',
+                                    '14_00',
+                                    '14_30',
+                                    '15_00',
+                                    '15_30',
+                                    '16_00',
+                                    '16_30',
+                                    '17_00',
+                                    '17_30',
+                                    '18_00',
+                                    '18_30',
+                                    '19_00',
+                                    '19_30',
+                                    '20_00',
+                                    '20_30',
+                                    '21_00',
+                                    '21_30',
+                                    '22_00',
+                                    '22_30',
+                                    '23_00',
+                                    '23_30',
+                                    '23_59',
+                                ]
+                                as $columnNameT
+                            ) {
                                 // Memeriksa jika nilai kolom saat ini lebih besar dari nilai maksimum sebelumnya
                                 if ($item->{$columnNameT} > $maxValueT) {
                                     // Jika ya, simpan nilai dan nama kolomnya
@@ -149,24 +408,24 @@ foreach ($dataBulanIni as $item) {
                                             </div>
                                             <div class="ticket-info">
                                                 @if (!empty($maxValueYear))
-                                                <div>MW : {{ $maxValueYear }}</div>
-                                            @else
-                                                <div>MW :</div>
-                                            @endif
+                                                    <div>MW : {{ $maxValueYear }}</div>
+                                                @else
+                                                    <div>MW :</div>
+                                                @endif
                                             </div>
                                             <div class="ticket-info">
                                                 @if (!empty($maxValueYear))
-                                                <div>Tanggal : {{ $maxDateYear }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
+                                                    <div>Tanggal : {{ $maxDateYear }}</div>
+                                                @else
+                                                    <div>Tanggal : </div>
+                                                @endif
                                             </div>
                                             <div class="ticket-info">
                                                 @if (!empty($maxValueYear))
-                                                <div>Pukul : {{ $maxColumnYear }}</div>
-                                            @else
-                                                <div>Pukul : </div>
-                                            @endif
+                                                    <div>Pukul : {{ $maxColumnYear }}</div>
+                                                @else
+                                                    <div>Pukul : </div>
+                                                @endif
                                             </div>
                                         </a>
                                         <a class="ticket-item">
@@ -175,24 +434,24 @@ foreach ($dataBulanIni as $item) {
                                             </div>
                                             <div class="ticket-info">
                                                 @if (!empty($maxValueMonth))
-                                                <div>MW : {{ $maxValueMonth }}</div>
-                                            @else
-                                                <div>MW :</div>
-                                            @endif
+                                                    <div>MW : {{ $maxValueMonth }}</div>
+                                                @else
+                                                    <div>MW :</div>
+                                                @endif
                                             </div>
                                             <div class="ticket-info">
                                                 @if (!empty($maxValueMonth))
-                                                <div>Tanggal : {{ $maxDateMonth }}</div>
-                                            @else
-                                                <div>Tanggal : </div>
-                                            @endif
+                                                    <div>Tanggal : {{ $maxDateMonth }}</div>
+                                                @else
+                                                    <div>Tanggal : </div>
+                                                @endif
                                             </div>
                                             <div class="ticket-info">
                                                 @if (!empty($maxValueMonth))
-                                                <div>Pukul : {{ $maxColumnMonth }}</div>
-                                            @else
-                                                <div>Pukul : </div>
-                                            @endif
+                                                    <div>Pukul : {{ $maxColumnMonth }}</div>
+                                                @else
+                                                    <div>Pukul : </div>
+                                                @endif
                                             </div>
                                         </a>
                                         <a class="ticket-item">
@@ -476,7 +735,6 @@ foreach ($dataBulanIni as $item) {
                                                     <th></th>
                                                 </tr>
                                             </table>
-                                            
                                         @endif
                                     @endisset
                                 </div>
@@ -629,10 +887,7 @@ foreach ($dataBulanIni as $item) {
 
     <script>
         $("#bebanharikemarin").dataTable({
-            // "columnDefs": [{
-            //     "sortable": false,
-            //     "targets": [2, 3]
-            // }]
+
         });
     </script>
 
@@ -665,6 +920,5 @@ foreach ($dataBulanIni as $item) {
                 maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
             }
         });
-        
     </script>
 @endpush

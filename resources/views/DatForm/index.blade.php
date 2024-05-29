@@ -16,6 +16,34 @@
                 <h1>Data Form</h1>
             </div>
         </section>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0 font-weight-bold text-primary">Filter Data Trafo per bulan</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="bulan">Bulan</label>
+                                    <input type="date" class="form-control" name="bulanfilter" id="bulanfilter">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for=""></label>
+                                    <button type="submit" class="btn btn-primary mt-4" disabled>Cari</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="card mt-3">
             <div class="card-header">
                 <h5 class="m-0 font-weight-bold text-primary">Tabel Record Data</h5>
@@ -30,14 +58,25 @@
                                 <th>Wilayah</th>
                                 <th>UP3</th>
                                 <th>No Trafo</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                        </tbody>
+                            @php
+                                $no = 1;
+                            @endphp
 
+                            @foreach ($getData as $data )
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $data->gardu_induk }}</td>
+                                    <td>{{ $data->wilayah }}</td>
+                                    <td>{{ $data->up3 }}</td>
+                                    <td>{{ $data->no_trafo }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
