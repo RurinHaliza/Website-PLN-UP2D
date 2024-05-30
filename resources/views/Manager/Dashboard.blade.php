@@ -26,9 +26,6 @@
             </div>
         </section>
 
-        <h2>Data Monitor GI Jawa Timur</h2>
-        <div id='map'></div>
-
         <div class="row">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -99,7 +96,7 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah mVA
 
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0 mVA</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mva }} Ampere</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -110,8 +107,10 @@
             </div>
         </div>
 
+        <h2>Data Monitor GI Jawa Timur</h2>
+        <div id='map'></div>
 
-        <div class="row">
+        <div class="row mt-3">
 
             <div class="col-md-4">
                 <div class="card">
@@ -243,7 +242,7 @@
             zoom: 10
         });
 
-        L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap'
         }).addTo(map);
 

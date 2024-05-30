@@ -16,9 +16,9 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
-        @if (Auth::user()->hasRole('Administrator')) 
+        @if (Auth::user()->hasRole('Administrator'))
             <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
-         @elseif (Auth::user()->hasRole('operator')) 
+        @elseif (Auth::user()->hasRole('operator'))
             <a href="{{ route('detailbeban.operator') }}" class="btn btn-primary mb-4">Detail Beban</a>
         @elseif (Auth::user()->hasRole('ValidatorOpsis'))
             <a href="{{ route('detailbeban.opsis') }}" class="btn btn-primary mb-4">Detail Beban</a>
@@ -145,18 +145,6 @@
                 <div style="width: 100%; height:400px; margin: auto;">
                     <canvas id="barChart"></canvas>
                 </div>
-                {{-- <div class="row mt-5">
-                    <div class="col-md-4">
-                        <a href="{{ route('bebanharian') }}" class="btn btn-primary">Beban Harian</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="{{ route('bebanminggu') }}" class="btn btn-warning">Beban Mingguan</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="{{ route('bebanbulan') }}" class="btn btn-danger">Beban Bulanan</a>
-                    </div>
-                </div> --}}
-
             </div>
         </div>
         <div>

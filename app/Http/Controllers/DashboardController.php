@@ -56,7 +56,12 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
-            return view('admin.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
+
+            // dd($mva);
+
+            return view('admin.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
+        
         } elseif (Auth::user()->hasRole('operator')) {
 
             $countGI = GITable::count();
@@ -97,7 +102,10 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
-            return view('Operator.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
+
+            return view('Operator.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
+       
         } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
 
             $countGI = GITable::count();
@@ -138,8 +146,10 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
-            return view('Opsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            return view('Opsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
+       
         } elseif (Auth::user()->hasRole('ValidatorFasop')) {
 
             $countGI = GITable::count();
@@ -181,9 +191,9 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
-
-            return view('Fasop.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            return view('Fasop.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
         } elseif (Auth::user()->hasRole('EditorOpsis')) {
 
             $countGI = GITable::count();
@@ -225,8 +235,10 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
-            return view('EditorOpsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            return view('EditorOpsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
+       
         } elseif (Auth::user()->hasRole('Visitor')) {
 
             $countGI = GITable::count();
@@ -268,8 +280,10 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
-            return view('Visitor.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            return view('Visitor.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
+        
         } elseif (Auth::user()->hasRole('Manager')) {
 
             $countGI = GITable::count();
@@ -310,10 +324,9 @@ class DashboardController extends Controller
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
+            $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
-
-
-            return view('Manager.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
+            return view('Manager.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30','mva'));
         }
     }
 

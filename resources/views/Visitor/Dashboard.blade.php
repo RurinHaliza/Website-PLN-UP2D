@@ -24,9 +24,6 @@
             </div>
         </section>
 
-        <h2>Data Monitor GI Jawa Timur</h2>
-        <div id='map'></div>
-
         <div class="row mt-3">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -97,7 +94,7 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah mVA
 
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0 mVA</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mva }} Ampere</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -108,9 +105,10 @@
             </div>
         </div>
 
+        <h2>Data Monitor GI Jawa Timur</h2>
+        <div id='map'></div>
 
-        <div class="row">
-
+        <div class="row mt-3">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -129,6 +127,101 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Monitor Trafo > 80 % : {{ $CountTrafoSiang80 }} Trafo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="beban_ktt" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Wilayah</th>
+                                        <th>Persentase siang</th>
+                                        <th>Persentase malam</th>
+                                        <th>Persentase Tertinggi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($TrafoSiang80 as $trafo)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->wilayah }}</td>
+                                            <td>{{ $trafo->persensiang }} %</td>
+                                            <td>{{ $trafo->persenmalam }} %</td>
+                                            <td>{{ $trafo->persentertinggi }} %</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Monitor Trafo < 30 % : {{ $CountTrafo30 }} Trafo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="trafo30" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Wilayah</th>
+                                        <th>Persentase siang</th>
+                                        <th>Persentase malam</th>
+                                        <th>Persentase Tertinggi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($Trafo30 as $trafo)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->wilayah }}</td>
+                                            <td>{{ $trafo->persensiang }} %</td>
+                                            <td>{{ $trafo->persenmalam }} %</td>
+                                            <td>{{ $trafo->persentertinggi }} %</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 @endsection
 
@@ -170,7 +263,7 @@
             zoom: 10
         });
 
-        L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
