@@ -51,10 +51,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
@@ -97,10 +97,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
@@ -141,10 +141,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
@@ -186,10 +186,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
@@ -230,10 +230,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
@@ -275,10 +275,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 
@@ -319,10 +319,10 @@ class DashboardController extends Controller
             }
 
             $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
-            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
-            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi','no_trafo')->get();
 
             $mva = formdata::whereBetween('id',[1,269])->select('daya')->sum('daya');
 

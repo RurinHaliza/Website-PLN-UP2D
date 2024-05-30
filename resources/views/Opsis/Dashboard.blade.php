@@ -139,11 +139,11 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Gardu Induk</th>
+                                        <th>No Trafo</th>
                                         <th>Wilayah</th>
                                         <th>Persentase siang</th>
                                         <th>Persentase malam</th>
                                         <th>Persentase Tertinggi</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -155,13 +155,12 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->no_trafo }}</td>
                                             <td>{{ $trafo->wilayah }}</td>
                                             <td>{{ $trafo->persensiang }} %</td>
                                             <td>{{ $trafo->persenmalam }} %</td>
                                             <td>{{ $trafo->persentertinggi }} %</td>
-                                            <td>
-                                                <a href="" class="btn btn-primary">Detail</a>
-                                            </td>
+                   
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -185,11 +184,11 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Gardu Induk</th>
+                                        <th>No Trafo</th>
                                         <th>Wilayah</th>
                                         <th>Persentase siang</th>
                                         <th>Persentase malam</th>
                                         <th>Persentase Tertinggi</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -201,13 +200,11 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->no_trafo }}</td>
                                             <td>{{ $trafo->wilayah }}</td>
                                             <td>{{ $trafo->persensiang }} %</td>
                                             <td>{{ $trafo->persenmalam }} %</td>
                                             <td>{{ $trafo->persentertinggi }} %</td>
-                                            <td>
-                                                <a href="" class="btn btn-primary">Detail</a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
