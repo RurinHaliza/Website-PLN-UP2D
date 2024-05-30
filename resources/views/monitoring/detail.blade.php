@@ -64,9 +64,9 @@
                                         </div>
                                         <div class="ticket-info">
                                             @if (!empty($maxValueDay))
-                                                <div>MW : {{ $maxValueDay }}</div>
+                                                <div>Ampere : {{ $maxValueDay }}</div>
                                             @else
-                                                <div>MW :</div>
+                                                <div>Ampere :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
@@ -107,6 +107,20 @@
                                         </div>
                                         <div class="ticket-info">
                                             <div>Rata-Rata : {{ $averageValue }}</div>
+                                        </div><br>
+                                        <div class="ticket-info">
+                                            @if ($maxValue2 > 0)
+                                                <div>Tertinggi kedua : {{ $maxValue2 }}</div>
+                                            @else
+                                                <div>Tertinggi kedua :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValue2 > 0)
+                                                <div>Pukul : {{ $maxColumn2 }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
                                         </div>
                                     </a>
                                     <a class="ticket-item">
@@ -132,6 +146,20 @@
                                         </div>
                                         <div class="ticket-info">
                                             <div>Rata-Rata : {{ $averageValueM }}</div>
+                                        </div><br>
+                                        <div class="ticket-info">
+                                            @if ($maxValueM2 > 0)
+                                                <div>Tertinggi kedua : {{ $maxValueM2 }}</div>
+                                            @else
+                                                <div>Tertinggi kedua :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxValueM2 > 0)
+                                                <div>Pukul : {{ $maxColumnM2 }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
@@ -312,9 +340,9 @@
                                         </div>
                                         <div class="ticket-info">
                                             @if (!empty($maxValueWeek))
-                                                <div>MW : {{ $maxValueWeek }}</div>
+                                                <div>Ampere : {{ $maxValueWeek }}</div>
                                             @else
-                                                <div>MW :</div>
+                                                <div>Ampere :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
@@ -352,6 +380,20 @@
                                         </div>
                                         <div class="ticket-info">
                                             <div>Rata-Rata : {{ $averageValueSWeek }}</div>
+                                        </div><br>
+                                        <div class="ticket-info">
+                                            @if ($maxValueSWeek2 > 0)
+                                                <div>Tertinggi kedua : {{ $maxValueSWeek2 }}</div>
+                                            @else
+                                                <div>Tertinggi kedua :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxColumnSWeek2)
+                                                <div>Pukul : {{ $maxColumnSWeek2 }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
                                         </div>
                                     </a>
                                     <a class="ticket-item">
@@ -374,6 +416,20 @@
                                         </div>
                                         <div class="ticket-info">
                                             <div>Rata-Rata : {{ $averageValueMWeek }}</div>
+                                        </div><br>
+                                        <div class="ticket-info">
+                                            @if ($maxValueMWeek2 > 0)
+                                                <div>Tertinggi kedua : {{ $maxValueMWeek2 }}</div>
+                                            @else
+                                                <div>Tertinggi kedua :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxColumnMWeek2)
+                                                <div>Pukul : {{ $maxColumnMWeek2 }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
@@ -488,9 +544,9 @@
                                         </div>
                                         <div class="ticket-info">
                                             @if (!empty($StartBulan1))
-                                                <div>MW : {{ $maxValueMonthly }}</div>
+                                                <div>Ampere : {{ $maxValueMonthly }}</div>
                                             @else
-                                                <div>MW :</div>
+                                                <div>Ampere :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">
@@ -528,6 +584,20 @@
                                         </div>
                                         <div class="ticket-info">
                                             <div>Rata-Rata : {{ $averageValueSMonth }}</div>
+                                        </div><br>
+                                        <div class="ticket-info">
+                                            @if ($StartBulan1 > 0)
+                                                <div>Tertinggi : {{ $maxValueSMonth2 }}</div>
+                                            @else
+                                                <div>Tertinggi :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($StartBulan1 > 0)
+                                                <div>Pukul : {{ $maxColumnSMonth2 }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
                                         </div>
                                     </a>
                                     <a class="ticket-item">
@@ -550,6 +620,20 @@
                                         </div>
                                         <div class="ticket-info">
                                             <div>Rata-Rata : {{ $averageValueMMonth }}</div>
+                                        </div><br>
+                                        <div class="ticket-info">
+                                            @if ($StartBulan1 > 0)
+                                                <div>Tertinggi : {{ $maxValueMMonth2 }}</div>
+                                            @else
+                                                <div>Tertinggi :</div>
+                                            @endif
+                                        </div>
+                                        <div class="ticket-info">
+                                            @if ($maxColumnMMonth > 0)
+                                                <div>Pukul : {{ $maxColumnMMonth2 }}</div>
+                                            @else
+                                                <div>Pukul :</div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
@@ -652,9 +736,9 @@
                                         </div>
                                         <div class="ticket-info">
                                             @if (!empty($maxValue))
-                                                <div>MW : {{ $maxValue }}</div>
+                                                <div>Ampere : {{ $maxValue }}</div>
                                             @else
-                                                <div>MW :</div>
+                                                <div>Ampere :</div>
                                             @endif
                                         </div>
                                         <div class="ticket-info">

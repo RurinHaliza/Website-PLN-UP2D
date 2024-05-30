@@ -329,66 +329,67 @@ class MenuController extends Controller
         if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor'])) {
 
             // Harian
-            // Mengambil data dari tabel data_beban_puncak30 berdasarkan tanggal terpilih
-            $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
-            $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
+            // Mengambil data berdasarkan tanggal terpilih
+$selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
+$data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
 
-            // Hitung rata-rata dan nilai maksimum untuk data harian
-            $averageValue = $data->avg(function ($item) {
-                return ($item->{"04_00"} + $item->{"04_30"} + $item->{"05_00"} + $item->{"05_30"} + $item->{"06_00"} + $item->{"06_30"} + $item->{"07_00"} + $item->{"07_30"} + $item->{"08_00"} + $item->{"08_30"} + $item->{"09_00"} + $item->{"09_30"} + $item->{"10_00"} + $item->{"10_30"} + $item->{"11_00"} + $item->{"11_30"} + $item->{"12_00"} + $item->{"12_30"} + $item->{"13_00"} + $item->{"13_30"} + $item->{"14_00"} + $item->{"14_30"} + $item->{"15_00"} + $item->{"15_30"} + $item->{"16_00"}) / 25;
-            });
+// Fungsi untuk menghitung nilai rata-rata
+function calculateAverage($data, $columns) {
+    return $data->avg(function ($item) use ($columns) {
+        $sum = 0;
+        foreach ($columns as $column) {
+            $sum += $item->{$column};
+        }
+        return $sum / count($columns);
+    });
+}
 
-            $maxValue = 0;
-            $maxColumn = '';
-            foreach ($data as $item) {
-                foreach ([
-                    '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00',
-                ] as $columnName) {
-                    if ($item->{$columnName} > $maxValue) {
-                        $maxValue = $item->{$columnName};
-                        $maxColumn = $columnName;
-                    }
-                }
+// Fungsi untuk menghitung nilai maksimum dan maksimum kedua
+function calculateMaxValues($data, $columns) {
+    $maxValue = 0;
+    $maxColumn = '';
+    $maxValue2 = 0;
+    $maxColumn2 = '';
+
+    foreach ($data as $item) {
+        foreach ($columns as $columnName) {
+            $value = $item->{$columnName};
+            if ($value > $maxValue) {
+                $maxValue2 = $maxValue;
+                $maxColumn2 = $maxColumn;
+                $maxValue = $value;
+                $maxColumn = $columnName;
+            } elseif ($value > $maxValue2 && $value < $maxValue) {
+                $maxValue2 = $value;
+                $maxColumn2 = $columnName;
             }
+        }
+    }
+    return [$maxValue, $maxColumn, $maxValue2, $maxColumn2];
+}
 
-            // Lakukan hal yang sama untuk data malam
-            // Hitung rata-rata dan nilai maksimum
-            $averageValueM = $data->avg(function ($item) {
-                return ($item->{"16_00"} + $item->{"16_30"} + $item->{"17_00"} + $item->{"17_30"} + $item->{"18_00"} + $item->{"18_30"} + $item->{"19_00"} + $item->{"19_30"} + $item->{"20_00"} + $item->{"20_30"} + $item->{"21_00"} + $item->{"21_30"} + $item->{"22_00"} + $item->{"22_30"} + $item->{"23_00"} + $item->{"23_30"} + $item->{"23_59"} + $item->{"00_30"} + $item->{"01_00"} + $item->{"01_30"} + $item->{"02_00"} + $item->{"02_30"} + $item->{"03_00"} + $item->{"03_30"} + $item->{"04_00"}) / 25;
-            });
+// Kolom untuk data siang
+$columnsHarian = ['04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00'];
 
-            $maxValueM = 0;
-            $maxColumnM = '';
-            foreach ($data as $item) {
-                foreach ([
-                    '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00',
-                ] as $columnNameM) {
-                    if ($item->{$columnNameM} > $maxValueM) {
-                        $maxValueM = $item->{$columnNameM};
-                        $maxColumnM = $columnNameM;
-                    }
-                }
-            }
+// Menghitung rata-rata dan nilai maksimum untuk data harian
+$averageValue = calculateAverage($data, $columnsHarian);
+list($maxValue, $maxColumn, $maxValue2, $maxColumn2) = calculateMaxValues($data, $columnsHarian);
 
-            //Combine
-            $averageValueDay = $data->avg(function ($item) {
-                return ($item->{"00_30"} + $item->{"01_00"} + $item->{"01_30"} + $item->{"02_00"} + $item->{"02_30"} + $item->{"03_00"} + $item->{"03_30"} +$item->{"04_00"} + $item->{"04_30"} + $item->{"05_00"} + $item->{"05_30"} + $item->{"06_00"} + $item->{"06_30"} + $item->{"07_00"} + $item->{"07_30"} + $item->{"08_00"} + $item->{"08_30"} + $item->{"09_00"} + $item->{"09_30"} + $item->{"10_00"} + $item->{"10_30"} + $item->{"11_00"} + $item->{"11_30"} + $item->{"12_00"} + $item->{"12_30"} + $item->{"13_00"} + $item->{"13_30"} + $item->{"14_00"} + $item->{"14_30"} + $item->{"15_00"} + $item->{"15_30"} + $item->{"16_00"}+$item->{"16_00"} + $item->{"16_30"} + $item->{"17_00"} + $item->{"17_30"} + $item->{"18_00"} + $item->{"18_30"} + $item->{"19_00"} + $item->{"19_30"} + $item->{"20_00"} + $item->{"20_30"} + $item->{"21_00"} + $item->{"21_30"} + $item->{"22_00"} + $item->{"22_30"} + $item->{"23_00"} + $item->{"23_30"} + $item->{"23_59"}) / 50;
-            });
+// Kolom untuk data malam
+$columnsMalam = ['16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00'];
 
-            $maxValueDay = 0;
-            $maxColumnDay = '';
-            foreach ($data as $item) {
-                foreach ([
-                    '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30','04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00','16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', 
-                ] as $columnNameDay) {
-                    if ($item->{$columnNameDay} > $maxValueDay) {
-                        $maxValueDay = $item->{$columnNameDay};
-                        $maxColumnDay = $columnNameDay;
-                    }
-                }
-            }
+// Menghitung rata-rata dan nilai maksimum untuk data malam
+$averageValueM = calculateAverage($data, $columnsMalam);
+list($maxValueM, $maxColumnM, $maxValueM2, $maxColumnM2) = calculateMaxValues($data, $columnsMalam);
 
-            // dd($averageValueDay);
+// Kolom untuk data gabungan
+$columnsDay = ['00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'];
+
+// Menghitung rata-rata dan nilai maksimum untuk data gabungan
+$averageValueDay = calculateAverage($data, $columnsDay);
+list($maxValueDay, $maxColumnDay, $maxValueDay2, $maxColumnDay2) = calculateMaxValues($data, $columnsDay);
+
+
             //Mingguan
             // Validasi input tanggal (opsional)
         $request->validate([
@@ -420,86 +421,106 @@ class MenuController extends Controller
             ->whereIn('bulan', [$startMonth, $endMonth])
             ->get();
 
-        // Menghitung nilai tertinggi dan rata-rata
-        $maxValueWeek = null;
-        $maxColumnWeek = null;
-        $averageValueWeek = 0;
-        $maxValueSWeek = null;
-        $maxColumnSWeek = null;
-        $averageValueSWeek = 0;
-        $maxValueMWeek = null;
-        $maxColumnMWeek = null;
-        $averageValueMWeek = 0;
-        $totalValue = 0;
-        $valueCount = 0;
-        $valueCountWeek = 0;
-        $valueCountSWeek = 0;
-        $valueCountMWeek = 0;
-        $totalValueWeek = 0;
-        $totalValueSWeek = 0;
-        $totalValueMWeek = 0;
-        $maxValues = [];
-        $maxColumns = [];
-
-        foreach ($processedResults as $result) {
-            for ($day = $startDay; $day <= $endDay; $day++) {
-                $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
-                $sColumn = $dayString . '_S';
-                $mColumn = $dayString . '_M';
-
-                if (property_exists($result, $sColumn) && property_exists($result, $mColumn)) {
-                    $sValue = $result->$sColumn;
-                    $mValue = $result->$mColumn;
-
-                    if (is_numeric($sValue) && is_numeric($mValue)) {
-                        // Mencari nilai tertinggi mingguan
-                        if (is_null($maxValueWeek) || $sValue > $maxValueWeek) {
-                            $maxValueWeek = $sValue;
-                            $maxColumnWeek = $sColumn;
-                        }
-                        if ($mValue > $maxValueWeek) {
-                            $maxValueWeek = $mValue;
-                            $maxColumnWeek = $mColumn;
-                        }
-
-                        // Mencari nilai tertinggi untuk _S
-                        if (is_null($maxValueSWeek) || $sValue > $maxValueSWeek) {
-                            $maxValueSWeek = $sValue;
-                            $maxColumnSWeek = $sColumn;
-                        }
-
-                        // Mencari nilai tertinggi untuk _M
-                        if (is_null($maxValueMWeek) || $mValue > $maxValueMWeek) {
-                            $maxValueMWeek = $mValue;
-                            $maxColumnMWeek = $mColumn;
-                        }
-
-                        // Menambahkan nilai untuk perhitungan rata-rata
-                        $totalValueWeek += $sValue + $mValue;
-                        $totalValueSWeek += $sValue;
-                        $totalValueMWeek += $mValue;
-                        $valueCountWeek += 2; // Karena ada dua kolom (_S dan _M) per hari
-                        $valueCountSWeek++;
-                        $valueCountMWeek++;
-
-                        // Menyimpan nilai tertinggi per hari
-                        if (!isset($maxValues[$dayString]) || $sValue > $maxValues[$dayString]) {
-                            $maxValues[$dayString] = $sValue;
-                            $maxColumns[$dayString] = $sColumn;
-                        }
-                        if ($mValue > $maxValues[$dayString]) {
-                            $maxValues[$dayString] = $mValue;
-                            $maxColumns[$dayString] = $mColumn;
+            // dd($averageValueDay);
+            $maxValueWeek = null;
+            $maxColumnWeek = null;
+            $averageValueWeek = 0;
+            $maxValueSWeek = null;
+            $maxColumnSWeek = null;
+            $maxValueSWeek2 = null;
+            $maxColumnSWeek2 = null;
+            $averageValueSWeek = 0;
+            $maxValueMWeek = null;
+            $maxColumnMWeek = null;
+            $maxValueMWeek2 = null;
+            $maxColumnMWeek2 = null;
+            $averageValueMWeek = 0;
+            $totalValue = 0;
+            $valueCount = 0;
+            $valueCountWeek = 0;
+            $valueCountSWeek = 0;
+            $valueCountMWeek = 0;
+            $totalValueWeek = 0;
+            $totalValueSWeek = 0;
+            $totalValueMWeek = 0;
+            $maxValues = [];
+            $maxColumns = [];
+            
+            foreach ($processedResults as $result) {
+                for ($day = $startDay; $day <= $endDay; $day++) {
+                    $dayString = str_pad($day, 2, '0', STR_PAD_LEFT);
+                    $sColumn = $dayString . '_S';
+                    $mColumn = $dayString . '_M';
+            
+                    if (property_exists($result, $sColumn) && property_exists($result, $mColumn)) {
+                        $sValue = $result->$sColumn;
+                        $mValue = $result->$mColumn;
+            
+                        if (is_numeric($sValue) && is_numeric($mValue)) {
+                            // Mencari nilai tertinggi mingguan
+                            if (is_null($maxValueWeek) || $sValue > $maxValueWeek) {
+                                $maxValueWeek = $sValue;
+                                $maxColumnWeek = $sColumn;
+                            }
+                            if ($mValue > $maxValueWeek) {
+                                $maxValueWeek = $mValue;
+                                $maxColumnWeek = $mColumn;
+                            }
+            
+                            // Mencari nilai tertinggi untuk _S
+                            if (is_null($maxValueSWeek) || $sValue > $maxValueSWeek) {
+                                // Update second highest before updating the highest
+                                $maxValueSWeek2 = $maxValueSWeek;
+                                $maxColumnSWeek2 = $maxColumnSWeek;
+            
+                                $maxValueSWeek = $sValue;
+                                $maxColumnSWeek = $sColumn;
+                            } elseif (is_null($maxValueSWeek2) || $sValue > $maxValueSWeek2) {
+                                // Update second highest if current value is higher than second highest
+                                $maxValueSWeek2 = $sValue;
+                                $maxColumnSWeek2 = $sColumn;
+                            }
+            
+                            // Mencari nilai tertinggi untuk _M
+                            if (is_null($maxValueMWeek) || $mValue > $maxValueMWeek) {
+                                // Update second highest before updating the highest
+                                $maxValueMWeek2 = $maxValueMWeek;
+                                $maxColumnMWeek2 = $maxColumnMWeek;
+            
+                                $maxValueMWeek = $mValue;
+                                $maxColumnMWeek = $mColumn;
+                            } elseif (is_null($maxValueMWeek2) || $mValue > $maxValueMWeek2) {
+                                // Update second highest if current value is higher than second highest
+                                $maxValueMWeek2 = $mValue;
+                                $maxColumnMWeek2 = $mColumn;
+                            }
+            
+                            // Menambahkan nilai untuk perhitungan rata-rata
+                            $totalValueWeek += $sValue + $mValue;
+                            $totalValueSWeek += $sValue;
+                            $totalValueMWeek += $mValue;
+                            $valueCountWeek += 2; // Karena ada dua kolom (_S dan _M) per hari
+                            $valueCountSWeek++;
+                            $valueCountMWeek++;
+            
+                            // Menyimpan nilai tertinggi per hari
+                            if (!isset($maxValues[$dayString]) || $sValue > $maxValues[$dayString]) {
+                                $maxValues[$dayString] = $sValue;
+                                $maxColumns[$dayString] = $sColumn;
+                            }
+                            if ($mValue > $maxValues[$dayString]) {
+                                $maxValues[$dayString] = $mValue;
+                                $maxColumns[$dayString] = $mColumn;
+                            }
                         }
                     }
                 }
             }
-        }
-
-        // Menghitung rata-rata
-        $averageValueWeek = $valueCountWeek > 0 ? $totalValueWeek / $valueCountWeek : 0;
-        $averageValueSWeek = $valueCountSWeek > 0 ? $totalValueSWeek / $valueCountSWeek : 0;
-        $averageValueMWeek = $valueCountMWeek > 0 ? $totalValueMWeek / $valueCountMWeek : 0;
+            
+            // Menghitung rata-rata
+            $averageValueWeek = $valueCountWeek > 0 ? $totalValueWeek / $valueCountWeek : 0;
+            $averageValueSWeek = $valueCountSWeek > 0 ? $totalValueSWeek / $valueCountSWeek : 0;
+            $averageValueMWeek = $valueCountMWeek > 0 ? $totalValueMWeek / $valueCountMWeek : 0;
 
 
             // Bulanan
@@ -540,9 +561,13 @@ class MenuController extends Controller
         $averageValueMonthly = 0;
         $maxValueSMonth = null;
         $maxColumnSMonth = null;
+        $maxValueSMonth2 = null;
+        $maxColumnSMonth2 = null;
         $averageValueSMonth = 0;
         $maxValueMMonth = null;
         $maxColumnMMonth = null;
+        $maxValueMMonth2 = null;
+        $maxColumnMMonth2 = null;
         $averageValueMMonth = 0;
         $totalValueMonth = 0;
         $valueCountMonth = 0;
@@ -586,6 +611,18 @@ class MenuController extends Controller
                         if (is_null($maxValueMMonth) || $mValueMonth > $maxValueMMonth) {
                             $maxValueMMonth = $mValueMonth;
                             $maxColumnMMonth = $Month;
+                        }
+
+                        // Mencari nilai tertinggi kedua untuk _S
+                        if ((is_null($maxValueSMonth2) || $sValueMonth > $maxValueSMonth2) && $sValueMonth < $maxValueSMonth) {
+                            $maxValueSMonth2 = $sValueMonth;
+                            $maxColumnSMonth2 = $sColumnMonth;
+                        }
+
+                        // Mencari nilai tertinggi kedua untuk _M
+                        if ((is_null($maxValueMMonth2) || $mValueMonth > $maxValueMMonth2) && $mValueMonth < $maxValueMMonth) {
+                            $maxValueMMonth2 = $mValueMonth;
+                            $maxColumnMMonth2 = $Month;
                         }
 
                         // Menambahkan nilai untuk perhitungan rata-rata
@@ -667,7 +704,7 @@ class MenuController extends Controller
                 }
             }
 
-            return view('monitoring.detail', compact('maxColumnsMonth','maxValuesMonth','maxValues','maxColumns','averageValueSMonth','maxValueSMonth','maxColumnSMonth','averageValueMMonth','maxValueMMonth','maxColumnMMonth','maxColumnMonthly','averageValueMonthly','maxValueMonthly','averageValueSWeek','maxValueSWeek','maxColumnSWeek','averageValueMWeek','maxValueMWeek','maxColumnMWeek','maxColumnWeek','maxValueWeek','averageValueWeek','StartBulan1','endDate','startDate','maxValue', 'maxColumn', 'averageValue','data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni','averageValue', 'maxValue', 'maxColumn', 'selectedDate','averageValueDay', 'maxValueDay', 'maxColumnDay','averageValueM', 'maxValueM', 'maxColumnM','maxValueToday', 'maxColumnToday','maxValueMonth', 'maxColumnMonth', 'maxDateMonth','maxValueYear', 'maxColumnYear', 'maxDateYear','processedResults', 'startDay', 'endDay','processedResultsMonth','StartBulan1'));
+            return view('monitoring.detail', compact('maxValueMWeek2','maxColumnMWeek2','maxValueSWeek2','maxColumnSWeek2','maxColumnsMonth','maxValuesMonth','maxValues','maxColumns','averageValueSMonth','maxValueSMonth','maxColumnSMonth','maxValueSMonth2','maxColumnSMonth2','averageValueMMonth','maxValueMMonth','maxColumnMMonth','maxValueMMonth2','maxColumnMMonth2','maxColumnMonthly','averageValueMonthly','maxValueMonthly','averageValueSWeek','maxValueSWeek','maxColumnSWeek','averageValueMWeek','maxValueMWeek','maxColumnMWeek','maxColumnWeek','maxValueWeek','averageValueWeek','StartBulan1','endDate','startDate','maxValue', 'maxColumn', 'averageValue','data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni','averageValue', 'maxValue', 'maxColumn', 'maxValue2', 'maxColumn2','selectedDate','averageValueDay', 'maxValueDay', 'maxColumnDay','averageValueM', 'maxValueM', 'maxColumnM','maxValueM2', 'maxColumnM2','maxValueToday', 'maxColumnToday','maxValueMonth', 'maxColumnMonth', 'maxDateMonth','maxValueYear', 'maxColumnYear', 'maxDateYear','processedResults', 'startDay', 'endDay','processedResultsMonth','StartBulan1'));
         }
     }
 
