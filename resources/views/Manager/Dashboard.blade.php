@@ -3,67 +3,19 @@
 @section('title', 'Dashboard')
 
 @push('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css"
-        type="text/css">
-    <style>
-        .map {
-            height: 80vh;
-            width: 100%;
-        }
 
-        .ol-popup {
-            position: absolute;
-            background-color: white;
-            -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-            filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #cccccc;
-            bottom: 12px;
-            left: -50px;
-            min-width: 280px;
-        }
+<style>
+    .text-center {
+        text-align: center;
+    }
 
-        .ol-popup:after,
-        .ol-popup:before {
-            top: 100%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-        }
+    #map {
+        width: '100%';
+        height: 700px;
+    }
+</style>
+<link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
 
-        .ol-popup:after {
-            border-top-color: white;
-            border-width: 10px;
-            left: 48px;
-            margin-left: -10px;
-        }
-
-        .ol-popup:before {
-            border-top-color: #cccccc;
-            border-width: 11px;
-            left: 48px;
-            margin-left: -11px;
-        }
-
-        .ol-popup-closer {
-            text-decoration: none;
-            position: absolute;
-            top: 2px;
-            right: 8px;
-        }
-
-        .ol-popup-closer:after {
-            content: "X";
-        }
-    </style>
-
-    <link rel="stylesheet" href="https://unpkg.com/ol-popup@5.1.0/src/ol-popup.css" />
-
-    <link rel="stylesheet" href="{{ asset('assets/js/ol-layerswitcher/dist/ol-layerswitcher.css') }}" />
 @endpush
 
 @section('main')
@@ -73,6 +25,9 @@
                 <h1>Dashboard Administrator</h1>
             </div>
         </section>
+
+        <h2>Data Monitor GI Jawa Timur</h2>
+        <div id='map'></div>
 
         <div class="row">
             <!-- Earnings (Monthly) Card Example -->
@@ -177,21 +132,94 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Monitor Trafo > 80 % : {{ $CountTrafoSiang80 }} Trafo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="beban_ktt" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Wilayah</th>
+                                        <th>Persentase siang</th>
+                                        <th>Persentase malam</th>
+                                        <th>Persentase Tertinggi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
 
-                    <div class="col-md-12">
-                        <div id="map" class="map mb-3"></div>
-                        <div id="popup" class="ol-popup">
-                            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                            <div id="popup-content"></div>
+                                    @foreach ($TrafoSiang80 as $trafo)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->wilayah }}</td>
+                                            <td>{{ $trafo->persensiang }} %</td>
+                                            <td>{{ $trafo->persenmalam }} %</td>
+                                            <td>{{ $trafo->persentertinggi }} %</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Monitor Trafo < 30 % : {{ $CountTrafo30 }} Trafo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="trafo30" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Gardu Induk</th>
+                                        <th>Wilayah</th>
+                                        <th>Persentase siang</th>
+                                        <th>Persentase malam</th>
+                                        <th>Persentase Tertinggi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
 
-
-
+                                    @foreach ($Trafo30 as $trafo)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $trafo->gardu_induk }}</td>
+                                            <td>{{ $trafo->wilayah }}</td>
+                                            <td>{{ $trafo->persensiang }} %</td>
+                                            <td>{{ $trafo->persenmalam }} %</td>
+                                            <td>{{ $trafo->persentertinggi }} %</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,293 +227,100 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
-    <script src="{{ asset('assets/js/ol4/proj4.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/ol-layerswitcher/dist/ol-layerswitcher.js') }}"></script>
 
-    <script>
-        var map, geojson, layer_name, layerSwitcher, featureOverlay;
-        var container, content, closer;
-        var mousePositionControl;
+<script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
+<script src='https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js'></script>
 
-        proj4.defs("EPSG:32749", "+proj=utm +zone=49 +south +datum=WGS84 +units=m +no_defs +type=crs ");
-
-        var projection = new ol.proj.Projection({
-            code: 'EPSG:32749',
-            units: 'm',
-            axisOrientation: 'neu'
-        });
-        var view = new ol.View({
-            center: ol.proj.fromLonLat([112.752, -7.2547]),
-            zoom: 14,
-            Projection: projection
-        })
-
-        var view_ov = new ol.View({
-            Projection: projection,
-            center: ol.proj.fromLonLat([112.752, -7.2547]),
-            zoom: 14,
-
-        });
-
-
-        var surabaya = new ol.source.TileWMS({
-            url: 'http://peta.cktr.web.id/geoserver/webgis/wms',
-            params: {
-                'LAYERS': 'webgis:LIDAR_SURABAYA',
-                'TILED': true
+<script>
+    let map, markers = [];
+    /* ----------------------------- Initialize Map ----------------------------- */
+    function initMap() {
+        map = L.map('map', {
+            center: {
+                lat: -7.5360639,
+                lng: 112.2384017,
             },
-            serverType: 'geoserver'
+            zoom: 10
         });
 
-        var mode = "default";
-        var vectorSource2 = new ol.source.Vector();
-        var vectorLayer2 = new ol.layer.Vector({
-            source: vectorSource2
-        })
-        var iconStyle = new ol.style.Style({
-            image: new ol.style.Icon({
-                anchor: [0.5, 1],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'fraction',
-                opacity: 0.75,
-                src: 'redpin.png'
+        L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        map.on('click', mapClicked);
+        initMarkers();
+    }
+    initMap();
+
+    function initMarkers() {
+        const initialMarkers = @json($initialMarkers);
+
+        for (let index = 0; index < initialMarkers.length; index++) {
+
+            const data = initialMarkers[index];
+            const marker = generateMarker(data, index);
+
+            var url = '{{ route("detail.gimaps.manager", ":id") }}'.replace(':id', data.note.id);
+
+            marker.addTo(map).bindPopup(
+                "<b>ID GI: </b>" + data.note.id +
+                "<br><b>Nama: </b>" + data.note.nama +
+                "<br><b>Pengelola: </b>" + data.note.pengelola +
+                "<br><b>Jumlah Penyulang: </b>" + data.note.jumlah_penyulang + 
+                "<br><b>Jumlah Trafo: </b>" + data.note.jumlah_trafo +
+                '<br><br><a href="' + url + '" class="btn btn-primary">Detail Data</a>' 
+            );
+            map.panTo(data.position);
+            markers.push(marker)
+
+        }
+    }
+
+    function generateMarker(data, index) {
+        return L.marker(data.position, {
+                draggable: data.draggable
             })
-        });
+            .on('click', (event) => markerClicked(event, index))
+            .on('dragend', (event) => markerDragEnd(event, index));
+    }
 
-        var google_road = new ol.layer.Tile({
-            projection: 'EPSG:32749',
-            type: 'base',
-            visible: false,
-            title: "Google Road",
-            source: new ol.source.XYZ({
+    /* ------------------------- Handle Map Click Event ------------------------- */
+    function mapClicked($event) {
+        console.log(map);
+        console.log($event.latlng.lat, $event.latlng.lng);
+    }
 
-                url: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}'
-            })
-        })
+    /* ------------------------ Handle Marker Click Event ----------------------- */
+    function markerClicked($event, index) {
+        console.log(map);
+        console.log($event.latlng.lat, $event.latlng.lng);
+    }
 
-        var google_sat = new ol.layer.Tile({
-            projection: 'EPSG:32749',
-            type: 'base',
-            visible: true,
-            title: "Google Satellite",
-            source: new ol.source.XYZ({
+    /* ----------------------- Handle Marker DragEnd Event ---------------------- */
+    function markerDragEnd($event, index) {
+        console.log(map);
+        console.log($event.target.getLatLng());
+    }
+</script>
 
-                url: 'https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'
-            })
-        })
+<script>
+    $("#beban_ktt").dataTable({
+        "pageLength": 5,
+        "columnDefs": [{
+            "sortable": false,
+            "targets": [6, 3],
+        }],
+    });
+</script>
 
-        var OSM2 = new ol.layer.Tile({
-            source: new ol.source.OSM(),
-            projection: 'EPSG:32749',
+<script>
+    $("#trafo30").dataTable({
+        "pageLength": 5,
+        "columnDefs": [{
+            "sortable": false,
+            "targets": [6, 3],
+        }],
+    });
+</script>
 
-            type: 'base',
-            title: 'Open Street Map',
-            visible: false,
-        });
-
-        var OSM = new ol.layer.Tile({
-            source: new ol.source.OSM(),
-            projection: 'EPSG:32749',
-
-            type: 'base',
-            title: 'Open Street Map',
-            visible: false,
-        });
-
-        var base_maps = new ol.layer.Group({
-            'title': 'Base maps',
-            layers: [
-                google_sat, OSM, new ol.layer.Tile({
-                    title: "Peta Surabaya",
-                    type: 'base',
-                    visible: false,
-                    source: surabaya
-                })
-            ]
-        });
-
-        //-------------------------PETA LAYER FOR Kec Role----------------------------------
-        var overlays = new ol.layer.Group({
-            'title': 'Overlays',
-            layers: [
-                new ol.layer.Tile({
-                    title: 'BATAS_ADMINISTRASI',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        url: 'https://sipetarung.dprkpp.web.id/geoserver/wms',
-                        params: {
-                            'LAYERS': 'satupeta:BATAS_ADMINISTRASI'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-
-                new ol.layer.Tile({
-                    // title: 'persil_belum',
-                    title: 'filter_belum',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:persil_belum',
-                            'LAYERS': 'persil:filter_belum',
-                            @if (Auth::user()->role == 2)
-                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
-                            @elseif (Auth::user()->role == 3)
-                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
-                            @endif
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'persil_sudah',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:persil_sudah',
-                            'LAYERS': 'persil:persil_sudah',
-                            @if (Auth::user()->role == 2)
-                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
-                            @elseif (Auth::user()->role == 3)
-                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
-                            @endif
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'persil_ganda',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            'LAYERS': 'kesra:persil_ganda',
-                            // 'LAYERS': 'persil:persil_ganda',
-                            @if (Auth::user()->role == 2)
-                                'CQL_FILTER': "kecamatan='{{ Auth::user()->region->name }}'",
-                            @elseif (Auth::user()->role == 3)
-                                'CQL_FILTER': "kelurahan='{{ Auth::user()->region->name }}'",
-                            @endif
-
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'BATAS_RW',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            'LAYERS': 'persil:batas_rw_sby'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'BATAS_KEL',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:BATASKEL'
-                            'LAYERS': 'persil:BATASKEL'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: 'BATAS_KEC',
-                    visible: false,
-                    source: new ol.source.TileWMS({
-                        // url: 'http://127.0.0.1:8080/geoserver/kesra/wms',
-                        url: 'https://pemerintahan.surabaya.go.id/geoserver/persil/wms',
-                        params: {
-                            // 'LAYERS': 'kesra:BATASKEC'
-                            'LAYERS': 'persil:BATASKEC'
-                        },
-                        ratio: 1,
-                        serverType: 'geoserver'
-                    })
-                }),
-
-
-
-            ]
-        });
-
-        mousePositionControl = new ol.control.MousePosition({
-            coordinateFormat: ol.coordinate.createStringXY(5),
-            projection: 'EPSG:4326',
-            // comment the following two lines to have the mouse position
-            // be placed within the map.
-            className: 'custom-mouse-position',
-            target: document.getElementById('mouse-position'),
-            undefinedHTML: '[koordinat X,Y]'
-        });
-
-        var map = new ol.Map({
-            target: 'map',
-            controls: [mousePositionControl],
-        });
-
-        map.addLayer(base_maps);
-        map.addLayer(overlays);
-
-        var overview = new ol.control.OverviewMap({
-            view: view_ov,
-            collapseLabel: 'O',
-            label: 'O',
-            layers: [OSM2]
-        });
-
-        map.addControl(overview);
-
-        var full_sc = new ol.control.FullScreen({
-            label: 'F'
-        });
-        map.addControl(full_sc);
-
-        var zoom = new ol.control.Zoom({
-            zoomInLabel: '+',
-            zoomOutLabel: '-'
-        });
-        map.addControl(zoom);
-
-        var slider = new ol.control.ZoomSlider();
-        map.addControl(slider);
-
-
-        var zoom_ex = new ol.control.ZoomToExtent({
-            extent: [
-                65.90, 7.48,
-                98.96, 40.30
-            ]
-        });
-        map.addControl(zoom_ex);
-
-        var layerSwitcher = new ol.control.LayerSwitcher({
-            activationMode: 'click',
-            startActive: true,
-            tipLabel: 'Layers', // Optional label for button
-            groupSelectStyle: 'children', // Can be 'children' [default], 'group' or 'none'
-            collapseTipLabel: 'Collapse layers',
-        });
-        map.addControl(layerSwitcher);
-    </script>
 @endpush

@@ -139,7 +139,7 @@ class DashboardController extends Controller
             $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
 
 
-            return view('Opsis.Dashboard');
+            return view('Opsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
         } elseif (Auth::user()->hasRole('ValidatorFasop')) {
 
             $countGI = GITable::count();
@@ -186,7 +186,47 @@ class DashboardController extends Controller
             return view('Fasop.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
         } elseif (Auth::user()->hasRole('EditorOpsis')) {
 
-            return view('EditorOpsis.Dashboard');
+            $countGI = GITable::count();
+            $countTrafo = trafo::count();
+            $countPenyulang = Penyulang::count();
+            $feeder = Penyulang::count();
+            $countMvcell = mvcell::count();
+
+
+            $getLokasiGI = GITable::orderBy('Nama_GI', 'ASC')->get();
+
+            foreach ($getLokasiGI as $lok) {
+
+                $jumlahpenyulang = Penyulang::where('ID_GI', $lok->ID_FGI)->count();
+                $jumlahTrafo = trafo::where('Nama_GI', $lok->Nama_GI)->count();
+                // dd($jumlahTrafo);
+
+                $initialMarkers[] = [
+                    'position' => [
+                        'lat' => (float) $lok->x,
+                        'lng' => (float) $lok->y,
+                    ],
+                    'note' => [
+                        'idx' => $lok->id,
+                        'id' => $lok->ID_FGI,
+                        'nama' => $lok->Nama_GI,
+                        'nama_singkatan' => $lok->NAMA_SINGKATAN,
+                        'pengelola' => $lok->KD_Pengelola,
+                        'jumlah_penyulang' => $jumlahpenyulang,
+                        'jumlah_trafo' => $jumlahTrafo,
+                    ],
+                    'draggable' => false,
+                ];
+            }
+
+            $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+
+            $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+
+
+            return view('EditorOpsis.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
         } elseif (Auth::user()->hasRole('Visitor')) {
 
             $countGI = GITable::count();
@@ -230,8 +270,6 @@ class DashboardController extends Controller
 
 
             return view('Visitor.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
-
-
         } elseif (Auth::user()->hasRole('Manager')) {
 
             $countGI = GITable::count();
@@ -240,32 +278,68 @@ class DashboardController extends Controller
             $feeder = Penyulang::count();
             $countMvcell = mvcell::count();
 
-            return view('Manager.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell'));
+            $getLokasiGI = GITable::orderBy('Nama_GI', 'ASC')->get();
+
+            foreach ($getLokasiGI as $lok) {
+
+                $jumlahpenyulang = Penyulang::where('ID_GI', $lok->ID_FGI)->count();
+                $jumlahTrafo = trafo::where('Nama_GI', $lok->Nama_GI)->count();
+                // dd($jumlahTrafo);
+
+                $initialMarkers[] = [
+                    'position' => [
+                        'lat' => (float) $lok->x,
+                        'lng' => (float) $lok->y,
+                    ],
+                    'note' => [
+                        'idx' => $lok->id,
+                        'id' => $lok->ID_FGI,
+                        'nama' => $lok->Nama_GI,
+                        'nama_singkatan' => $lok->NAMA_SINGKATAN,
+                        'pengelola' => $lok->KD_Pengelola,
+                        'jumlah_penyulang' => $jumlahpenyulang,
+                        'jumlah_trafo' => $jumlahTrafo,
+                    ],
+                    'draggable' => false,
+                ];
+            }
+
+            $CountTrafoSiang80 = formdata::where('persentertinggi', '>', 80)->count();
+            $TrafoSiang80 = formdata::where('persentertinggi', '>', 80)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+
+            $CountTrafo30 = formdata::where('persentertinggi', '<', 30)->count();
+            $Trafo30 = formdata::where('persentertinggi', '<', 30)->select('id', 'gardu_induk', 'wilayah', 'persensiang', 'persenmalam', 'persentertinggi')->get();
+
+
+
+
+            return view('Manager.Dashboard', compact('countGI', 'countTrafo', 'countPenyulang', 'feeder', 'countMvcell', 'initialMarkers', 'CountTrafoSiang80', 'TrafoSiang80', 'CountTrafo30', 'Trafo30'));
         }
     }
 
     public function detailmaps($idgi)
     {
 
-        if(Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor','Manager']))
+        if (Auth::user()->hasRole(['Administrator', 'operator', 'ValidatorOpsis', 'ValidatorFasop', 'EditorOpsis', 'Visitor', 'Manager'])) {
 
-        $getDataGI = GITable::where('ID_FGI', $idgi)->first();
+            $getDataGI = GITable::where('ID_FGI', $idgi)->first();
 
-        $jumlahpenyulangGI = Penyulang::where('ID_GI', $idgi)->count();
-        $jumlahTrafoGI = trafo::where('Nama_GI', $getDataGI->Nama_GI)->count();
+            $jumlahpenyulangGI = Penyulang::where('ID_GI', $idgi)->count();
+            $jumlahTrafoGI = trafo::where('Nama_GI', $getDataGI->Nama_GI)->count();
 
-        $datatrafo = formdata::where('gardu_induk', $getDataGI->Nama_GI)->select('gardu_induk', 'wilayah', 'no_trafo', 'bebantertinggi', 'persentertinggi')->get();
+            $datatrafo = formdata::where('gardu_induk', $getDataGI->Nama_GI)->select('gardu_induk', 'wilayah', 'no_trafo', 'bebantertinggi', 'persentertinggi')->get();
 
-        $bebantertinggitrafo = formdata::where('gardu_induk', $getDataGI->Nama_GI)->select('no_trafo', 'bebantertinggi')->get();
+            $bebantertinggitrafo = formdata::where('gardu_induk', $getDataGI->Nama_GI)->select('no_trafo', 'bebantertinggi')->get();
 
-        foreach ($bebantertinggitrafo as $data) {
+            foreach ($bebantertinggitrafo as $data) {
 
-            $bebantertinggigraph[] = $data->bebantertinggi;
-            $notrafograph[] = $data->no_trafo;
+                $bebantertinggigraph[] = $data->bebantertinggi;
+                $notrafograph[] = $data->no_trafo;
+            }
+            // dd($bebantertinggigraph);
+
+            return view('admin.mapsdetail.index', compact('getDataGI', 'jumlahpenyulangGI', 'jumlahTrafoGI', 'datatrafo', 'bebantertinggigraph', 'notrafograph'));
         }
-        // dd($bebantertinggigraph);
-
-        return view('admin.mapsdetail.index', compact('getDataGI', 'jumlahpenyulangGI', 'jumlahTrafoGI', 'datatrafo', 'bebantertinggigraph', 'notrafograph'));
     }
 
 

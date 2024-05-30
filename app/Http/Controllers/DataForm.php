@@ -14,7 +14,9 @@ class DataForm extends Controller
 
         if(Auth::user()->hasRole('Administrator')){
 
-            return view('DatForm.index');
+            $getData = DataFormModel::orderBy('id','ASC')->get();
+
+            return view('DatForm.index',compact('getData'));
 
         }
 
