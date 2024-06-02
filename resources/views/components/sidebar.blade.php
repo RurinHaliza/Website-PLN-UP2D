@@ -38,7 +38,8 @@
                             KTT</span></a>
                 </li>
                 <li class="{{ Request::is('Admin/BebanGI') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel GI</span></a>
+                    <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fas fa-th-large"></i> <span>Tabel
+                            GI</span></a>
                 </li>
                 <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fas fa-th-large"></i> <span>Tabel
@@ -100,6 +101,13 @@
                 <span>Beban</span></a>
         </li>
         </li>
+
+        <li class="menu-header">Scada Fail</li>
+        <li class="{{ Request::is('approval') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('approval') }}"><i class="fas fa-fw fa-check-circle"></i> <span>Approval</span></a>
+        </li>
+        </li>
+
         <li class="menu-header">Tabel Beban</li>
         <li class="{{ Request::is('bebantrafo.opsis') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebantrafo.opsis') }}"><i class="fas fa-fw fa-boxes-alt"></i>

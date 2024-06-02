@@ -12,6 +12,7 @@ use App\Http\Controllers\KTTController;
 use App\Http\Controllers\GIController;
 use App\Http\Controllers\PenyulangController;
 use App\Http\Controllers\DataForm;
+use App\Http\Controllers\OpsisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,7 @@ Route::group(['prefix' => 'Operator', 'middleware' => ['auth', 'role:operator']]
     Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gioperator.maps');
 
     Route::get('ScadaFail', [OperatorController::class, 'ScadaFailIndex'])->name('scadafail');
+    Route::get('ScadaFailEdit/{id}',[OperatorController::class,'editDataFail'])->name('editscadafail');
 
     //
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.operator');
@@ -138,12 +140,14 @@ Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:Valid
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.validopsis');
     Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gimaps.opsis');
 
-
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.opsis');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.opsis');
     Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.opsis');
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.opsis');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.opsis');
+
+    //Approval
+    Route::get('Approval',[OpsisController::class,'index'])->name('approval');
 
     //Trafo
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.opsis');
