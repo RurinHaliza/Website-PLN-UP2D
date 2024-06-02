@@ -3,19 +3,17 @@
 @section('title', 'Dashboard')
 
 @push('style')
+    <style>
+        .text-center {
+            text-align: center;
+        }
 
-<style>
-    .text-center {
-        text-align: center;
-    }
-
-    #map {
-        width: '100%';
-        height: 700px;
-    }
-</style>
-<link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
-
+        #map {
+            width: '100%';
+            height: 700px;
+        }
+    </style>
+    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
 @endpush
 
 @section('main')
@@ -111,27 +109,6 @@
         <div id='map'></div>
 
         <div class="row mt-3">
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Analytical</h3>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>Beban Tertinggi Jatim Hari Ini</li>
-                            <ul>
-                                <li>MW: </li>
-                                <li>Tanggal</li>
-                                <li>Pukul</li>
-                            </ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -193,7 +170,7 @@
                                         <th>Persentase siang</th>
                                         <th>Persentase malam</th>
                                         <th>Persentase Tertinggi</th>
-        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -223,100 +200,98 @@
 @endsection
 
 @push('scripts')
+    <script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
+    <script src='https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js'></script>
 
-<script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
-<script src='https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js'></script>
+    <script>
+        let map, markers = [];
+        /* ----------------------------- Initialize Map ----------------------------- */
+        function initMap() {
+            map = L.map('map', {
+                center: {
+                    lat: -7.5360639,
+                    lng: 112.2384017,
+                },
+                zoom: 10
+            });
 
-<script>
-    let map, markers = [];
-    /* ----------------------------- Initialize Map ----------------------------- */
-    function initMap() {
-        map = L.map('map', {
-            center: {
-                lat: -7.5360639,
-                lng: 112.2384017,
-            },
-            zoom: 10
-        });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
-
-        map.on('click', mapClicked);
-        initMarkers();
-    }
-    initMap();
-
-    function initMarkers() {
-        const initialMarkers = @json($initialMarkers);
-
-        for (let index = 0; index < initialMarkers.length; index++) {
-
-            const data = initialMarkers[index];
-            const marker = generateMarker(data, index);
-
-            var url = '{{ route("detail.gimaps.manager", ":id") }}'.replace(':id', data.note.id);
-
-            marker.addTo(map).bindPopup(
-                "<b>ID GI: </b>" + data.note.id +
-                "<br><b>Nama: </b>" + data.note.nama +
-                "<br><b>Pengelola: </b>" + data.note.pengelola +
-                "<br><b>Jumlah Penyulang: </b>" + data.note.jumlah_penyulang + 
-                "<br><b>Jumlah Trafo: </b>" + data.note.jumlah_trafo +
-                '<br><br><a href="' + url + '" class="btn btn-primary">Detail Data</a>' 
-            );
-            map.panTo(data.position);
-            markers.push(marker)
-
+            map.on('click', mapClicked);
+            initMarkers();
         }
-    }
+        initMap();
 
-    function generateMarker(data, index) {
-        return L.marker(data.position, {
-                draggable: data.draggable
-            })
-            .on('click', (event) => markerClicked(event, index))
-            .on('dragend', (event) => markerDragEnd(event, index));
-    }
+        function initMarkers() {
+            const initialMarkers = @json($initialMarkers);
 
-    /* ------------------------- Handle Map Click Event ------------------------- */
-    function mapClicked($event) {
-        console.log(map);
-        console.log($event.latlng.lat, $event.latlng.lng);
-    }
+            for (let index = 0; index < initialMarkers.length; index++) {
 
-    /* ------------------------ Handle Marker Click Event ----------------------- */
-    function markerClicked($event, index) {
-        console.log(map);
-        console.log($event.latlng.lat, $event.latlng.lng);
-    }
+                const data = initialMarkers[index];
+                const marker = generateMarker(data, index);
 
-    /* ----------------------- Handle Marker DragEnd Event ---------------------- */
-    function markerDragEnd($event, index) {
-        console.log(map);
-        console.log($event.target.getLatLng());
-    }
-</script>
+                var url = '{{ route('detail.gimaps.manager', ':id') }}'.replace(':id', data.note.id);
 
-<script>
-    $("#beban_ktt").dataTable({
-        "pageLength": 5,
-        "columnDefs": [{
-            "sortable": false,
-            "targets": [6, 3],
-        }],
-    });
-</script>
+                marker.addTo(map).bindPopup(
+                    "<b>ID GI: </b>" + data.note.id +
+                    "<br><b>Nama: </b>" + data.note.nama +
+                    "<br><b>Pengelola: </b>" + data.note.pengelola +
+                    "<br><b>Jumlah Penyulang: </b>" + data.note.jumlah_penyulang +
+                    "<br><b>Jumlah Trafo: </b>" + data.note.jumlah_trafo +
+                    '<br><br><a href="' + url + '" class="btn btn-primary">Detail Data</a>'
+                );
+                map.panTo(data.position);
+                markers.push(marker)
 
-<script>
-    $("#trafo30").dataTable({
-        "pageLength": 5,
-        "columnDefs": [{
-            "sortable": false,
-            "targets": [6, 3],
-        }],
-    });
-</script>
+            }
+        }
 
+        function generateMarker(data, index) {
+            return L.marker(data.position, {
+                    draggable: data.draggable
+                })
+                .on('click', (event) => markerClicked(event, index))
+                .on('dragend', (event) => markerDragEnd(event, index));
+        }
+
+        /* ------------------------- Handle Map Click Event ------------------------- */
+        function mapClicked($event) {
+            console.log(map);
+            console.log($event.latlng.lat, $event.latlng.lng);
+        }
+
+        /* ------------------------ Handle Marker Click Event ----------------------- */
+        function markerClicked($event, index) {
+            console.log(map);
+            console.log($event.latlng.lat, $event.latlng.lng);
+        }
+
+        /* ----------------------- Handle Marker DragEnd Event ---------------------- */
+        function markerDragEnd($event, index) {
+            console.log(map);
+            console.log($event.target.getLatLng());
+        }
+    </script>
+
+    <script>
+        $("#beban_ktt").dataTable({
+            "pageLength": 5,
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [6, 3],
+            }],
+        });
+    </script>
+
+    <script>
+        $("#trafo30").dataTable({
+            "pageLength": 5,
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [6, 3],
+            }],
+        });
+    </script>
 @endpush

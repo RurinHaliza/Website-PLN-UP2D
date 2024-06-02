@@ -109,28 +109,6 @@
         <div id='map'></div>
 
         <div class="row mt-3">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Analytical</h3>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>Beban Tertinggi Jatim Hari Ini</li>
-                            <ul>
-                                <li>MW: </li>
-                                <li>Tanggal</li>
-                                <li>Pukul</li>
-                            </ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
