@@ -15,6 +15,8 @@ class OperatorController extends Controller
 
             $get = status_beban::orderBy('id','ASC')->get();
 
+            // dd($get);
+
             return view('Operator.ScadaFail.input',compact('get'));
         }
 

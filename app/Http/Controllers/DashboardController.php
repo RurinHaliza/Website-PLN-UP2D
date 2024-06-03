@@ -10,6 +10,9 @@ use App\Models\trafo;
 use App\Models\Penyulang;
 use App\Models\mvcell;
 use App\Models\formdata;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Trafo80Export;
+
 
 class DashboardController extends Controller
 {
@@ -353,6 +356,13 @@ class DashboardController extends Controller
 
             return view('admin.mapsdetail.index', compact('getDataGI', 'jumlahpenyulangGI', 'jumlahTrafoGI', 'datatrafo', 'bebantertinggigraph', 'notrafograph'));
         }
+    }
+
+
+    public function downloadTrafo80(){
+
+        return Excel::download(new Trafo80Export, 'data_trafo_80.xlsx');
+
     }
 
 
