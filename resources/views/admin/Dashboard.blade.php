@@ -196,7 +196,9 @@
                             </table>
                         </div>
                     </div>
-                    
+                    <div class="card-footer">
+                        <a href="{{ route('download.trafo.30') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
+                    </div>
                 </div>
             </div>
         </div>

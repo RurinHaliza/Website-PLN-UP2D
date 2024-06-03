@@ -37,6 +37,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
 
     Route::get('DetailGI/{idgi}',[DashboardController::class, 'detailmaps'])->name('detail.gi.maps');
     Route::get('DownloadTrafo',[DashboardController::class,'downloadTrafo80'])->name('download.trafo.80');
+    Route::get('DownloadTrafo30',[DashboardController::class,'downloadTrafo30'])->name('download.trafo.30');
 
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban');
