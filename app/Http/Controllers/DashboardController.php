@@ -12,7 +12,7 @@ use App\Models\mvcell;
 use App\Models\formdata;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Trafo80Export;
-
+use App\Exports\Trafo30Export;
 
 class DashboardController extends Controller
 {
@@ -362,6 +362,12 @@ class DashboardController extends Controller
     public function downloadTrafo80(){
 
         return Excel::download(new Trafo80Export, 'data_trafo_80.xlsx');
+
+    }
+
+    public function downloadTrafo30(){
+
+        return Excel::download(new Trafo30Export, 'data_trafo_30.xlsx');
 
     }
 
