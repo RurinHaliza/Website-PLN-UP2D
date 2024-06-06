@@ -60,7 +60,7 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueYear }}</li>
+                            <li>Ampere: {{ $maxValueYear }}</li>
                             <li>Tanggal : {{ $maxDateYear }}</li>
                             <li>Pukul : {{ $maxColumnYear }}</li>
                         </ul>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueMonth }}</li>
+                            <li>Ampere: {{ $maxValueMonth }}</li>
                             <li>Tanggal : {{ $maxDateMonth }}</li>
                             <li>Pukul : {{ $maxColumnMonth }}</li>
                         </ul>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>MW: {{ $maxValueToday }}</li>
+                            <li>Ampere: {{ $maxValueToday }}</li>
                             <li>Tanggal : {{ $selectedDate }} </li>
                             <li>Pukul : {{ $maxColumnToday }}</li>
                         </ul>

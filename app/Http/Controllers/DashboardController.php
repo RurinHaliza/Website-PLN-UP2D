@@ -29,6 +29,8 @@ class DashboardController extends Controller
 
             $getLokasiGI = GITable::orderBy('Nama_GI', 'ASC')->get();
 
+            $initialMarkers = [];
+
             foreach ($getLokasiGI as $lok) {
 
                 $jumlahpenyulang = Penyulang::where('ID_GI', $lok->ID_FGI)->count();
