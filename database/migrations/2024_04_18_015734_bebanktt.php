@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bebanktt', function (Blueprint $table) {
+        Schema::create('beban_ktt', function (Blueprint $table) {
             $table->id();
             $table->string('Pkey')->nullable();
             $table->string('Station')->nullable();
@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('CB')->nullable();
             $table->string('Meter')->nullable();
             $table->string('Status_Meter')->nullable();
-            $table->timestamps();
         });
     }
 
