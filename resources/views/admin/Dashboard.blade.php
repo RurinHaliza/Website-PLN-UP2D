@@ -94,7 +94,7 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah mVA
 
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mva }} Ampere</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mva }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
