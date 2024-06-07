@@ -20,6 +20,15 @@
                         <span>Beban</span></a>
                 </li>
                 </li>
+                <li class="menu-header">Scada Fail</li>
+        <li class="{{ Request::is('scadafail') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('scadafail') }}"><i class="fa fa-exclamation-triangle"></i> <span>Input Scada
+                    Fail</span></a>
+                    
+        <li class="{{ Request::is('approval') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
+        </li>
+        </li>
                 <li class="menu-header">Tabel Asset</li>
                 <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
