@@ -39,6 +39,14 @@ class GIController extends Controller
             // dd($GI);
 
             return view('Opsis.beban.GI',compact('GI'));
+        }elseif (Auth::user()->hasRole('EditorOpsis')) {
+            # code...
+
+            $GI = GITable::all();
+
+            // dd($GI);
+
+            return view('EditorOpsis.beban.GI',compact('GI'));
         }elseif (Auth::user()->hasRole('Manager')) {
             # code...
 

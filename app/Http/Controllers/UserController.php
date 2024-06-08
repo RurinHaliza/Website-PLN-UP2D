@@ -68,6 +68,10 @@ class UserController extends Controller
 
                 $users->attachRole('Administrator');
             }
+            elseif ($request->role == 'Manager') {
+
+                $users->attachRole('Manager');
+            }
 
             //redirect to index
             Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');

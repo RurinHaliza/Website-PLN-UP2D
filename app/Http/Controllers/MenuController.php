@@ -326,7 +326,7 @@ class MenuController extends Controller
     // }
     public function detail(Request $request)
     {
-        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor'])) {
+        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor','Manager'])) {
 
             // Harian
             // Mengambil data berdasarkan tanggal terpilih
@@ -733,6 +733,18 @@ list($maxValueDay, $maxColumnDay, $maxValueDay2, $maxColumnDay2) = calculateMaxV
             $data = mvcell::all();
 
             return view('Opsis.beban.MVCELL.mvcell', compact('data'));
+        }elseif (Auth::user()->hasRole('ValidatorFasop')) {
+            # code...
+
+            $data = mvcell::all();
+
+            return view('Opsis.beban.MVCELL.mvcell', compact('data'));
+        }if (Auth::user()->hasRole('EditorOpsis')) {
+            # code...
+
+            $data = mvcell::all();
+
+            return view('EditorOpsis.beban.MVCELL.mvcell', compact('data'));
         }elseif (Auth::user()->hasRole('Manager')) {
             # code...
 

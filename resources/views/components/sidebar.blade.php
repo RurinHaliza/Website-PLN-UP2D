@@ -67,7 +67,7 @@
                     Menu</span></a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua.operator') ? 'active' : '' }}">
+        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebansemua.operator') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
@@ -78,10 +78,10 @@
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
+                {{-- <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
                         <span>Tabel Data Form Bulanan</span></a>
-                </li>
+                </li> --}}
 
         <li class="{{ Request::is('trafo.operator') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('trafo.operator') }}"><i class="fa fa-microchip"></i>
@@ -106,8 +106,8 @@
     @elseif(Auth::user()->hasRole('ValidatorOpsis'))
     <li class="menu-header">Dashboard</li>
         <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.validopsis') }}"><i class="fa fa-compass"></i> <span>Main
-                    Menu</span></a>
+            <a class="nav-link" href="{{ route('dashboard.validopsis') }}"><i class="fa fa-compass"></i> <span>Main Menu</span>
+            </a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
         <li class="{{ Request::is('bebansemua.opsis') ? 'active' : '' }}">
@@ -122,8 +122,8 @@
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
+                <li class="{{ Request::is('dataform.index.opsis') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index.opsis') }}"><i class="fa fa-database"></i>
                         <span>Tabel Data Form Bulanan</span></a>
                 </li>
 
@@ -163,13 +163,13 @@
             <a class="nav-link" href="{{ route('bebansemua.validfasop') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
-        <li class="menu-header">Approval</li>
+        {{-- <li class="menu-header">Approval</li>
         <li class="{{ Request::is('approval') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
-        </li>
+        </li> --}}
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
+                <li class="{{ Request::is('dataform.index.fasop') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index.fasop') }}"><i class="fa fa-database"></i>
                         <span>Tabel Data Form Bulanan</span></a>
                 </li>
         </li>
@@ -193,8 +193,8 @@
                     Beban
                     GI</span></a>
         </li>
-        <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fa fa-cogs"></i> <span>Tabel
+        <li class="{{ Request::is('data.mvcell.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.fasop') }}"><i class="fa fa-cogs"></i> <span>Tabel
                     Data MVCELL</span></a>
         </li>
         </ul>
@@ -211,29 +211,29 @@
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
+                <li class="{{ Request::is('dataform.index.editorop') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index.editorop') }}"><i class="fa fa-database"></i>
                         <span>Tabel Data Form Bulanan</span></a>
                 </li>
         </li>
-        <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fa fa-microchip"></i> <span>Tabel
+        <li class="{{ Request::is('bebantrafo.editorop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebantrafo.editorop') }}"><i class="fa fa-microchip"></i> <span>Tabel
                     Trafo</span></a>
         </li>
-        <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fa fa-cog"></i>
+        <li class="{{ Request::is('bebanpenyulang.editorop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanpenyulang.editorop') }}"><i class="fa fa-cog"></i>
                 <span>Tabel Penyulang</span></a>
         </li>
-        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fa fa-bolt"></i> <span>Tabel Beban
+        <li class="{{ Request::is('bebanktt.editorop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanktt.editorop') }}"><i class="fa fa-bolt"></i> <span>Tabel Beban
                     KTT</span></a>
         </li>
-        <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fa fa-university"></i> <span>Tabel Beban
+        <li class="{{ Request::is('beban.GI.editorop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('beban.GI.editorop') }}"><i class="fa fa-university"></i> <span>Tabel Beban
                     GI</span></a>
         </li>
-        <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fa fa-cogs"></i> <span>Tabel
+        <li class="{{ Request::is('data.mvcell.editorop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.editorop') }}"><i class="fa fa-cogs"></i> <span>Tabel
                     Data MVCELL</span></a>
         </li>
         </ul>
@@ -245,14 +245,14 @@
             <a class="nav-link" href="{{ route('dashboard.editorop') }}"><i class="fa fa-compass"></i> <span>Main
                     Menu</span></a>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fa fa-line-chart"></i>
+        <li class="{{ Request::is('bebansemua.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.visitor') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
+                <li class="{{ Request::is('dataform.index.visitor') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index.visitor') }}"><i class="fa fa-database"></i>
                         <span>Tabel Data Form Bulanan</span></a>
                 </li>
         </li>
@@ -286,14 +286,14 @@
                     Menu</span></a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fa fa-line-chart"></i>
+        <li class="{{ Request::is('bebansemua.manager') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.manager') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
+                <li class="{{ Request::is('dataform.index.manager') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index.manager') }}"><i class="fa fa-database"></i>
                         <span>Tabel Data Form Bulanan</span></a>
                 </li>
         </li>

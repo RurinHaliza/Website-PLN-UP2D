@@ -55,6 +55,13 @@ class PenyulangController extends Controller
             // dd($penyulang);
 
             return view('Opsis.beban.penyulang', compact('penyulang'));
+        }elseif (Auth::user()->hasRole('EditorOpsis')) {
+
+            $penyulang = Penyulang::all();
+
+            // dd($penyulang);
+
+            return view('EditorOpsis.beban.penyulang', compact('penyulang'));
         }
 
         elseif (Auth::user()->hasRole('Manager')) {

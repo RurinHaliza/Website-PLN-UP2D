@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+
     <link rel="stylesheet" type="text/css" media="screen"
         href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
 @endpush
@@ -20,7 +23,7 @@
                 <div class="card-body">
                 </div>
     </div>
-    <a href="{{ route('bebansemua') }}" class="btn btn-danger mb-4">Kembali</a>
+    <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
     <div class="section-body">
         <div class="card">
             <div class="card-body">
@@ -34,9 +37,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tabBulanan">Bulanan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tabTahunan">Tahunan</a>
                     </li>
                 </ul>
             </div>
@@ -171,8 +171,21 @@
                             <div class="card-header">
                                 <div class="card-header">
                                     <h4>Simple Table</h4>
-                                    <div class="card-body">
+                                    <div class="card-body"> @if (Auth::user()->hasRole('Administrator'))
                                         <form action="{{ route('detailbeban') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('operator'))
+                                        <form action="{{ route('detailbeban.operator') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('ValidatorOpsis'))
+                                        <form action="{{ route('detailbeban.opsis') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
+                                        <form action="{{ route('detailbeban.validfasop') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
+                                        <form action="{{ route('detailbeban.editorop') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('visitor'))
+                                        <form action="{{ route('detailbeban.visitor') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('Manager'))
+                                        <form action="{{ route('detailbeban.manager') }}" method="GET">
+                                    @endif
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <input type="date" name="selected_date" class="form-control">
@@ -442,7 +455,21 @@
                             <div class="card-header">
                                 <h4>Simple Table</h4>
                                 <div class="card-body">
-                                    <form action="{{ route('detailbeban') }}" method="GET">
+                                    @if (Auth::user()->hasRole('Administrator'))
+                                        <form action="{{ route('detailbeban') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('operator'))
+                                        <form action="{{ route('detailbeban.operator') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('ValidatorOpsis'))
+                                        <form action="{{ route('detailbeban.opsis') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
+                                        <form action="{{ route('detailbeban.validfasop') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
+                                        <form action="{{ route('detailbeban.editorop') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('visitor'))
+                                        <form action="{{ route('detailbeban.visitor') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('Manager'))
+                                        <form action="{{ route('detailbeban.manager') }}" method="GET">
+                                    @endif
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <input type="date" name="start_date" class="form-control"
@@ -647,7 +674,21 @@
                                 <div class="card-header">
                                     <h4>Simple Table</h4>
                                     <div class="card-body">
+                                        @if (Auth::user()->hasRole('Administrator'))
                                         <form action="{{ route('detailbeban') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('operator'))
+                                        <form action="{{ route('detailbeban.operator') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('ValidatorOpsis'))
+                                        <form action="{{ route('detailbeban.opsis') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
+                                        <form action="{{ route('detailbeban.validfasop') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
+                                        <form action="{{ route('detailbeban.editorop') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('visitor'))
+                                        <form action="{{ route('detailbeban.visitor') }}" method="GET">
+                                    @elseif (Auth::user()->hasRole('Manager'))
+                                        <form action="{{ route('detailbeban.manager') }}" method="GET">
+                                    @endif
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <span>Pilih Bulan: </span>
@@ -903,33 +944,24 @@
         $("#jumlahfeederup3").dataTable({});
     </script>
 
-    <script>
+    {{-- <script>
         $(function() {
-            $('#bebantrafo').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#bebantrafo .col-md-6:eq(0)');
-        });
-
-
-        // $(document).ready(function() {
-        //     $('#bebantrafo').DataTable({
-        //         dom: 'Bfrtip',
-        //         buttons: [
-        //             'copy', 'csv', 'excel', 'pdf', 'print'
-        //         ]
-        //     });
-        // });
-    </script>
+    $('#bebantrafo').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "buttons": [ // Menambahkan bagian ini untuk menentukan tombol ekspor
+            'excel', // Tombol untuk mengekspor ke Excel
+            'pdf', // Tombol untuk mengekspor ke PDF
+            'print' // Tombol untuk mencetak tabel
+        ]
+    }).buttons().container().appendTo('#bebantrafo .col-md-6:eq(0)'); // Ini akan menempatkan tombol-tombol ekspor ke dalam container yang diinginkan
+});
+    </script> --}}
     <script>
         $("#bebanbulanan").dataTable({
             "columnDefs": [{
@@ -979,7 +1011,7 @@
             activateTab(activeTab);
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('.date-picker').datepicker({
                 dateFormat: "mm",
@@ -1024,12 +1056,85 @@
                 }
             });
         });
+    </script> --}}
+    <script>
+        $(document).ready(function() {
+    var table = $('#bebantrafo').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "dom": 'Bfrtip', // Menambahkan dom untuk tombol ekspor
+        "buttons": [ // Menambahkan tombol ekspor
+            'excel',
+            'pdf',
+            'print'
+        ]
+    });
+
+    $('.date-picker').datepicker({
+        dateFormat: "mm",
+        changeMonth: true,
+        changeYear: false,
+        showButtonPanel: true,
+        closeText: 'Done',
+        onClose: function(dateText, inst) {
+            function isDonePressed() {
+                return $('#ui-datepicker-div .ui-datepicker-close').hasClass('ui-state-hover');
+            }
+            if (isDonePressed()) {
+                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                var monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                var monthName = monthNames[month];
+                $(this).val(monthName).trigger('change');
+            }
+        },
+        beforeShow: function(input, inst) {
+            setTimeout(function() {
+                $(".ui-datepicker-calendar").hide();
+            }, 0);
+
+            if ((datestr = $(input).val()).length > 0) {
+                var monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                var monthName = datestr;
+                var month = monthNames.indexOf(monthName);
+                if (month !== -1) {
+                    $(input).datepicker('option', 'defaultDate', new Date(0, month, 1));
+                    $(input).datepicker('setDate', new Date(0, month, 1));
+                }
+            }
+        },
+        onChangeMonthYear: function(year, month, inst) {
+            setTimeout(function() {
+                $(".ui-datepicker-calendar").hide();
+            }, 0);
+        }
+    }).on('change', function() {
+        var datepickerInput = this;
+        if (table.search() !== datepickerInput.value) {
+            table.search(datepickerInput.value).draw();
+        }
+    });
+
+    // Menonaktifkan datepicker saat pencarian aktif
+    table.on('search.dt', function() {
+        $('.date-picker').datepicker("disable");
+    });
+
+    // Mengaktifkan kembali datepicker setelah pencarian selesai
+    table.on('draw.dt', function() {
+        $('.date-picker').datepicker("enable");
+    });
+});
+
     </script>
-
-
-
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById('bebanChart').getContext('2d');
@@ -1177,4 +1282,10 @@
             });
         });
     </script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 @endpush
