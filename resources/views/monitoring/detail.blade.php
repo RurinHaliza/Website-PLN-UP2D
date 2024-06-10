@@ -4,15 +4,9 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
-
-    <link rel="stylesheet" type="text/css" media="screen"
-        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
 @endpush
 
 @section('main')
@@ -708,7 +702,7 @@
                                     @if ($processedResultsMonth->isEmpty())
                                         <p>No results found for the selected date range.</p>
                                     @else
-                                        <table id="bebanbulanan" class="table-bordered table-md table">
+                                        <table id="bebantrafo" class="table-bordered table-md table">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -925,21 +919,14 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- JS Libraies -->
-    <script src="{{ asset('library/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.indonesia.js') }}"></script>
-
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
-
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/components-statistic.js') }}"></script>
+    <!-- JS Libraries -->
+    <script src="{{ asset('library/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('library/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
     <script>
         $("#jumlahfeederup3").dataTable({});
     </script>
@@ -963,12 +950,21 @@
 });
     </script> --}}
     <script>
-        $("#bebanbulanan").dataTable({
-            "columnDefs": [{
-                "sortable": false,
-                "targets": [2, 3],
-            }]
-        });
+        $("#bebantrafo").dataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "dom": 'Bfrtip', // Menambahkan dom untuk tombol ekspor
+        "buttons": [ // Menambahkan tombol ekspor
+            'excel',
+            'pdf',
+            'print'
+        ]
+    });
     </script>
 
     <script>
@@ -1059,21 +1055,7 @@
     </script> --}}
     <script>
         $(document).ready(function() {
-    var table = $('#bebantrafo').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "dom": 'Bfrtip', // Menambahkan dom untuk tombol ekspor
-        "buttons": [ // Menambahkan tombol ekspor
-            'excel',
-            'pdf',
-            'print'
-        ]
-    });
+    
 
     $('.date-picker').datepicker({
         dateFormat: "mm",
@@ -1282,10 +1264,4 @@
             });
         });
     </script>
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 @endpush
