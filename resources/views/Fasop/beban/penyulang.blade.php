@@ -55,7 +55,11 @@
                                     <td>{{ $p->UP3 }}</td>
                                     <td>{{ $p->ULP }}</td>
                                     <td>
+<<<<<<< HEAD
                                         <a href="{{ route('detail.penyulang.fasop',[$p->id]) }}" class="btn btn-primary">Detail</a>
+=======
+                                        <a href="" class="btn btn-primary">Detail</a>
+>>>>>>> 39104fafd13ca4da1227a7198cc1de7421e785d2
                                     </td>                                    
                                 </tr>
                             @endforeach

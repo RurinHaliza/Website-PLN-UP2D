@@ -92,6 +92,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Administrator'
     //REGISTER
     Route::post('createuser', [UserController::class, 'actionregister'])->name('actionregister');
 
+    // Form
     Route::get('DataForm', [DataForm::class, 'index'])->name('dataform.index');
     Route::get('TambahData', [DataForm::class, 'TambahData'])->name('tambahdataform.admin');
     Route::post('/dataform/store', [DataForm::class, 'store'])->name('dataform.store');
@@ -162,9 +163,6 @@ Route::group(['prefix' => 'ValidatorOpsis', 'middleware' => ['auth', 'role:Valid
     Route::get('bebantrafo', [TrafoController::class, 'index'])->name('bebantrafo.opsis');
     Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('detail.trafo.opsis');
 
-    //MVCELL
-    Route::get('mvcell', [MenuController::class, 'mvcell'])->name('data.mvcell.validopsis');
-    Route::get('mvcell/{id}', [MenuController::class, 'DetailMVCELL'])->name('detail.mvcell.validopsis');
 
     //Penyulang
     Route::get('bebanpenyulang', [PenyulangController::class, 'index'])->name('bebanpenyulang.opsis');
@@ -280,6 +278,12 @@ Route::group(['prefix' => 'Visitor', 'middleware' => ['auth', 'role:Visitor']], 
     Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.visitor');
     Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.visitor');
 
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.visitor');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.visitor');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.visitor');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.visitor');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.visitor');
+
     //Tabel Trafo 
     Route::get('trafo', [TrafoController::class, 'index'])->name('trafo.visitor');
     Route::get('DetailTrafo/{id}', [TrafoController::class, 'detail'])->name('trafo.detail.visitor');
@@ -309,6 +313,12 @@ Route::group(['prefix' => 'Manager', 'middleware' => ['auth', 'role:Manager']], 
 
     Route::get('Dashboard', [DashboardController::class, 'index'])->name('dashboard.manager');
     Route::get('DetailGI/{idgi}', [DashboardController::class, 'detailmaps'])->name('detail.gimaps.manager');
+
+    Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.manager');
+    Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.manager');
+    Route::get('bebanharian', [MenuController::class, 'harian'])->name('bebanharian.manager');
+    Route::get('bebanminggu', [MenuController::class, 'mingguan'])->name('bebanminggu.manager');
+    Route::get('bebanbulan', [MenuController::class, 'bulanan'])->name('bebanbulan.manager');
 
     Route::get('bebansemua', [MenuController::class, 'semua'])->name('bebansemua.manager');
     Route::get('detailbeban', [MenuController::class, 'detail'])->name('detailbeban.manager');

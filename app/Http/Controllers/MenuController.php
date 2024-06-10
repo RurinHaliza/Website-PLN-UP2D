@@ -240,7 +240,7 @@ class MenuController extends Controller
 
     public function detail(Request $request)
     {
-        if (Auth::user()->hasRole(['Administrator', 'operator', 'ValidatorOpsis', 'ValidatorFasop', 'EditorOpsis', 'Visitor','Manager'])) {
+        if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor','Manager'])) {
 
             // Harian
             // Mengambil data berdasarkan tanggal terpilih

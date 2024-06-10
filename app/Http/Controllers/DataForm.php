@@ -22,7 +22,7 @@ class DataForm extends Controller
 
     public function TambahData(){
 
-        if(Auth::user()->hasRole('Administrator')){
+        if(Auth::user()->hasRole('Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis')){
 
             $gi = GITable::orderBy('Nama_GI','ASC')->select('Nama_GI')->get();
 

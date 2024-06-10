@@ -69,7 +69,7 @@
                     Menu</span></a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua.operator') ? 'active' : '' }}">
+        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebansemua.operator') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
@@ -104,8 +104,8 @@
     @elseif(Auth::user()->hasRole('ValidatorOpsis'))
         <li class="menu-header">Dashboard</li>
         <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.validopsis') }}"><i class="fa fa-compass"></i> <span>Main
-                    Menu</span></a>
+            <a class="nav-link" href="{{ route('dashboard.validopsis') }}"><i class="fa fa-compass"></i> <span>Main Menu</span>
+            </a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
         <li class="{{ Request::is('bebansemua.opsis') ? 'active' : '' }}">
@@ -161,16 +161,15 @@
             <a class="nav-link" href="{{ route('bebansemua.validfasop') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
-        <li class="menu-header">Approval</li>
+        {{-- <li class="menu-header">Approval</li>
         <li class="{{ Request::is('approval') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i>
-                <span>Approval</span></a>
-        </li>
+            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
+        </li> --}}
         <li class="menu-header">Tabel Asset</li>
-        <li class="{{ Request::is('dataform.index.fasop') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dataform.index.fasop') }}"><i class="fa fa-database"></i>
-                <span>Tabel Data Form Bulanan</span></a>
-        </li>
+                <li class="{{ Request::is('dataform.index.fasop') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dataform.index.fasop') }}"><i class="fa fa-database"></i>
+                        <span>Tabel Data Form Bulanan</span></a>
+                </li>
         </li>
         <li class="{{ Request::is('bebantrafo.fasop') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebantrafo.fasop') }}"><i class="fa fa-microchip"></i>

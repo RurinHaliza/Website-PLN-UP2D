@@ -26,10 +26,17 @@
             <a href="{{ route('detailbeban.validfasop') }}" class="btn btn-primary mb-4">Detail Beban</a>
         @elseif (Auth::user()->hasRole('EditorOpsis'))
             <a href="{{ route('detailbeban.editorop') }}" class="btn btn-primary mb-4">Detail Beban</a>
+<<<<<<< HEAD
         @elseif (Auth::user()->hasRole('Visitor'))
             <a href="{{ route('detailbeban.visitor') }}" class="btn btn-primary mb-4">Detail Beban</a>  
         @elseif (Auth::user()->hasRole('Manager'))
             <a href="{{ route('detailbeban.manager') }}" class="btn btn-primary mb-4">Detail Beban</a>    
+=======
+        @elseif (Auth::user()->hasRole('visitor'))
+            <a href="{{ route('detailbeban.visitor') }}" class="btn btn-primary mb-4">Detail Beban</a>
+        @elseif (Auth::user()->hasRole('Manager'))
+            <a href="{{ route('detailbeban.manager') }}" class="btn btn-primary mb-4">Detail Beban</a>
+>>>>>>> 39104fafd13ca4da1227a7198cc1de7421e785d2
         @endif
 
 

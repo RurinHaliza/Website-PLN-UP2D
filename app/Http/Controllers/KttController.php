@@ -38,6 +38,11 @@ class KTTController extends Controller
             $bebanktt = ktt::all();
             //dd($bebanktt); 
             return view('Opsis.beban.ktt', compact('bebanktt'));
+        } elseif (Auth::user()->hasRole('EditorOpsis')) {
+
+            $bebanktt = ktt::all();
+            //dd($bebanktt); 
+            return view('EditorOpsis.beban.ktt', compact('bebanktt'));
         }elseif (Auth::user()->hasRole('Manager')) {
 
             $bebanktt = ktt::all();
