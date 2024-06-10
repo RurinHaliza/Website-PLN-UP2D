@@ -11,7 +11,7 @@ class OperatorController extends Controller
 {
     public function ScadaFailIndex(){
 
-        if(Auth::user()->hasRole('operator')){
+        if(Auth::user()->hasRole(['operator','Administrator'])){
 
             $get = status_beban::orderBy('id','ASC')->get();
 
@@ -24,7 +24,7 @@ class OperatorController extends Controller
 
     public function editDataFail($id){
 
-        if(Auth::user()->hasRole('operator')){
+        if(Auth::user()->hasRole(['operator','Administrator'])){
 
             $data = data_beban_puncak30::where('feeder_pkey',$id)->first();
 
@@ -35,5 +35,8 @@ class OperatorController extends Controller
         }
 
     }
+
+
+
 
 }

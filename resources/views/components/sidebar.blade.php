@@ -21,14 +21,16 @@
                 </li>
                 </li>
                 <li class="menu-header">Scada Fail</li>
-        <li class="{{ Request::is('scadafail') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('scadafail') }}"><i class="fa fa-exclamation-triangle"></i> <span>Input Scada
-                    Fail</span></a>
-                    
-        <li class="{{ Request::is('approval') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
-        </li>
-        </li>
+                <li class="{{ Request::is('scadafail.admin') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('scadafail.admin') }}"><i class="fa fa-exclamation-triangle"></i>
+                        <span>Input Scada
+                            Fail</span></a>
+
+                <li class="{{ Request::is('approval') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i>
+                        <span>Approval</span></a>
+                </li>
+                </li>
                 <li class="menu-header">Tabel Asset</li>
                 <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
@@ -73,16 +75,12 @@
         </li>
         <li class="menu-header">Scada Fail</li>
         <li class="{{ Request::is('scadafail') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('scadafail') }}"><i class="fa fa-exclamation-triangle"></i> <span>Input Scada
+            <a class="nav-link" href="{{ route('scadafail') }}"><i class="fa fa-exclamation-triangle"></i> <span>Input
+                    Scada
                     Fail</span></a>
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
-                        <span>Tabel Data Form Bulanan</span></a>
-                </li>
-
         <li class="{{ Request::is('trafo.operator') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('trafo.operator') }}"><i class="fa fa-microchip"></i>
                 <span>Tabel Trafo</span></a>
@@ -104,7 +102,7 @@
                     Data MVCELL</span></a>
         </li>
     @elseif(Auth::user()->hasRole('ValidatorOpsis'))
-    <li class="menu-header">Dashboard</li>
+        <li class="menu-header">Dashboard</li>
         <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.validopsis') }}"><i class="fa fa-compass"></i> <span>Main
                     Menu</span></a>
@@ -118,14 +116,15 @@
 
         <li class="menu-header">Scada Fail</li>
         <li class="{{ Request::is('approval') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
+            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i>
+                <span>Approval</span></a>
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
-                        <span>Tabel Data Form Bulanan</span></a>
-                </li>
+        <li class="{{ Request::is('dataform.index.opsis') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dataform.index.opsis') }}"><i class="fa fa-database"></i>
+                <span>Tabel Data Form Bulanan</span></a>
+        </li>
 
         <li class="{{ Request::is('bebantrafo.opsis') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebantrafo.opsis') }}"><i class="fa fa-microchip"></i>
@@ -151,9 +150,8 @@
             <a class="nav-link" href="{{ route('data.mvcell.opsis') }}"><i class="fa fa-cogs"></i> <span>Tabel
                     Data MVCELL</span></a>
         </li>
-     
     @elseif(Auth::user()->hasRole('ValidatorFasop'))
-    <li class="menu-header">Dashboard</li>
+        <li class="menu-header">Dashboard</li>
         <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.validfasop') }}"><i class="fa fa-compass"></i> <span>Main
                     Menu</span></a>
@@ -165,13 +163,14 @@
         </li>
         <li class="menu-header">Approval</li>
         <li class="{{ Request::is('approval') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
+            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i>
+                <span>Approval</span></a>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
-                        <span>Tabel Data Form Bulanan</span></a>
-                </li>
+        <li class="{{ Request::is('dataform.index.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dataform.index.fasop') }}"><i class="fa fa-database"></i>
+                <span>Tabel Data Form Bulanan</span></a>
+        </li>
         </li>
         <li class="{{ Request::is('bebantrafo.fasop') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('bebantrafo.fasop') }}"><i class="fa fa-microchip"></i>
@@ -193,13 +192,13 @@
                     Beban
                     GI</span></a>
         </li>
-        <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fa fa-cogs"></i> <span>Tabel
+        <li class="{{ Request::is('data.mvcell.fasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.fasop') }}"><i class="fa fa-cogs"></i> <span>Tabel
                     Data MVCELL</span></a>
         </li>
         </ul>
     @elseif(Auth::user()->hasRole('EditorOpsis'))
-    <li class="menu-header">Dashboard</li>
+        <li class="menu-header">Dashboard</li>
         <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.editorop') }}"><i class="fa fa-compass"></i> <span>Main
                     Menu</span></a>
@@ -211,52 +210,50 @@
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
-                        <span>Tabel Data Form Bulanan</span></a>
-                </li>
+        <li class="{{ Request::is('dataform.index.edops') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dataform.index.edops') }}"><i class="fa fa-database"></i>
+                <span>Tabel Data Form Bulanan</span></a>
         </li>
-        <li class="{{ Request::is('bebantrafo') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebantrafo') }}"><i class="fa fa-microchip"></i> <span>Tabel
+        </li>
+        <li class="{{ Request::is('bebantrafo.edops') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebantrafo.edops') }}"><i class="fa fa-microchip"></i> <span>Tabel
                     Trafo</span></a>
         </li>
-        <li class="{{ Request::is('bebanpenyulang') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanpenyulang') }}"><i class="fa fa-cog"></i>
+        <li class="{{ Request::is('bebanpenyulang.edops') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanpenyulang.edops') }}"><i class="fa fa-cog"></i>
                 <span>Tabel Penyulang</span></a>
         </li>
-        <li class="{{ Request::is('bebanktt') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebanktt') }}"><i class="fa fa-bolt"></i> <span>Tabel Beban
+        <li class="{{ Request::is('bebanktt.edops') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebanktt.edops') }}"><i class="fa fa-bolt"></i> <span>Tabel Beban
                     KTT</span></a>
         </li>
-        <li class="{{ Request::is('beban.GI') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('beban.GI') }}"><i class="fa fa-university"></i> <span>Tabel Beban
+        <li class="{{ Request::is('beban.GI.edops') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('beban.GI.edops') }}"><i class="fa fa-university"></i> <span>Tabel Beban
                     GI</span></a>
         </li>
-        <li class="{{ Request::is('data.mvcell') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('data.mvcell') }}"><i class="fa fa-cogs"></i> <span>Tabel
+        <li class="{{ Request::is('data.mvcell.edops') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data.mvcell.edops') }}"><i class="fa fa-cogs"></i> <span>Tabel
                     Data MVCELL</span></a>
         </li>
         </ul>
-
-        
     @elseif(Auth::user()->hasRole('Visitor'))
-    <li class="menu-header">Dashboard</li>
-        <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.editorop') }}"><i class="fa fa-compass"></i> <span>Main
+        <li class="menu-header">Dashboard</li>
+        <li class="{{ Request::is('dashboard.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.visitor') }}"><i class="fa fa-compass"></i> <span>Main
                     Menu</span></a>
         <li class="menu-header">Tabel Monitoring Beban</li>
         <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fa fa-line-chart"></i>
+            <a class="nav-link" href="{{ route('bebansemua.visitor') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
-                        <span>Tabel Data Form Bulanan</span></a>
-                </li>
+        <li class="{{ Request::is('dataform.index.visitor') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dataform.index.visitor') }}"><i class="fa fa-database"></i>
+                <span>Tabel Data Form Bulanan</span></a>
         </li>
-        
+        </li>
+
         <li class="{{ Request::is('trafo.visitor') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('trafo.visitor') }}"><i class="fa fa-microchip"></i>
                 <span>Tabel Trafo</span></a>
@@ -280,24 +277,24 @@
         </li>
         </ul>
     @elseif(Auth::user()->hasRole('Manager'))
-    <li class="menu-header">Dashboard</li>
+        <li class="menu-header">Dashboard</li>
         <li class="{{ Request::is('Dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.manager') }}"><i class="fa fa-compass"></i> <span>Main
                     Menu</span></a>
         </li>
         <li class="menu-header">Tabel Monitoring Beban</li>
-        <li class="{{ Request::is('bebansemua') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('bebansemua') }}"><i class="fa fa-line-chart"></i>
+        <li class="{{ Request::is('bebansemua.manager') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bebansemua.manager') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
         </li>
         <li class="menu-header">Tabel Asset</li>
-                <li class="{{ Request::is('dataform.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dataform.index') }}"><i class="fa fa-database"></i>
-                        <span>Tabel Data Form Bulanan</span></a>
-                </li>
+        <li class="{{ Request::is('dataform.index.manager') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dataform.index.manager') }}"><i class="fa fa-database"></i>
+                <span>Tabel Data Form Bulanan</span></a>
         </li>
-        
+        </li>
+
         <li class="{{ Request::is('trafo.visitor') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('trafo.manager') }}"><i class="fa fa-microchip"></i>
                 <span>Tabel Trafo</span></a>

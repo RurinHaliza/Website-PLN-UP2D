@@ -12,14 +12,12 @@ class DataForm extends Controller
 {
     public function index(){
 
-        if(Auth::user()->hasRole('Administrator')){
+        if(Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor','Manager'])){
 
             $getData = DataFormModel::orderBy('id','ASC')->get();
 
             return view('DatForm.index',compact('getData'));
-
         }
-
     }
 
     public function TambahData(){

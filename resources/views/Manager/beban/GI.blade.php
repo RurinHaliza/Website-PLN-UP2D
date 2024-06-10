@@ -56,7 +56,7 @@
                                         <td>{{ $g->tingkat_resiko }}</td>
                                     @endif
 
-                                    <td><a href="{{ route('detail.gi.visitor',[$g->id]) }}" class="btn btn-primary">Detail</a></td>
+                                    <td><a href="{{ route('detail.gi.manager',[$g->id]) }}" class="btn btn-primary">Detail</a></td>
                                     
                                 </tr>
                             @endforeach

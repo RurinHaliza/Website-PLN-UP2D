@@ -54,7 +54,7 @@
                                     <td>{{ $p->NM_SINGKATAN }}</td>
                                     <td>{{ $p->UP3 }}</td>
                                     <td>{{ $p->ULP }}</td>   
-                                    <td><a href="{{ route('detail.penyulang.visitor',[$p->id]) }}" class="btn btn-primary">Detail</a></td>                           
+                                    <td><a href="{{ route('detail.penyulang.manager',[$p->id]) }}" class="btn btn-primary">Detail</a></td>                           
                                 </tr>
                             @endforeach
                         </tbody>

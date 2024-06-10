@@ -4,10 +4,8 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
 
 @section('main')
@@ -26,7 +24,7 @@
                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
-                            <th>Id</th>
+                                <th>Id</th>
                                 <th>Pkey</th>
                                 <th>Station</th>
                                 <th>Nama</th>
@@ -41,45 +39,46 @@
                         </thead>
                         <tbody>
 
-@php
-$no = 1;
-@endphp
+                            @php
+                                $no = 1;
+                            @endphp
 
-@foreach ($bebanktt as $ktt)
-<tr>
-    <td>{{$no++}}</td>
-    <td>{{$ktt->pkey}}</td>
-    <td>{{$ktt->station}}</td>
-    <td>{{$ktt->nama}}</td>
-    <td>{{$ktt->daya}}</td>
-    <td>{{$ktt->alamat}}</td>
-    <td>{{$ktt->tanggal}}</td>
-    <td>{{$ktt->cb}}</td>
-    <td>{{$ktt->meter}}</td>
-    <td>{{$ktt->status_meter}}</td>
-    <td>
-        <a href="{{ route('detail.ktt.admin',[$ktt->id]) }}" class="btn btn-primary">Detail</a>
-    </td>                                    
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-</div>
-<div class="card-footer">
-<button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
-</div>
-</div>
-</div>
+                            @foreach ($bebanktt as $ktt)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $ktt->pkey }}</td>
+                                    <td>{{ $ktt->station }}</td>
+                                    <td>{{ $ktt->nama }}</td>
+                                    <td>{{ $ktt->daya }}</td>
+                                    <td>{{ $ktt->alamat }}</td>
+                                    <td>{{ $ktt->tanggal }}</td>
+                                    <td>{{ $ktt->cb }}</td>
+                                    <td>{{ $ktt->meter }}</td>
+                                    <td>{{ $ktt->status_meter }}</td>
+                                    <td>
+                                        <a href="{{ route('detail.ktt.fasop', [$ktt->id]) }}"
+                                            class="btn btn-primary">Detail</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
-<script>
-$("#beban_ktt").dataTable({
-"columnDefs": [{
-"sortable": false,
-"targets": [6, 3]
-}]
-});
-</script>
+    <script>
+        $("#beban_ktt").dataTable({
+            "columnDefs": [{
+                "sortable": false,
+                "targets": [6, 3]
+            }]
+        });
+    </script>
 @endpush

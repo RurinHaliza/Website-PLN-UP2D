@@ -56,7 +56,7 @@
                                 <td>{{$ktt->cb}}</td>
                                 <td>{{$ktt->meter}}</td>
                                 <td>{{$ktt->status_meter}}</td>
-                                <td><a href="{{ route('detail.penyulang.visitor',[$ktt->id]) }}" class="btn btn-primary">Detail</a></td>                                 
+                                <td><a href="{{ route('detail.ktt.manager',[$ktt->id]) }}" class="btn btn-primary">Detail</a></td>                                 
                             </tr>
                             @endforeach
                         </tbody>

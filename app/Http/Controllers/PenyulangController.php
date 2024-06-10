@@ -31,9 +31,7 @@ class PenyulangController extends Controller
 
             $penyulang = Penyulang::all();
 
-            return view('Visitor.beban.penyulang',compact('penyulang'));
-
-
+            return view('Visitor.beban.penyulang', compact('penyulang'));
         } elseif (Auth::user()->hasRole('Visitor')) {
 
             $penyulang = Penyulang::all();
@@ -55,26 +53,30 @@ class PenyulangController extends Controller
             // dd($penyulang);
 
             return view('Opsis.beban.penyulang', compact('penyulang'));
-        }
-
-        elseif (Auth::user()->hasRole('Manager')) {
+        } elseif (Auth::user()->hasRole('Manager')) {
 
             $penyulang = Penyulang::all();
 
             // dd($penyulang);
 
             return view('Manager.beban.penyulang', compact('penyulang'));
-        }
+        } elseif (Auth::user()->hasRole('EditorOpsis')) {
 
+            $penyulang = Penyulang::all();
+
+            // dd($penyulang);
+
+            return view('EditorOpsis.beban.penyulang', compact('penyulang'));
+        }
     }
 
     public function detail($id)
     {
-        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])) {
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis','Manager'])) {
             $data = Penyulang::findOrFail($id);
 
             return view('TabelBeban.Penyulang.detail', compact('data'));
-        } 
+        }
     }
 
     public function editPenyulang($id)
@@ -90,7 +92,7 @@ class PenyulangController extends Controller
         }
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
 
         if (Auth::user()->hasRole('Administrator')) {
@@ -107,7 +109,7 @@ class PenyulangController extends Controller
                 'NM_SINGKATAN' => $request->NM_SINGKATAN,
                 'UP3' => $request->UP3,
                 'ULP' => $request->ULP,
-                
+
             ]);
 
             if ($update) {
@@ -120,7 +122,5 @@ class PenyulangController extends Controller
     {
 
         return Excel::download(new PenyulangExport, 'data_penyulang.xlsx');
-    
     }
-
 }

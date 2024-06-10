@@ -10,7 +10,8 @@ use App\Exports\GIExport;
 
 class GIController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         if (Auth::user()->hasRole('Administrator')) {
 
             $GI = GITable::all();
@@ -30,32 +31,40 @@ class GIController extends Controller
             $GI = GITable::all();
             // dd($GI);
             return view('Fasop.beban.GI', compact('GI'));
-
-        }elseif (Auth::user()->hasRole('ValidatorOpsis')) {
+        } elseif (Auth::user()->hasRole('ValidatorOpsis')) {
             # code...
 
             $GI = GITable::all();
 
             // dd($GI);
 
-            return view('Opsis.beban.GI',compact('GI'));
-        }elseif (Auth::user()->hasRole('Manager')) {
+            return view('Opsis.beban.GI', compact('GI'));
+        } elseif (Auth::user()->hasRole('Manager')) {
             # code...
 
             $GI = GITable::all();
 
             // dd($GI);
 
-            return view('Manager.beban.GI',compact('GI'));
+            return view('Manager.beban.GI', compact('GI'));
+        } elseif (Auth::user()->hasRole('EditorOpsis')) {
+            # code...
+
+            $GI = GITable::all();
+
+            // dd($GI);
+
+            return view('EditorOpsis.beban.GI', compact('GI'));
         }
     }
 
-    public function detail($id){
+    public function detail($id)
+    {
 
-        if(Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])){
+        if (Auth::user()->hasRole(['Administrator', 'operator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis', 'Manager'])) {
             $data = GITable::findOrFail($id);
 
-            return view('TabelBeban.gi.detail',compact('data'));
+            return view('TabelBeban.gi.detail', compact('data'));
         }
     }
 
@@ -63,7 +72,5 @@ class GIController extends Controller
     {
 
         return Excel::download(new GIExport, 'data_GI.xlsx');
-    
     }
-
 }

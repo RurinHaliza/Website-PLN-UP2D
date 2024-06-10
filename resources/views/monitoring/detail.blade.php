@@ -20,7 +20,7 @@
                 <div class="card-body">
                 </div>
     </div>
-    <a href="{{ route('bebansemua') }}" class="btn btn-danger mb-4">Kembali</a>
+    <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
     <div class="section-body">
         <div class="card">
             <div class="card-body">

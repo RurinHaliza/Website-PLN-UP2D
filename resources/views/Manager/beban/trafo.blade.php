@@ -49,7 +49,7 @@
                                     <td>{{ $t->ID_KELAS }}</td>
                                     <td>{{ $t->KD_PEMILIK }}</td>
                                     <td>{{ $t->KD_PENGELOLA }}</td>
-                                    <td><a href="{{ route('trafo.detail.visitor',[$t->id]) }}" class="btn btn-primary">Detail</a></td>
+                                    <td><a href="{{ route('trafo.detail.manager',[$t->id]) }}" class="btn btn-primary">Detail</a></td>
                                 </tr>
                             @endforeach
 

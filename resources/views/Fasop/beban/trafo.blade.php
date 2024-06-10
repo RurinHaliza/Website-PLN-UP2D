@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <table class="table table-bordered" id="trafo" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -31,19 +31,6 @@
                                 <th>ID Kelas</th>
                                 <th>KD Pemilik</th>
                                 <th>KD Pengelola</th>
-                                <th>Tingkat Resiko</th>
-                                <th>Kode Peralatan</th>
-                                <th>Merk</th>
-                                <th>No Seri</th>
-                                <th>Peruntukan</th>
-                                <th>Jenis</th>
-                                <th>Status</th>
-                                <th>TGL Pasang</th>
-                                <th>TGL Operasi</th>
-                                <th>Nilai Perolehan</th>
-                                <th>Nilai Buku</th>
-                                <th>Umur Ekonomis</th>
-                                <th>Umur Manfaat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -62,7 +49,7 @@
                                     <td>{{ $t->KD_PEMILIK }}</td>
                                     <td>{{ $t->KD_PENGELOLA }}</td>
                                     <td>
-                                        <a href="{{ route('detail.trafo.admin',[$t->id]) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('detail.trafo.fasop',[$t->id]) }}" class="btn btn-primary">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

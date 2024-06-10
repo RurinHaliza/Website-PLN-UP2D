@@ -81,8 +81,8 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{ route('download.excel.adminGI') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
-                <a href="{{ route('tambahdataform.admin') }}" class="btn btn-warning"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
+                {{-- <a href="{{ route('download.excel.adminGI') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a> --}}
+                {{-- <a href="{{ route('tambahdataform.admin') }}" class="btn btn-warning"><i class="fas fa-fw fa-plus"></i>Tambah Data</a> --}}
             </div>
         </div>
     </div>

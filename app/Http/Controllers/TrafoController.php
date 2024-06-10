@@ -43,6 +43,11 @@ class TrafoController extends Controller
             $trafo = trafo::all();
 
             return view('Manager.beban.trafo', compact('trafo'));
+        }elseif (Auth::user()->hasRole('EditorOpsis')) {
+
+            $trafo = trafo::all();
+
+            return view('EditorOpsis.beban.trafo', compact('trafo'));
         }
 
     }
@@ -50,7 +55,7 @@ class TrafoController extends Controller
     public function detail($id)
     {
 
-        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])) {
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis','Manager'])) {
 
             $data = trafo::findOrFail($id);
 

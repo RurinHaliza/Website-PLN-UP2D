@@ -43,13 +43,18 @@ class KTTController extends Controller
             $bebanktt = ktt::all();
             //dd($bebanktt); 
             return view('Manager.beban.ktt', compact('bebanktt'));
+        }elseif (Auth::user()->hasRole('EditorOpsis')) {
+
+            $bebanktt = ktt::all();
+            //dd($bebanktt); 
+            return view('EditorOpsis.beban.ktt', compact('bebanktt'));
         }
     }
 
     public function Detail($id)
     {
 
-        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis'])) {
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis','Manager'])) {
             $data = ktt::findOrFail($id);
 
             return view('TabelBeban.KTT.detail', compact('data'));
