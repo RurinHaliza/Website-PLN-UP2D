@@ -305,7 +305,22 @@ class MenuController extends Controller
             $averageValueDay = calculateAverage($data, $columnsDay);
             list($maxValueDay, $maxColumnDay, $maxValueDay2, $maxColumnDay2) = calculateMaxValues($data, $columnsDay);
 
+                        // Inisialisasi array untuk sumbu X dan Y
+            $xLabels = [];
+            $yValues = [];
 
+            // Menghitung nilai maksimum untuk setiap kolom
+            foreach ($columnsDay as $column) {
+                $maxValue = null;
+                foreach ($data as $item) {
+                    $value = $item->{$column};
+                    if (is_numeric($value) && (is_null($maxValue) || $value > $maxValue)) {
+                        $maxValue = $value;
+                    }
+                }
+                $xLabels[] = $column;
+                $yValues[] = $maxValue;
+            }
             //Mingguan
             // Validasi input tanggal (opsional)
             $request->validate([
@@ -620,7 +635,7 @@ class MenuController extends Controller
                 }
             }
 
-            return view('monitoring.detail', compact('maxValueMWeek2', 'maxColumnMWeek2', 'maxValueSWeek2', 'maxColumnSWeek2', 'maxColumnsMonth', 'maxValuesMonth', 'maxValues', 'maxColumns', 'averageValueSMonth', 'maxValueSMonth', 'maxColumnSMonth', 'maxValueSMonth2', 'maxColumnSMonth2', 'averageValueMMonth', 'maxValueMMonth', 'maxColumnMMonth', 'maxValueMMonth2', 'maxColumnMMonth2', 'maxColumnMonthly', 'averageValueMonthly', 'maxValueMonthly', 'averageValueSWeek', 'maxValueSWeek', 'maxColumnSWeek', 'averageValueMWeek', 'maxValueMWeek', 'maxColumnMWeek', 'maxColumnWeek', 'maxValueWeek', 'averageValueWeek', 'StartBulan1', 'endDate', 'startDate', 'maxValue', 'maxColumn', 'averageValue', 'data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'maxValue2', 'maxColumn2', 'selectedDate', 'averageValueDay', 'maxValueDay', 'maxColumnDay', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueM2', 'maxColumnM2', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear', 'processedResults', 'startDay', 'endDay', 'processedResultsMonth', 'StartBulan1'));
+            return view('monitoring.detail', compact('xLabels','yValues','maxValueMWeek2', 'maxColumnMWeek2', 'maxValueSWeek2', 'maxColumnSWeek2', 'maxColumnsMonth', 'maxValuesMonth', 'maxValues', 'maxColumns', 'averageValueSMonth', 'maxValueSMonth', 'maxColumnSMonth', 'maxValueSMonth2', 'maxColumnSMonth2', 'averageValueMMonth', 'maxValueMMonth', 'maxColumnMMonth', 'maxValueMMonth2', 'maxColumnMMonth2', 'maxColumnMonthly', 'averageValueMonthly', 'maxValueMonthly', 'averageValueSWeek', 'maxValueSWeek', 'maxColumnSWeek', 'averageValueMWeek', 'maxValueMWeek', 'maxColumnMWeek', 'maxColumnWeek', 'maxValueWeek', 'averageValueWeek', 'StartBulan1', 'endDate', 'startDate', 'maxValue', 'maxColumn', 'averageValue', 'data', 'dataHariIni', 'dataBulanIni', 'dataTahunIni', 'averageValue', 'maxValue', 'maxColumn', 'maxValue2', 'maxColumn2', 'selectedDate', 'averageValueDay', 'maxValueDay', 'maxColumnDay', 'averageValueM', 'maxValueM', 'maxColumnM', 'maxValueM2', 'maxColumnM2', 'maxValueToday', 'maxColumnToday', 'maxValueMonth', 'maxColumnMonth', 'maxDateMonth', 'maxValueYear', 'maxColumnYear', 'maxDateYear', 'processedResults', 'startDay', 'endDay', 'processedResultsMonth', 'StartBulan1'));
         }
     }
 

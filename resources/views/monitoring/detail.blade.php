@@ -165,30 +165,35 @@
                             <div class="card-header">
                                 <div class="card-header">
                                     <h4>Simple Table</h4>
-                                    <div class="card-body"> @if (Auth::user()->hasRole('Administrator'))
-                                        <form action="{{ route('detailbeban') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('operator'))
-                                        <form action="{{ route('detailbeban.operator') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('ValidatorOpsis'))
-                                        <form action="{{ route('detailbeban.opsis') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
-                                        <form action="{{ route('detailbeban.validfasop') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
-                                        <form action="{{ route('detailbeban.editorop') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('visitor'))
-                                        <form action="{{ route('detailbeban.visitor') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('Manager'))
-                                        <form action="{{ route('detailbeban.manager') }}" method="GET">
-                                    @endif
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="date" name="selected_date" class="form-control">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-primary" type="submit"><i
-                                                            class="fas fa-2x fa-search"></i><span>Cari</span></button>
-                                                </div>
+                                    <div class="card-body">
+                                        @if (Auth::user()->hasRole('Administrator'))
+                                            <form action="{{ route('detailbeban') }}" method="GET">
+                                            @elseif (Auth::user()->hasRole('operator'))
+                                                <form action="{{ route('detailbeban.operator') }}" method="GET">
+                                                @elseif (Auth::user()->hasRole('ValidatorOpsis'))
+                                                    <form action="{{ route('detailbeban.opsis') }}" method="GET">
+                                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
+                                                        <form action="{{ route('detailbeban.validfasop') }}"
+                                                            method="GET">
+                                                        @elseif (Auth::user()->hasRole('EditorOpsis'))
+                                                            <form action="{{ route('detailbeban.editorop') }}"
+                                                                method="GET">
+                                                            @elseif (Auth::user()->hasRole('visitor'))
+                                                                <form action="{{ route('detailbeban.visitor') }}"
+                                                                    method="GET">
+                                                                @elseif (Auth::user()->hasRole('Manager'))
+                                                                    <form action="{{ route('detailbeban.manager') }}"
+                                                                        method="GET">
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="date" name="selected_date" class="form-control">
                                             </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-primary" type="submit"><i
+                                                        class="fas fa-2x fa-search"></i><span>Cari</span></button>
+                                            </div>
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
@@ -314,19 +319,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                {{-- <div class="row">
-                    <div class="col-md-6">
                         <div class="card">
+                            <div class="card-header">
+                                <h4>Grafik Beban Harian</h4>
+                            </div>
                             <div class="card-body">
-                                <div style="width: 100%; height:170px; margin: auto;">
-                                    <canvas id="chartharian"></canvas>
-                                </div>
+                                <canvas id="chartharian"></canvas>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
+
 
             </div>
             <div class="tab-pane fade" id="tabMingguan">
@@ -451,33 +454,36 @@
                                 <div class="card-body">
                                     @if (Auth::user()->hasRole('Administrator'))
                                         <form action="{{ route('detailbeban') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('operator'))
-                                        <form action="{{ route('detailbeban.operator') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('ValidatorOpsis'))
-                                        <form action="{{ route('detailbeban.opsis') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
-                                        <form action="{{ route('detailbeban.validfasop') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
-                                        <form action="{{ route('detailbeban.editorop') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('visitor'))
-                                        <form action="{{ route('detailbeban.visitor') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('Manager'))
-                                        <form action="{{ route('detailbeban.manager') }}" method="GET">
+                                        @elseif (Auth::user()->hasRole('operator'))
+                                            <form action="{{ route('detailbeban.operator') }}" method="GET">
+                                            @elseif (Auth::user()->hasRole('ValidatorOpsis'))
+                                                <form action="{{ route('detailbeban.opsis') }}" method="GET">
+                                                @elseif (Auth::user()->hasRole('ValidatorFasop'))
+                                                    <form action="{{ route('detailbeban.validfasop') }}" method="GET">
+                                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
+                                                        <form action="{{ route('detailbeban.editorop') }}"
+                                                            method="GET">
+                                                        @elseif (Auth::user()->hasRole('visitor'))
+                                                            <form action="{{ route('detailbeban.visitor') }}"
+                                                                method="GET">
+                                                            @elseif (Auth::user()->hasRole('Manager'))
+                                                                <form action="{{ route('detailbeban.manager') }}"
+                                                                    method="GET">
                                     @endif
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="date" name="start_date" class="form-control"
-                                                    value="{{ $startDate }}">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="date" name="end_date" class="form-control"
-                                                    value="{{ $endDate }}">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button class="btn btn-primary" type="submit"><i
-                                                        class="fas fa-2x fa-search"></i><span>Cari</span></button>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="date" name="start_date" class="form-control"
+                                                value="{{ $startDate }}">
                                         </div>
+                                        <div class="col-md-4">
+                                            <input type="date" name="end_date" class="form-control"
+                                                value="{{ $endDate }}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-primary" type="submit"><i
+                                                    class="fas fa-2x fa-search"></i><span>Cari</span></button>
+                                        </div>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -669,30 +675,34 @@
                                     <h4>Simple Table</h4>
                                     <div class="card-body">
                                         @if (Auth::user()->hasRole('Administrator'))
-                                        <form action="{{ route('detailbeban') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('operator'))
-                                        <form action="{{ route('detailbeban.operator') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('ValidatorOpsis'))
-                                        <form action="{{ route('detailbeban.opsis') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
-                                        <form action="{{ route('detailbeban.validfasop') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('EditorOpsis'))
-                                        <form action="{{ route('detailbeban.editorop') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('visitor'))
-                                        <form action="{{ route('detailbeban.visitor') }}" method="GET">
-                                    @elseif (Auth::user()->hasRole('Manager'))
-                                        <form action="{{ route('detailbeban.manager') }}" method="GET">
-                                    @endif
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <span>Pilih Bulan: </span>
-                                                    <input name="StartBulan" id="startDate" class="date-picker" />
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-primary" type="submit"><i
-                                                            class="fas fa-2x fa-search"></i><span>Cari</span></button>
-                                                </div>
+                                            <form action="{{ route('detailbeban') }}" method="GET">
+                                            @elseif (Auth::user()->hasRole('operator'))
+                                                <form action="{{ route('detailbeban.operator') }}" method="GET">
+                                                @elseif (Auth::user()->hasRole('ValidatorOpsis'))
+                                                    <form action="{{ route('detailbeban.opsis') }}" method="GET">
+                                                    @elseif (Auth::user()->hasRole('ValidatorFasop'))
+                                                        <form action="{{ route('detailbeban.validfasop') }}"
+                                                            method="GET">
+                                                        @elseif (Auth::user()->hasRole('EditorOpsis'))
+                                                            <form action="{{ route('detailbeban.editorop') }}"
+                                                                method="GET">
+                                                            @elseif (Auth::user()->hasRole('visitor'))
+                                                                <form action="{{ route('detailbeban.visitor') }}"
+                                                                    method="GET">
+                                                                @elseif (Auth::user()->hasRole('Manager'))
+                                                                    <form action="{{ route('detailbeban.manager') }}"
+                                                                        method="GET">
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <span>Pilih Bulan: </span>
+                                                <input name="StartBulan" id="startDate" class="date-picker" />
                                             </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-primary" type="submit"><i
+                                                        class="fas fa-2x fa-search"></i><span>Cari</span></button>
+                                            </div>
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
@@ -924,9 +934,11 @@
     <script src="{{ asset('library/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         $("#jumlahfeederup3").dataTable({});
     </script>
@@ -951,20 +963,20 @@
     </script> --}}
     <script>
         $("#bebantrafo").dataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "dom": 'Bfrtip', // Menambahkan dom untuk tombol ekspor
-        "buttons": [ // Menambahkan tombol ekspor
-            'excel',
-            'pdf',
-            'print'
-        ]
-    });
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "dom": 'Bfrtip', // Menambahkan dom untuk tombol ekspor
+            "buttons": [ // Menambahkan tombol ekspor
+                'excel',
+                'pdf',
+                'print'
+            ]
+        });
     </script>
 
     <script>
@@ -1055,67 +1067,66 @@
     </script> --}}
     <script>
         $(document).ready(function() {
-    
 
-    $('.date-picker').datepicker({
-        dateFormat: "mm",
-        changeMonth: true,
-        changeYear: false,
-        showButtonPanel: true,
-        closeText: 'Done',
-        onClose: function(dateText, inst) {
-            function isDonePressed() {
-                return $('#ui-datepicker-div .ui-datepicker-close').hasClass('ui-state-hover');
-            }
-            if (isDonePressed()) {
-                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                var monthNames = ["January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
-                ];
-                var monthName = monthNames[month];
-                $(this).val(monthName).trigger('change');
-            }
-        },
-        beforeShow: function(input, inst) {
-            setTimeout(function() {
-                $(".ui-datepicker-calendar").hide();
-            }, 0);
 
-            if ((datestr = $(input).val()).length > 0) {
-                var monthNames = ["January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
-                ];
-                var monthName = datestr;
-                var month = monthNames.indexOf(monthName);
-                if (month !== -1) {
-                    $(input).datepicker('option', 'defaultDate', new Date(0, month, 1));
-                    $(input).datepicker('setDate', new Date(0, month, 1));
+            $('.date-picker').datepicker({
+                dateFormat: "mm",
+                changeMonth: true,
+                changeYear: false,
+                showButtonPanel: true,
+                closeText: 'Done',
+                onClose: function(dateText, inst) {
+                    function isDonePressed() {
+                        return $('#ui-datepicker-div .ui-datepicker-close').hasClass('ui-state-hover');
+                    }
+                    if (isDonePressed()) {
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        var monthNames = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"
+                        ];
+                        var monthName = monthNames[month];
+                        $(this).val(monthName).trigger('change');
+                    }
+                },
+                beforeShow: function(input, inst) {
+                    setTimeout(function() {
+                        $(".ui-datepicker-calendar").hide();
+                    }, 0);
+
+                    if ((datestr = $(input).val()).length > 0) {
+                        var monthNames = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"
+                        ];
+                        var monthName = datestr;
+                        var month = monthNames.indexOf(monthName);
+                        if (month !== -1) {
+                            $(input).datepicker('option', 'defaultDate', new Date(0, month, 1));
+                            $(input).datepicker('setDate', new Date(0, month, 1));
+                        }
+                    }
+                },
+                onChangeMonthYear: function(year, month, inst) {
+                    setTimeout(function() {
+                        $(".ui-datepicker-calendar").hide();
+                    }, 0);
                 }
-            }
-        },
-        onChangeMonthYear: function(year, month, inst) {
-            setTimeout(function() {
-                $(".ui-datepicker-calendar").hide();
-            }, 0);
-        }
-    }).on('change', function() {
-        var datepickerInput = this;
-        if (table.search() !== datepickerInput.value) {
-            table.search(datepickerInput.value).draw();
-        }
-    });
+            }).on('change', function() {
+                var datepickerInput = this;
+                if (table.search() !== datepickerInput.value) {
+                    table.search(datepickerInput.value).draw();
+                }
+            });
 
-    // Menonaktifkan datepicker saat pencarian aktif
-    table.on('search.dt', function() {
-        $('.date-picker').datepicker("disable");
-    });
+            // Menonaktifkan datepicker saat pencarian aktif
+            table.on('search.dt', function() {
+                $('.date-picker').datepicker("disable");
+            });
 
-    // Mengaktifkan kembali datepicker setelah pencarian selesai
-    table.on('draw.dt', function() {
-        $('.date-picker').datepicker("enable");
-    });
-});
-
+            // Mengaktifkan kembali datepicker setelah pencarian selesai
+            table.on('draw.dt', function() {
+                $('.date-picker').datepicker("enable");
+            });
+        });
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1264,4 +1275,152 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('bebanChart').getContext('2d');
+            var bebanChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode(array_values($maxColumns)) !!}, // Labels are the days
+                    datasets: [{
+                        label: 'Nilai Tertinggi',
+                        data: {!! json_encode(array_values($maxValues)) !!}, // Data points are the max values per day
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tanggal', // Description for X axis
+                                color: '#911',
+                                font: {
+                                    family: 'Comic Sans MS',
+                                    size: 20,
+                                    weight: 'bold',
+                                    lineHeight: 1.2
+                                },
+                                padding: {
+                                    top: 20,
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 0
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Nilai Tertinggi', // Description for Y axis
+                                color: '#191',
+                                font: {
+                                    family: 'Times',
+                                    size: 20,
+                                    style: 'italic',
+                                    lineHeight: 1.2
+                                },
+                                padding: {
+                                    top: 0,
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 20
+                                }
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: 'rgb(255, 99, 132)'
+                            }
+                        },
+                        tooltip: {
+                            enabled: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx = document.getElementById('chartharian').getContext('2d');
+        var bebanChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode(array_values($xLabels)) !!}, // Labels are the days
+                datasets: [{
+                    label: 'Nilai Tertinggi',
+                    data: {!! json_encode(array_values($yValues)) !!}, // Data points are the max values per day
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tanggal', // Description for X axis
+                            color: '#911',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2
+                            },
+                            padding: {
+                                top: 20,
+                                left: 0,
+                                right: 0,
+                                bottom: 0
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nilai Tertinggi', // Description for Y axis
+                            color: '#191',
+                            font: {
+                                family: 'Times',
+                                size: 20,
+                                style: 'italic',
+                                lineHeight: 1.2
+                            },
+                            padding: {
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 20
+                            }
+                        },
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                }
+            }
+        });
+    });
+</script>
 @endpush
