@@ -161,10 +161,10 @@
             <a class="nav-link" href="{{ route('bebansemua.validfasop') }}"><i class="fa fa-line-chart"></i>
                 <span>Beban</span></a>
         </li>
-        {{-- <li class="menu-header">Approval</li>
-        <li class="{{ Request::is('approval') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('approval') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
-        </li> --}}
+        <li class="menu-header">Approval</li>
+        <li class="{{ Request::is('approval.validfasop') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('approval.validfasop') }}"><i class="fa fa-check-square"></i> <span>Approval</span></a>
+        </li>
         <li class="menu-header">Tabel Asset</li>
                 <li class="{{ Request::is('dataform.index.fasop') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('dataform.index.fasop') }}"><i class="fa fa-database"></i>

@@ -11,7 +11,7 @@ class OpsisController extends Controller
 {
     public function index(){
 
-        if(Auth::user()->hasRole('ValidatorOpsis')){
+        if(Auth::user()->hasRole(['ValidatorOpsis','ValidatorFasop'])){
 
             return view('Opsis.Approaval.index');
 

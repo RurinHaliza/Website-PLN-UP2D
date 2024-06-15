@@ -225,6 +225,9 @@ Route::group(['prefix' => 'ValidatorFasop', 'middleware' => ['auth', 'role:Valid
     Route::get('DataForm', [DataForm::class, 'index'])->name('dataform.index.fasop');
     Route::get('TambahData', [DataForm::class, 'TambahData'])->name('tambahdataform.fasop');
     Route::post('/dataform/store', [DataForm::class, 'store'])->name('dataform.store.fasop');
+
+    //Approval
+    Route::get('Approval', [OpsisController::class, 'index'])->name('approval.validfasop');
 });
 
 Route::group(['prefix' => 'EditorOpsis', 'middleware' => ['auth', 'role:EditorOpsis']], function () {
