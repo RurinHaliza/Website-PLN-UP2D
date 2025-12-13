@@ -58,6 +58,58 @@ class GIController extends Controller
         }
     }
 
+    public function store(Request $request){
+        
+        if(Auth::user()->hasRole(['Administrator', 'operator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis', 'Manager'])){
+
+            $store = new GITable();
+            $store->ID_FGI = $request->id_gi;
+            $store->Nama_GI = $request->nama_gi;
+            $store->NAMA_SINGKATAN = $request->nama_singkatan;
+            $store->KD_Pemilik = $request->kd_pemilik;
+            $store->KD_Pengelola = $request->kd_pengelola;
+            $store->tingkat_resiko = $request->tingkat_resiko;
+            $store->x = $request->latt;
+            $store->y = $request->long;
+
+            if($store){
+
+                return redirect()->back()->with(['success' => 'Data berhasil di tambahkan'],200);
+
+            }else{
+                return redirect()->back()->with(['success' => 'Data gagal di tambahkan'],401);
+            }
+
+        }
+    }
+
+    public function edit($id){
+
+        if(Auth::user()->hasRole(['Administrator', 'operator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis', 'Manager'])){
+
+            $edit = GITable::findOrFail($id);
+            
+        }
+
+    }
+
+    public function update(Request $request,$id){
+
+        if(Auth::user()->hasRole(['Administrator', 'operator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis', 'Manager'])){
+
+            $update = GITable::where('id',$id)->update([
+                'ID_FGI '=> $request->id_gi,
+                'Nama_GI' => $request->nama_gi,
+                'NAMA_SINGKATAN' => $request->nama_singkatan,
+                'KD_Pemilik' => $request->kd_pemilik,
+                'KD_Pengelola' => $request->kd_pengelola,
+                'tingkat_resiko' => $request->tingkat_resiko,
+                'x' => $request->latt,
+                'y' => $request->long,
+            ]);            
+        }
+    }
+
     public function detail($id)
     {
 

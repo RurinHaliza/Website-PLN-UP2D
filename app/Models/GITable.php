@@ -11,4 +11,15 @@ class GITable extends Model
 
     protected $table = 'GITable';
 
+    protected $fillable = [
+        'ID_FGI',
+        'Nama_GI',
+        'NAMA_SINGKATAN',
+        'KD_PEMILIK',
+        'KD_PENGELOLA',
+        'tingkat_resiko',
+        'x',
+        'y',
+    ];
+
 }

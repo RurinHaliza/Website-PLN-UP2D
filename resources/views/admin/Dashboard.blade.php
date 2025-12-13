@@ -95,14 +95,18 @@
 
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mva }}</div>
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Dalam Satuan Arus : 
+                                    
+                                </div>
                             </div>
                             <div class="col-auto">
-                               
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
 
         <h2>Data Monitor GI Jawa Timur</h2>

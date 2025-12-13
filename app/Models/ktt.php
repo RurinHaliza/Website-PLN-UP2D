@@ -10,4 +10,16 @@ class ktt extends Model
     use HasFactory;
 
     protected $table = 'beban_ktt';
+
+    protected $fillable = [
+        'pkey',
+        'station',
+        'nama',
+        'daya',
+        'alamat',
+        'tanggal',
+        'cb',
+        'meter',
+        'status_meter',
+    ];
 }

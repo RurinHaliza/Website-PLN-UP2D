@@ -243,11 +243,9 @@ class MenuController extends Controller
         if (Auth::user()->hasRole(['Administrator','operator','ValidatorOpsis','ValidatorFasop','EditorOpsis','Visitor','Manager'])) {
 
             // Harian
-            // Mengambil data berdasarkan tanggal terpilih
             $selectedDate = $request->input('selected_date', Carbon::today()->toDateString());
             $data = data_beban_puncak30::whereDate('tanggal', $selectedDate)->get();
 
-            // Fungsi untuk menghitung nilai rata-rata
             function calculateAverage($data, $columns)
             {
                 return $data->avg(function ($item) use ($columns) {
@@ -259,7 +257,6 @@ class MenuController extends Controller
                 });
             }
 
-            // Fungsi untuk menghitung nilai maksimum dan maksimum kedua
             function calculateMaxValues($data, $columns)
             {
                 $maxValue = 0;
@@ -284,32 +281,24 @@ class MenuController extends Controller
                 return [$maxValue, $maxColumn, $maxValue2, $maxColumn2];
             }
 
-            // Kolom untuk data siang
             $columnsHarian = ['04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00'];
 
-            // Menghitung rata-rata dan nilai maksimum untuk data harian
             $averageValue = calculateAverage($data, $columnsHarian);
             list($maxValue, $maxColumn, $maxValue2, $maxColumn2) = calculateMaxValues($data, $columnsHarian);
 
-            // Kolom untuk data malam
             $columnsMalam = ['16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59', '00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00'];
 
-            // Menghitung rata-rata dan nilai maksimum untuk data malam
             $averageValueM = calculateAverage($data, $columnsMalam);
             list($maxValueM, $maxColumnM, $maxValueM2, $maxColumnM2) = calculateMaxValues($data, $columnsMalam);
 
-            // Kolom untuk data gabungan
             $columnsDay = ['00_30', '01_00', '01_30', '02_00', '02_30', '03_00', '03_30', '04_00', '04_30', '05_00', '05_30', '06_00', '06_30', '07_00', '07_30', '08_00', '08_30', '09_00', '09_30', '10_00', '10_30', '11_00', '11_30', '12_00', '12_30', '13_00', '13_30', '14_00', '14_30', '15_00', '15_30', '16_00', '16_30', '17_00', '17_30', '18_00', '18_30', '19_00', '19_30', '20_00', '20_30', '21_00', '21_30', '22_00', '22_30', '23_00', '23_30', '23_59'];
 
-            // Menghitung rata-rata dan nilai maksimum untuk data gabungan
             $averageValueDay = calculateAverage($data, $columnsDay);
             list($maxValueDay, $maxColumnDay, $maxValueDay2, $maxColumnDay2) = calculateMaxValues($data, $columnsDay);
 
-                        // Inisialisasi array untuk sumbu X dan Y
             $xLabels = [];
             $yValues = [];
 
-            // Menghitung nilai maksimum untuk setiap kolom
             foreach ($columnsDay as $column) {
                 $maxValue = null;
                 foreach ($data as $item) {
@@ -710,6 +699,18 @@ class MenuController extends Controller
             return view('admin.beban.MVCELL.edit', compact('data'));
         }
     }
+
+    public function createmvcell(){
+
+        return view('admin.beban.MVCELL.create');
+
+    }
+
+    public function store(Request $request){
+
+
+    }
+
 
     public function downloadMVCELL()
     {

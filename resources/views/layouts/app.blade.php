@@ -4,8 +4,8 @@
 <head>
 
     <?php
-    header('Access-Control-Allow-Origin', '*');
-    header('Access-Control-Allow-Methods', 'GET, POST');
+header('Access-Control-Allow-Origin', '*');
+header('Access-Control-Allow-Methods', 'GET, POST');
     ?>
 
     <meta charset="UTF-8">
@@ -50,7 +50,7 @@
             <!-- Sidebar -->
             @include('components.sidebar')
 
-            <!-- Content -->
+            <!-- Main Content -->
             @yield('main')
 
             <!-- Footer -->
@@ -58,6 +58,17 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.querySelector('#sidebarToggle');
+            if (!toggleBtn) return;
+
+            toggleBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.body.classList.toggle('sidebar-mini');
+            });
+        });
+    </script>
     <!-- General JS Scripts -->
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('library/popper.js/dist/umd/popper.js') }}"></script>

@@ -77,6 +77,7 @@
             </div>
             <div class="card-footer">
                 <a href="{{ route('download.excel.admintrafo') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
+                <a href="{{ route('trafo.create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i>Tambah data</a>
             </div>
         </div>
     </div>

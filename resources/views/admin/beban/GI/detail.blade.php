@@ -17,7 +17,6 @@
             </div>
         </section>
         <a href="{{ url()->previous() }}" class="btn btn-danger">Kembali</a>
-
         <div class="card mt-3">
             <div class="card-header">
                 <h5 class="m-0 font-weight-bold text-primary">Detail Rincian Data</h5>

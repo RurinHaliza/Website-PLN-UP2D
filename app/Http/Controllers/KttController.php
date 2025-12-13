@@ -101,6 +101,37 @@ class KTTController extends Controller
         }
     }
 
+    public function create(){
+
+        return view('admin.beban.KTT.create');
+
+    }
+
+    public function store(Request $request){
+
+        if (Auth::user()->hasRole('Administrator', 'EditorOpsis', 'ValidatorOpsis')) {
+
+            $update = ktt::create([
+
+                'pkey' => $request->pkey,
+                'station' => $request->station,
+                'nama' => $request->nama,
+                'daya' => $request->daya,
+                'alamat' => $request->alamat,
+                'tanggal' => $request->tanggal,
+                'cb' => $request->cb,
+                'meter' => $request->meter,
+                'status_meter' => $request->status_meter,
+            ]);
+
+            if ($update) {
+                return redirect()->route('bebanktt')->with('success', 'Data Berhasil di update');
+            }
+        }
+
+    }
+
+
     public function Export()
     {
 

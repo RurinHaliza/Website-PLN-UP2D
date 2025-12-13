@@ -15,6 +15,8 @@
                 <h1>Highlight Kondisi Sistem</h1>
             </div>
         </section>
+
+        {{-- Detail beban GI --}}
         <a href="{{ url()->previous() }}" class="btn btn-danger mb-4">Kembali</a>
         @if (Auth::user()->hasRole('Administrator'))
             <a href="{{ route('detailbeban') }}" class="btn btn-primary mb-4">Detail Beban</a>
@@ -26,20 +28,15 @@
             <a href="{{ route('detailbeban.validfasop') }}" class="btn btn-primary mb-4">Detail Beban</a>
         @elseif (Auth::user()->hasRole('EditorOpsis'))
             <a href="{{ route('detailbeban.editorop') }}" class="btn btn-primary mb-4">Detail Beban</a>
-<<<<<<< HEAD
-        @elseif (Auth::user()->hasRole('Visitor'))
-            <a href="{{ route('detailbeban.visitor') }}" class="btn btn-primary mb-4">Detail Beban</a>  
-        @elseif (Auth::user()->hasRole('Manager'))
-            <a href="{{ route('detailbeban.manager') }}" class="btn btn-primary mb-4">Detail Beban</a>    
-=======
         @elseif (Auth::user()->hasRole('visitor'))
             <a href="{{ route('detailbeban.visitor') }}" class="btn btn-primary mb-4">Detail Beban</a>
         @elseif (Auth::user()->hasRole('Manager'))
             <a href="{{ route('detailbeban.manager') }}" class="btn btn-primary mb-4">Detail Beban</a>
->>>>>>> 39104fafd13ca4da1227a7198cc1de7421e785d2
         @endif
 
+        <a href="{{ route('bebanpenyulang2') }}" class="btn btn-info mb-4">Detail Beban Penyulang</a>
 
+        <a href="{{ route('data.bebanup3') }}" class="btn btn-success mb-4">Detail Beban UP3</a>
 
         <div class="row">
             <div class="col-md-6">
@@ -211,27 +208,18 @@
     </script>
 
     <script>
-        $("#bebanharikemarin").dataTable({
-            // "columnDefs": [{
-            //     "sortable": false,
-            //     "targets": [2, 3]
-            // }]
-        });
-    </script>
-
-    <script>
         var ctx = document.getElementById('barChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ["0", "1", "2", "3", "4", "5"],
                 datasets: [{
-                        label: 'Parameter 1', // Name the series
-                        data: ['45', '15', '27', '56', '50'], // Specify the data values array
+                        label: 'Parameter 1',
+                        data: ['45', '15', '27', '56', '50'],
                         fill: false,
-                        borderColor: '#ffd000', // Add custom color border (Line)
-                        backgroundColor: '#ffd000', // Add custom color background (Points and Fill)
-                        borderWidth: 3 // Specify bar border width
+                        borderColor: '#ffd000',
+                        backgroundColor: '#ffd000',
+                        borderWidth: 3
                     },
                     {
                         label: 'Parameter 2',

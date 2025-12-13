@@ -10,6 +10,8 @@ class data_beban_puncak30 extends Model
     use HasFactory;
     protected $table = 'data_beban_puncak30';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id',
         'feeder_pkey',

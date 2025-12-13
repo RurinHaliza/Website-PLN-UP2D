@@ -10,5 +10,6 @@ class status_beban extends Model
     use HasFactory;
 
     protected $table = 'status_beban';
+    public $timestamps = false;
 
 }

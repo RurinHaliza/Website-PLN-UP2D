@@ -38,35 +38,76 @@ class TrafoController extends Controller
             $trafo = trafo::all();
 
             return view('Opsis.beban.trafo', compact('trafo'));
-        }elseif (Auth::user()->hasRole('EditorOpsis')) {
+        } elseif (Auth::user()->hasRole('EditorOpsis')) {
 
             $trafo = trafo::all();
 
             return view('EditorOpsis.beban.trafo', compact('trafo'));
-        }elseif (Auth::user()->hasRole('Manager')) {
+        } elseif (Auth::user()->hasRole('Manager')) {
 
             $trafo = trafo::all();
 
             return view('Manager.beban.trafo', compact('trafo'));
-        }elseif (Auth::user()->hasRole('EditorOpsis')) {
+        } elseif (Auth::user()->hasRole('EditorOpsis')) {
 
             $trafo = trafo::all();
 
             return view('EditorOpsis.beban.trafo', compact('trafo'));
         }
-
     }
 
     public function detail($id)
     {
 
-        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis','Manager'])) {
+        if (Auth::user()->hasRole(['Administrator', 'Visitor', 'EditorOpsis', 'ValidatorFasop', 'operator', 'ValidatorOpsis', 'Manager'])) {
 
             $data = trafo::findOrFail($id);
 
             return view('TabelBeban.Trafo.Detail', compact('data'));
-        } 
+        }
     }
+
+    public function create()
+    {
+
+        return view('admin.beban.Trafo.create');
+    }
+
+    public function store(Request $request)
+    {
+        if (Auth::user()->hasRole('Administrator')) {
+
+            $req = $request->all();
+
+            $store = trafo::create([
+
+                'Nama_GI' => $request->nama_gi,
+                'TRAFO' => $request->trafo,
+                'ID_TRAFO' => $request->id_trafo,
+                'ID_KELAS' => $request->id_kelas,
+                'KD_PEMILIK' => $request->kd_pemilik,
+                'KD_PENGELOLA' => $request->pengelola,
+                'TINGKAT_RESIKO' => $request->tingkat_resiko,
+                'KODE_PERALATAN' => $request->kode,
+                'MERK' => $request->merk,
+                'NO_SERI' => $request->no_seri,
+                'PERUNTUKAN' => $request->peruntukan,
+                'JENIS' => $request->jenis,
+                'STATUS' => $request->status,
+                'TGL_PASANG' => $request->tgl_pasang,
+                'TGL_OPERASI' => $request->tgl_operasi,
+                'NILAI_PEROLEHAN' => $request->nilai_perolehan,
+                'NILAI_BUKU' => $request->nilai_buku,
+                'UMUR_EKONOMIS' => $request->umur_ekonomis,
+                'UMUR_MANFAAT' => $request->umur_manfaat,
+            ]);
+
+            if ($store) {
+                return redirect()->route('bebantrafo')->with('success', 'Data Berhasil di update');
+            }
+        }
+    }
+
 
     public function edit($id)
     {
@@ -126,8 +167,5 @@ class TrafoController extends Controller
     {
 
         return Excel::download(new TrafoExport, 'data_trafo.xlsx');
-    
     }
-
-
 }

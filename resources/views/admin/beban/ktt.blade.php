@@ -76,9 +76,10 @@
                     </table>
                 </div>
             </div>
-            {{-- <div class="card-footer">
-                <a href="{{ route('download.excel.adminktt') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a>
-            </div> --}}
+            <div class="card-footer">
+                {{-- <a href="{{ route('download.excel.adminktt') }}" class="btn btn-primary"><i class="fas fa-fw fa-arrow-down"></i>Download Excel</a> --}}
+                <a href="{{ route('ktt.create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
+            </div>
         </div>
     </div>
 @endsection
